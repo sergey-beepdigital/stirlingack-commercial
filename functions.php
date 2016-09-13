@@ -64,6 +64,7 @@ class StarterSite extends TimberSite {
     function add_to_twig( $twig ) {
         /* this is where you can add your own fuctions to twig */
         $twig->addExtension( new Twig_Extension_StringLoader() );
+        $twig->addFunction( new Twig_SimpleFunction('query_cat', array($this, 'query_cat')));
         return $twig;
     }
 
@@ -125,6 +126,26 @@ class StarterSite extends TimberSite {
      */
     function fix_svg_thumb_display() {
         echo '<style> td.media-icon img[src$=".svg"], img[src$=".svg"].attachment-post-thumbnail { width: 100% !important; height: auto !important; } </style>';
+    }
+
+    /**
+     * Query Cat
+     * Queries passed post type, category id's and limits results to passed limit
+     *
+     * This is registered as a Timber function and can be called in templates
+     * with the following syntax:
+     *
+     *      {{ query_cat('post', [1, 2, 3], 3) }}
+     *
+     * This would return posts in categories 1, 2, or 3 and limit the response
+     * to 3 results.
+     */
+    function query_cat($post_type = 'any', $cats, $limit = 3) {
+        return Timber::get_posts(array(
+            'post_type' => $post_type,
+            'cat' => $cats,
+            'numberposts' => $limit
+        ));
     }
 }
 
