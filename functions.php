@@ -64,6 +64,7 @@ class StarterSite extends TimberSite {
     function add_to_twig( $twig ) {
         /* this is where you can add your own fuctions to twig */
         $twig->addExtension( new Twig_Extension_StringLoader() );
+        $twig->addFunction( new Twig_SimpleFunction('query_cat', array($this, 'query_cat')));
         return $twig;
     }
 
