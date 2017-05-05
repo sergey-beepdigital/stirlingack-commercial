@@ -40,5 +40,12 @@
 			</footer>
 			{{ function('wp_footer') }}
 		{% endblock %}
+
+        {# 
+            Stop Page Performance Timer
+
+            This function is available in functions.php as a global function.
+         #}
+        {{ function('stop_timber_timer') }}
 	</body>
 </html>
