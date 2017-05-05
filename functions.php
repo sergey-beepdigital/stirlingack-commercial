@@ -110,21 +110,31 @@ class StarterSite extends TimberSite {
 
     /**
      * Query Cat
-     * Queries passed post type, category id's and limits results to passed limit
+     * Queries passed category id's and limits results to passed limit
      *
      * This is registered as a Timber function and can be called in templates
      * with the following syntax:
      *
-     *      {{ query_cat('post', [1, 2, 3], 3) }}
+     *      {{ query_cat([1, 2, 3], 3) }}
      *
      * This would return posts in categories 1, 2, or 3 and limit the response
      * to 3 results.
      */
-    function query_cat($post_type = 'any', $cats, $limit = 3) {
+    function query_cat(
+        $cats = [],
+        $limit = 3,
+        $post_type = 'any',
+        $orderby = 'date',
+        $offset = 0,
+        $exclude = []
+    ) {
         return Timber::get_posts(array(
             'post_type' => $post_type,
             'cat' => $cats,
-            'numberposts' => $limit
+            'posts_per_page' => $limit,
+            'orderby' => $orderby,
+            'offset' => $offset,
+            'post__not_in' => $exclude
         ));
     }
 }
