@@ -70,6 +70,7 @@ class StarterSite extends TimberSite {
     function add_to_twig( $twig ) {
         // Add your own twig functions
         $twig->addFunction( new Twig_SimpleFunction('query_cat', array($this, 'query_cat')));
+        $twig->addFilter(new Twig_SimpleFilter('json', array($this, 'json')));
         return $twig;
     }
 
@@ -137,6 +138,26 @@ class StarterSite extends TimberSite {
             'post__not_in' => $exclude
         ));
     }
+
+    /**
+     * JSON - Twig Filter
+     *
+     * Returns object as JSON string
+     *
+     * Features:
+     * - Strips newline characters from String
+     * - Escapes and quotes properly, preventing double-encoding of JSON data.
+     *
+     * Usage:
+     *
+     *     <script>
+     *         var jsonData = '{{ twigObject|json }}';
+     *     </script>
+     */
+    function json($o) {
+        return str_replace(array('\r', '\n'), '', str_replace("\u0022","\\\\\"", json_encode($o, JSON_NUMERIC_CHECK | JSON_HEX_QUOT)));
+    }
+
 }
 
 new StarterSite();
