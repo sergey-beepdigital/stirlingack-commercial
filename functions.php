@@ -16,28 +16,34 @@ class StarterSite extends TimberSite {
         add_theme_support( 'post-thumbnails' );
         add_theme_support( 'menus' );
 
+        // Timber filters
         add_filter( 'timber_context', array( $this, 'add_to_context' ) );
         add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
         add_filter( 'upload_mimes', array($this, 'svg_mime_types' ));
 
-        // Disable WP-REST API for Security
+        // Comment out to Enable WP-REST API
+        // (Disabled by default for security reasons)
         add_filter('rest_enabled', '_return_false');
         add_filter('rest_jsonp_enabled', '_return_false');
         remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
 
-        // Disable oEmbed - responsible for embedding twitter etc...
+        // Comment out to Enable oEmbed (responsible for embedding twitter etc)
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
         remove_action('wp_head', 'wp_oembed_add_host_js');
         remove_action('rest_api_init', 'wp_oembed_register_route');
         remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
 
+        // Timber Actions
         add_action( 'init', array( $this, 'register_post_types' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
-        add_action( 'init', 'disable_wp_emojicons' );
-        add_action('inline_file', array($this, 'inline_file'));
-        add_action('admin_head', array($this, 'fix_svg_thumb_display'));
         add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
 
+        // First party actions
+        add_action('inline_file', array($this, 'inline_file'));
+        add_action('admin_head', array($this, 'fix_svg_thumb_display'));
+        add_action( 'init', 'disable_wp_emojicons' );
+
+        // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
             acf_add_options_page('Theme Options');
         }
@@ -46,11 +52,11 @@ class StarterSite extends TimberSite {
     }
 
     function register_post_types() {
-        //this is where you can register custom post types
+        // require_once custom post types here
     }
 
     function register_taxonomies() {
-        //this is where you can register custom taxonomies
+        // require_once custom taxonomies here
     }
 
     function add_to_context( $context ) {
@@ -62,14 +68,15 @@ class StarterSite extends TimberSite {
     }
 
     function add_to_twig( $twig ) {
-        /* this is where you can add your own fuctions to twig */
-        $twig->addExtension( new Twig_Extension_StringLoader() );
+        // Add your own twig functions
         $twig->addFunction( new Twig_SimpleFunction('query_cat', array($this, 'query_cat')));
         return $twig;
     }
 
     function assets( $twig ) {
-        // Main Stylesheet
+        // Enqueue global styles and scripts in this function
+
+        // Enqueue a main stylesheet as a sensible default
         wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/styles/main.css', array(), '1.0.0', 'all' );
     }
 
