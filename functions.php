@@ -239,3 +239,19 @@ function disable_wp_emojicons() {
     // filter to remove TinyMCE emojis
     add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
 }
+
+/**
+ * Hide Custom Fields Menu in the backend.
+ *
+ * Hides the acf edit menu in the backend by default, can be disabled via a
+ * checkbox option on the options page.
+ *
+ * This helps avoid syncing issues with local acf-json and dev site fields.
+ *
+ * DO NOT COMMENT OUT OR DISABLE
+ */
+require_once('includes/acf-edit-screen-disabler.php');
+
+if (!get_field('enable_acf_edit', 'option')) {
+    add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
+}
