@@ -75,10 +75,21 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
+        // Get rid of default media element
+        // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
+        // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
+
+        // Remove Wp's jQuery
+        // wp_deregister_script('jquery'); // Uncomment to disable jQuery
+
+        // Define globals with for cache busting
+        require_once 'enqueues.php';
+
         // Enqueue global styles and scripts in this function
+        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array('mapbox-gl'), null, true);
 
         // Enqueue a main stylesheet as a sensible default
-        wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/styles/main.css', array(), '1.0.0', 'all' );
+        wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
     }
 
     /**

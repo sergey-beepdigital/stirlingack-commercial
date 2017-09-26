@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
+    wpcachebust = require('gulp-wp-cache-bust'),
     theme = 'theme_name_here', // Define the theme name for packaging
     paths = {
         sass: {
@@ -154,14 +155,28 @@ gulp.task('modernizr', ['sass'], function() {
 });
 
 /**
- * `gulp package`
+ * `gulp assets`
  *
- * Takes a whitelist of files and packages them into a folder in the parent
- * directory ready for deployment.
+ * Process all the assets and send to the package folder
  */
-gulp.task('package', ['sass', 'js', 'images', 'fonts'], function(){
+gulp.task('assets', ['sass', 'js', 'images', 'fonts'], function(){
     return gulp.src(paths.packageWhitelist, { base: './' })
       .pipe(gulp.dest('../' + theme + '-package/'));
+});
+
+/**
+ * `gulp package`
+ *
+ * Runs the assets task that compiles all assets and sends them to the package
+ * directory, then busts the shit out of the cache with a hash.
+ */
+gulp.task('package', ['assets'], function(){
+    return gulp.src('./enqueues.php', {base: './'})
+        .pipe(wpcachebust({
+            themeFolder: './',
+            rootPath: './'
+        }))
+        .pipe(gulp.dest('../' + theme + '-package/'));
 });
 
 gulp.task('default', ['sass', 'js', 'images', 'fonts'], function() {
