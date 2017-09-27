@@ -86,7 +86,7 @@ class StarterSite extends TimberSite {
         require_once 'enqueues.php';
 
         // Enqueue global styles and scripts in this function
-        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array('mapbox-gl'), null, true);
+        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, true);
 
         // Enqueue a main stylesheet as a sensible default
         wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
