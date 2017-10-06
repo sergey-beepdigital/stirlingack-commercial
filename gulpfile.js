@@ -41,8 +41,8 @@ var gulp = require('gulp'),
         },
         packageWhitelist: [ //Customise to your own folder structure
             '*.{php,png,css}',
-            'acf-json/*.json',
-            'includes/*.php',
+            'acf-json/**/*.json',
+            'includes/**/*.php',
             'dist/**/*',
             'components/**/*.twig',
             'templates/**/*.twig'
