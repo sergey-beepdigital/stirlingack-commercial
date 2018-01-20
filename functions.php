@@ -52,7 +52,7 @@ class StarterSite extends TimberSite {
     }
 
     function register_post_types() {
-        // require_once custom post types here
+        require_once("./includes/post-types/truth.php");
     }
 
     function register_taxonomies() {

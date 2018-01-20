@@ -1,0 +1,9 @@
+<article class="text-block {{item.content|length > 140 ? 'longform' : '' }}">
+    {{item.content}}
+
+    <footer>
+        <a href="{{item.link}}" title="{{item.title}}">
+            Permalink
+        </a>
+    </footer>
+</article>
