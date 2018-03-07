@@ -40,7 +40,7 @@ var gulp = require('gulp'),
             dist: 'dist/fonts'
         },
         packageWhitelist: [ //Customise to your own folder structure
-            '*.{php,png,css}',
+            '*.{php,png,css,zip}',
             'acf-json/**/*.json',
             'includes/**/*.php',
             'dist/**/*',
