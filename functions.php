@@ -270,8 +270,9 @@ function register_plugins () {
 		array(
 			'name' => 'Advanced Custom Fields Pro',
 			'slug' => 'advanced-custom-fields-pro',
-			'source' => '',
-			'required' => true
+			'source' => get_template_directory_uri() . '/includes/advanced-custom-fields-pro.zip',
+			'required' => true,
+            'force_activation' => true
 		),
         array(
             'name' => 'Wordfence Security – Firewall & Malware Scan',
