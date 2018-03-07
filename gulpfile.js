@@ -18,7 +18,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     wpcachebust = require('gulp-wp-cache-bust'),
-    theme = 'theme_name_here', // Define the theme name for packaging
+    theme = 'crowd-base-build', // Define the theme name for packaging
     paths = {
         sass: {
             src: 'src/sass/**/*.scss',
