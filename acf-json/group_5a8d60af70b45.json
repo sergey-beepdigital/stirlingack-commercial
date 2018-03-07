@@ -140,7 +140,7 @@
             "label": "Destination email address",
             "name": "destination_email_address",
             "type": "email",
-            "instructions": "This should be where you want the form inputs to be sent too. This can be a leadhandler email address such as: 004126e5d35f558e8826@leadhandler.co.uk",
+            "instructions": "This should be where you want the form inputs to be sent to. This can be a leadhandler email address such as: 004126e5d35f558e8826@leadhandler.co.uk",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -228,6 +228,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1520438601,
-    "local": "php"
+    "modified": 1520440315
 }
