@@ -17,6 +17,10 @@
 						{% include "menu.twig" with {'menu': menu.get_items} %}
 					</nav><!-- #nav -->
 				</div>
+				<form role='search' action='{{ site.link }}' method='GET'>
+					<input type='text' name='s' placeholder='Search'/>
+					<input type='submit' value='Submit'/>
+				</form>
 			{% endblock %}
 		</header>
 
