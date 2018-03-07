@@ -43,6 +43,7 @@ var gulp = require('gulp'),
             '*.{php,png,css}',
             'acf-json/**/*.json',
             'includes/**/*.php',
+            'includes/advanced-custom-fields-pro.zip',
             'dist/**/*',
             'components/**/*.twig',
             'templates/**/*.twig'
