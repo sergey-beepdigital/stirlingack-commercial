@@ -279,7 +279,7 @@ function register_plugins () {
             'name' => 'Yoast SEO',
             'slug' => 'wordpress-seo',
             'required' => true,
-            'force_activation' = true
+            'force_activation' => true
         )
 	);
 	register_required_plugins ($plugins);
