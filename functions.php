@@ -43,6 +43,14 @@ class StarterSite extends TimberSite {
         add_action('admin_head', array($this, 'fix_svg_thumb_display'));
         add_action( 'init', 'disable_wp_emojicons' );
 
+        // Plugin Dependancies
+        require_once('includes/required-plugins/class-tgm-plugin-activation.php');
+        require_once('includes/required-plugins/register-plugin.php');
+
+        if ( is_admin() && function_exists('register_required_plugins')) {
+            add_action ('tgmpa_register', 'register_plugins');
+        }
+
         // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
             acf_add_options_page('Theme Options');
@@ -241,6 +249,35 @@ function disable_wp_emojicons() {
 }
 
 /**
+ * Registers any plugin dependancies the theme has.
+ *
+ * Requires TGMPA
+ */
+function register_plugins () {
+	$plugins = array(
+		/* Register any required plugins:
+		array(
+			'name'               => 'Example Plugin', // Required. The plugin name.
+			'slug'               => 'example-plugin', // Requried. The plugin slug (typically the folder name).
+			'source'             => 'http://example-plugin.com', // The plugin source. Often a .zip file. Do not include this if the plugin is from the Wordpress Repository.
+			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
+			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
+		),*/
+		array(
+			'name' => 'Advanced Custom Fields Pro',
+			'slug' => 'advanced-custom-fields-pro',
+			'source' => '',
+			'required' => true
+		)
+	);
+	register_required_plugins ($plugins);
+}
+
+/**
  * Hide Custom Fields Menu in the backend.
  *
  * Hides the acf edit menu in the backend by default, can be disabled via a
@@ -252,6 +289,8 @@ function disable_wp_emojicons() {
  */
 require_once('includes/acf-edit-screen-disabler.php');
 
-if (!get_field('enable_acf_edit', 'option')) {
-    add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
+if (function_exists('get_field')) {
+    if (!get_field('enable_acf_edit', 'option')) {
+        add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
+    }
 }
