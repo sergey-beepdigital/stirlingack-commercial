@@ -39,6 +39,7 @@
         "yargs": "^9.0.1"
     },
     "dependencies": {
+        "@fdaciuk/ajax": "^2.3.0",
         "gulp": "^3.9.1"
     }
 }

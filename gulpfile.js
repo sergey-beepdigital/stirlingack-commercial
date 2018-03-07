@@ -26,6 +26,7 @@ var gulp = require('gulp'),
         },
         js: {
             src: [
+                'node_modules/@fdaciuk/ajax/dist/ajax.min.js',
                 'src/js/**/*.js',
             ],
             srcDir: 'src/js',

@@ -42,6 +42,11 @@
 			<footer id="footer">
 				{% include 'footer.twig' %}
 			</footer>
+
+			<script type='text/javascript'>
+				var crowdAjax = "{{fn('admin_url', 'admin-ajax.php')}}";
+			</script>
+
 			{{ function('wp_footer') }}
 		{% endblock %}
 

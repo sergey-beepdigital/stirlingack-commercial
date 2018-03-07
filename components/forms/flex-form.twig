@@ -1,0 +1,36 @@
+{% if not form is iterable %}
+    {% set form = TimberPost(form) %}
+{% endif %}
+
+<form class="flex-form {{ form.form_layout == 'two_col' ? 'content-row'}}" action="" method="post" data-flex-form data-form-id="{{ form.id }}">
+    {% if form.form_layout == 'one_col' %}
+        {% for field in form.get_field('single_col_fields') %}
+            {% include 'forms/flex-form-fields.twig' with { 'field': field } %}
+        {% endfor %}
+
+        <button type="submit" class="submit button-hover" data-sending-msg="{{ form.sending_msg }}">
+            <span class="hover-bar"></span>
+            {{ form.submit_button_text }}
+        </button>
+
+        <div class="flex-form__status-msg" data-status-msg></div>
+    {% elseif form.form_layout == 'two_col' %}
+        <div class="content-col-half">
+            {% for field in form.get_field('left_col_fields') %}
+                {% include 'forms/flex-form-fields.twig' with { 'field': field } %}
+            {% endfor %}
+        </div>
+        <div class="content-col-half">
+            {% for field in form.get_field('right_col_fields') %}
+                {% include 'forms/flex-form-fields.twig' with { 'field': field } %}
+            {% endfor %}
+
+            <button type="submit" class="submit button-hover" data-sending-msg="{{ form.sending_msg }}">
+                <span class="hover-bar"></span>
+                {{ form.submit_button_text }}
+            </button>
+
+            <div class="flex-form__status-msg" data-status-msg></div>
+        </div>
+    {% endif %}
+</form>

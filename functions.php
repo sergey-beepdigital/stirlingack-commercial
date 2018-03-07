@@ -55,6 +55,7 @@ class StarterSite extends TimberSite {
 
     function register_post_types() {
         // require_once custom post types here
+        require_once('includes/post-types/form.php');
     }
 
     function register_taxonomies() {
@@ -301,4 +302,46 @@ if (function_exists('get_field')) {
     if (!get_field('enable_acf_edit', 'option')) {
         add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
     }
+}
+
+/**
+ * Ajax Forms
+ *
+ * A function to handle the ajax submission of the various flex forms around the
+ * site
+ */
+add_action( 'wp_ajax_flex_form', 'flex_form' );
+add_action( 'wp_ajax_nopriv_flex_form', 'flex_form' );
+function flex_form() {
+    $currentForm = new Timber\Post($_POST['form_id']);
+    $result = array();
+
+    // Parse & Sanitize Fields
+    $fields = json_decode(stripslashes($_POST['fields']), true);
+    foreach ($fields as $key => $value) {
+        $fields[$key] = sanitize_text_field($value);
+    }
+
+    // Email Setup
+    $to_address = sanitize_email($currentForm->destination_email_address);
+    $subject = $currentForm->title . ' submission';
+    $message = $subject . "\r\n\r\n";
+    foreach ($fields as $key => $value) {
+        if ($key == 'FileID') {
+            $result['download'] = wp_get_attachment_url(intval($value));
+        } else {
+            $message.= $key . ": " . $value . "\r\n";
+        }
+    }
+
+    // Send
+    if (wp_mail($to_address, $subject, $message)) {
+        $result['message'] = $currentForm->get_field('thank_you_message');
+    } else {
+        $result['message'] = $currentForm->get_field('error_message');
+    }
+
+    echo json_encode($result);
+
+    wp_die(); // Terminate response
 }

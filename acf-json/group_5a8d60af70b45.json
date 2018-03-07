@@ -1,0 +1,233 @@
+{
+    "key": "group_5a8d60af70b45",
+    "title": "Form Builder",
+    "fields": [
+        {
+            "key": "field_5a8ea863f9f15",
+            "label": "Form layout",
+            "name": "form_layout",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "one_col": "One Column",
+                "two_col": "Two Column"
+            },
+            "default_value": [
+                "one_col"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5a8ead31e1e78",
+            "label": "Single col",
+            "name": "single_col",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a8ea863f9f15",
+                        "operator": "==",
+                        "value": "one_col"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "field_5a8d60bf1178e"
+            ],
+            "display": "group",
+            "layout": "block",
+            "prefix_label": 1,
+            "prefix_name": 1
+        },
+        {
+            "key": "field_5a8ea8a4f9f16",
+            "label": "Left col",
+            "name": "left_col",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a8ea863f9f15",
+                        "operator": "==",
+                        "value": "two_col"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "field_5a8d60bf1178e"
+            ],
+            "display": "group",
+            "layout": "block",
+            "prefix_label": 1,
+            "prefix_name": 1
+        },
+        {
+            "key": "field_5a8ea8c3f9f17",
+            "label": "Right col",
+            "name": "right_col",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a8ea863f9f15",
+                        "operator": "==",
+                        "value": "two_col"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "field_5a8d60bf1178e"
+            ],
+            "display": "group",
+            "layout": "block",
+            "prefix_label": 1,
+            "prefix_name": 1
+        },
+        {
+            "key": "field_5a8d639a11794",
+            "label": "Submit button text",
+            "name": "submit_button_text",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Submit",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a8d63ab11795",
+            "label": "Destination email address",
+            "name": "destination_email_address",
+            "type": "email",
+            "instructions": "This should be where you want the form inputs to be sent too. This can be a leadhandler email address such as: 004126e5d35f558e8826@leadhandler.co.uk",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5a8e95e4a9160",
+            "label": "Sending message",
+            "name": "sending_msg",
+            "type": "text",
+            "instructions": "This message appears on the button when it's been clicked and the message is sending.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Sending",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a8e95faa9161",
+            "label": "Thank you message",
+            "name": "thank_you_message",
+            "type": "text",
+            "instructions": "This message appears once the email is successfully sent.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Thank you, your enquiry has been sent and we will be in contact shortly.",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a8e99f470381",
+            "label": "Error message",
+            "name": "error_message",
+            "type": "text",
+            "instructions": "This message appears if the email fails to send.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "There was an issue in sending your enquiry, please refresh and try again.",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "form"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1520438601,
+    "local": "php"
+}
