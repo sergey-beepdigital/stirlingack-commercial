@@ -70,7 +70,9 @@ class StarterSite extends TimberSite {
     function add_to_context( $context ) {
         $context['menu'] = new TimberMenu('Global Header Navigation');
         $context['site'] = $this;
-        $context['options'] = get_fields('option');
+        if (function_exists('get_fields')) {
+            $context['options'] = get_fields('option');
+        }
         $context['page_stats'] = TimberHelper::start_timer();
         return $context;
     }
