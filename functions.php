@@ -272,7 +272,17 @@ function register_plugins () {
 			'slug' => 'advanced-custom-fields-pro',
 			'source' => '',
 			'required' => true
-		)
+		),
+        array(
+            'name' => 'Wordfence Security – Firewall & Malware Scan',
+            'slug' => 'wordfence',
+            'required' => true
+        ),
+        array(
+            'name' => 'Yoast SEO',
+            'slug' => 'wordpress-seo',
+            'required' => true
+        )
 	);
 	register_required_plugins ($plugins);
 }
