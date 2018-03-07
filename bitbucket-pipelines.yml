@@ -1,0 +1,11 @@
+image: andthensome/docker-node-rsync
+
+pipelines:
+  branches:
+    master: 
+      - step:
+          name: Build Package
+          script:
+          - npm install
+          - npm run build -- --production
+          - rsync -clvrz ../$PACKAGE_DIR $DEV_DEPLOY_URL
