@@ -21,12 +21,6 @@ class StarterSite extends TimberSite {
         add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
         add_filter( 'upload_mimes', array($this, 'svg_mime_types' ));
 
-        // Comment out to Enable WP-REST API
-        // (Disabled by default for security reasons)
-        add_filter('rest_enabled', '_return_false');
-        add_filter('rest_jsonp_enabled', '_return_false');
-        remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
-
         // Comment out to Enable oEmbed (responsible for embedding twitter etc)
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
         remove_action('wp_head', 'wp_oembed_add_host_js');
