@@ -8,4 +8,10 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
-          - rsync -clvrz ../$PACKAGE_DIR $DEV_DEPLOY_URL
+      - step:
+          image: atmoz/sftp
+          name: Deploy Package
+          script:
+            - -v $DEV_DEPLOY_URL:../$PACKAGE_DIR \
+            - -p 2222:22 -d atmoz/sftp \
+            - $SSH_USER:1001
