@@ -48,6 +48,7 @@ class StarterSite extends TimberSite {
         // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
             acf_add_options_page('Theme Options');
+            acf_add_options_page('Analytics/Tracking');
         }
 
         parent::__construct();
