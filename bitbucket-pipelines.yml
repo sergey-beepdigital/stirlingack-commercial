@@ -12,7 +12,7 @@ pipelines:
           - ../$PACKAGE_DIR
       - step:
           name: Deploy Package
-          image: atmoz/sftp
+          image: quay.io/aptible/sftp
           script:
           - sftp $DEV_DEPLOY_URL
           - put ../$PACKAGE_DIR
