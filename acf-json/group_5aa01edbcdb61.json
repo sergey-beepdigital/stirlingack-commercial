@@ -111,6 +111,44 @@
                     "placeholder": ""
                 }
             ]
+        },
+        {
+            "key": "field_5aa102a4496d4",
+            "label": "browserconfig.xml",
+            "name": "browserconfig_location",
+            "type": "text",
+            "instructions": "Upload the generated browserconfig.xml somewhere in the theme files. Enter the reference (relative to the theme directory) e.g \/dist\/images\/browserconfig.xml",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5aa102db496d5",
+            "label": "manifest.json",
+            "name": "manifest_location",
+            "type": "text",
+            "instructions": "Upload the generated manifest.json somewhere in the theme files. Enter the reference (relative to the theme directory) e.g \/dist\/images\/manifest.json",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -130,5 +168,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1520445546
+    "modified": 1520502048
 }
