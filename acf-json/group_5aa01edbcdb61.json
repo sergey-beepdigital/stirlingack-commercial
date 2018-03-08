@@ -118,7 +118,7 @@
             "name": "browserconfig_location",
             "type": "text",
             "instructions": "Upload the generated browserconfig.xml somewhere in the theme files. Enter the reference (relative to the theme directory) e.g \/dist\/images\/browserconfig.xml",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -137,7 +137,7 @@
             "name": "manifest_location",
             "type": "text",
             "instructions": "Upload the generated manifest.json somewhere in the theme files. Enter the reference (relative to the theme directory) e.g \/dist\/images\/manifest.json",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -168,5 +168,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1520502048
+    "modified": 1520502433
 }
