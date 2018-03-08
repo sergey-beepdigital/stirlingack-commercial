@@ -8,6 +8,8 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
+          artifacts: 
+          - ../$PACKAGE_DIR
       - step:
           name: Deploy Package
           image: mwienk/docker-git-ftp
