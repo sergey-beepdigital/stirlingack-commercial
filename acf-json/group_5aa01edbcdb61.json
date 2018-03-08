@@ -1,0 +1,134 @@
+{
+    "key": "group_5aa01edbcdb61",
+    "title": "Favicons",
+    "fields": [
+        {
+            "key": "field_5aa01efadf359",
+            "label": "Add Favicons",
+            "name": "add_favicons",
+            "type": "repeater",
+            "instructions": "<ol>\r\n<li>Go to <a href='https:\/\/www.favicon-generator.org\/'>https:\/\/www.favicon-generator.org\/<\/a> and use the generator to produce your favicon files.<\/li><br>\r\n<li>Upload the images produced, making sure you specify the type and size.<\/li>\r\n<\/ol>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": "",
+            "layout": "table",
+            "button_label": "Add Favicon",
+            "sub_fields": [
+                {
+                    "key": "field_5aa0204ddf35a",
+                    "label": "Icon File",
+                    "name": "icon_file",
+                    "type": "image",
+                    "instructions": "Upload the image here",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "png"
+                },
+                {
+                    "key": "field_5aa02087df35b",
+                    "label": "Dimensions",
+                    "name": "dimensions",
+                    "type": "select",
+                    "instructions": "What size is the icon?",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "16x16": "16x16",
+                        "32x32": "32x32",
+                        "57x57": "57x57",
+                        "60x60": "60x60",
+                        "72x72": "72x72",
+                        "76x76": "76x76",
+                        "96x96": "96x96",
+                        "114x114": "114x114",
+                        "120x120": "120x120",
+                        "144x144": "144x144",
+                        "152x152": "152x152",
+                        "180x180": "180x180",
+                        "192x192": "192x192"
+                    },
+                    "default_value": [
+                        "16x16"
+                    ],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5aa0212bdf35c",
+                    "label": "Content Type",
+                    "name": "content_type",
+                    "type": "select",
+                    "instructions": "What type of icon is it?",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "icon": "icon",
+                        "apple-touch-icon": "apple-touch-icon"
+                    },
+                    "default_value": [
+                        "icon"
+                    ],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-theme-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1520445546
+}
