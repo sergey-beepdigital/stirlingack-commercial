@@ -8,6 +8,6 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
-          - sftp $DEV_DEPLOY_URL <<< $'put -r ../$PACKAGE_DIR'
+          - sftp $DEV_DEPLOY_URL <<< $'put -r '../$PACKAGE_DIR
           
             
