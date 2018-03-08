@@ -12,7 +12,7 @@ pipelines:
           - ../$PACKAGE_DIR
       - step:
           name: Deploy Package
-          image: mwienk/docker-git-ftp
+          image: atmoz/sftp
           script:
           - sftp $DEV_DEPLOY_URL <<< ../$PACKAGE_DIR
             
