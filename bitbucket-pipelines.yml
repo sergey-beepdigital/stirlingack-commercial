@@ -12,6 +12,7 @@ pipelines:
           image: atmoz/sftp
           name: Deploy Package
           script:
-            - -v $DEV_DEPLOY_URL:../$PACKAGE_DIR \
-            - -p 2222:22 -d atmoz/sftp \
-            - $SSH_USER:1001
+            - docker run \
+              -v $DEV_DEPLOY_URL:../$PACKAGE_DIR \
+              -p 2222:22 -d atmoz/sftp \
+              $SSH_USER:1001
