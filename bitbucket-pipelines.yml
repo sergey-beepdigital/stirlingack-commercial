@@ -8,4 +8,9 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
-          - rsync -clvrz ../$PACKAGE_DIR $DEV_DEPLOY_URL
+      - step:
+          name: Deploy Package
+          image: mwienk/docker-git-ftp
+          script:
+          - sftp $DEV_DEPLOY_URL <<< ../$PACKAGE_DIR
+            
