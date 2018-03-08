@@ -8,6 +8,8 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
+          - apk add --no-cache lftp
+          - lftp -u $DEV_DEPLOY_URL >>> $'rm -rf '$PACKAGE_DIR'/*'
           - scp -r ../$PACKAGE_DIR $DEV_DEPLOY_URL
           
             
