@@ -14,8 +14,7 @@ pipelines:
           name: Deploy Package
           image: quay.io/aptible/sftp
           script:
-          - ls
-          - cd ..
+          - cd ../artifact
           - ls
           - sftp $DEV_DEPLOY_URL
           - sftp> put $PACKAGE_DIR/
