@@ -12,5 +12,6 @@ pipelines:
           name: Deploy Package
           image: mwienk/docker-git-ftp
           script:
+          - ls
           - sftp $DEV_DEPLOY_URL <<< ../$PACKAGE_DIR
             
