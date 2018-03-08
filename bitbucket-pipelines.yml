@@ -8,8 +8,6 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
-          - apt-get install lftp
-          - sftp $DEV_DEPLOY_URL <<< $'rmdir -f '$PACKAGE_DIR
           - scp -r ../$PACKAGE_DIR $DEV_DEPLOY_URL
           
             
