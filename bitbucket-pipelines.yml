@@ -16,5 +16,5 @@ pipelines:
           script:
           - cd ..
           - sftp $DEV_DEPLOY_URL
-          - sftp> put ./$PACKAGE_DIR/
+          - sftp> put $PACKAGE_DIR/
             
