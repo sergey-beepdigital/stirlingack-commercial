@@ -1,6 +1,4 @@
 image: andthensome/docker-node-rsync
-options:
-  docker: true
 
 pipelines:
   branches:
@@ -11,10 +9,8 @@ pipelines:
           - npm install
           - npm run build -- --production
       - step:
-          image: atmoz/sftp
           name: Deploy Package
+          image: mwienk/docker-git-ftp
           script:
-            - docker run \
-              -v $DEV_DEPLOY_URL:../$PACKAGE_DIR \
-              -p 2222:22 -d atmoz/sftp \
-              $SSH_USER:1001
+          - sftp $DEV_DEPLOY_URL <<< ../$PACKAGE_DIR
+            
