@@ -9,6 +9,6 @@ pipelines:
           - npm install
           - npm run build -- --production
           - sftp $DEV_DEPLOY_URL <<< $'rmdir '$PACKAGE_DIR
-          - scp ../$PACKAGE_DIR $DEV_DEPLOY_URL
+          - scp -r ../$PACKAGE_DIR $DEV_DEPLOY_URL
           
             
