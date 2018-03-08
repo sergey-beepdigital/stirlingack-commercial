@@ -14,5 +14,6 @@ pipelines:
           name: Deploy Package
           image: atmoz/sftp
           script:
-          - sftp $DEV_DEPLOY_URL <<< ../$PACKAGE_DIR
+          - sftp $DEV_DEPLOY_URL
+          - put ../$PACKAGE_DIR
             
