@@ -8,8 +8,7 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
-          - sftp $DEV_DEPLOY_URL
-          - sftp> put ../$PACKAGE_DIR/
+          - scp ../$PACKAGE_DIR/ $DEV_DEPLOY_URL
           #artifacts: 
           #- ../$PACKAGE_DIR/**
       #- step:
