@@ -9,13 +9,11 @@ pipelines:
           - npm install
           - npm run build -- --production
           artifacts: 
-          - ../$PACKAGE_DIR
+          - ../$PACKAGE_DIR/**
       - step:
           name: Deploy Package
           image: quay.io/aptible/sftp
           script:
-          - cd ../artifact
-          - ls
           - sftp $DEV_DEPLOY_URL
-          - sftp> put $PACKAGE_DIR/
+          - sftp> put ../$PACKAGE_DIR/
             
