@@ -8,16 +8,15 @@ pipelines:
           script:
           - npm install
           - npm run build -- --production
-          - cd ..
-          - ls
-          artifacts: 
-          - ../$PACKAGE_DIR/**
-      - step:
-          name: Deploy Package
-          image: quay.io/aptible/sftp
-          script:
-          - cd ..
-          - ls
           - sftp $DEV_DEPLOY_URL
           - sftp> put ../$PACKAGE_DIR/
+          #artifacts: 
+          #- ../$PACKAGE_DIR/**
+      #- step:
+       #   name: Deploy Package
+        #  image: quay.io/aptible/sftp
+         # script:
+          #- cd ..
+          #- ls
+          
             
