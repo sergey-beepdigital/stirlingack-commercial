@@ -1,4 +1,6 @@
 image: andthensome/docker-node-rsync
+options:
+  docker: true
 
 pipelines:
   branches:
