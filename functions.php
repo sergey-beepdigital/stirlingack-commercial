@@ -108,7 +108,9 @@ class StarterSite extends TimberSite {
      * example: embedding an SVG.
      */
     function inline_file($path) {
-        echo file_get_contents(ltrim(parse_url($path)['path'], '/'), true);
+        if ( $path ) {
+            echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . parse_url($path)['path']);
+        }             
     }
 
     /**
