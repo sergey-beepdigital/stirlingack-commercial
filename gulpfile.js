@@ -163,7 +163,7 @@ gulp.task('modernizr', ['sass'], function() {
  */
 gulp.task('assets', ['sass', 'js', 'images', 'fonts'], function(){
     return gulp.src(paths.packageWhitelist, { base: './' })
-      .pipe(gulp.dest('../' + theme + '-package/'));
+      .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
 });
 
 /**
@@ -178,7 +178,7 @@ gulp.task('package', ['assets'], function(){
             themeFolder: './',
             rootPath: './'
         }))
-        .pipe(gulp.dest('../' + theme + '-package/'));
+        .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
 });
 
 gulp.task('default', ['sass', 'js', 'images', 'fonts'], function() {
