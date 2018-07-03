@@ -11,7 +11,7 @@ pipelines:
           caches:
             - node
           script:
-            - "Build Package... 🙌"
+            - echo "Build Package... 🙌"
             - "npm install"
             - "npm run build -- --production --pipeline"
       #- step:
@@ -31,7 +31,7 @@ pipelines:
           caches:
             - node
           script:
-            - "Build Package... 🙌"
+            - echo "Build Package... 🙌"
             - "npm install"
             - "npm run build -- --production --pipeline"
       #- step:
@@ -40,7 +40,7 @@ pipelines:
       #    trigger: manual
       #    deployment: staging
       #    script:
-      #      - "Build Package... 🙌"
+      #      - echo "Build Package... 🙌"
       #      - echo "Deploying to UAT... 🙌"
       #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
       #- step:
@@ -49,7 +49,7 @@ pipelines:
       #    trigger: manual
       #    deployment: production
       #    script:
-      #      - "Build Package... 🙌"
+      #      - echo "Build Package... 🙌"
       #      - echo "Deploying to Production... 😬"
       #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
 
