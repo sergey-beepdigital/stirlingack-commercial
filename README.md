@@ -135,3 +135,15 @@ UAT environment thoroughly__.
 
 You must adjust the lftp path like develop branch above, but this time put the
 path of your production environment.
+
+
+### Known Hosts
+
+To run successful deployments, you'll need to add your destination SFTP servers
+to the repo's "known hosts" area.
+
+1. Go to your repo in bitbucket
+2. Find the repo settings (cog icon)
+3. Go to 'SSH Keys'
+4. Enter the 'host address' (e.g. `sftp.flywheelsites.com` or
+   `shell.gridhost.co.uk`) and click `Fetch`.
