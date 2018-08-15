@@ -1,0 +1,211 @@
+// basic styling for the complete website. global stuff
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body{
+  background: $primary;
+  font-family: $bodyFont;
+}
+h1,h2,h3,h4,h5,h6,p{margin:0;}
+h1{}
+h2{
+  text-transform: $uppercase;
+  font-size: 50px;
+  padding-bottom:20px;
+  font-family: $gothamBold;
+  @include breakpoint(960px){
+    font-size: 30px;
+  }
+  @include breakpoint(418px){
+    font-size: 19px;
+  }
+}
+h3{
+  text-transform: $uppercase;
+  font-size: 40px;
+  padding-bottom:25px;
+  color: $blue;
+  font-family: $gothamBold;
+  @include breakpoint(810px){
+    font-size: 30px;
+  }
+  @include breakpoint(378px){
+    font-size: 25px;
+  }
+  @include breakpoint(870px){
+    font-size: 30px;
+  }
+  @include breakpoint(418px){
+    font-size: 19px;
+  }
+}
+h4{
+  font-size: 30px;
+}
+h5{
+  font-size: 20px;
+  padding-bottom: 10px;
+  font-family: $gothamMedium;
+  @include breakpoint(775px){
+    font-size: 17px;
+  }
+  @include breakpoint(710px){
+    font-size: 16px;
+  }
+  @include breakpoint(400px){
+    font-size: 14px;
+  }
+}
+h6{
+  font-family: $gothamMedium;
+  font-size: 13px;
+  @include breakpoint(992px){
+    font-size: 17px;
+  }
+  @include breakpoint(870px){
+    font-size: 12px;
+  }
+}
+p{
+  padding-bottom: 20px;
+  font-family: $bodyFont;
+  font-size: 20px;
+  line-height: 30px;
+  @include breakpoint(960px){
+    font-size: 16px;
+    line-height: 26px;
+  }
+  @include breakpoint(400px){
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.margin-bottom0{
+  margin-bottom:0 !important;
+}
+.padding-bottom0{
+  padding-bottom:0;
+}
+.pull-right{
+  float: right;
+}
+.clearfix {
+    overflow: auto;
+    zoom: 1;
+}
+.container{
+  margin: 0 auto;
+  width: 1024px;
+  max-width: 100%;
+  @include breakpoint(1070px){
+    width: 924px;
+  }
+  @include breakpoint(960px){
+    width: 855px;
+  }
+  @include breakpoint(882px){
+    width: 758px;
+  }
+  @include breakpoint(775px){
+    width: 700px;
+  }
+  @include breakpoint(712px){
+    width: 610px
+  }
+  @include breakpoint(620px){
+    width: 526px;
+  }
+  @include breakpoint(550px){
+    width: 496px;
+  }
+  @include breakpoint(518px){
+    width: 465px;
+  }
+  @include breakpoint(480px){
+    width: 432px;
+  }
+  @include breakpoint(450px){
+    width: 408px;
+  }
+  @include breakpoint(418px){
+    width: 372px;
+  }
+  @include breakpoint(386px){
+    width: 352px;
+  }
+  @include breakpoint(320px){
+    width: 290px;
+  }
+}
+.col-1 {
+  width: 8.33333333%
+}
+.col-2 {
+  width: 16.66666667%
+}
+.col-3 {
+  width: 25%
+}
+.col-4 {
+  width: 33.33333333%
+}
+.col-5 {
+  width: 41.66666667%
+}
+.col-6 {
+  width: 50%
+}
+.col-7 {
+  width: 58.33333333%
+}
+.col-8 {
+  width: 66.66666667%
+}
+.col-9 {
+  width: 75%
+}
+.col-10 {
+  width: 83.33333333%
+}
+.col-11 {
+  width: 91.66666667%
+}
+.col-12 {
+  width: 100%
+}
+
+.col {
+  float: left;
+  padding: 0;
+  min-height: 1px;
+}
+.btn{
+  text-transform: $uppercase;
+  background: $skyblue;
+  color: $primary;
+  font-family: $gothamMedium;
+  padding: 17px 0;
+  min-width: 180px;
+  border:0;
+  cursor: pointer;
+  outline: none;
+  font-size: 15px;
+  @include transitions(all ease 0.5s);
+  @include breakpoint(775px){
+    padding: 14px 0;
+    min-width: 165px;
+    font-size: 12px;
+  }
+  @include breakpoint(588px){
+    width: 100%;
+  }
+  &:hover{
+    background: #012e6d;
+  }
+}

@@ -62,7 +62,7 @@ class StarterSite extends TimberSite {
     function add_to_context( $context ) {
         $context['menu'] = new TimberMenu('Global Header Navigation');
         $context['site'] = $this;
-        $context['options'] = get_fields('option');
+       // $context['options'] = get_fields('option');
         $context['page_stats'] = TimberHelper::start_timer();
         return $context;
     }
@@ -75,21 +75,9 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
-        // Get rid of default media element
-        // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
-        // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
-        // Remove Wp's jQuery
-        // wp_deregister_script('jquery'); // Uncomment to disable jQuery
-
-        // Define globals with for cache busting
         require_once 'enqueues.php';
 
-        // Enqueue global styles and scripts in this function
-        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, true);
-
-        // Enqueue a main stylesheet as a sensible default
-        wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
     }
 
     /**
@@ -250,8 +238,3 @@ function disable_wp_emojicons() {
  *
  * DO NOT COMMENT OUT OR DISABLE
  */
-require_once('includes/acf-edit-screen-disabler.php');
-
-if (!get_field('enable_acf_edit', 'option')) {
-    add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
-}
