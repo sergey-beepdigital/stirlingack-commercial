@@ -7,6 +7,7 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
+<<<<<<< HEAD
 
 		<header id="ip-header">
 			<div class="site-logo">
@@ -14,6 +15,23 @@
 					<img src="{{ theme.link ~ '/assets/logo.svg' }}" alt="IP GLOBAL" />
 				</a>
 			</div>
+=======
+		<header class="header" >
+			{% block header %}
+				<div class="wrapper">
+					<h1 class="hdr-logo" role="banner">
+						<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
+					</h1>
+					<nav id="nav-main" class="nav-main" role="navigation">
+						{% include "menu.twig" with {'menu': menu.get_items} %}
+					</nav><!-- #nav -->
+				</div>
+				<form role='search' action='{{ site.link }}' method='GET'>
+					<input type='text' name='s' placeholder='Search'/>
+					<input type='submit' value='Submit'/>
+				</form>
+			{% endblock %}
+>>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
 		</header>
 
 		<section id="content" role="main" class="content-wrapper">
@@ -29,6 +47,11 @@
 			<footer id="footer">
 				{% include 'footer.twig' %}
 			</footer>
+
+			<script type='text/javascript'>
+				var crowdAjax = "{{fn('admin_url', 'admin-ajax.php')}}";
+			</script>
+
 			{{ function('wp_footer') }}
 		{% endblock %}
 
@@ -37,6 +60,10 @@
             This function is available in functions.php as a global function.
          #}
         {{ function('stop_timber_timer') }}
+<<<<<<< HEAD
   
+=======
+		{{options.tracking_script}}
+>>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
 	</body>
 </html>

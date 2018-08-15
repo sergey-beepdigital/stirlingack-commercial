@@ -21,12 +21,6 @@ class StarterSite extends TimberSite {
         add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
         add_filter( 'upload_mimes', array($this, 'svg_mime_types' ));
 
-        // Comment out to Enable WP-REST API
-        // (Disabled by default for security reasons)
-        add_filter('rest_enabled', '_return_false');
-        add_filter('rest_jsonp_enabled', '_return_false');
-        remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
-
         // Comment out to Enable oEmbed (responsible for embedding twitter etc)
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
         remove_action('wp_head', 'wp_oembed_add_host_js');
@@ -43,9 +37,18 @@ class StarterSite extends TimberSite {
         add_action('admin_head', array($this, 'fix_svg_thumb_display'));
         add_action( 'init', 'disable_wp_emojicons' );
 
+        // Plugin Dependancies
+        require_once('includes/required-plugins/class-tgm-plugin-activation.php');
+        require_once('includes/required-plugins/register-plugin.php');
+
+        if ( is_admin() && function_exists('register_required_plugins')) {
+            add_action ('tgmpa_register', 'register_plugins');
+        }
+
         // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
             acf_add_options_page('Theme Options');
+            acf_add_options_page('Analytics/Tracking');
         }
 
         parent::__construct();
@@ -53,6 +56,7 @@ class StarterSite extends TimberSite {
 
     function register_post_types() {
         // require_once custom post types here
+        require_once('includes/post-types/form.php');
     }
 
     function register_taxonomies() {
@@ -62,7 +66,13 @@ class StarterSite extends TimberSite {
     function add_to_context( $context ) {
         $context['menu'] = new TimberMenu('Global Header Navigation');
         $context['site'] = $this;
+<<<<<<< HEAD
        // $context['options'] = get_fields('option');
+=======
+        if (function_exists('get_fields')) {
+            $context['options'] = get_fields('option');
+        }
+>>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
         $context['page_stats'] = TimberHelper::start_timer();
         return $context;
     }
@@ -90,7 +100,9 @@ class StarterSite extends TimberSite {
      * example: embedding an SVG.
      */
     function inline_file($path) {
-        echo file_get_contents(ltrim(parse_url($path)['path'], '/'), true);
+        if ( $path ) {
+            echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . parse_url($path)['path']);
+        }             
     }
 
     /**
@@ -229,6 +241,47 @@ function disable_wp_emojicons() {
 }
 
 /**
+ * Registers any plugin dependancies the theme has.
+ *
+ * Requires TGMPA
+ */
+function register_plugins () {
+	$plugins = array(
+		/* Register any required plugins:
+		array(
+			'name'               => 'Example Plugin', // Required. The plugin name.
+			'slug'               => 'example-plugin', // Requried. The plugin slug (typically the folder name).
+			'source'             => 'http://example-plugin.com', // The plugin source. Often a .zip file. Do not include this if the plugin is from the Wordpress Repository.
+			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
+			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
+		),*/
+		array(
+			'name' => 'Advanced Custom Fields Pro',
+			'slug' => 'advanced-custom-fields-pro',
+			'source' => get_stylesheet_directory() . '/includes/plugins/advanced-custom-fields-pro.zip',
+			'required' => true,
+            'force_activation' => true
+		),
+        array(
+            'name' => 'Wordfence Security – Firewall & Malware Scan',
+            'slug' => 'wordfence',
+            'required' => true
+        ),
+        array(
+            'name' => 'Yoast SEO',
+            'slug' => 'wordpress-seo',
+            'required' => true,
+            'force_activation' => true
+        )
+	);
+	register_required_plugins ($plugins);
+}
+
+/**
  * Hide Custom Fields Menu in the backend.
  *
  * Hides the acf edit menu in the backend by default, can be disabled via a
@@ -238,3 +291,55 @@ function disable_wp_emojicons() {
  *
  * DO NOT COMMENT OUT OR DISABLE
  */
+<<<<<<< HEAD
+=======
+require_once('includes/acf-edit-screen-disabler.php');
+
+if (function_exists('get_field')) {
+    if (!get_field('enable_acf_edit', 'option')) {
+        add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
+    }
+}
+
+/**
+ * Ajax Forms
+ *
+ * A function to handle the ajax submission of the various flex forms around the
+ * site
+ */
+add_action( 'wp_ajax_flex_form', 'flex_form' );
+add_action( 'wp_ajax_nopriv_flex_form', 'flex_form' );
+function flex_form() {
+    $currentForm = new Timber\Post($_POST['form_id']);
+    $result = array();
+
+    // Parse & Sanitize Fields
+    $fields = json_decode(stripslashes($_POST['fields']), true);
+    foreach ($fields as $key => $value) {
+        $fields[$key] = sanitize_text_field($value);
+    }
+
+    // Email Setup
+    $to_address = sanitize_email($currentForm->destination_email_address);
+    $subject = $currentForm->title . ' submission';
+    $message = $subject . "\r\n\r\n";
+    foreach ($fields as $key => $value) {
+        if ($key == 'FileID') {
+            $result['download'] = wp_get_attachment_url(intval($value));
+        } else {
+            $message.= $key . ": " . $value . "\r\n";
+        }
+    }
+
+    // Send
+    if (wp_mail($to_address, $subject, $message)) {
+        $result['message'] = $currentForm->get_field('thank_you_message');
+    } else {
+        $result['message'] = $currentForm->get_field('error_message');
+    }
+
+    echo json_encode($result);
+
+    wp_die(); // Terminate response
+}
+>>>>>>> 39e75e3c4062383363b28f7364292603342e8c02

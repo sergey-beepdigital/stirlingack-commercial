@@ -1,0 +1,12 @@
+<div class="field-wrapper">
+    {% if field.acf_fc_layout == 'text' %}
+        <label for="{{ field.label }}">{{ field.label }}</label>
+        <input type="text" name="{{ field.label }}" value="" placeholder="{{ field.label }}" {{ field.required ? 'required'}}>
+    {% elseif field.acf_fc_layout == 'email' %}
+        <label for="{{ field.label }}">{{ field.label }}</label>
+        <input type="email" name="{{ field.label }}" value="" placeholder="{{ field.label }}" {{ field.required ? 'required'}}>
+    {% elseif field.acf_fc_layout == 'text_area' %}
+        <label for="{{ field.label }}" class="hidden-label">{{ field.label }}</label>
+        <textarea name="{{ field.label }}" placeholder="{{ field.label }}" value="" {{ field.required ? 'required'}}></textarea>
+    {% endif %}
+</div>

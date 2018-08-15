@@ -1,0 +1,43 @@
+{
+    "key": "group_5aa01dfaafc82",
+    "title": "Analytics\/Tracking",
+    "fields": [
+        {
+            "key": "field_5aa01e008a880",
+            "label": "Tracking Script",
+            "name": "tracking_script",
+            "type": "textarea",
+            "instructions": "Insert tracking script here. Include <script> tags.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "<script>\/*......*\/<\/script>",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-analytics-tracking"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1520442936
+}
