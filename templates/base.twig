@@ -7,15 +7,6 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
-<<<<<<< HEAD
-
-		<header id="ip-header">
-			<div class="site-logo">
-				<a href="/">
-					<img src="{{ theme.link ~ '/assets/logo.svg' }}" alt="IP GLOBAL" />
-				</a>
-			</div>
-=======
 		<header class="header" >
 			{% block header %}
 				<div class="wrapper">
@@ -31,7 +22,6 @@
 					<input type='submit' value='Submit'/>
 				</form>
 			{% endblock %}
->>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
 		</header>
 
 		<section id="content" role="main" class="content-wrapper">
@@ -41,6 +31,11 @@
 					Sorry, no content
 				{% endblock %}
 			</div>
+			{% if sidebar %}
+				<aside class="layout-sidebar">
+					{{sidebar}}
+				</aside>
+			{% endif %}
 		</section>
 
 		{% block footer %}
@@ -56,14 +51,12 @@
 		{% endblock %}
 
         {# 
-            Stop Page Performance Timers
+            Stop Page Performance Timer
+
             This function is available in functions.php as a global function.
          #}
         {{ function('stop_timber_timer') }}
-<<<<<<< HEAD
-  
-=======
+
 		{{options.tracking_script}}
->>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
 	</body>
 </html>

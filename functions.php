@@ -66,13 +66,9 @@ class StarterSite extends TimberSite {
     function add_to_context( $context ) {
         $context['menu'] = new TimberMenu('Global Header Navigation');
         $context['site'] = $this;
-<<<<<<< HEAD
-       // $context['options'] = get_fields('option');
-=======
         if (function_exists('get_fields')) {
             $context['options'] = get_fields('option');
         }
->>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
         $context['page_stats'] = TimberHelper::start_timer();
         return $context;
     }
@@ -85,9 +81,21 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
+        // Get rid of default media element
+        // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
+        // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
+        // Remove Wp's jQuery
+        // wp_deregister_script('jquery'); // Uncomment to disable jQuery
+
+        // Define globals with for cache busting
         require_once 'enqueues.php';
 
+        // Enqueue global styles and scripts in this function
+        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, true);
+
+        // Enqueue a main stylesheet as a sensible default
+        wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
     }
 
     /**
@@ -291,8 +299,6 @@ function register_plugins () {
  *
  * DO NOT COMMENT OUT OR DISABLE
  */
-<<<<<<< HEAD
-=======
 require_once('includes/acf-edit-screen-disabler.php');
 
 if (function_exists('get_field')) {
@@ -342,4 +348,3 @@ function flex_form() {
 
     wp_die(); // Terminate response
 }
->>>>>>> 39e75e3c4062383363b28f7364292603342e8c02
