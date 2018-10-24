@@ -1,55 +1,11 @@
 image: andthensome/docker-node-rsync
-
 pipelines:
   branches:
     develop:
       - step:
-          name: "Build Package"
-          image: andthensome/docker-node-rsync
-          artifacts:
-            - pipeline/**
           caches:
-            - node
+          - node
           script:
-            - echo "Build Package... 🙌"
-            - "npm install"
-            - "npm run build -- --production --pipeline"
-      #- step:
-      #    name: "Deploy to UAT"
-      #    image: alpacadb/docker-lftp
-      #    trigger: manual
-      #    deployment: staging
-      #    script:
-      #      - echo "Deploying to UAT... 🙌"
-      #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
-    master:
-      - step:
-          name: "Build Package"
-          image: andthensome/docker-node-rsync
-          artifacts:
-            - pipeline/**
-          caches:
-            - node
-          script:
-            - echo "Build Package... 🙌"
-            - "npm install"
-            - "npm run build -- --production --pipeline"
-      #- step:
-      #    name: "Deploy to UAT"
-      #    image: alpacadb/docker-lftp
-      #    trigger: manual
-      #    deployment: staging
-      #    script:
-      #      - echo "Build Package... 🙌"
-      #      - echo "Deploying to UAT... 🙌"
-      #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
-      #- step:
-      #    name: "Deploy to Production"
-      #    image: alpacadb/docker-lftp
-      #    trigger: manual
-      #    deployment: production
-      #    script:
-      #      - echo "Build Package... 🙌"
-      #      - echo "Deploying to Production... 😬"
-      #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
-
+          - npm install
+          - npm run build
+          - rsync -clvrz ../$PACKAGE_DIR $DEV_DEPLOY_URL
