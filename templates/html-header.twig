@@ -16,9 +16,4 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% for icon in options.add_favicons %}
-        <link rel='{{ icon.content_type }}' sizes='{{ icon.dimensions }}' href='{{ icon.icon_file.url }}' {% if icon.content_type == 'icon' %}type='image/png'{% endif %} />
-    {% endfor %}
-    <link rel='manifest' href='{{theme.link}}{{ options.manifest_location }}' />
-    <meta name='msapplication-config' content='{{theme.link}}{{ options.browserconfig_location }}'/>
     {{function('wp_head')}}
