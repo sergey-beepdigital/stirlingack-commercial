@@ -275,11 +275,6 @@ function register_plugins () {
             'force_activation' => true
 		),
         array(
-            'name' => 'Wordfence Security – Firewall & Malware Scan',
-            'slug' => 'wordfence',
-            'required' => true
-        ),
-        array(
             'name' => 'Yoast SEO',
             'slug' => 'wordpress-seo',
             'required' => true,
