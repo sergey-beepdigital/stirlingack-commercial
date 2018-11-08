@@ -15,6 +15,6 @@
     "debug": true,
     "browser": true,
     "globals": {
-        "Crowd": true
+        "crowd": true
     }
 }
