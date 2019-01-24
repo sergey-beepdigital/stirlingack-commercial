@@ -279,6 +279,12 @@ function register_plugins () {
             'slug' => 'wordpress-seo',
             'required' => true,
             'force_activation' => true
+        ),
+        array(
+            'name' => 'Safe SVG',
+            'slug' => 'safe-svg',
+            'required' => true,
+            'force_activation' => true
         )
 	);
 	register_required_plugins ($plugins);
