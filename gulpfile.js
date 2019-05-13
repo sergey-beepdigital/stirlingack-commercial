@@ -59,7 +59,7 @@ var gulp = require('gulp'),
  * Also prefixes css properties for legacy browsers, as defined in the
  * autoprefixer options object.
  */
-gulp.task('sass', function() {
+function sassTask() {
     return gulp.src(paths.sass.src)
         .pipe(gulpif(!args.production, sourcemaps.init()))
         .pipe(gulpif(args.production, sass({
@@ -73,7 +73,7 @@ gulp.task('sass', function() {
         }))
         .pipe(gulpif(!args.production, sourcemaps.write()))
         .pipe(gulp.dest(paths.sass.dist));
-});
+}
 
 /**
  * `gulp js`
@@ -92,7 +92,7 @@ gulp.task('sass', function() {
  * When running tasks with the --production flag, sourcemaps are removed and the
  * bundle.min.js file is compressed.
  */
-gulp.task('js', function() {
+function js() {
     return gulp.src(paths.js.src)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
@@ -103,7 +103,7 @@ gulp.task('js', function() {
         })))
         .pipe(gulpif(!args.production, sourcemaps.write()))
         .pipe(gulp.dest(paths.js.dist));
-});
+}
 
 /**
  * `gulp images`
@@ -111,7 +111,7 @@ gulp.task('js', function() {
  * Pipes changed/new images.
  * Optimises files for filesize, including SVGs.
  */
-gulp.task('images', function() {
+function images() {
     return gulp.src(paths.images.src)
         .pipe(changed(paths.images.dist))
         .pipe(debug({title: 'images'}))
@@ -127,19 +127,19 @@ gulp.task('images', function() {
             ]})
         ]))
         .pipe(gulp.dest(paths.images.dist));
-});
+}
 
 /**
  * `gulp fonts`
  *
  * Pipes changed source fonts -> dist
  */
-gulp.task('fonts', function() {
+function fonts() {
     return gulp.src(paths.fonts.src)
         .pipe(changed(paths.fonts.dist))
         .pipe(debug({title: 'fonts'}))
         .pipe(gulp.dest(paths.fonts.dist));
-});
+}
 
 /**
  * `gulp modernizr`
@@ -150,21 +150,21 @@ gulp.task('fonts', function() {
  * Takes compiled CSS and scans for modernizr "feature detects" classes.
  * Generates custom build of modernizr from this information.
  */
-gulp.task('modernizr', ['sass'], function() {
+gulp.task('modernizr', gulp.series(sassTask, function() {
     return gulp.src(paths.sass.dist + '/*.css')
         .pipe(modernizr())
         .pipe(gulp.dest(paths.js.srcDir));
-});
+}));
 
 /**
  * `gulp assets`
  *
  * Process all the assets and send to the package folder
  */
-gulp.task('assets', ['sass', 'js', 'images', 'fonts'], function(){
+gulp.task('assets', gulp.series(sassTask, js, images, fonts, function(){
     return gulp.src(paths.packageWhitelist, { base: './' })
       .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
-});
+}));
 
 /**
  * `gulp package`
@@ -172,18 +172,20 @@ gulp.task('assets', ['sass', 'js', 'images', 'fonts'], function(){
  * Runs the assets task that compiles all assets and sends them to the package
  * directory, then busts the shit out of the cache with a hash.
  */
-gulp.task('package', ['assets'], function(){
+gulp.task('package', gulp.series('assets', function(){
     return gulp.src('./enqueues.php', {base: './'})
         .pipe(wpcachebust({
             themeFolder: './',
             rootPath: './'
         }))
         .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
+}));
+
+gulp.task('watch', function () {
+    gulp.watch(paths.sass.src, sassTask);
+    gulp.watch(paths.js.src, js);
+    gulp.watch(paths.images.src, images);
+    gulp.watch(paths.fonts.src, fonts);
 });
 
-gulp.task('default', ['sass', 'js', 'images', 'fonts'], function() {
-    gulp.watch(paths.sass.src, ['sass']);
-    gulp.watch(paths.js.src, ['js']);
-    gulp.watch(paths.images.src, ['images']);
-    gulp.watch(paths.fonts.src, ['fonts']);
-});
+gulp.task('default', gulp.series(sassTask, js, images, fonts, 'watch'));
