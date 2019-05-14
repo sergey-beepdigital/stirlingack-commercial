@@ -27,6 +27,12 @@ class StarterSite extends TimberSite {
         remove_action('rest_api_init', 'wp_oembed_register_route');
         remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
 
+        // Header Removal
+        remove_action('wp_head', 'rsd_link');
+        remove_action('wp_head', 'wlwmanifest_link');
+        remove_action('wp_head', 'wp_generator'); // Hide WP Version for security
+        remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+
         // Timber Actions
         add_action( 'init', array( $this, 'register_post_types' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
