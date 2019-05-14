@@ -291,6 +291,11 @@ function register_plugins () {
             'slug' => 'safe-svg',
             'required' => true,
             'force_activation' => true
+        ),
+        array(
+            'name' => 'WPS Hide Login',
+            'slug' => 'wps-hide-login',
+            'required' => false
         )
 	);
 	register_required_plugins ($plugins);
