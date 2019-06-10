@@ -31,7 +31,9 @@ class StarterSite extends TimberSite {
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'wp_generator'); // Hide WP Version for security
-        remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+        remove_action('wp_head', 'wp_shortlink_wp_head');
+
+        add_filter( 'emoji_svg_url', '__return_false' );
 
         // Timber Actions
         add_action( 'init', array( $this, 'register_post_types' ) );
@@ -54,7 +56,9 @@ class StarterSite extends TimberSite {
         // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
             acf_add_options_page('Theme Options');
-            acf_add_options_page('Analytics/Tracking');
+            acf_add_options_sub_page('Analytics/Tracking');
+            acf_add_options_sub_page('Social Profiles');
+            acf_add_options_sub_page('Debug Options');
         }
 
         parent::__construct();
@@ -92,13 +96,13 @@ class StarterSite extends TimberSite {
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
         // Remove Wp's jQuery
-        // wp_deregister_script('jquery'); // Uncomment to disable jQuery
+        wp_deregister_script('jquery'); // Uncomment to disable jQuery
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
 
-        // Enqueue global styles and scripts in this function
-        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, true);
+        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, false); // These will appear at the top of the page
+        wp_enqueue_script( 'deferred_bundle', DEFERRED_BUNDLE_JS_SRC, array(), null, true); // These will appear in the footer
 
         // Enqueue a main stylesheet as a sensible default
         wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
@@ -279,7 +283,13 @@ function register_plugins () {
 			'source' => get_stylesheet_directory() . '/includes/plugins/advanced-custom-fields-pro.zip',
 			'required' => true,
             'force_activation' => true
-		),
+        ),
+        array(
+            'name' => 'Advanced Custom Fields: Font Awesome Field',
+            'slug' => 'advanced-custom-fields-font-awesome',
+            'required' => true,
+            'force_activation' => true
+        ),
         array(
             'name' => 'Yoast SEO',
             'slug' => 'wordpress-seo',
@@ -359,4 +369,154 @@ function flex_form() {
     echo json_encode($result);
 
     wp_die(); // Terminate response
+}
+
+/*
+*   Remove the Back-End code editor
+*/
+function remove_editor_menu() {
+    remove_action('admin_menu', '_add_themes_utility_last', 101);
+}
+add_action('_admin_menu', 'remove_editor_menu', 1);
+
+/*
+*   Remove the detail from the wordpress errors
+*/
+function no_wordpress_errors() {
+    return 'Something is wrong';
+}
+add_filter('login_errors', 'no_wordpress_errors');
+
+/*
+*   Enqueue the styles of WP Dashicons to be used on the front end.   
+*/
+function load_dashicons_front_end() {
+    wp_enqueue_style('dashicons');
+}
+add_action('wp_enqueue_scripts', 'load_dashicons_front_end');
+
+/*
+*   Add the async attribute to loaded script tags.
+*/
+function add_async_attribute($tag, $handle) {
+    $scripts_to_async = array('iss-suggest', 'iss', 'addthis');
+    foreach($scripts_to_async as $async_script) {
+        if($async_script === $handle) {
+            return str_replace('src', 'async="async" src', $tag);
+        }
+    }
+    return $tag;
+}
+
+add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+
+/*
+*   Remove version numbers from loaded assets so they do not cache too hard.
+*/
+function remove_css_js_ver($src) {
+    if (strpos($src, '?ver=')) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+
+add_filter('style_loader_src', 'remove_css_js_ver', 10, 2);
+add_filter('script_loader_src', 'remove_css_js_ver', 10, 2);
+
+/*
+*   Replaces the WP logo in the admin bar.
+*/
+function ec_dashboard_custom_logo() {
+    echo '
+    <style type="text/css">
+        #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
+        background-image: url(' . get_bloginfo('stylesheet_directory') . '/dist/images/admin_logo.png)
+        !important; background-position: 0 0; color:rgba(0, 0, 0, 0);background-size:cover;
+    }
+    
+    #wpadminbar #wp-admin-bar-wp-logo.hover > .ab-item .ab-icon { background-position: 0 0; }
+    
+    </style>
+    ';
+}
+add_action('wp_before_admin_bar_render', 'ec_dashboard_custom_logo');
+
+/*
+*   Replaces the logo on the WP login screen
+*/
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/dist/images/admin_logo.png);
+		height:65px;
+		width:65px;
+		background-size: contain;
+		background-repeat: no-repeat;
+        	padding-bottom: 0px;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+if (function_exists('get_field') && !is_admin()) {
+    if (get_field('show_enqueued_scripts', 'option')) {
+        function wpa54064_inspect_scripts() {
+          global $wp_scripts;
+          echo '<pre>';
+          echo '<h1>Enqueued Scripts</h1>';
+          foreach( $wp_scripts->queue as $handle ) :
+              echo $handle . '<br>';
+          endforeach;
+          echo '</pre>';
+        }
+        add_action( 'wp_print_scripts', 'wpa54064_inspect_scripts' );
+    }
+
+    if (get_field('debug_rewrites', 'option')) {
+        ini_set( 'error_reporting', -1 );
+        ini_set( 'display_errors', 'On' );
+        
+        echo '<pre>';
+        
+        add_action( 'parse_request', 'debug_404_rewrite_dump' );
+        function debug_404_rewrite_dump( &$wp ) {
+            global $wp_rewrite;
+        
+            echo '<h2>rewrite rules</h2>';
+            echo var_export( $wp_rewrite->wp_rewrite_rules(), true );
+        
+            echo '<h2>permalink structure</h2>';
+            echo var_export( $wp_rewrite->permalink_structure, true );
+        
+            echo '<h2>page permastruct</h2>';
+            echo var_export( $wp_rewrite->get_page_permastruct(), true );
+        
+            echo '<h2>matched rule and query</h2>';
+            echo var_export( $wp->matched_rule, true );
+        
+            echo '<h2>matched query</h2>';
+            echo var_export( $wp->matched_query, true );
+        
+            echo '<h2>request</h2>';
+            echo var_export( $wp->request, true );
+        
+            global $wp_the_query;
+            echo '<h2>the query</h2>';
+            echo var_export( $wp_the_query, true );
+        }
+        add_action( 'template_redirect', 'debug_404_template_redirect', 99999 );
+        function debug_404_template_redirect() {
+            global $wp_filter;
+            echo '<h2>template redirect filters</h2>';
+            echo var_export( $wp_filter[current_filter()], true );
+        }
+        add_filter ( 'template_include', 'debug_404_template_dump' );
+        function debug_404_template_dump( $template ) {
+            echo '<h2>template file selected</h2>';
+            echo var_export( $template, true );
+        
+            echo '</pre>';
+            exit();
+        }
+    }
 }

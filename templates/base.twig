@@ -7,6 +7,7 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
+		{{ options.body_start_scripts }}
 		<header class="header" >
 			{% block header %}
 				<div class="wrapper">
@@ -57,6 +58,20 @@
          #}
         {{ function('stop_timber_timer') }}
 
-		{{options.tracking_script}}
+		{{options.body_end_scripts}}
+		<script type='application/ld+json'>
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "{{ site.name }}",
+				"url": "{{ site.url }}",
+				"description": "{{ site.description }}",
+				"sameAs": [
+					{% for profile in options.social_profiles|reverse %}
+						"{{ profile.url }}",
+					{% endfor %}
+				]
+			}
+		</script>
 	</body>
 </html>
