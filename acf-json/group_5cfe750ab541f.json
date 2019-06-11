@@ -1,0 +1,79 @@
+{
+    "key": "group_5cfe750ab541f",
+    "title": "Debug Options",
+    "fields": [
+        {
+            "key": "field_5cfe76055c5b0",
+            "label": "Debug Options",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<h2 style='font-size: 4rem; display: block; background-color: yellow; padding: 0.2rem 0.5rem;'>Warning!<\/h2>\r\n\r\nThese options will have visible results on the front-end of the site. Use them only if you know what you're doing.\r\n\r\n<b>DO NOT USE THEM ON A PRODUCTION SITE<\/b>",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5cfe7514317dc",
+            "label": "Debug Rewrites",
+            "name": "debug_rewrites",
+            "type": "true_false",
+            "instructions": "Replaces page content with information about the URL rewrites and WP Queries that a run in order to generate the page.\r\n<br>\r\nUseful for debugging archive pages.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        },
+        {
+            "key": "field_5cfe773514e06",
+            "label": "Show Enqueued Scripts",
+            "name": "show_enqueued_scripts",
+            "type": "true_false",
+            "instructions": "Shows the IDs of enqueued scripts.\r\n<br>\r\nUseful if you're debugging any plugin scripts.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-debug-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1560180586
+}

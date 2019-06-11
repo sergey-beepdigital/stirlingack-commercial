@@ -27,9 +27,16 @@ var gulp = require('gulp'),
         js: {
             src: [
                 'node_modules/@fdaciuk/ajax/dist/ajax.min.js',
-                'src/js/**/*.js',
+                'src/js/essential/**/*.js', // Place js here that is essential to the site, will be returned in the <head>.
             ],
-            srcDir: 'src/js',
+            srcDir: 'src/js/essential',
+            dist: 'dist/js'
+        },
+        jsDeferred: {
+            src: [
+                'src/js/deferred/**/*.js', // Place js here that is non-essential, will be deferred to the <footer>.
+            ],
+            srcDir: 'src/js/deferred',
             dist: 'dist/js'
         },
         images: {
@@ -92,7 +99,8 @@ function sassTask() {
  * When running tasks with the --production flag, sourcemaps are removed and the
  * bundle.min.js file is compressed.
  */
-function js() {
+
+function essential() {
     return gulp.src(paths.js.src)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
@@ -103,6 +111,17 @@ function js() {
         })))
         .pipe(gulpif(!args.production, sourcemaps.write()))
         .pipe(gulp.dest(paths.js.dist));
+}
+
+function deferred() {
+    return gulp.src(paths.jsDeferred.src)
+        .pipe(gulpif(!args.production, sourcemaps.init()))
+        .pipe(concat('deferred.min.js'))
+        .pipe(gulpif(args.production, uglify({
+            mangle: false
+        })))
+        .pipe(gulpif(!args.production, sourcemaps.write()))
+        .pipe(gulp.dest(paths.jsDeferred.dist));
 }
 
 /**
@@ -161,7 +180,7 @@ gulp.task('modernizr', gulp.series(sassTask, function() {
  *
  * Process all the assets and send to the package folder
  */
-gulp.task('assets', gulp.series(sassTask, js, images, fonts, function(){
+gulp.task('assets', gulp.series(sassTask, essential, deferred, images, fonts, function(){
     return gulp.src(paths.packageWhitelist, { base: './' })
       .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
 }));
@@ -183,9 +202,10 @@ gulp.task('package', gulp.series('assets', function(){
 
 gulp.task('watch', function () {
     gulp.watch(paths.sass.src, sassTask);
-    gulp.watch(paths.js.src, js);
+    gulp.watch(paths.js.src, essential);
+    gulp.watch(paths.jsDeferred.src, deferred);
     gulp.watch(paths.images.src, images);
     gulp.watch(paths.fonts.src, fonts);
 });
 
-gulp.task('default', gulp.series(sassTask, js, images, fonts, 'watch'));
+gulp.task('default', gulp.series(sassTask, essential, deferred, images, fonts, 'watch'));

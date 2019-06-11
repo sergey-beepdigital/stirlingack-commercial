@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /wp-includes/
+Disallow: /wp-admin/
+Disallow: /wp-content/plugins/
+Sitemap: https://domain.com/page-sitemap.xml
+Sitemap: https://domain.com/post-sitemap.xml

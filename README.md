@@ -38,14 +38,6 @@ package up to date.
 `gulp modernizr` for generating a single distributable CSS file with inline
 sourcemaps and a custom build of modernizr.
 
-`gulp js` for piping JS from src to a distribution bundle. *Now with added
-hinting!*
-
-`gulp images` for piping source images in src to dist, and optimising thier
-size.
-
-`gulp fonts` will pipe source fonts to dist
-
 `gulp package` will product a package in the directory above that contains
 whitelisted files. This is used to generate a 'package' version of the theme
 that can be deployed to developement environments.
