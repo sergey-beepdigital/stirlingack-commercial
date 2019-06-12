@@ -120,7 +120,7 @@ class StarterSite extends TimberSite {
     function inline_file($path) {
         if ( $path ) {
             echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . parse_url($path)['path']);
-        }             
+        }
     }
 
     /**
@@ -226,6 +226,12 @@ function stop_timber_timer() {
         get_num_queries() . ' database queries'
     ]);
 }
+
+function custom_login_style() {
+  echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
+}
+
+add_action('login_head', 'custom_login_style');
 
 
 /**
@@ -388,7 +394,7 @@ function no_wordpress_errors() {
 add_filter('login_errors', 'no_wordpress_errors');
 
 /*
-*   Enqueue the styles of WP Dashicons to be used on the front end.   
+*   Enqueue the styles of WP Dashicons to be used on the front end.
 */
 function load_dashicons_front_end() {
     wp_enqueue_style('dashicons');
@@ -433,9 +439,9 @@ function ec_dashboard_custom_logo() {
         background-image: url(' . get_bloginfo('stylesheet_directory') . '/dist/images/admin_logo.png)
         !important; background-position: 0 0; color:rgba(0, 0, 0, 0);background-size:cover;
     }
-    
+
     #wpadminbar #wp-admin-bar-wp-logo.hover > .ab-item .ab-icon { background-position: 0 0; }
-    
+
     </style>
     ';
 }
@@ -475,31 +481,31 @@ if (function_exists('get_field') && !is_admin()) {
     if (get_field('debug_rewrites', 'option')) {
         ini_set( 'error_reporting', -1 );
         ini_set( 'display_errors', 'On' );
-        
+
         echo '<pre>';
-        
+
         add_action( 'parse_request', 'debug_404_rewrite_dump' );
         function debug_404_rewrite_dump( &$wp ) {
             global $wp_rewrite;
-        
+
             echo '<h2>rewrite rules</h2>';
             echo var_export( $wp_rewrite->wp_rewrite_rules(), true );
-        
+
             echo '<h2>permalink structure</h2>';
             echo var_export( $wp_rewrite->permalink_structure, true );
-        
+
             echo '<h2>page permastruct</h2>';
             echo var_export( $wp_rewrite->get_page_permastruct(), true );
-        
+
             echo '<h2>matched rule and query</h2>';
             echo var_export( $wp->matched_rule, true );
-        
+
             echo '<h2>matched query</h2>';
             echo var_export( $wp->matched_query, true );
-        
+
             echo '<h2>request</h2>';
             echo var_export( $wp->request, true );
-        
+
             global $wp_the_query;
             echo '<h2>the query</h2>';
             echo var_export( $wp_the_query, true );
@@ -514,7 +520,7 @@ if (function_exists('get_field') && !is_admin()) {
         function debug_404_template_dump( $template ) {
             echo '<h2>template file selected</h2>';
             echo var_export( $template, true );
-        
+
             echo '</pre>';
             exit();
         }

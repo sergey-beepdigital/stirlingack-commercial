@@ -54,7 +54,8 @@ var gulp = require('gulp'),
             'includes/plugins/advanced-custom-fields-pro.zip',
             'dist/**/*',
             'components/**/*.twig',
-            'templates/**/*.twig'
+            'templates/**/*.twig',
+            'login/**/*'
         ]
     };
 
@@ -99,7 +100,6 @@ function sassTask() {
  * When running tasks with the --production flag, sourcemaps are removed and the
  * bundle.min.js file is compressed.
  */
-
 function essential() {
     return gulp.src(paths.js.src)
         .pipe(jshint())
@@ -113,6 +113,13 @@ function essential() {
         .pipe(gulp.dest(paths.js.dist));
 }
 
+/**
+ * `gulp deferred`
+ *
+ * A second JS task for file which can afford to load and run AFTER the page
+ * content has loaded. This decreases the unresponsive loading time of the page.
+ *
+ */
 function deferred() {
     return gulp.src(paths.jsDeferred.src)
         .pipe(gulpif(!args.production, sourcemaps.init()))

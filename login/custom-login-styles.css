@@ -7,6 +7,7 @@ body{
   width: 320px;
   height: 150px;
   margin:0 auto 50px;
+	pointer-events: none;
 }
 
 a, .login #backtoblog a, .login #nav a{
@@ -28,7 +29,7 @@ a, .login #backtoblog a, .login #nav a{
 }
 
 .login #login_error, .login .message, .login .success {
-    border-color: #00D1D9;
+    border-color: rgba(255,91,0,1);
 }
 
 input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, input[type=datetime]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, input[type=radio]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, select:focus, textarea:focus {
@@ -38,4 +39,8 @@ input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, inp
 
 input[type=checkbox]:checked:before{
 	color:#eb5f0a;
+}
+
+.login form input:-webkit-autofill, .login form input:-webkit-autofill:hover, .login form input:-webkit-autofill:focus, .login form input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 30px white inset !important;
 }
