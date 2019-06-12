@@ -55,10 +55,12 @@ class StarterSite extends TimberSite {
 
         // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
-            acf_add_options_page('Theme Options');
             acf_add_options_sub_page('Analytics/Tracking');
             acf_add_options_sub_page('Social Profiles');
-            acf_add_options_sub_page('Debug Options');
+
+            if (current_user_can('administrator')) {
+              acf_add_options_sub_page('Debug Options');
+            }
         }
 
         parent::__construct();
@@ -331,7 +333,7 @@ require_once('includes/acf-edit-screen-disabler.php');
 
 if (function_exists('get_field')) {
     if (!get_field('enable_acf_edit', 'option')) {
-        add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
+        add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE DEBUG OPTIONS PAGE TICK BOX INSTEAD
     }
 }
 

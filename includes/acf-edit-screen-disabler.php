@@ -30,11 +30,11 @@ if( function_exists('acf_add_local_field_group') ) {
                 array (
                     'param' => 'options_page',
                     'operator' => '==',
-                    'value' => 'acf-options-theme-options',
+                    'value' => 'acf-options-debug-options',
                 ),
-            ),
+            )
         ),
-        'menu_order' => 999,
+        'menu_order' => -1,
         'position' => 'normal',
         'style' => 'default',
         'label_placement' => 'top',
