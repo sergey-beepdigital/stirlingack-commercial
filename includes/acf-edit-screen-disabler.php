@@ -3,7 +3,7 @@
 if( function_exists('acf_add_local_field_group') ) {
     acf_add_local_field_group(array (
         'key' => 'group_595e2b377bb9f',
-        'title' => 'ACF Edit Screen',
+        'title' => 'Menu Options',
         'fields' => array (
             array (
                 'key' => 'field_595e2b4027c09',
