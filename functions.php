@@ -58,7 +58,7 @@ class StarterSite extends TimberSite {
             acf_add_options_sub_page('Analytics/Tracking');
             acf_add_options_sub_page('Social Profiles');
 
-            if (current_user_can('administrator')) {
+            if (current_user_can('administrator') || get_field('show_debug_menu', 'option')) {
               acf_add_options_sub_page('Debug Options');
             }
         }
@@ -384,6 +384,10 @@ function flex_form() {
 */
 function remove_editor_menu() {
     remove_action('admin_menu', '_add_themes_utility_last', 101);
+
+    if (!get_field('enable_comments_menu', 'option')) {
+      remove_menu_page( 'edit-comments.php' );
+    }
 }
 add_action('_admin_menu', 'remove_editor_menu', 1);
 

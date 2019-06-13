@@ -24,6 +24,42 @@ if( function_exists('acf_add_local_field_group') ) {
                 'ui_on_text' => '',
                 'ui_off_text' => '',
             ),
+            array (
+                'key' => 'field_595e2d4027c09',
+                'label' => 'Let non-admins see this page',
+                'name' => 'show_debug_menu',
+                'type' => 'true_false',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array (
+                    'width' => '50',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+            array (
+                'key' => 'field_595e2c4027c09',
+                'label' => 'Show comments menu in admin screen',
+                'name' => 'enable_comments_menu',
+                'type' => 'true_false',
+                'instructions' => 'This does not turn on / off comments, only hide / show the menu in the backend.',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array (
+                    'width' => '50',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            )
         ),
         'location' => array (
             array (
