@@ -532,3 +532,15 @@ if (function_exists('get_field') && !is_admin()) {
         }
     }
 }
+
+/*
+ *  Noindex Author 
+ *  Adds a noindex meta tag on author archives so they are not indexed by Google
+ */
+
+function noindex_author() {
+    if (is_author()) {
+        echo '<meta name="robots" content="noindex" />';
+    }
+}
+add_action('wp_head', 'noindex_author');
