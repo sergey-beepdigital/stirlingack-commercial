@@ -32,6 +32,15 @@ class StarterSite extends TimberSite {
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'wp_generator'); // Hide WP Version for security
         remove_action('wp_head', 'wp_shortlink_wp_head');
+        remove_action('wp_head', 'rest_output_link_wp_head', 10); //Remove wp-json/ link
+        add_action( 'wp_enqueue_scripts', 'bs_dequeue_dashicons' );
+            function bs_dequeue_dashicons() {
+                if ( ! is_user_logged_in() ) {
+                    wp_deregister_style( 'dashicons' );
+                }
+            }
+
+
 
         add_filter( 'emoji_svg_url', '__return_false' );
 
