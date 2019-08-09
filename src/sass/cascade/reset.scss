@@ -39,6 +39,9 @@ body{
 
 a{
 	color: inherit; /*gets rid of blue links*/
+	&:hover{
+		text-decoration:none;
+	}
 }
 
 * {
@@ -57,20 +60,10 @@ a{
     width: auto !important;
 }
 
-
-/*Basic*/
-
-.text-body{
-	p, h1, h2, h3, h4, h5, h6{
-		padding-bottom: 1rem;
-		&:last-child{
-			padding-bottom:0;
-		}
-	}
-	h1{
-		font-size:2.5rem;
-	}
-	h2{
-		font-size: 1.8;
-	}
+.sr-only {
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
 }

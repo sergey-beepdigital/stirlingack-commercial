@@ -22,6 +22,12 @@
 					<input type='text' name='s' placeholder='Search'/>
 					<input type='submit' value='Submit'/>
 				</form>
+				<div class="menu-btn">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar icon-1 trans"></span>
+					<span class="icon-bar icon-2 trans-fast"></span>
+					<span class="icon-bar icon-3 trans"></span>
+				</div>
 			{% endblock %}
 		</header>
 
@@ -41,7 +47,9 @@
 
 		{% block footer %}
 			<footer id="footer">
-				{% include 'footer.twig' %}
+				<div class="wrapper">
+					{% include 'footer.twig' %}
+				</div>
 			</footer>
 
 			<script type='text/javascript'>
