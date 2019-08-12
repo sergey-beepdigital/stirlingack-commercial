@@ -297,7 +297,6 @@ function register_plugins () {
 		array(
 			'name' => 'Advanced Custom Fields Pro',
 			'slug' => 'advanced-custom-fields-pro',
-			'source' => get_stylesheet_directory() . '/includes/plugins/advanced-custom-fields-pro.zip',
 			'required' => true,
             'force_activation' => true
         ),
@@ -489,7 +488,7 @@ add_action('wp_head', 'noindex_author');
 
 /* Content blocks */
 
-add_action( 'acf/init', 'my_acf_init' );
+add_action( 'init', 'my_acf_init' );
 
 function my_acf_init() {
     // Bail out if function doesn’t exist.
@@ -526,5 +525,5 @@ function my_acf_block_render_callback( $block, $content = '', $is_preview = fals
     $context['is_preview'] = $is_preview;
 
     // Render the block.
-    Timber::render( 'components/blocks/content-testimonial.twig', $context );
+    Timber::render( 'components/blocks/content-example.twig', $context );
 }
