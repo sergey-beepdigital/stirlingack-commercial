@@ -329,24 +329,6 @@ function register_plugins () {
 }
 
 /**
- * Hide Custom Fields Menu in the backend.
- *
- * Hides the acf edit menu in the backend by default, can be disabled via a
- * checkbox option on the options page.
- *
- * This helps avoid syncing issues with local acf-json and dev site fields.
- *
- * DO NOT COMMENT OUT OR DISABLE
- */
-require_once('includes/acf-edit-screen-disabler.php');
-
-if (function_exists('get_field')) {
-    if (!get_field('enable_acf_edit', 'option')) {
-        add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE DEBUG OPTIONS PAGE TICK BOX INSTEAD
-    }
-}
-
-/**
  * Ajax Forms
  *
  * A function to handle the ajax submission of the various flex forms around the
@@ -492,86 +474,6 @@ function ec_dashboard_custom_logo() {
 add_action('wp_before_admin_bar_render', 'ec_dashboard_custom_logo');
 
 /*
-*   Replaces the logo on the WP login screen
-*/
-function my_login_logo() { ?>
-    <style type="text/css">
-        #login h1 a, .login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/dist/images/admin_logo.svg);
-		height:65px;
-		width:65px;
-		background-size: contain;
-		background-repeat: no-repeat;
-        	padding-bottom: 0px;
-        }
-    </style>
-<?php }
-add_action( 'login_enqueue_scripts', 'my_login_logo' );
-
-if (function_exists('get_field') && !is_admin()) {
-    if (get_field('show_enqueued_scripts', 'option')) {
-        function wpa54064_inspect_scripts() {
-          global $wp_scripts;
-          echo '<pre>';
-          echo '<h1>Enqueued Scripts</h1>';
-          foreach( $wp_scripts->queue as $handle ) :
-              echo $handle . '<br>';
-          endforeach;
-          echo '</pre>';
-        }
-        add_action( 'wp_print_scripts', 'wpa54064_inspect_scripts' );
-    }
-
-    if (get_field('debug_rewrites', 'option')) {
-        ini_set( 'error_reporting', -1 );
-        ini_set( 'display_errors', 'On' );
-
-        echo '<pre>';
-
-        add_action( 'parse_request', 'debug_404_rewrite_dump' );
-        function debug_404_rewrite_dump( &$wp ) {
-            global $wp_rewrite;
-
-            echo '<h2>rewrite rules</h2>';
-            echo var_export( $wp_rewrite->wp_rewrite_rules(), true );
-
-            echo '<h2>permalink structure</h2>';
-            echo var_export( $wp_rewrite->permalink_structure, true );
-
-            echo '<h2>page permastruct</h2>';
-            echo var_export( $wp_rewrite->get_page_permastruct(), true );
-
-            echo '<h2>matched rule and query</h2>';
-            echo var_export( $wp->matched_rule, true );
-
-            echo '<h2>matched query</h2>';
-            echo var_export( $wp->matched_query, true );
-
-            echo '<h2>request</h2>';
-            echo var_export( $wp->request, true );
-
-            global $wp_the_query;
-            echo '<h2>the query</h2>';
-            echo var_export( $wp_the_query, true );
-        }
-        add_action( 'template_redirect', 'debug_404_template_redirect', 99999 );
-        function debug_404_template_redirect() {
-            global $wp_filter;
-            echo '<h2>template redirect filters</h2>';
-            echo var_export( $wp_filter[current_filter()], true );
-        }
-        add_filter ( 'template_include', 'debug_404_template_dump' );
-        function debug_404_template_dump( $template ) {
-            echo '<h2>template file selected</h2>';
-            echo var_export( $template, true );
-
-            echo '</pre>';
-            exit();
-        }
-    }
-}
-
-/*
  *  Noindex Author 
  *  Adds a noindex meta tag on author archives so they are not indexed by Google
  */
@@ -582,3 +484,47 @@ function noindex_author() {
     }
 }
 add_action('wp_head', 'noindex_author');
+
+
+
+/* Content blocks */
+
+add_action( 'acf/init', 'my_acf_init' );
+
+function my_acf_init() {
+    // Bail out if function doesn’t exist.
+    if ( ! function_exists( 'acf_register_block' ) ) {
+        return;
+    }
+
+    // Register a new block.
+    acf_register_block( array(
+        'name'            => 'example_block',
+        'title'           => __( 'Example Block', 'your-text-domain' ),
+        'description'     => __( 'A custom example block.', 'your-text-domain' ),
+        'render_callback' => 'my_acf_block_render_callback',
+        'category'        => 'formatting',
+        'icon'            => 'admin-comments',
+        'keywords'        => array( 'example' ),
+    ) );
+}
+
+
+
+
+
+function my_acf_block_render_callback( $block, $content = '', $is_preview = false ) {
+    $context = Timber::context();
+
+    // Store block values.
+    $context['block'] = $block;
+
+    // Store field values.
+    $context['fields'] = get_fields();
+
+    // Store $is_preview value.
+    $context['is_preview'] = $is_preview;
+
+    // Render the block.
+    Timber::render( 'components/blocks/content-testimonial.twig', $context );
+}

@@ -8,8 +8,9 @@ header{
 
 .menu-btn {
     display: block;
-    width: 50px;
+    width: 44px;
     height: 44px;
+    border-radius: 50%;
     z-index: 10;
     cursor: pointer;
     position: absolute;
@@ -19,7 +20,10 @@ header{
     &:hover{
     	background:rgba(255,255,255,0.2);
     }
-    &.active{
+}
+
+.menu-active{
+	.menu-btn{
 		.icon-1{
 			transform: rotate(-45deg);
 		}
@@ -35,19 +39,17 @@ header{
 .icon-bar {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    margin-left: -12.25px;
     height: 2px;
-    width: 31px;
+    width: 55%;
     background: #FFF;
     left: 50%;
-    margin: 0 0 0 -15px;
-    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     &.icon-1 {
-	    margin-top:-8px;
+	    transform:translateY(-8px);
 	}
 	&.icon-3 {
-	    margin-top:8px;
+	    transform:translateY(8px);
 	}
 }
 
@@ -85,11 +87,14 @@ footer{
 	padding:10px 0;
 	.wrapper{
 		display: flex;
-		.left, .right{
+		.left, .center, .right{
 			width: 50%;
 			&:last-of-type{
 				text-align:right;
 			}
+		}
+		.center{
+			text-align: center;
 		}
 	}
 }
