@@ -22,13 +22,13 @@
     "homepage": "https://github.com/n/a#readme",
     "devDependencies": {
         "gulp-autoprefixer": "^6.1.0",
-        "gulp-changed": "^3.2.0",
+        "gulp-changed": "^4.0.0",
         "gulp-concat": "^2.6.1",
         "gulp-debug": "^4.0.0",
-        "gulp-if": "^2.0.2",
-        "gulp-imagemin": "^5.0.3",
+        "gulp-if": "^3.0.0",
+        "gulp-imagemin": "^6.0.0",
         "gulp-jshint": "^2.1.0",
-        "gulp-modernizr": "^3.2.1",
+        "gulp-modernizr": "^3.3.0",
         "gulp-ng-annotate": "^2.1.0",
         "gulp-sass": "^4.0.2",
         "gulp-sourcemaps": "^2.6.5",
@@ -36,7 +36,7 @@
         "gulp-wp-cache-bust": "^1.0.9",
         "jshint": "^2.10.2",
         "jshint-stylish": "^2.2.1",
-        "yargs": "^13.2.4"
+        "yargs": "^13.3.0"
     },
     "dependencies": {
         "@fdaciuk/ajax": "^3.0.4",
