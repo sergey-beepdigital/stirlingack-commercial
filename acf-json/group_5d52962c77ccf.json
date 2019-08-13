@@ -1,0 +1,39 @@
+{
+    "key": "group_5d52962c77ccf",
+    "title": "Site Colours",
+    "fields": [
+        {
+            "key": "field_5d52963207afd",
+            "label": "Android Navigation Bar Colour",
+            "name": "android_navigation_bar_colour",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-theme"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1565693721
+}
