@@ -18,7 +18,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     wpcachebust = require('gulp-wp-cache-bust'),
-    babel = require('gulp-babel'),
+    webpack = require('webpack-stream'),
     theme = 'crowd-base-build', // Define the theme name for packaging
     paths = {
         sass: {
@@ -129,9 +129,9 @@ function deferred() {
     return gulp.src(paths.jsDeferred.src)
         .pipe(gulpif(!args.production, sourcemaps.init()))
         // Uncomment the following if you use any ECMAScript syntax. Babel makes sure that code is runnable in older browsers.
-        // .pipe(babel({
-        //     presets: ['@babel/env']
-        // }))
+        // .pipe(webpack(
+        //    require('./webpack.config.js')
+        // ))
         .pipe(concat('deferred.min.js'))
         .pipe(gulpif(args.production, uglify({
             mangle: false
