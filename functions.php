@@ -27,7 +27,8 @@ function register_plugins () {
         ),
 		array(
 			'name' => 'Advanced Custom Fields Pro',
-			'slug' => 'advanced-custom-fields-pro',
+            'slug' => 'advanced-custom-fields-pro',
+            'source' => get_template_directory_uri() . '/includes/plugins/advanced-custom-fields-pro.zip',
 			'required' => true,
             'force_activation' => true
         ),
