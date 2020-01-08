@@ -375,7 +375,9 @@ function flex_form() {
 */
 function remove_editor_menu() {
     remove_action('admin_menu', '_add_themes_utility_last', 101);
-
+    if (!function_exists('get_field')) {
+        return;
+    }
     if (!get_field('enable_comments_menu', 'option')) {
       remove_menu_page( 'edit-comments.php' );
     }
