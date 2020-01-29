@@ -29,7 +29,7 @@ const gulp = require('gulp'),
         },
         js: {
             src: [
-                'src/js/essential/**/*.js', // Place js here that is essential to the site, will be returned in the <head>.
+                'src/js/**/*.js', // Place js here that is essential to the site, will be returned in the <head>.
             ],
             dist: 'dist/js',
             entries: [
