@@ -35,9 +35,6 @@ package up to date.
 
 `gulp` Will run and then watch sass, js, and images tasks.
 
-`gulp modernizr` for generating a single distributable CSS file with inline
-sourcemaps and a custom build of modernizr.
-
 `gulp package` will product a package in the directory above that contains
 whitelisted files. This is used to generate a 'package' version of the theme
 that can be deployed to developement environments.
@@ -58,6 +55,8 @@ means output files will be compressed.
 `gulp package --production` will run the packaging task while also compressing
 outputted files. The generated package should be deployed to development
 environments and live environments.
+
+`--pipeline` is for use only if the task is being run from a pipeline. All this does is change the name of the packaged folder to 'pipeline' so that bitbucket can save it as an artifact for automated deployment.
 
 
 ## Setting up CI (Bitbucket Pipelines) for your project
@@ -80,6 +79,13 @@ For TSO, this could look like the following:
 ```
 sftp://sftp-username:sftp-password@shell.gridhost.co.uk
 ```
+
+For SiteGround, LFTP does not quite work, so we use rsync.
+This means using the THEME_DIR environment variable like so:
+```
+u278-z85k9umvk5y4@thisiscrowdlab.com:/home/customer/www/{ SITE FOLDER }/public_html/wp-content/themes/{ PACKAGE NAME }
+```
+Make sure that your Pipeline's SSH key (Settings -> SSH Keys) is imported to Siteground in SSH Keys Manager.
 
 For Flywheel, it would look similar to the following:
 ```

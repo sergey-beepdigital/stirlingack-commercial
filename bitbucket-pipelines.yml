@@ -16,12 +16,12 @@ pipelines:
             - "npm run build -- --production --pipeline"
       #- step:
       #    name: "Deploy to UAT"
-      #    image: alpacadb/docker-lftp
+      #    image: andthensome/docker-node-rsync
       #    trigger: manual
       #    deployment: staging
       #    script:
       #      - echo "Deploying to UAT... 🙌"
-      #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
+      #      - "rsync -rvz -e 'ssh -p 18765' pipeline/ $THEME_DIR"
     master:
       - step:
           name: "Build Package"
@@ -36,13 +36,12 @@ pipelines:
             - "npm run build -- --production --pipeline"
       #- step:
       #    name: "Deploy to UAT"
-      #    image: alpacadb/docker-lftp
+      #    image: andthensome/docker-node-rsync
       #    trigger: manual
       #    deployment: staging
       #    script:
-      #      - echo "Build Package... 🙌"
       #      - echo "Deploying to UAT... 🙌"
-      #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
+      #      - "rsync -rvz -e 'ssh -p 18765' pipeline/ $THEME_DIR"
       #- step:
       #    name: "Deploy to Production"
       #    image: alpacadb/docker-lftp

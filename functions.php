@@ -171,12 +171,13 @@ class StarterSite extends TimberSite {
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
+        require('includes/cache_bust.php');
 
-        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, false); // These will appear at the top of the page
-        wp_enqueue_script( 'deferred_bundle', DEFERRED_BUNDLE_JS_SRC, array(), null, true); // These will appear in the footer
+        wp_enqueue_script( 'essential.js', BUNDLE_JS_SRC, array(), $cache_ver, false); // These will appear at the top of the page
+        wp_enqueue_script( 'deferred.js', DEFERRED_BUNDLE_JS_SRC, array(), $cache_ver, true); // These will appear in the footer
 
         // Enqueue a main stylesheet as a sensible default
-        wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
+        wp_enqueue_style( 'main.css', MAIN_CSS_SRC, array(), $cache_ver, 'all' );
     }
 
     /**
@@ -450,19 +451,6 @@ function add_async_attribute($tag, $handle) {
 }
 
 add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
-
-/*
-*   Remove version numbers from loaded assets so they do not cache too hard.
-*/
-function remove_css_js_ver($src) {
-    if (strpos($src, '?ver=')) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-}
-
-add_filter('style_loader_src', 'remove_css_js_ver', 10, 2);
-add_filter('script_loader_src', 'remove_css_js_ver', 10, 2);
 
 /*
 *   Replaces the WP logo in the admin bar.
