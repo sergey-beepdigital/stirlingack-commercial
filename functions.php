@@ -151,6 +151,7 @@ class StarterSite extends TimberSite {
             return;
         }
         // require_once custom acf blocks here
+        
         // require_once('includes/blocks/example.php');
     }
 
@@ -177,7 +178,7 @@ class StarterSite extends TimberSite {
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
         // Remove Wp's jQuery
-        wp_deregister_script('jquery'); // Uncomment to disable jQuery
+        // wp_deregister_script('jquery'); // Uncomment to disable jQuery
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
@@ -406,7 +407,7 @@ add_action('_admin_menu', 'remove_editor_menu', 1);
 *   Remove Gutenburg CSS
 */
 function remove_block_css(){
-wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library' );
 }
 add_action( 'wp_enqueue_scripts', 'remove_block_css', 100 );
 
@@ -439,13 +440,6 @@ function no_wordpress_errors() {
 }
 add_filter('login_errors', 'no_wordpress_errors');
 
-/*
-*   Enqueue the styles of WP Dashicons to be used on the front end.
-*/
-function load_dashicons_front_end() {
-    wp_enqueue_style('dashicons');
-}
-add_action('wp_enqueue_scripts', 'load_dashicons_front_end');
 
 /*
 *   Add the async attribute to loaded script tags.
