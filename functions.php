@@ -114,6 +114,8 @@ class StarterSite extends TimberSite {
         // Timber Actions
         add_action( 'init', array( $this, 'register_post_types' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
+        add_action( 'init', array( $this, 'register_acf_blocks' ) );
+
         add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
 
         // First party actions
@@ -144,6 +146,15 @@ class StarterSite extends TimberSite {
         // require_once custom taxonomies here
     }
 
+    function register_acf_blocks() {
+        if ( ! function_exists( 'acf_register_block' ) ) {
+            return;
+        }
+        // require_once custom acf blocks here
+        
+        // require_once('includes/blocks/example.php');
+    }
+
     function add_to_context( $context ) {
         $context['menu'] = new TimberMenu('Global Header Navigation');
         $context['site'] = $this;
@@ -167,16 +178,17 @@ class StarterSite extends TimberSite {
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
         // Remove Wp's jQuery
-        wp_deregister_script('jquery'); // Uncomment to disable jQuery
+        // wp_deregister_script('jquery'); // Uncomment to disable jQuery
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
+        require('includes/cache_bust.php');
 
-        wp_enqueue_script( 'bundle', BUNDLE_JS_SRC, array(), null, false); // These will appear at the top of the page
-        wp_enqueue_script( 'deferred_bundle', DEFERRED_BUNDLE_JS_SRC, array(), null, true); // These will appear in the footer
+        wp_enqueue_script( 'essential.js', BUNDLE_JS_SRC, array(), $cache_ver, false); // These will appear at the top of the page
+        wp_enqueue_script( 'deferred.js', DEFERRED_BUNDLE_JS_SRC, array(), $cache_ver, true); // These will appear in the footer
 
         // Enqueue a main stylesheet as a sensible default
-        wp_enqueue_style( 'main', MAIN_CSS_SRC, array(), null, 'all' );
+        wp_enqueue_style( 'main.css', MAIN_CSS_SRC, array(), $cache_ver, 'all' );
     }
 
     /**
@@ -395,7 +407,7 @@ add_action('_admin_menu', 'remove_editor_menu', 1);
 *   Remove Gutenburg CSS
 */
 function remove_block_css(){
-wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library' );
 }
 add_action( 'wp_enqueue_scripts', 'remove_block_css', 100 );
 
@@ -428,13 +440,6 @@ function no_wordpress_errors() {
 }
 add_filter('login_errors', 'no_wordpress_errors');
 
-/*
-*   Enqueue the styles of WP Dashicons to be used on the front end.
-*/
-function load_dashicons_front_end() {
-    wp_enqueue_style('dashicons');
-}
-add_action('wp_enqueue_scripts', 'load_dashicons_front_end');
 
 /*
 *   Add the async attribute to loaded script tags.
@@ -450,19 +455,6 @@ function add_async_attribute($tag, $handle) {
 }
 
 add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
-
-/*
-*   Remove version numbers from loaded assets so they do not cache too hard.
-*/
-function remove_css_js_ver($src) {
-    if (strpos($src, '?ver=')) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-}
-
-add_filter('style_loader_src', 'remove_css_js_ver', 10, 2);
-add_filter('script_loader_src', 'remove_css_js_ver', 10, 2);
 
 /*
 *   Replaces the WP logo in the admin bar.
@@ -493,47 +485,3 @@ function noindex_author() {
     }
 }
 add_action('wp_head', 'noindex_author');
-
-
-
-/* Content blocks */
-
-add_action( 'init', 'my_acf_init' );
-
-function my_acf_init() {
-    // Bail out if function doesn’t exist.
-    if ( ! function_exists( 'acf_register_block' ) ) {
-        return;
-    }
-
-    // Register a new block.
-    acf_register_block( array(
-        'name'            => 'example_block',
-        'title'           => __( 'Example Block', 'your-text-domain' ),
-        'description'     => __( 'A custom example block.', 'your-text-domain' ),
-        'render_callback' => 'my_acf_block_render_callback',
-        'category'        => 'formatting',
-        'icon'            => 'admin-comments',
-        'keywords'        => array( 'example' ),
-    ) );
-}
-
-
-
-
-
-function my_acf_block_render_callback( $block, $content = '', $is_preview = false ) {
-    $context = Timber::context();
-
-    // Store block values.
-    $context['block'] = $block;
-
-    // Store field values.
-    $context['fields'] = get_fields();
-
-    // Store $is_preview value.
-    $context['is_preview'] = $is_preview;
-
-    // Render the block.
-    Timber::render( 'components/blocks/content-example.twig', $context );
-}

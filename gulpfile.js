@@ -3,42 +3,45 @@
 /**
  * Dependencies and other variables should be listed out here.
  */
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     imagemin = require('gulp-imagemin'),
     args = require('yargs').argv,
-    changed = require('gulp-changed'),
-    ngAnnotate = require('gulp-ng-annotate'),
-    debug = require('gulp-debug'),
-    autoprefixer = require('gulp-autoprefixer'),
-    modernizr = require('gulp-modernizr'),
     gulpif = require('gulp-if'),
-    uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    jshint = require('gulp-jshint'),
-    wpcachebust = require('gulp-wp-cache-bust'),
     webpack = require('webpack-stream'),
+    autoprefixer = require('autoprefixer'),
+    postcss = require('gulp-postcss'),
+    entryPlus = require('webpack-entry-plus'),
+    glob = require('glob'),
+    rename = require('gulp-rename'),
+    changed = require('gulp-changed'),
+    debug = require('gulp-debug'),
+    replace = require('gulp-replace'),
     theme = 'crowd-base-build', // Define the theme name for packaging
     paths = {
         sass: {
-            src: 'src/sass/**/*.scss',
-            dist: 'dist/styles'
+            essential: {
+                src: 'src/sass/**/*.scss',
+                name: 'main.css',
+                dist: 'dist/styles'
+            }
         },
         js: {
             src: [
-                'node_modules/@fdaciuk/ajax/dist/ajax.min.js',
-                'src/js/essential/**/*.js', // Place js here that is essential to the site, will be returned in the <head>.
+                'src/js/**/*.js', // Place js here that is essential to the site, will be returned in the <head>.
             ],
-            srcDir: 'src/js/essential',
-            dist: 'dist/js'
-        },
-        jsDeferred: {
-            src: [
-                'src/js/deferred/**/*.js', // Place js here that is non-essential, will be deferred to the <footer>.
-            ],
-            srcDir: 'src/js/deferred',
-            dist: 'dist/js'
+            dist: 'dist/js',
+            entries: [
+                {
+                    entryFiles: glob.sync('./src/js/essential/**/*.js'),
+                    outputName: 'essential'
+                },
+                {
+                    entryFiles: glob.sync('./src/js/deferred/**/*.js'),
+                    outputName: 'deferred'
+                },
+            ]
         },
         images: {
             src: 'src/images/**/*',
@@ -47,6 +50,10 @@ var gulp = require('gulp'),
         fonts: {
             src: 'src/fonts/**/*',
             dist: 'dist/fonts'
+        },
+        cache: {
+            src: './includes/cache_bust.php',
+            dest: './includes/'
         },
         packageWhitelist: [ //Customise to your own folder structure
             '*.{php,png,css,zip}',
@@ -60,84 +67,68 @@ var gulp = require('gulp'),
         ]
     };
 
-/**
- * `gulp sass`
- *
- * Compiles SCSS -> CSS.
- *
- * Also prefixes css properties for legacy browsers, as defined in the
- * autoprefixer options object.
- */
-function sassTask() {
-    return gulp.src(paths.sass.src)
+/*
+*   Essential Style
+*
+*   Processes the base styles of the site.
+*   For any other style paths you might want to inlcude more specifically, duplicate this this a new function name and update the paths.
+*/
+function essentialStyle() {
+    return gulp.src(paths.sass.essential.src)
         .pipe(gulpif(!args.production, sourcemaps.init()))
-        .pipe(gulpif(args.production, sass({
-            outputStyle: 'compressed'
-        }).on('error', sass.logError)))
-        .pipe(gulpif(!args.production, sass().on('error', sass.logError)))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            flexbox: 'no-2009',
-            cascade: false
-        }))
-        .pipe(gulpif(!args.production, sourcemaps.write()))
-        .pipe(gulp.dest(paths.sass.dist));
+        .pipe(sass())
+        .on('error', sass.logError)
+        .pipe(postcss([autoprefixer()]))
+        .pipe(gulpif(!args.production, sourcemaps.write('.')))
+        .pipe(rename(paths.sass.essential.name))
+        .pipe(gulp.dest(paths.sass.essential.dist));
+}
+
+/*
+*   Styles
+*
+*   Runs all style functions
+*/
+function styles(done) {
+    return gulp.parallel(essentialStyle)(done);
 }
 
 /**
- * `gulp js`
- *
- * Pipes changed source JS -> dist file named bundle.min.js
- *
- * By default all files are concat together and are sourcemapped.
- *
- * JSHint runs over all javascript, and is configured by the .jshintrc file in
- * the repo. Global variables will need to be explicitly declared in this file.
- * [Find out how to do that here](http://jshint.com/docs/options/#globals).
- *
- * JSHint can also be configured to ignore files in the same way .gitignore
- * works, in the .jshintignore file.
- *
- * When running tasks with the --production flag, sourcemaps are removed and the
- * bundle.min.js file is compressed.
+ *  JavaScript
+ * 
+ *  Runs the JS bundler.
+ *  To separate JS bundles, add paths to the 'entries' array in paths->js
  */
-function essential() {
+function scripts() {
+    let buildMode = 'development';
+    if (args.production) {
+        buildMode = 'production';
+    }
     return gulp.src(paths.js.src)
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(gulpif(!args.production, sourcemaps.init()))
-        // Uncomment the following if you use any ECMAScript syntax. Babel makes sure that code is runnable in older browsers.
-        // .pipe(babel({
-        //     presets: ['@babel/env']
-        // }))
-        .pipe(concat('bundle.min.js'))
-        .pipe(gulpif(args.production, uglify({
-            mangle: false
-        })))
-        .pipe(gulpif(!args.production, sourcemaps.write()))
+        .pipe(sourcemaps.init())
+        .pipe(webpack({
+            mode: buildMode,
+            entry: entryPlus(paths.js.entries),
+            output: {
+                filename: '[name].js'
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: {
+                            loader: "babel-loader",
+                            options: {
+                                presets: ["@babel/preset-env"],
+                            }
+                        }
+                    },
+                ]
+            }
+        }))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.js.dist));
-}
-
-/**
- * `gulp deferred`
- *
- * A second JS task for file which can afford to load and run AFTER the page
- * content has loaded. This decreases the unresponsive loading time of the page.
- *
- */
-function deferred() {
-    return gulp.src(paths.jsDeferred.src)
-        .pipe(gulpif(!args.production, sourcemaps.init()))
-        // Uncomment the following if you use any ECMAScript syntax. Babel makes sure that code is runnable in older browsers.
-        // .pipe(webpack(
-        //    require('./webpack.config.js')
-        // ))
-        .pipe(concat('deferred.min.js'))
-        .pipe(gulpif(args.production, uglify({
-            mangle: false
-        })))
-        .pipe(gulpif(!args.production, sourcemaps.write()))
-        .pipe(gulp.dest(paths.jsDeferred.dist));
 }
 
 /**
@@ -177,51 +168,35 @@ function fonts() {
 }
 
 /**
- * `gulp modernizr`
- *      Runs `gulp sass` task.
- *
- * Pipes to source JS.
- *
- * Takes compiled CSS and scans for modernizr "feature detects" classes.
- * Generates custom build of modernizr from this information.
+ *  Cache Bust
+ * 
+ *  Changes the php variable for cache versions to the current timestamp
  */
-gulp.task('modernizr', gulp.series(sassTask, function() {
-    return gulp.src(paths.sass.dist + '/*.css')
-        .pipe(modernizr())
-        .pipe(gulp.dest(paths.js.srcDir));
-}));
-
-/**
- * `gulp assets`
- *
- * Process all the assets and send to the package folder
- */
-gulp.task('assets', gulp.series(sassTask, essential, deferred, images, fonts, function(){
-    return gulp.src(paths.packageWhitelist, { base: './' })
-      .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
-}));
-
-/**
- * `gulp package`
- *
- * Runs the assets task that compiles all assets and sends them to the package
- * directory, then busts the shit out of the cache with a hash.
- */
-gulp.task('package', gulp.series('assets', function(){
-    return gulp.src('./enqueues.php', {base: './'})
-        .pipe(wpcachebust({
-            themeFolder: './',
-            rootPath: './'
+function cacheBust() {
+    let cbString = new Date().getTime();
+    return gulp.src(paths.cache.src)
+        .pipe(replace(/\$cache_ver=\d+/g, () => {
+            return '\$cache_ver=' + cbString;
         }))
+        .pipe(gulp.dest(paths.cache.dest));
+}
+
+function watch() {
+    gulp.watch(paths.sass.essential.src, gulp.series(essentialStyle, cacheBust));
+    gulp.watch(paths.js.src, gulp.series(scripts, cacheBust));
+    gulp.watch(paths.images.src, gulp.series(images));
+}
+
+/**
+ *  Deploy
+ * 
+ *  Runs the build tasks, with minification. Then moves eveything into a package folder.
+ */
+function deploy() {
+    return gulp.src(paths.packageWhitelist, { base: './' })
         .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
-}));
+}
 
-gulp.task('watch', function () {
-    gulp.watch(paths.sass.src, sassTask);
-    gulp.watch(paths.js.src, essential);
-    gulp.watch(paths.jsDeferred.src, deferred);
-    gulp.watch(paths.images.src, images);
-    gulp.watch(paths.fonts.src, fonts);
-});
+gulp.task('default', gulp.series(fonts, images, styles, scripts, watch));
 
-gulp.task('default', gulp.series(sassTask, essential, deferred, images, fonts, 'watch'));
+gulp.task('package', gulp.series(fonts, images, styles, scripts, deploy));
