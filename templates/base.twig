@@ -9,9 +9,6 @@
 	<body class="{{body_class}}" data-template="base.twig">
 		{{ options.body_start_scripts }}
 		<header class="header" >
-			{% include 'logo.twig' with {
-				logo: options.site_logo
-			} %}
 			{% block header %}
 				
 			{% endblock %}
