@@ -1,0 +1,8 @@
+<a href='{{ site.url }}' title='{{ site.title }} Logo'>
+    {% if logo.mime_type == 'images/svg+xml' %}
+        {% do action('inline_file', logo.url) %}
+    {% else %}
+        {% set image = TimberImage(logo) %}
+        <img src='{{ image.src }}' alt='{{ image.alt }}' />
+    {% endif %}
+</a>
