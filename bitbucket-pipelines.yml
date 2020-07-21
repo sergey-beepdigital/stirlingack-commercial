@@ -34,14 +34,14 @@ pipelines:
             - echo "Build Package... 🙌"
             - "npm install"
             - "npm run build -- --production --pipeline"
-      #- step:
-      #    name: "Deploy to UAT"
-      #    image: andthensome/docker-node-rsync
-      #    trigger: manual
-      #    deployment: staging
-      #    script:
-      #      - echo "Deploying to UAT... 🙌"
-      #      - "rsync -rvz -e 'ssh -p 18765' pipeline/ $THEME_DIR"
+      - step:
+                name: "Deploy to UAT"
+                image: andthensome/docker-node-rsync
+                trigger: manual
+                deployment: staging
+                script:
+                  - echo "Deploying to UAT... 🙌"
+                  - "rsync -rvz -e 'ssh' pipeline/ $THEME_DIR"
       #- step:
       #    name: "Deploy to Production"
       #    image: alpacadb/docker-lftp
