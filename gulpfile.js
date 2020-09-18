@@ -22,8 +22,13 @@ const gulp = require('gulp'),
     paths = {
         sass: {
             essential: {
-                src: 'src/sass/**/*.scss',
+                src: 'src/sass/essential/**/*.scss',
                 name: 'main.css',
+                dist: 'dist/styles'
+            },
+            deferred: {
+                src: 'src/sass/deferred/**/*.scss',
+                name: 'deferred.css',
                 dist: 'dist/styles'
             }
         },
@@ -67,21 +72,23 @@ const gulp = require('gulp'),
         ]
     };
 
+const styleFunctions = [];
+
 /*
-*   Essential Style
-*
-*   Processes the base styles of the site.
-*   For any other style paths you might want to inlcude more specifically, duplicate this this a new function name and update the paths.
-*/
-function essentialStyle() {
-    return gulp.src(paths.sass.essential.src)
-        .pipe(gulpif(!args.production, sourcemaps.init()))
-        .pipe(sass())
-        .on('error', sass.logError)
-        .pipe(postcss([autoprefixer()]))
-        .pipe(gulpif(!args.production, sourcemaps.write('.')))
-        .pipe(rename(paths.sass.essential.name))
-        .pipe(gulp.dest(paths.sass.essential.dist));
+ * For each item in paths.sass, creates a function that runs all the gulp pipelines
+ */
+for (let [key, value] of Object.entries(paths.sass)) {
+    value.function = () => {
+        return gulp.src(value.src)
+            .pipe(gulpif(!args.production, sourcemaps.init()))
+            .pipe(sass())
+            .on('error', sass.logError)
+            .pipe(postcss([autoprefixer()]))
+            .pipe(gulpif(!args.production, sourcemaps.write('.')))
+            .pipe(rename(value.name))
+            .pipe(gulp.dest(value.dist));
+    }
+    Object.defineProperty(value.function, 'name', {value: key, writable: false});
 }
 
 /*
@@ -90,7 +97,10 @@ function essentialStyle() {
 *   Runs all style functions
 */
 function styles(done) {
-    return gulp.parallel(essentialStyle)(done);
+    for (let [key, value] of Object.entries(paths.sass)) {
+        value.function();
+    }
+    done();
 }
 
 /**
@@ -182,7 +192,10 @@ function cacheBust() {
 }
 
 function watch() {
-    gulp.watch(paths.sass.essential.src, gulp.series(essentialStyle, cacheBust));
+    // Watch each entry in paths.sass separately
+    for (let [key, value] of Object.entries(paths.sass)) {
+        gulp.watch(value.src, gulp.series(value.function, cacheBust));
+    }
     gulp.watch(paths.js.src, gulp.series(scripts, cacheBust));
     gulp.watch(paths.images.src, gulp.series(images));
 }
