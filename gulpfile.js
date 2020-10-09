@@ -215,10 +215,19 @@ function deploy() {
 }
 
 function disableAcf() {
-    return gulp.src(`../${theme}-package/${paths.acf.src}`)
+    let src = '';
+    let dest = '';
+    if (args.pipeline) {
+        src = `pipeline/${paths.acf.src}`;
+        dest = `pipeline/${paths.acf.dest}`;
+    } else {
+        src = `../${theme}-package/${paths.acf.src}`
+        dest = `../${theme}-package/${paths.acf.dest}`;
+    }
+    return gulp.src(src)
         .pipe(replace(/\$showacf=\w+/g, () => {
             return '\$showacf=false';
-        })).pipe(gulp.dest(`../${theme}-package/${paths.acf.dest}`));
+        })).pipe(gulp.dest(dest));
 }
 
 gulp.task('default', gulp.series(fonts, images, styles, scripts, watch));
