@@ -69,7 +69,11 @@ const gulp = require('gulp'),
             'components/**/*.twig',
             'templates/**/*.twig',
             'login/**/*'
-        ]
+        ],
+        acf: {
+            src: 'includes/toggle_acf_edit.php',
+            dest: 'includes/'
+        }
     };
 
 const styleFunctions = [];
@@ -210,6 +214,13 @@ function deploy() {
         .pipe(gulpif(args.pipeline, gulp.dest('pipeline/'), gulp.dest('../' + theme + '-package/')));
 }
 
+function disableAcf() {
+    return gulp.src(`../${theme}-package/${paths.acf.src}`)
+        .pipe(replace(/\$showacf=\w+/g, () => {
+            return '\$showacf=false';
+        })).pipe(gulp.dest(`../${theme}-package/${paths.acf.dest}`));
+}
+
 gulp.task('default', gulp.series(fonts, images, styles, scripts, watch));
 
-gulp.task('package', gulp.series(fonts, images, styles, scripts, deploy));
+gulp.task('package', gulp.series(fonts, images, styles, scripts, deploy, disableAcf));

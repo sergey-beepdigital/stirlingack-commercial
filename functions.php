@@ -133,6 +133,18 @@ class StarterSite extends TimberSite {
             }
         }
 
+        require_once('includes/toggle_acf_edit.php');
+
+        if (!$showacf) {
+            require_once('includes/acf-edit-screen-disabler.php');
+            if (function_exists('get_field')) {
+                if (!get_field('enable_acf_edit', 'option')) {
+                    add_filter('acf/settings/show_admin', '__return_false'); //DO NOT COMMENT OUT OR DISABLE USE THEME OPTIONS TICK BOX INSTEAD
+                }
+            }
+        }
+
+
         parent::__construct();
     }
 
