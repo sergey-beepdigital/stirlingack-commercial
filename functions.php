@@ -67,6 +67,12 @@ if ( is_admin() && function_exists('register_required_plugins')) {
     add_action ('tgmpa_register', 'register_plugins');
 }
 
+require_once 'includes/cache_bust.php';
+function get_cache_ver() {
+    include 'includes/cache_bust.php';
+    return $cache_ver;
+}
+
 if ( ! class_exists( 'Timber' ) ) {
     add_action( 'admin_notices', function() {
         echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
