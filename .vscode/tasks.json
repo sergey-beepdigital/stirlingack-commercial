@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gulp",
+			"task": "default",
+			"problemMatcher": [],
+			"label": "gulp: default",
+			"group": "build",
+			// "runOptions": {
+			// 	"runOn": "folderOpen"
+			// }
+		},
+		{
+			"type": "shell",
+			"command": "gulp package --production",
+			"problemMatcher": [],
+			"label": "gulp: package for production",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
