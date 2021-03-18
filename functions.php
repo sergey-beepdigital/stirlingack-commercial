@@ -116,6 +116,10 @@ class StarterSite extends TimberSite {
 
 
         add_filter( 'emoji_svg_url', '__return_false' );
+        
+        add_action('after_setup_theme', function () {
+            add_theme_support( 'html5', ['script', 'style'] );
+        });
 
         // Timber Actions
         add_action( 'init', array( $this, 'register_post_types' ) );
