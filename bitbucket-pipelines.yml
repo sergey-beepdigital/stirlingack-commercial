@@ -32,23 +32,23 @@ pipelines:
             - node
           script:
             - echo "Build Package... 🙌"
+            #- 'npm config set "//npm.fontawesome.com/:_authToken" D6D771B4-20F4-4BF3-91DA-9DD21FC3300E'
             - "npm install"
             - "npm run build -- --production --pipeline"
       - step:
-                name: "Deploy to UAT"
-                image: andthensome/docker-node-rsync
-                trigger: manual
-                deployment: staging
-                script:
-                  - echo "Deploying to UAT... 🙌"
-                  - "rsync -rvz -e 'ssh' pipeline/ $THEME_DIR"
-      #- step:
-      #    name: "Deploy to Production"
-      #    image: alpacadb/docker-lftp
-      #    trigger: manual
-      #    deployment: production
-      #    script:
-      #      - echo "Build Package... 🙌"
-      #      - echo "Deploying to Production... 😬"
-      #      - "lftp $LFTP_infrastructure_user_string -e 'set sftp:auto-confirm yes; mirror -R --parallel=5 --delete --verbose=1 pipeline/ path/to/my/basebuild_theme-package; exit'"
-
+          name: "Deploy to UAT"
+          image: andthensome/docker-node-rsync
+          trigger: automatic
+          deployment: staging
+          script:
+            - echo "Deploying to UAT... 🙌"
+            - "rsync --ignore-times -rvz -e 'ssh' pipeline/ $THEME_DIR"
+#      - step:
+#          name: "Deploy to Production"
+#          image: andthensome/docker-node-rsync
+#          trigger: manual
+#          deployment: production
+#          script:
+#            - echo "Build Package... 🙌"
+#            - echo "Deploying to Production... 😬"
+#            - "rsync --ignore-times -rvz -e 'ssh -p 22' pipeline/ $THEME_DIR"
