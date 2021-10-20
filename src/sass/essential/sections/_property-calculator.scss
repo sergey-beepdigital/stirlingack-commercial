@@ -1,0 +1,25 @@
+.section-property-calculator{
+    &--inner{
+        padding: 50px 0;
+        position: relative;
+
+        &:before{
+            content: "";
+            position: absolute;
+            top:0;
+            bottom: 0;
+            background-color: $support-color5;
+            width: calc(50vw + 500px);
+            z-index: 10;
+            right: 0;
+        }
+
+        .property-calculators-wrapper{
+            background-color: #FFF;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+            padding: 30px;
+            position: relative;
+            z-index: 20;
+        }
+    }
+}

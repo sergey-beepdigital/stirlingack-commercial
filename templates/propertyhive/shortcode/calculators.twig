@@ -1,0 +1,36 @@
+<section class="page-section page-section--padding50 section-property-calculator">
+    <div class="section-property-calculator--inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="property-calculators-wrapper">
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#property_mortgage_calculator">Mortgage Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#property_stamp_duty_calculator">Stamp Duty Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#property_rental_yield_calculator">Rental Yield Calculator</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="property_mortgage_calculator">
+                                {{ '[mortgage_calculator]' | shortcodes }}
+                            </div>
+                            <div class="tab-pane fade" id="property_stamp_duty_calculator">
+                                {{ '[stamp_duty_calculator]' | shortcodes }}
+                            </div>
+                            <div class="tab-pane fade" id="property_rental_yield_calculator">
+                                {{ '[rental_yield_calculator]' | shortcodes }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -334,6 +334,19 @@ function sa_property_detail_wrap_end() {
 add_action('propertyhive_after_main_content','sa_property_detail_wrap_end',50);
 
 /**
+ * Property Detail: Display calculators
+ */
+function sa_property_detail_calculators() {
+    $content = Timber::context();
+
+    /*$content['property_id'] = get_the_ID();
+    $content['property_search_link'] = get_the_permalink(ph_get_page_id('search_results'));*/
+
+    Timber::render('propertyhive/shortcode/calculators.twig', $content);
+}
+add_action('propertyhive_after_main_content','sa_property_detail_calculators',50);
+
+/**
  * Property Detail: Display similar properties
  */
 function sa_property_detail_similar_properties() {
@@ -363,3 +376,13 @@ function sa_property_detail_related_insights() {
     Timber::render('static-sections/latest-posts.twig', $content);
 }
 add_action('propertyhive_after_main_content','sa_property_detail_related_insights',70);
+
+function property_detail_heading() {
+    global $property;
+
+    Timber::render('propertyhive/property-detail/heading.twig', [
+        'title' => get_the_title(),
+        'price' => $property->get_formatted_price()
+    ]);
+}
+add_action('propertyhive_before_single_property_summary','property_detail_heading',2);
