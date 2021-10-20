@@ -1,0 +1,30 @@
+.blog-post{
+    font-weight: 300;
+    color: $support-color2;
+
+    img{
+        width: 100%;
+    }
+
+    &--image{
+        position: relative;
+        border: 1px solid $support-color4;
+
+        &__cat{
+            position: absolute;
+            background-color: #FFF;
+            left: 0;
+            bottom: 0;
+            padding: 15px 20px;
+        }
+    }
+
+    h3{
+        margin: 20px 0;
+        line-height: 28px;
+
+        a{
+            color: $brand-main-blue;
+        }
+    }
+}

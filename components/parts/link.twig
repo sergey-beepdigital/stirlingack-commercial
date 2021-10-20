@@ -1,0 +1,3 @@
+{% if link %}
+    <a class="{{ css_class }}" {% if link.target %}target="_blank" {% endif %} href="{{ link.url }}">{{ link.title }}</a>
+{% endif %}

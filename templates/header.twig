@@ -1,0 +1,24 @@
+<header id="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="{{ site.link }}" title="{{ site.name }}"><img src="{{ theme.link }}/dist/images/logo.svg"></a>
+            </div>
+            <div class="header-content text-uppercase">
+                <div class="header-content--top">
+                    <nav class="header-top-nav">
+                        {% include "menu.twig" with {'menu': top_menu.get_items} %}
+                    </nav>
+                    {% if options.page_url.property_valuation %}
+                        <a target="_blank" href="{{ options.page_url.property_valuation }}" class="btn btn-lg btn-warning text-uppercase">Property Valuation</a>
+                    {% endif %}
+                </div>
+                <nav class="header-content--menu">
+
+                    {% include "menu.twig" with {'menu': menu.get_items} %}
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,1 +1,76 @@
-// boop
+@import "common/variables";
+
+// Packages
+/*@import "../../../node_modules/@fortawesome/fontawesome-pro/scss/fontawesome";
+@import "../../../node_modules/@fortawesome/fontawesome-pro/scss/brands";
+@import "../../../node_modules/@fortawesome/fontawesome-pro/scss/regular";
+@import "../../../node_modules/@fortawesome/fontawesome-pro/scss/solid";*/
+
+/*@import "../../../node_modules/@fortawesome/fontawesome-pro/scss/duotone";
+@import "../../../node_modules/@fortawesome/fontawesome-pro/scss/duotone-icons";*/
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+@import "../../../node_modules/owl.carousel/src/scss/owl.carousel";
+@import "../../../node_modules/owl.carousel/src/scss/owl.theme.default";
+
+
+/*
+* Fonts
+*/
+//@import "fonts/one-plus-sans-text";
+//@import "fonts/one-plus-sans-display";
+
+/*
+* Common
+*/
+
+@import "common/boostrap-overriden";
+@import "common/ajax-loader";
+@import "common/mixin";
+@import "common/helpers";
+@import "common/buttons";
+@import "common/basic";
+@import "common/sections";
+@import "common/properties";
+/*@import "common/wp";
+@import "common/loader";*/
+
+
+/*
+* Parts
+*/
+@import "parts/header";
+@import "parts/footer";
+@import "parts/breadcrumbs";
+
+
+/*
+* Global
+*/
+@import "global/blog-post";
+
+
+/*
+* Shortcodes
+*/
+//@import "shortcode/ebook";
+
+
+/*
+* Sections
+*/
+@import "sections/home-hero";
+@import "sections/newsletter";
+@import "sections/content-image";
+@import "sections/cta-carousel";
+
+
+/*
+* Pages
+*/
+@import "pages/properties-search";
+
+
+// Responsive Design
+@import "common/brakepoints";

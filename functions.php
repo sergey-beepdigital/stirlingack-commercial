@@ -1,5 +1,10 @@
 <?php
 
+include "includes/shortcodes.php";
+include "includes/properyhive-hooks.php";
+
+add_filter('https_ssl_verify', '__return_false');
+
 /**
  * Registers any plugin dependancies the theme has.
  *
@@ -85,7 +90,7 @@ Timber::$dirname = array('templates', 'components');
 class StarterSite extends TimberSite {
 
     function __construct() {
-        add_theme_support( 'post-formats' );
+        add_theme_support( 'post-formats',[] );
         add_theme_support( 'post-thumbnails' );
         add_theme_support( 'menus' );
 
@@ -116,7 +121,7 @@ class StarterSite extends TimberSite {
 
 
         add_filter( 'emoji_svg_url', '__return_false' );
-        
+
         add_action('after_setup_theme', function () {
             add_theme_support( 'html5', ['script', 'style'] );
         });
@@ -172,12 +177,18 @@ class StarterSite extends TimberSite {
             return;
         }
         // require_once custom acf blocks here
-        
+
         // require_once('includes/blocks/example.php');
     }
 
     function add_to_context( $context ) {
-        $context['menu'] = new TimberMenu('Global Header Navigation');
+        $context['top_menu'] = new TimberMenu('top-nav');
+        $context['menu'] = new TimberMenu('main-nav');
+
+        $context['footer_widgets1'] = Timber::get_widgets('footer-widget');
+        $context['footer_widgets2'] = Timber::get_widgets('footer-widget-2');
+        $context['footer_widgets3'] = Timber::get_widgets('footer-widget-3');
+
         $context['site'] = $this;
         if (function_exists('get_fields')) {
             $context['options'] = get_fields('option');
@@ -436,18 +447,18 @@ add_action( 'wp_enqueue_scripts', 'remove_block_css', 100 );
  * Disable Yoast's Hidden love letter about using the WordPress SEO plugin.
  */
 add_action( 'template_redirect', function () {
- 
+
     if ( ! class_exists( 'WPSEO_Frontend' ) ) {
         return;
     }
- 
+
     $instance = WPSEO_Frontend::get_instance();
- 
+
     // make sure, future version of the plugin does not break our site.
     if ( ! method_exists( $instance, 'debug_mark') ) {
         return ;
     }
- 
+
     // ok, let us remove the love letter.
      remove_action( 'wpseo_head', array( $instance, 'debug_mark' ), 2 );
 }, 9999 );
@@ -496,7 +507,7 @@ function ec_dashboard_custom_logo() {
 add_action('wp_before_admin_bar_render', 'ec_dashboard_custom_logo');
 
 /*
- *  Noindex Author 
+ *  Noindex Author
  *  Adds a noindex meta tag on author archives so they are not indexed by Google
  */
 
@@ -507,66 +518,57 @@ function noindex_author() {
 }
 add_action('wp_head', 'noindex_author');
 
-function reset_social_link_icons() {
-    return array(
+/**
+ * Add fontawesome icons for social share links
+ * @return string[][]
+ */
+function sa_social_link_icons() {
+    return [
         'facebook_site'  => array(
-            'icon' => '<i class="fab fa-facebook-f"></i>'
+            'icon' => '<i class="fa-brands fa-facebook-square"></i>'
         ),
         'twitter_site'   => array(
             'prepend' => 'https://twitter.com/',
-            'icon'    => '<i class="fab fa-twitter"></i>'
+            'icon'    => '<i class="fa-brands fa-twitter-square"></i>'
         ),
         'instagram_url' => array(
-            'icon' => '<i class="fab fa-instagram"></i>'
+            'icon' => '<i class="fa-brands fa-instagram-square"></i>'
         ),
         'linkedin_url'  => array(
-            'icon' => '<i class="fab fa-linkedin-in"></i>'
+            'icon' => '<i class="fa-brands fa-linkedin"></i>'
+        )
+    ];
+}
+add_filter('crowd_social_link_options','sa_social_link_icons');
+
+/**
+ * Add custom body classes
+ * @param $classes
+ * @return mixed
+ */
+function sa_body_class($classes) {
+    $classes[] = 'sticky-header';
+
+    return $classes;
+}
+add_filter('body_class','sa_body_class');
+
+/**
+ * Register widget area.
+ */
+function sa_widgets_init() {
+    register_sidebars(
+        3,
+        array(
+            'name'          => __('Footer Widgets %d', 'stirlingack'),
+            'id'            => 'footer-widget',
+            'description'   => __('Add widgets here to appear in your footer.', 'stirlingack'),
+            'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h5 class="h3 widget-title">',
+            'after_title'   => '</h5>',
         )
     );
+
 }
-add_filter('crowd_social_link_options','reset_social_link_icons');
-
-function social_links_shortcode($atts) {
-    $atts = shortcode_atts(array(
-        'list'      => 1, // true for a <ul>, false for <div>
-        'raw'       => 0, // true for text only, no HTML
-        'css_class' => '', // class to add to the wrapper
-        'delim'     => ' ' // entity between items
-    ), $atts);
-
-    $seo_data = get_option('wpseo_social');
-    $options = apply_filters('crowd_social_link_options', array());
-    $output = array();
-    $wrapp_tag = 'div';
-
-    if (sizeof($options) > 0) {
-        if (!$atts['raw']) {
-            if ($atts['list']) {
-                $wrapp_tag = 'ul';
-            }
-
-            $output[] = '<' . $wrapp_tag . ' class="' . $atts['css_class'] . '">';
-        }
-
-        foreach ($seo_data as $seo_network => $url) {
-            $network_settings = $options[$seo_network];
-
-            if(!empty($url) && !empty($network_settings)) {
-                if (!empty($network_settings['prepend']))
-                    $url = $network_settings['prepend'] . $url;
-                if ($url && !empty($network_settings['icon']) && !$atts['raw']) {
-                    if ($atts['list']) $output[] = '<li>';
-                    $output[] = '<a target="_blank" href="' . esc_url_raw($url) . '">' . $network_settings['icon'] . '</a>';
-                    if ($atts['list']) $output[] = '</li>';
-                } else {
-                    $output[] = esc_url_raw($url);
-                }
-            }
-        }
-        if (!$atts['raw'])
-            $output[] = '</' . $wrapp_tag . '>';
-    }
-
-    if (!empty($output)) return join($atts['delim'], $output);
-}
-add_shortcode('social_links', 'social_links_shortcode');
+add_action('widgets_init', 'sa_widgets_init');

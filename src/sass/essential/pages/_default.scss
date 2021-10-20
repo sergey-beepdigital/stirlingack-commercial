@@ -1,0 +1,45 @@
+.section-default-page{
+    padding: 100px 0;
+
+    .page-title{
+        font-size: 42px;
+        font-weight: 300;
+        margin-bottom: 30px;
+    }
+
+    article{
+        color: #363636;
+        font-size: 18px;
+        line-height: 1.6;
+
+        h2, h3, h4, h5, h6{
+            margin-bottom: 25px;
+            color: #373A3C;
+        }
+
+        h5{
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        ul,
+        ol{
+            padding-left: 22px;
+
+            li{
+                margin-bottom: 15px;
+            }
+        }
+
+        p,
+        ol,
+        ul{
+            margin-bottom: 30px;
+        }
+
+        & *:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+}

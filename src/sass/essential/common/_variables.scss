@@ -1,0 +1,26 @@
+$fa-font-path: "../fonts/fontawesome";
+
+$brand-main-red: #e30613;
+$brand-main-blue: #151e46;
+
+$support-color1: #3b456b;
+$support-color2: #6f7690;
+$support-color3: #C5C8D2;
+$support-color4: #D9DBE1;
+$support-color5: #ededf0;
+
+$link-color: $brand-main-blue;
+$border-radius: 0;
+$border-radius-lg: 0;
+$btn-font-size-lg: 16px;
+$btn-padding-y-lg: 17px;
+
+$theme-colors: (
+    primary: $brand-main-blue,
+    danger: $brand-main-red,
+    warning: #F0650C
+);
+
+$container-max-widths: (
+    xl: 1200px
+);

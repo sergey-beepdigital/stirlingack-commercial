@@ -1,0 +1,49 @@
+.section-newsletter{
+    background-color: $support-color4;
+    padding: 60px 0;
+
+    .newsletter-form{
+        &--box{
+            background-color: #FFF;
+            display: flex;
+            padding: 10px;
+
+            .sg-input{
+                flex: 1;
+                border: 0;
+                box-shadow: none;
+
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    &--socials{
+        h3{
+            font-size: 30px;
+        }
+
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 28px;
+
+            li{
+                display: inline-block;
+
+                &:not(:first-child) {
+                    margin-left: 20px;
+                }
+
+                a{
+                    &:hover{
+                        color: $brand-main-red;
+                    }
+                }
+            }
+        }
+    }
+}

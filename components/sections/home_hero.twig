@@ -1,0 +1,39 @@
+{#<pre>
+    {{ section | print_r }}
+</pre>#}
+
+<section class="section-home-hero">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="section-home-hero--content">
+                    {{ section.hh_content }}
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div>
+                    <img src="{{ section.hh_image }}">
+                </div>
+            </div>
+        </div>
+        <div class="section-home-hero--search">
+            <div class="row">
+                <div class="col-xl-10">
+                    {{ section.wph_search_property_shortcode | shortcodes }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="section-home-hero--valuation">
+                        <h3>{{ section.hh_valuation.title }}</h3>
+                        {% include 'components/parts/link.twig' with {
+                            link: section.hh_valuation.link,
+                            css_class: 'link-border link-border--red'
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,51 @@
+.section-cta-carousel{
+    .cta-slide{
+        img{
+            margin-top: 27px;
+        }
+
+        &--content{
+            background-color: $support-color5;
+            padding: 75px 45px 75px 80px;
+            font-size: 22px;
+
+            p,
+            h2{
+                margin-bottom: 25px;
+            }
+
+            .link-border{
+                margin-top: 15px;
+                display: inline-block;
+            }
+        }
+    }
+
+    .sa-cta-carousel{
+        padding-bottom: 60px;
+
+        .owl-dots{
+            width: 50%;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 0 15px;
+
+            .owl-dot{
+                position: relative;
+
+                &:last-child{
+                    &:after{
+                        content: "";
+                        position: absolute;
+                        top: -2px;
+                        left: 100%;
+                        width: 75px;
+                        background-color: $support-color4;
+                        height: 2px;
+                    }
+                }
+            }
+        }
+    }
+}

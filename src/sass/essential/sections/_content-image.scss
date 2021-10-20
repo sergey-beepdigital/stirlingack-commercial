@@ -1,0 +1,30 @@
+.section-content-image{
+    &--content{
+        color: #FFF;
+        position: relative;
+
+        & > h2{
+            margin-bottom: 30px;
+        }
+
+        .link-border{
+            font-size: 24px;
+            margin-top: 40px;
+            display: inline-block;
+
+            &--red{
+                &:not(:hover){
+                    color: #FFF;
+                }
+            }
+        }
+    }
+
+    &.has-logo-watermark{
+        .section-content-image--content{
+            background-image: url("../images/logo-watermark.svg");
+            background-position: bottom 25px right 25px;
+            background-repeat: no-repeat;
+        }
+    }
+}

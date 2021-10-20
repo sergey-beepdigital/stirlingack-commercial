@@ -1,9 +1,46 @@
-<div class="left">
-	Copyright {{"now"|date('Y')}}
-</div>
-<div class="center">
-	<a href="#">Privacy Policy</a>
-</div>
-<div class="right">
-	Site by <a href="https://thisiscrowd.com" target="_blank">Crowd</a>
+<div class="container">
+    <div class="footer-widgets">
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="footer-widgets--widget">
+                    {{ footer_widgets1 }}
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="footer-widgets--widget menu-2columns">
+                    {{ footer_widgets2 }}
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="footer-widgets--widget">
+                    {{ footer_widgets3 }}
+                </div>
+            </div>
+        </div>
+
+        <nav class="footer-supported-brands">
+            <ul>
+                <li><img src="{{ theme.link }}/dist/images/footer-logo1.svg"></li>
+                <li><img src="{{ theme.link }}/dist/images/footer-logo2.svg"></li>
+                <li><img src="{{ theme.link }}/dist/images/footer-logo3.svg"></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="footer-copyright">
+        <p>Stirling Ackroyd Shoreditch 40 Great Eastern Street, London, EC2A 3EP TRSL Limited 2653200.<br>Registered Office: Unit 2, Wintersells Road, Byfleet, Surrey, KT14 7LF</p>
+        <div class="footer-copyright--nav">
+            <div>&copy; {{"now"|date('Y')}} Stirling Ackroyd</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </nav>
+            <div class="developed-by">
+                Site by <a href="https://thisiscrowd.com" target="_blank">Crowd</a>
+            </div>
+        </div>
+    </div>
 </div>

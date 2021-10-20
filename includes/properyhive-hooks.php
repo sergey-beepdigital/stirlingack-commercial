@@ -1,0 +1,316 @@
+<?php
+
+add_filter( 'query_vars', 'propertyhive_register_query_vars' );
+function propertyhive_register_query_vars( $vars )
+{
+    $vars[] = 'property_search_criteria';
+    return $vars;
+}
+
+add_action( 'init', 'propertyhive_add_rewrite_rules' );
+function propertyhive_add_rewrite_rules()
+{
+    global $wp_rewrite;
+
+    $post = get_post( ph_get_page_id('search_results') );
+
+    if ( $post instanceof WP_Post )
+    {
+        add_rewrite_rule( $post->post_name . "/(.*)/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]&paged=$matches[2]', 'top' );
+        add_rewrite_rule( $post->post_name . "/(.*)/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]', 'top' );
+    }
+}
+
+add_action( 'parse_request', 'propertyhive_parse_request' );
+function propertyhive_parse_request($wp_query)
+{
+    // First we do redirect if on the search page and have received the standard query string parameters
+    if ( !is_admin() && !isset($wp_query->query_vars['property']) && isset($wp_query->query_vars['post_type']) && $wp_query->query_vars['post_type'] == 'property' && !isset($wp_query->query_vars['p']) )
+    {
+        $new_url_segments = array();
+        if ( !empty($_GET) )
+        {
+            foreach ( $_GET as $key => $value )
+            {
+                if ( trim($value) != '' )
+                {
+                    $new_url_segments[] = $key . '/' . urlencode($value);
+                }
+            }
+            if ( !empty($new_url_segments) )
+            {
+                wp_redirect( get_permalink( ph_get_page_id('search_results') ) . implode("/", $new_url_segments) . '/', 301 );
+                exit();
+            }
+        }
+    }
+
+    // Now parse nice SEO URL back into $_GET
+    foreach ($wp_query->query_vars as $name => $value)
+    {
+        if ($name == 'property_search_criteria' && $value != '')
+        {
+            // Split property search criteria into blocks:
+            // department/X
+            // minimum_price/X
+            // etc
+            $segments = array_map(
+                function($value) {
+                    return implode('/', $value);
+                },
+                array_chunk(explode('/', $value), 2)
+            );
+
+            // Now turn these into $_GET and $_REQUEST
+            foreach ($segments as $segment)
+            {
+                $explode_segment = explode('/', $segment);
+                $_GET[$explode_segment[0]] = urldecode($explode_segment[1]);
+                $_REQUEST[$explode_segment[0]] = urldecode($explode_segment[1]);
+            }
+        }
+    }
+}
+
+/**
+ * Change static text in the plugin
+ * @param $translation
+ * @param $text
+ * @param $domain
+ * @return string
+ */
+function sa_wphive_gettext($translation, $text, $domain) {
+    if($domain == 'propertyhive') {
+        switch ($text) {
+            case 'No preference':
+                $translation = 'Select';
+
+                break;
+        }
+    }
+    return $translation;
+}
+add_filter('gettext','sa_wphive_gettext',50,3);
+
+function include_off_market( $q )
+{
+    if ( is_admin() )
+        return;
+
+    if ( ! $q->is_main_query() )
+        return;
+
+    if  ( ! $q->is_post_type_archive( 'property' ) && ! $q->is_tax( get_object_taxonomies( 'property' ) ) )
+        return;
+
+    if ( isset($_GET['marketing_flag']) && $_GET['marketing_flag'] == 73 ) // 123 is our marketing flag ID
+    {
+        // we're filtering by sold properties
+
+        $meta_query = $q->meta_query;
+
+        $new_meta_query = array();
+        foreach ( $meta_query as $meta_query_part )
+        {
+            if ( isset($meta_query_part['key']) && $meta_query_part['key'] == '_on_market' )
+            {
+                // we don't want this part so do nothing
+            }
+            else
+            {
+                $new_meta_query[] = $meta_query_part;
+            }
+        }
+
+        $q->set('meta_query', $new_meta_query);
+    }
+}
+//add_action( 'pre_get_posts', 'include_off_market' );
+
+/**
+ * Add Font Awesome Icons to Pagination
+ * @param $args
+ * @return mixed
+ */
+function sa_propertyhive_pagination_args($args) {
+    $args['prev_text'] = '<i class="fa-regular fa-angle-left"></i>';
+    $args['next_text'] = '<i class="fa-regular fa-angle-right"></i>';
+
+    return $args;
+}
+add_filter('propertyhive_pagination_args','sa_propertyhive_pagination_args');
+
+/**
+ * Remove default styles
+ * @param $styles
+ * @return mixed
+ */
+function sa_propertyhive_enqueue_styles($styles) {
+    unset($styles['propertyhive-general']);
+
+    return $styles;
+}
+add_filter('propertyhive_enqueue_styles','sa_propertyhive_enqueue_styles');
+
+/**
+ * Properties listing item inner wrap div
+ */
+function sa_before_search_results_loop_item() {
+    echo '<div class="property-item-inner">';
+}
+add_action('propertyhive_before_search_results_loop_item','sa_before_search_results_loop_item');
+
+/**
+ * Properties listing item inner wrap end div
+ */
+function sa_after_search_results_loop_item() {
+    echo '</div>';
+}
+add_action('propertyhive_after_search_results_loop_item','sa_after_search_results_loop_item');
+
+/**
+ * Remove action from property item
+ */
+//remove_action('propertyhive_after_search_results_loop_item_title','propertyhive_template_loop_actions',30);
+//remove_action('propertyhive_after_search_results_loop_item_title','propertyhive_template_loop_price',10);
+
+/**
+ * Display residential details for property item
+ */
+function sa_property_residential_details() {
+    global $property;
+
+    Timber::render('templates/propertyhive/parts/residential-details.twig',[
+        'bedrooms' => $property->bedrooms,
+        'bathrooms' => $property->bathrooms,
+        'reception_rooms' => $property->reception_rooms
+    ]);
+}
+add_action('propertyhive_after_search_results_loop_item_title','sa_property_residential_details',7);
+
+/**
+ * Display branch details for property item
+ */
+function sa_property_item_branch_details() {
+    Timber::render('templates/propertyhive/parts/branch-details.twig',[]);
+}
+add_action('propertyhive_after_search_results_loop_item_title','sa_property_item_branch_details',20);
+
+/**
+ * Show title and subtitle for property item
+ */
+function sa_property_loop_item_title() {
+    global $property;
+
+    $subtitle_parts = [];
+
+    if($property->bedrooms) {
+        $subtitle_parts[] = $property->bedrooms . ' Bed';
+    }
+
+    if($property->property_type) {
+        $subtitle_parts[] = $property->property_type;
+    }
+
+    if(sizeof($subtitle_parts) > 0) {
+        echo '<div class="property-item-subtitle">'.join(', ',$subtitle_parts).'</div>';
+    }
+    echo '<h6><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h6>';
+}
+add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop_item_title',10);
+
+/**
+ * Display images count for property item
+ */
+function sa_property_item_images_count() {
+    global $property;
+
+    if(!empty($property->_photo_urls)) {
+        echo '<div class="property-images-count"><i class="fa-light fa-camera"></i> ' . sizeof($property->_photo_urls) . '</div>';
+    }
+}
+add_action('propertyhive_before_search_results_loop_item_title','sa_property_item_images_count',20);
+
+/**
+ * Hide Archive Title
+ */
+add_filter('propertyhive_show_page_title','__return_false');
+
+function sa_property_search_info_wrap_start() {
+    echo '<div class="property-search-info-wrap"><div class="container"><div class="property-search-info-wrap--inner">';
+}
+add_action('propertyhive_before_search_results_loop','sa_property_search_info_wrap_start',15);
+
+function sa_property_search_info_wrap_end() {
+    echo '</div></div></div>';
+}
+add_action('propertyhive_before_search_results_loop','sa_property_search_info_wrap_end',100);
+
+/**
+ * Add Grid view to the list of views on property search page
+ * @param $views
+ * @return mixed
+ */
+function sa_property_results_views($views) {
+    $new_order_view = [];
+
+    unset($views['list']['default']);
+
+    $views['grid'] = array(
+        'default' => true,
+        'content' => '<i class="fa-regular fa-border-all"></i> Tile View'
+    );
+    $views['list']['content'] = '<i class="fa-regular fa-bars-staggered"></i> List View';
+    $views['map']['content'] = '<i class="fa-regular fa-map"></i> Map View';
+
+    $new_order_view['grid'] = $views['grid'];
+    $new_order_view['list'] = $views['list'];
+    $new_order_view['map'] = $views['map'];
+
+    return $new_order_view;
+}
+add_filter('propertyhive_results_views', 'sa_property_results_views', 1);
+
+/**
+ * Add breadcrumbs to property pages
+ */
+function sa_properties_breadcrumbs() {
+    if ( function_exists('yoast_breadcrumb') ) {
+        yoast_breadcrumb( '<div id="breadcrumbs"><div class="container">','</div></div>' );
+    }
+}
+add_action('propertyhive_before_main_content','sa_properties_breadcrumbs',10);
+
+$save_search = PH_Save_Search::instance();
+remove_action( 'propertyhive_before_search_results_loop', array( $save_search, 'save_search_button' ), 99 );
+function test_button() {
+    $save_search = PH_Save_Search::instance();
+
+    ob_start();
+    $save_search->save_search_button();
+    $html =  ob_get_contents();
+    ob_end_clean();
+
+    echo '<div>'.$html.'</div>';
+}
+//add_action('property_search_form_control_end', 'test_button', 10);
+
+/**
+ * Wrap Map View on results page - start block
+ */
+function sa_property_search_map_wrap_start() {
+    if(get_query_var('post_type') == 'property' && $_GET['view'] == 'map') {
+        echo '<div class="property-search-map-view"><div class="container">';
+    }
+}
+add_action('propertyhive_before_search_results_loop','sa_property_search_map_wrap_start',100);
+
+/**
+ * Wrap Map View on results page - end block
+ */
+function sa_property_search_map_wrap_end() {
+    if(get_query_var('post_type') == 'property' && $_GET['view'] == 'map') {
+        echo '</div></div>';
+    }
+}
+add_action('propertyhive_after_search_results_loop','sa_property_search_map_wrap_end',10);

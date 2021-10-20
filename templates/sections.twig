@@ -1,0 +1,11 @@
+{% for section in sections %}
+    {% set external_path = ext_path?ext_path ~ '/':'' %}
+
+    {% include [
+        'sections/' ~ external_path ~ section.acf_fc_layout ~ '.twig',
+        'sections/template-not-found.twig'
+    ] with {
+        'section' : section
+    } %}
+
+{% endfor %}

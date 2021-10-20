@@ -18,7 +18,8 @@ const gulp = require('gulp'),
     changed = require('gulp-changed'),
     debug = require('gulp-debug'),
     replace = require('gulp-replace'),
-    theme = 'crowd-base-build', // Define the theme name for packaging
+    providePlugin = require('webpack-stream').webpack.ProvidePlugin,
+    theme = 'stirlingack2021', // Define the theme name for packaging
     paths = {
         sass: {
             essential: {
@@ -139,7 +140,14 @@ function scripts() {
                         }
                     },
                 ]
-            }
+            },
+            plugins: [
+                new providePlugin({
+                    $: 'jquery',
+                    jQuery: 'jquery',
+                    'window.jQuery': 'jquery'
+                })
+            ]
         }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.js.dist));

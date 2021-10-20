@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Interstate';
+    src: url('InterstateBold.woff2') format('woff2'),
+        url('InterstateBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Interstate';
+    src: url('Interstate-Bold.woff2') format('woff2'),
+        url('Interstate-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Interstate';
+    src: url('Interstate-Regular.woff2') format('woff2'),
+        url('Interstate-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

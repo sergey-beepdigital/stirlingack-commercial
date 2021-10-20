@@ -8,15 +8,14 @@
 
 	<body class="{{body_class}}" data-template="base.twig">
 		{{ options.body_start_scripts }}
-		<header class="header" >
-			{% block header %}
-				
-			{% endblock %}
-		</header>
+
+        {% block header %}
+            {% include 'header.twig' %}
+        {% endblock %}
 
 		<section id="content" role="main">
 			{% if title %}<h1>{{title}}</h1>{% endif %}
-			<div class="wrapper text-body">
+			<div class="wrapper">
 				{% block content %}
 					Sorry, no content
 				{% endblock %}
@@ -27,6 +26,8 @@
 				</aside>
 			{% endif %}
 		</section>
+
+        {% include "components/static-sections/newsletter.twig" %}
 
 		{% block footer %}
 			<footer id="footer">
