@@ -127,6 +127,10 @@ function include_off_market( $q )
 }
 //add_action( 'pre_get_posts', 'include_off_market' );
 
+/*********************************************************************
+ ********************* Properties Search *****************************
+ *********************************************************************/
+
 /**
  * Add Font Awesome Icons to Pagination
  * @param $args
@@ -314,3 +318,48 @@ function sa_property_search_map_wrap_end() {
     }
 }
 add_action('propertyhive_after_search_results_loop','sa_property_search_map_wrap_end',10);
+
+/*********************************************************************
+ *********************** Property Detail *****************************
+ *********************************************************************/
+
+function sa_property_detail_wrap_start() {
+    echo '<section class="page-section page-section--padding50"><div class="container">';
+}
+add_action('propertyhive_before_main_content','sa_property_detail_wrap_start',20);
+
+function sa_property_detail_wrap_end() {
+    echo '</div></section>';
+}
+add_action('propertyhive_after_main_content','sa_property_detail_wrap_end',50);
+
+/**
+ * Property Detail: Display similar properties
+ */
+function sa_property_detail_similar_properties() {
+    $content = Timber::context();
+
+    $content['property_id'] = get_the_ID();
+    $content['property_search_link'] = get_the_permalink(ph_get_page_id('search_results'));
+
+    Timber::render('propertyhive/shortcode/similar-properties.twig', $content);
+}
+add_action('propertyhive_after_main_content','sa_property_detail_similar_properties',60);
+
+/**
+ * Property Detail: Display similar properties
+ */
+function sa_property_detail_related_insights() {
+    global $property;
+
+    $content = Timber::context();
+
+    $content['title'] = 'Property Insights';
+    $content['more_link'] = [
+        'title' => 'More News & Insights for ' . $property->_address_postcode,
+        'url' => '#'
+    ];
+
+    Timber::render('static-sections/latest-posts.twig', $content);
+}
+add_action('propertyhive_after_main_content','sa_property_detail_related_insights',70);

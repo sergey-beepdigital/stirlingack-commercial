@@ -1,0 +1,21 @@
+<section class="page-section page-section--padding50">
+    <div class="container">
+        <div class="page-section--heading">
+            <div class="row align-items-center">
+                <div class="col-xl-6">
+                    <h3 class="text-uppercase">SIMILAR PROPERTIES In This Area</h3>
+                </div>
+                <div class="col-xl-6 text-xl-right">
+                    {% include 'components/parts/link.twig' with {
+                        link: {
+                            title: 'More Properties',
+                            url: property_search_link
+                        }
+                    } %}
+                </div>
+            </div>
+        </div>
+
+        {{ fn('do_shortcode','[similar_properties property_id=' ~ property_id ~ ']') }}
+    </div>
+</section>

@@ -1,0 +1,51 @@
+<section class="page-section page-section--padding50 section-latest-posts">
+    <div class="container">
+        <div class="page-section--heading">
+            <div class="row align-items-center">
+                <div class="col-xl-6">
+                    <h3 class="text-uppercase">{{ title }}</h3>
+                </div>
+                <div class="col-xl-6 text-xl-right">
+                    {% include 'components/parts/link.twig' with {
+                        link: more_link
+                    } %}
+                </div>
+            </div>
+        </div>
+
+        <div class="section-latest-posts--list">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="blog-post">
+                        <div class="blog-post--image">
+                            <a href="#"><img src="{{ theme.link }}/dist/images/temp/blog-post.jpg"></a>
+                            <div class="blog-post--image__cat text-danger">Market Insights</div>
+                        </div>
+                        <h3><a href="#">News Story Lorem Ipsum Dolor Sit Amet Consectetur</a></h3>
+                        <p>News story summary lorem ipsum dolor sit amet consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="blog-post">
+                        <div class="blog-post--image">
+                            <a href="#"><img src="{{ theme.link }}/dist/images/temp/blog-post.jpg"></a>
+                            <div class="blog-post--image__cat text-danger">Market Insights</div>
+                        </div>
+                        <h3><a href="#">News Story Lorem Ipsum Dolor Sit Amet Consectetur</a></h3>
+                        <p>News story summary lorem ipsum dolor sit amet consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="blog-post">
+                        <div class="blog-post--image">
+                            <a href="#"><img src="{{ theme.link }}/dist/images/temp/blog-post.jpg"></a>
+                            <div class="blog-post--image__cat text-danger">Market Insights</div>
+                        </div>
+                        <h3><a href="#">News Story Lorem Ipsum Dolor Sit Amet Consectetur</a></h3>
+                        <p>News story summary lorem ipsum dolor sit amet consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
