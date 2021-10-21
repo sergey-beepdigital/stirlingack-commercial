@@ -5,6 +5,10 @@
         a{
             font-weight: normal;
             text-transform: uppercase;
+
+            i{
+                color: $brand-main-red;
+            }
         }
     }
 
