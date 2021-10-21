@@ -192,6 +192,31 @@ function sa_property_residential_details() {
 }
 add_action('propertyhive_after_search_results_loop_item_title','sa_property_residential_details',7);
 
+function sa_property_loop_shortlist() {
+    global $post;
+
+    $css_class = ['button','sa-shortlist-button'];
+
+    $explode_shortlist = ( isset($_COOKIE['propertyhive_shortlist']) ) ? explode("|", $_COOKIE['propertyhive_shortlist']) : array();
+
+    if ( ($key = array_search($post->ID, $explode_shortlist)) !== FALSE ) {
+        $css_class[] = 'property-shortlisted';
+    }
+
+    echo do_shortcode('[shortlist_button class="' . join(' ', $css_class) . '"]');
+}
+add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop_shortlist',8);
+
+function sa_property_loop_residential_start_block() {
+    echo '<div class="d-flex justify-content-between">';
+}
+add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop_residential_start_block',6);
+
+function sa_property_loop_residential_end_block() {
+    echo '</div>';
+}
+add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop_residential_end_block',9);
+
 /**
  * Display branch details for property item
  */
@@ -324,12 +349,16 @@ add_action('propertyhive_after_search_results_loop','sa_property_search_map_wrap
  *********************************************************************/
 
 function sa_property_detail_wrap_start() {
-    echo '<section class="page-section page-section--padding50"><div class="container">';
+    if(is_singular('property')) {
+        echo '<section class="page-section page-section--padding50"><div class="container">';
+    }
 }
 add_action('propertyhive_before_main_content','sa_property_detail_wrap_start',20);
 
 function sa_property_detail_wrap_end() {
-    echo '</div></section>';
+    if(is_singular('property')) {
+        echo '</div></section>';
+    }
 }
 add_action('propertyhive_after_main_content','sa_property_detail_wrap_end',50);
 
@@ -385,4 +414,23 @@ function property_detail_heading() {
         'price' => $property->get_formatted_price()
     ]);
 }
-add_action('propertyhive_before_single_property_summary','property_detail_heading',2);
+//add_action('propertyhive_before_single_property_summary','property_detail_heading',2);
+
+function sa_property_detail_tabs_content() {
+    if(is_singular('property')) {
+        Timber::render('propertyhive/property-detail/tabs-content.twig',[
+
+        ]);
+    }
+}
+add_action('propertyhive_after_main_content','sa_property_detail_tabs_content');
+
+remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_features',20);
+remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_description',40);
+
+function sa_property_detail_tabs_nav() {
+    Timber::render('propertyhive/property-detail/tabs-nav.twig',[
+
+    ]);
+}
+add_action('propertyhive_after_single_property_summary','sa_property_detail_tabs_nav',30);

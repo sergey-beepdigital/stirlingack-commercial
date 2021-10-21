@@ -37,6 +37,26 @@ ul.properties{
                 position: relative;
                 z-index: 10;
 
+                .sa-shortlist-button{
+                    font-size: 0;
+                    position: relative;
+                    text-decoration: none!important;
+
+                    &:before{
+                        font-size: 16px;
+                        font-family: 'Font Awesome 6 Pro';
+                        content: "\f004";
+                        color: $brand-main-red;
+                    }
+
+                    &:hover,
+                    &.property-shortlisted{
+                        &:before{
+                            font-weight: bold;
+                        }
+                    }
+                }
+
                 .property-residential-details{
                     list-style: none;
                     margin: 0 0 10px;
