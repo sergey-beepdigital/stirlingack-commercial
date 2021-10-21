@@ -486,3 +486,10 @@ add_action('propertyhive_single_property_summary','sa_property_detail_status_sho
 
 $template_assistant = PH_Template_Assistant::instance();
 remove_action( 'propertyhive_before_single_property_images', array( $template_assistant, 'add_flag_single' ), 5 );
+
+function sa_property_detail_back_button() {
+    if(is_singular('property')) {
+        echo '<div class="property-detail-back-action-wrap"><a href="javascript:;" onclick="history.back();"><i class="fa-regular fa-angle-left"></i> BACK TO SEARCH RESULTS</a></div>';
+    }
+}
+add_action('propertyhive_before_main_content','sa_property_detail_back_button',25);
