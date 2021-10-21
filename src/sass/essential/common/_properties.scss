@@ -38,21 +38,17 @@ ul.properties{
                 z-index: 10;
 
                 .sa-shortlist-button{
-                    font-size: 0;
-                    position: relative;
-                    text-decoration: none!important;
+                    color: $brand-main-red;
 
-                    &:before{
-                        font-size: 16px;
-                        font-family: 'Font Awesome 6 Pro';
-                        content: "\f004";
-                        color: $brand-main-red;
+                    span{
+                        display: none;
                     }
 
-                    &:hover,
-                    &.property-shortlisted{
-                        &:before{
-                            font-weight: bold;
+                    &[disabled] {
+                        font-size: 0;
+
+                        i{
+                            font-size: 16px;
                         }
                     }
                 }

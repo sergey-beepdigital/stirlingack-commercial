@@ -18,7 +18,7 @@ if ( !empty($features) )
 ?>
 <div class="features">
     
-    <h4><?php _e( 'Property Features', 'propertyhive' ); ?></h4>
+    <!--<h4><?php /*_e( 'Property Features', 'propertyhive' ); */?></h4>-->
     
     <ul>
 <?php

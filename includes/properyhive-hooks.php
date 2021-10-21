@@ -86,6 +86,19 @@ function sa_wphive_gettext($translation, $text, $domain) {
                 $translation = 'Select';
 
                 break;
+
+            case 'Add To Shortlist':
+                $translation = '<i class="fa-regular fa-heart"></i><span>Save</span>';
+
+                break;
+
+            case 'Remove From Shortlist':
+                $translation = '<i class="fa-solid fa-heart"></i><span>Saved</span>';
+                break;
+
+            case 'Loading':
+                $translation = '<i class="fa-solid fa-loader fa-spin"></i>';
+                break;
         }
     }
     return $translation;
