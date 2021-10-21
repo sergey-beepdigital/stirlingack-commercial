@@ -18,7 +18,7 @@ if ( $summary != '' )
 ?>
 <div class="summary">
     
-    <h4><?php _e( 'Property Summary', 'propertyhive' ); ?></h4>
+    <!--<h4><?php /*_e( 'Property Summary', 'propertyhive' ); */?></h4>-->
     
     <div class="summary-contents"><?php echo nl2br($summary); ?></div>
 

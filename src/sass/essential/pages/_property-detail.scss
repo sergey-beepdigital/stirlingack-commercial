@@ -1,0 +1,157 @@
+.single-property{
+    div.property{
+        .entry-summary{
+            margin-bottom: 30px;
+
+            .property-detail-heading{
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+
+                & > *{
+                    flex: 1;
+                }
+
+                h1{
+                    margin: 0;
+                }
+
+                .price{
+                    text-align: right;
+                    font-size: 30px;
+                    font-weight: normal;
+                    line-height: 1.2;
+
+                    .price-qualifier{
+                        display: block;
+                        font-size: 22px;
+                        font-weight: 300;
+                        color: $support-color2;
+                    }
+                }
+            }
+
+            .property-detail-status-shortlisted-wrap{
+                margin-bottom: 30px;
+
+                .flag{
+                    position: relative!important;
+                    display: inline-block;
+                    padding-top: 0.657rem!important;
+                    padding-bottom: 0.657rem!important;
+                }
+
+                .button-property-shortlist{
+                    font-size: 0;
+                    background-color: $support-color5;
+                    padding: 8px 20px;
+                    display: inline-block;
+
+                    i,
+                    span{
+                        font-size: 16px;
+                    }
+
+                    i{
+                        color: $brand-main-red;
+                        margin-right: 6px;
+                    }
+
+                    &[disabled] {
+                        &:after{
+                            content: "Saving";
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+
+            .property-residential-details{
+                list-style: none;
+                margin: 0 0 25px;
+                padding: 0;
+
+                li{
+                    display: inline-block;
+
+                    &:not(:first-child){
+                        margin-left: 20px;
+                    }
+
+                    i{
+                        color: $brand-main-red;
+                    }
+                }
+            }
+        }
+
+        .property-detail-tabs{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            text-transform: uppercase;
+
+            li{
+                display: inline-block;
+
+                &:not(:first-child) {
+                    margin-left: 30px;
+                }
+
+                a{
+                    @include link-border;
+
+                    &:hover{
+                        color: $brand-main-red;
+                    }
+
+                    &.active{
+                        &:before{
+                            background-color: $brand-main-red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .section-property-detail-content-tabs{
+        .property-detail-description-wrapper{
+            .features{
+                font-weight: normal;
+
+                ul{
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+                        padding-left: 25px;
+                        position: relative;
+
+                        &:not(:first-child) {
+                            margin-top: 20px;
+                        }
+
+                        &:before{
+                            content: "";
+                            position: absolute;
+                            width: 10px;
+                            height: 2px;
+                            background-color: $brand-main-red;
+                            left: 0;
+                            top: 11px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .property-floorplan-epc-wrap{
+            background-color: $support-color4;
+            padding: 40px;
+            text-align: center;
+        }
+    }
+}

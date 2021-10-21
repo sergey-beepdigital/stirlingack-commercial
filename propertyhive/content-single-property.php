@@ -68,7 +68,9 @@ global $property;
 
         </div>
         <div class="col-xl-4">
-
+            <ul>
+                <?php propertyhive_make_enquiry_button(); ?>
+            </ul>
         </div>
     </div>
 

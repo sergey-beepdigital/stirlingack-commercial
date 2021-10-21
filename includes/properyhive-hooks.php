@@ -325,7 +325,8 @@ add_action('propertyhive_before_main_content','sa_properties_breadcrumbs',10);
 
 $save_search = PH_Save_Search::instance();
 remove_action( 'propertyhive_before_search_results_loop', array( $save_search, 'save_search_button' ), 99 );
-function test_button() {
+
+/*function test_button() {
     $save_search = PH_Save_Search::instance();
 
     ob_start();
@@ -334,7 +335,7 @@ function test_button() {
     ob_end_clean();
 
     echo '<div>'.$html.'</div>';
-}
+}*/
 //add_action('property_search_form_control_end', 'test_button', 10);
 
 /**
@@ -419,31 +420,69 @@ function sa_property_detail_related_insights() {
 }
 add_action('propertyhive_after_main_content','sa_property_detail_related_insights',70);
 
-function property_detail_heading() {
+/*function property_detail_heading() {
     global $property;
 
     Timber::render('propertyhive/property-detail/heading.twig', [
         'title' => get_the_title(),
         'price' => $property->get_formatted_price()
     ]);
-}
+}*/
 //add_action('propertyhive_before_single_property_summary','property_detail_heading',2);
+
+function sa_property_detail_tabs_nav() {
+    global $property;
+
+    Timber::render('propertyhive/property-detail/tabs-nav.twig',[
+        'floorplan_urls' => $property->_floorplan_urls,
+        'epc_urls' => $property->_epc_urls
+    ]);
+}
+add_action('propertyhive_after_single_property_summary','sa_property_detail_tabs_nav',30);
 
 function sa_property_detail_tabs_content() {
     if(is_singular('property')) {
-        Timber::render('propertyhive/property-detail/tabs-content.twig',[
+        global $property;
 
+        Timber::render('propertyhive/property-detail/tabs-content.twig',[
+            'floorplan_urls' => $property->_floorplan_urls,
+            'epc_urls' => $property->_epc_urls
         ]);
     }
 }
 add_action('propertyhive_after_main_content','sa_property_detail_tabs_content');
 
+remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_actions',10);
 remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_features',20);
+remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_summary',30);
 remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_description',40);
+add_action('propertyhive_single_property_summary','propertyhive_template_single_summary',40);
+add_action('propertyhive_single_property_summary','sa_property_residential_details',20);
+remove_action('propertyhive_single_property_summary','propertyhive_template_single_meta',20);
 
-function sa_property_detail_tabs_nav() {
-    Timber::render('propertyhive/property-detail/tabs-nav.twig',[
+function sa_property_detail_heading_start_block() {
+    echo '<div class="property-detail-heading">';
+}
+add_action('propertyhive_single_property_summary','sa_property_detail_heading_start_block',3);
 
+function sa_property_detail_heading_end_block() {
+    echo '</div>';
+}
+add_action('propertyhive_single_property_summary','sa_property_detail_heading_end_block',15);
+
+function sa_property_detail_status_shortlisted() {
+    $flag_html = '';
+    ob_start();
+    $template_assistant = PH_Template_Assistant::instance();
+    $template_assistant->add_flag_single();
+    $flag_html = ob_get_contents();
+    ob_end_clean();
+
+    Timber::render('propertyhive/property-detail/status-shortlisted.twig',[
+        'flag_html' => $flag_html
     ]);
 }
-add_action('propertyhive_after_single_property_summary','sa_property_detail_tabs_nav',30);
+add_action('propertyhive_single_property_summary','sa_property_detail_status_shortlisted',18);
+
+$template_assistant = PH_Template_Assistant::instance();
+remove_action( 'propertyhive_before_single_property_images', array( $template_assistant, 'add_flag_single' ), 5 );

@@ -1,23 +1,61 @@
-<div class="container">
-    <div class="tab-content">
-        <div id="property-info-description" class="tab-pane fade show active">
-            <div class="row">
-                <div class="col-xl-7">
-                    {{ fn('propertyhive_template_single_description') }}
-                </div>
-                <div class="col-xl-4 offset-xl-1">
-                    {{ fn('propertyhive_template_single_features') }}
+<section class="section-property-detail-content-tabs">
+    <div class="container">
+        <div class="tab-content">
+            <div id="property-info-description" class="tab-pane fade show active">
+                <div class="property-detail-description-wrapper">
+                    <div class="row">
+                        <div class="col-xl-7">
+                            {{ fn('propertyhive_template_single_description') }}
+                        </div>
+                        <div class="col-xl-4 offset-xl-1">
+                            {{ fn('propertyhive_template_single_features') }}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="property-info-location" class="tab-pane fade">
-            {{ '[property_map]' | shortcodes }}
-        </div>
-        <div id="property-info-floorplan" class="tab-pane fade"></div>
-        <div id="property-info-epc" class="tab-pane fade"></div>
-        <div id="property-info-schools" class="tab-pane fade">
-            {{ fn('do_shortcode','[locrating_all_in_one_map]') }}
-            {{ fn('do_shortcode','[locrating_schools_map]') }}
+            <div id="property-info-location" class="tab-pane fade">
+                {{ '[property_map]' | shortcodes }}
+            </div>
+
+            {% if floorplan_urls %}
+
+                <div id="property-info-floorplan" class="tab-pane fade">
+                    <div class="property-floorplan-epc-wrap">
+                        <div class="row">
+
+                            {% for image_data in floorplan_urls %}
+
+                                <div class="col"><a href="{{ image_data.url }}" data-fancybox="floorplans"><img src="{{ image_data.url }}"></a></div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+            {% if epc_urls %}
+
+                <div id="property-info-epc" class="tab-pane fade">
+                    <div class="property-floorplan-epc-wrap">
+                        <div class="row">
+
+                            {% for image_data in epc_urls %}
+
+                                <div class="col"><a href="{{ image_data.url }}" data-fancybox="epc"><img src="{{ image_data.url }}"></a></div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+            <div id="property-info-schools" class="tab-pane fade">
+                {{ fn('do_shortcode','[locrating_all_in_one_map]') }}
+                {{ fn('do_shortcode','[locrating_schools_map]') }}
+            </div>
         </div>
     </div>
-</div>
+</section>
