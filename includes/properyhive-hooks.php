@@ -446,7 +446,11 @@ function sa_property_detail_tabs_content() {
 
         Timber::render('propertyhive/property-detail/tabs-content.twig',[
             'floorplan_urls' => $property->_floorplan_urls,
-            'epc_urls' => $property->_epc_urls
+            'epc_urls' => $property->_epc_urls,
+            'department' => $property->_department,
+            'property_type' => $property->get_property_type(),
+            'available_date' => $property->get_available_date(),
+            'furnished' => $property->get_furnished()
         ]);
     }
 }

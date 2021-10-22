@@ -4,11 +4,28 @@
             <div id="property-info-description" class="tab-pane fade show active">
                 <div class="property-detail-description-wrapper">
                     <div class="row">
-                        <div class="col-xl-7">
-                            {{ fn('propertyhive_template_single_description') }}
-                        </div>
-                        <div class="col-xl-4 offset-xl-1">
+                        <div class="col-xl-4 offset-xl-1 order-xl-2">
+                            {% if department == 'residential-lettings' %}
+                                <div class="property-rent-details">
+                                    <h3 class="text-uppercase">Letting Details</h3>
+                                    <ul>
+                                        {% if available_date %}
+                                            <li><strong>Let available date:</strong> {{ available_date }}</li>
+                                        {% endif %}
+                                        {% if property_type %}
+                                            <li><strong>Let type:</strong> {{ property_type }}</li>
+                                        {% endif %}
+                                        {% if furnished %}
+                                            <li><strong>Furnish type:</strong> {{ furnished }}</li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+
                             {{ fn('propertyhive_template_single_features') }}
+                        </div>
+                        <div class="col-xl-7 order-xl-1">
+                            {{ fn('propertyhive_template_single_description') }}
                         </div>
                     </div>
                 </div>
