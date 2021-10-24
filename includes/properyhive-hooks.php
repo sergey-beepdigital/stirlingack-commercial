@@ -140,6 +140,37 @@ function include_off_market( $q )
 }
 //add_action( 'pre_get_posts', 'include_off_market' );
 
+/**
+ * Admin Settings: Add image field for property office
+ * @param $args
+ * @return mixed
+ */
+function sa_property_admin_office_fields($args) {
+    $current_id = empty( $_REQUEST['id'] ) ? '' : (int)$_REQUEST['id'];
+
+    $image_field = [[
+        'title' => 'Image',
+        'id' => '_office_image',
+        'type' => 'image',
+        'default' => get_post_meta($current_id, '_office_image', true),
+        'desc_tip' => false
+    ]];
+
+    array_splice( $args, 7, 0, $image_field );
+
+    return $args;
+}
+add_filter('propertyhive_office_details_settings','sa_property_admin_office_fields',10);
+
+/**
+ * Admin Settings: Save image field for property office
+ * @param $office_post_id
+ */
+function sa_property_admin_office_save($office_post_id) {
+    update_post_meta($office_post_id, '_office_image', $_POST['_office_image']);
+}
+add_action('propertyhive_save_office', 'sa_property_admin_office_save', 10);
+
 /*********************************************************************
  ********************* Properties Search *****************************
  *********************************************************************/

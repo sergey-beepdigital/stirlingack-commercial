@@ -20,6 +20,54 @@
             padding: 30px;
             position: relative;
             z-index: 20;
+
+            ul.nav{
+                margin-bottom: 40px;
+                text-transform: uppercase;
+                font-weight: normal;
+
+                li{
+                    &:not(:first-child) {
+                        margin-left: 20px;
+                    }
+
+                    a{
+                        @include link-border;
+
+                        &:hover{
+                            color: $brand-main-red;
+                        }
+
+                        &.active{
+                            &:before{
+                                background-color: $brand-main-red;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .form-group{
+                margin-bottom: 35px;
+
+                & > label{
+                    font-weight: normal;
+                }
+
+                .form-control{
+                    font-weight: 300;
+                }
+            }
+
+            .btn{
+                font-size: 16px;
+                padding: 18px 28px;
+                text-transform: uppercase;
+
+                &:not(:hover) {
+                    background-color: $brand-main-blue;
+                }
+            }
         }
     }
 }
