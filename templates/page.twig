@@ -2,8 +2,20 @@
 
 {% block content %}
 
-	{{post.content}}
+    {% include 'components/static-sections/page-top.twig' with {
+        post: post,
+        thumbnail_size: {
+            w: 650,
+            h: 200
+        }
+    } %}
 
+    <section class="page-section page-section--padding50 section-default-page">
+        <div class="container">
 
-	
+            {{post.content}}
+
+        </div>
+    </section>
+
 {% endblock %}
