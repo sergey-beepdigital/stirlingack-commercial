@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row no-gutters">
             <div class="col-xl-8">
-                <div class="bg-primary section-content-image--content" style="padding: 70px 200px 70px 80px;left: -80px;margin-right: -80px;position: relative;">
+                <div class="bg-primary section-content-image--content">
                     <h2 class="h1">{{ section.ci_title }}</h2>
                     <div class="section-content-image--content_inner content-clear">{{ section.ci_content }}</div>
                     {% if section.ci_link %}
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div style="transform: scale(1.4);transform-origin: right top;margin-top: 70px;">
+                <div class="section-content-image--image-wrap">
                     <img src="{{ section.ci_image }}">
                 </div>
             </div>

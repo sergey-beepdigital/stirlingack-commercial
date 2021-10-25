@@ -2,6 +2,9 @@
     &--content{
         color: #FFF;
         position: relative;
+        padding: 70px 200px 70px 80px;
+        left: -80px;
+        margin-right: -80px;
 
         & > h2{
             margin-bottom: 30px;
@@ -18,6 +21,12 @@
                 }
             }
         }
+    }
+
+    &--image-wrap{
+        transform: scale(1.4);
+        transform-origin: right top;
+        margin-top: 70px;
     }
 
     &.has-logo-watermark{
