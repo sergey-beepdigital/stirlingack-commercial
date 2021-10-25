@@ -450,7 +450,7 @@ function sa_property_detail_related_insights() {
         'title' => 'Property Insights',
         'more_link' => [
             'title' => 'More News & Insights for ' . $property->_address_postcode,
-            'url' => $context['options']['page_url']['blog_page']
+            'url' => get_the_permalink($context['options']['page_url']['blog_page'])
         ],
         'posts' => $posts->get_posts(),
         'theme' => [

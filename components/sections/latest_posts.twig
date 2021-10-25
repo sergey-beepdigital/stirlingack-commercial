@@ -2,7 +2,7 @@
     title: section.lp_title,
     more_link: {
         title: 'More News & Insights',
-        url: options.page_url.blog_page
+        url: fn('get_the_permalink',options.page_url.blog_page)
     },
     posts: fn('get_latest_posts')
 } %}

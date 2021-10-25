@@ -23,4 +23,4 @@ if(isset($_GET['branch'])) {
 $context['posts_total_text'] = join(' ', $posts_total_text_parts);
 $context['posts'] = $posts_query;
 
-Timber::render(array('insights.twig'), $context);
+Timber::render(array('archive.twig'), $context);

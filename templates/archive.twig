@@ -3,7 +3,10 @@
 {% block content %}
 
     {% include 'components/static-sections/page-top.twig' with {
-        post: post
+        custom: {
+            title: title,
+            thumbnail: head_thumbnail
+        }
     } %}
 
     <div class="section-insight-total">
