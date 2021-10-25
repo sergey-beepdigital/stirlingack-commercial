@@ -1,0 +1,16 @@
+.section-page-top{
+    margin-bottom: 37px;
+
+    &--left-wrap{
+        background: $support-color5;
+        padding: 55px 80px;
+
+        h1{
+            margin-bottom: 0;
+        }
+    }
+
+    &--image-wrap{
+        margin-top: 27px;
+    }
+}

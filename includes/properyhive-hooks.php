@@ -439,15 +439,24 @@ add_action('propertyhive_after_main_content','sa_property_detail_similar_propert
 function sa_property_detail_related_insights() {
     global $property;
 
-    $content = Timber::context();
+    $context = Timber::context();
 
-    $content['title'] = 'Property Insights';
-    $content['more_link'] = [
-        'title' => 'More News & Insights for ' . $property->_address_postcode,
-        'url' => '#'
-    ];
+    $posts = new Timber\PostQuery([
+        'post_type' => 'post',
+        'posts_per_page' => 3
+    ]);
 
-    Timber::render('static-sections/latest-posts.twig', $content);
+    Timber::render('components/static-sections/latest-posts.twig', [
+        'title' => 'Property Insights',
+        'more_link' => [
+            'title' => 'More News & Insights for ' . $property->_address_postcode,
+            'url' => $context['options']['page_url']['blog_page']
+        ],
+        'posts' => $posts->get_posts(),
+        'theme' => [
+            'link' => get_template_directory_uri()
+        ]
+    ]);
 }
 add_action('propertyhive_after_main_content','sa_property_detail_related_insights',70);
 

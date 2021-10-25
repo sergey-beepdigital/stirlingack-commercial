@@ -1,0 +1,88 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {% include 'components/static-sections/page-top.twig' with {
+        post: post
+    } %}
+
+    <div class="section-insight-total">
+        <div class="container">
+            <h3 class="mb-0 text-uppercase">{{ posts_total_text }}</h3>
+        </div>
+    </div>
+
+    <section class="page-section page-section--padding50">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xl-8">
+
+                    {% if posts %}
+
+                        <div class="row">
+
+                            {% for post in posts %}
+
+                                <div class="col-xl-6">
+
+                                    {% include 'global/post.twig' with {
+                                        post : post
+                                    } %}
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="sa-pagination">
+                            {% if posts.pagination.prev %}
+                                <a href="{{posts.pagination.prev.link}}" class="prev {{posts.pagination.prev.link|length ? '' : 'invisible'}}">Prev</a>
+                            {% endif %}
+                            <ul class="pages">
+                                {% for page in posts.pagination.pages %}
+                                    <li>
+                                        {% if page.link %}
+                                            <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+                                        {% else %}
+                                            <span class="{{page.class}}">{{page.title}}</span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% if posts.pagination.next %}
+                                <a href="{{posts.pagination.next.link}}" class="next {{posts.pagination.next.link|length ? '' : 'invisible'}}">Next</a>
+                            {% endif %}
+                        </div>
+
+                    {% else %}
+                        <div class="alert alert-info">No records</div>
+                    {% endif %}
+
+                    {#<section class="page-section page-section--padding50">
+                        asd
+                    </section>#}
+
+                    {% include 'sections/content_image.twig' with {
+                        section: {
+                            ci_title: 'Promo Area Valuation',
+                            ci_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.' | wpautop,
+                            ci_link: {
+                                title: 'Get a free valuation',
+                                url: '#'
+                            },
+                            ci_image: theme.link ~ '/dist/images/temp/blog-list-promo-img.jpg'
+                        }
+                    } %}
+
+                </div>
+                <div class="col-xl-3 offset-xl-1">
+                    Sidebar
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

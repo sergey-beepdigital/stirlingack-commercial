@@ -1,51 +1,43 @@
-<section class="page-section page-section--padding50 section-latest-posts">
-    <div class="container">
-        <div class="page-section--heading">
-            <div class="row align-items-center">
-                <div class="col-xl-6">
-                    <h3 class="text-uppercase">{{ title }}</h3>
-                </div>
-                <div class="col-xl-6 text-xl-right">
-                    {% include 'components/parts/link.twig' with {
-                        link: more_link
-                    } %}
-                </div>
-            </div>
-        </div>
+{% set grid_css_class = 'col-xl-4' %}
+{% if columns == 2 %}
+    {% set grid_css_class = 'col-xl-6' %}
+{% endif %}
 
-        <div class="section-latest-posts--list">
-            <div class="row">
-                <div class="col-xl-4">
-                    <div class="blog-post">
-                        <div class="blog-post--image">
-                            <a href="#"><img src="{{ theme.link }}/dist/images/temp/blog-post.jpg"></a>
-                            <div class="blog-post--image__cat text-danger">Market Insights</div>
-                        </div>
-                        <h3><a href="#">News Story Lorem Ipsum Dolor Sit Amet Consectetur</a></h3>
-                        <p>News story summary lorem ipsum dolor sit amet consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+{% if posts %}
+
+    <section class="page-section page-section--padding50 section-latest-posts">
+        {% if ignore_container != 1 %}<div class="container">{% endif %}
+            <div class="page-section--heading">
+                <div class="row align-items-center">
+                    <div class="col-xl-{{ more_link?'6':'12' }}">
+                        <h3 class="text-uppercase">{{ title }}</h3>
                     </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="blog-post">
-                        <div class="blog-post--image">
-                            <a href="#"><img src="{{ theme.link }}/dist/images/temp/blog-post.jpg"></a>
-                            <div class="blog-post--image__cat text-danger">Market Insights</div>
+                    {% if more_link %}
+                        <div class="col-xl-6 text-xl-right">
+                            {% include 'components/parts/link.twig' with {
+                                link: more_link
+                            } %}
                         </div>
-                        <h3><a href="#">News Story Lorem Ipsum Dolor Sit Amet Consectetur</a></h3>
-                        <p>News story summary lorem ipsum dolor sit amet consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
-                    </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="blog-post">
-                        <div class="blog-post--image">
-                            <a href="#"><img src="{{ theme.link }}/dist/images/temp/blog-post.jpg"></a>
-                            <div class="blog-post--image__cat text-danger">Market Insights</div>
-                        </div>
-                        <h3><a href="#">News Story Lorem Ipsum Dolor Sit Amet Consectetur</a></h3>
-                        <p>News story summary lorem ipsum dolor sit amet consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+
+            <div class="section-latest-posts--list">
+                <div class="row">
+
+                    {% for post in posts %}
+
+                        <div class="{{ grid_css_class }}">
+
+                            {% include 'global/post.twig' with { post : post } %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        {% if ignore_container != 1 %}</div>{% endif %}
+    </section>
+
+{% endif %}

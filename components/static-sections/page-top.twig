@@ -1,0 +1,23 @@
+{% set title = post.title ? post.title : custom.title %}
+{% set image = post.thumbnail ? post.thumbnail : custom.thumbnail %}
+
+<section class="section-page-top {{ section_css_class }}">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="section-page-top--left-wrap">
+                    <h1>{{ title }}</h1>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="section-page-top--image-wrap">
+                    {% if thumbnail_size %}
+                        <img src="{{ image | resize(thumbnail_size.w,thumbnail_size.h) }}">
+                    {% else %}
+                        <img src="{{ image }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

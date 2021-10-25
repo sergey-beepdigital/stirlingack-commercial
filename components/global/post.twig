@@ -1,0 +1,14 @@
+<div class="blog-post">
+    <div class="blog-post--image">
+        <a href="{{ post.link }}">
+            {% if post.thumbnail %}
+                <img src="{{ post.thumbnail |resize(740,540) }}">
+            {% else %}
+                <img src="{{ theme.link }}/dist/images/placeholder/740x540.jpeg">
+            {% endif %}
+        </a>
+        <div class="blog-post--image__cat text-danger">Market Insights</div>
+    </div>
+    <h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+    {{ post.post_content | excerpt(20) | wpautop }}
+</div>

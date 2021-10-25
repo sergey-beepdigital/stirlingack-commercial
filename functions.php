@@ -572,3 +572,10 @@ function sa_widgets_init() {
 
 }
 add_action('widgets_init', 'sa_widgets_init');
+
+function get_latest_posts() {
+    return new Timber\PostQuery([
+        'post_type' => 'post',
+        'posts_per_page' => 3
+    ]);
+}

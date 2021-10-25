@@ -1,30 +1,61 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-			<section class="article-content">
-				<h1 class="article-h1">{{post.title}}</h1>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.post_date|date}}
-				</p>
-				<div class="article-body">
-					{{post.content}}
-				</div>
-			</section>
-		{% if post.comment_status != 'closed' %}
-			<section class="comments">
-				<div class="respond">
-					<h3 class="h2">Comments</h3>
-					{{ fn('comment_form') }}
-				</div>
-				<div class="responses">
-					{% for cmt in post.get_comments() %}
-						{% include "comment.twig" with {comment:cmt} %}
-					{% endfor %}
-				</div>
-			</section>
-		{% endif %}
-		</article>
-	</div><!-- /content-wrapper -->
+
+    {% include 'components/static-sections/page-top.twig' with {
+        post: post,
+        thumbnail_size: {
+            w: 650,
+            h: 200
+        }
+    } %}
+
+    <section class="page-section page-section--padding50">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8">
+
+                    <div class="content-wrapper">
+                        <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+                            <section class="article-content">
+                                <h1 class="article-h1">{{post.title}}</h1>
+                                <p class="blog-author">
+                                    <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.post_date|date}}
+                                </p>
+                                <div class="article-body">
+                                    {{post.content}}
+                                </div>
+                            </section>
+                            {% if post.comment_status != 'closed' %}
+                                <section class="comments">
+                                    <div class="respond">
+                                        <h3 class="h2">Comments</h3>
+                                        {{ fn('comment_form') }}
+                                    </div>
+                                    <div class="responses">
+                                        {% for cmt in post.get_comments() %}
+                                            {% include "comment.twig" with {comment:cmt} %}
+                                        {% endfor %}
+                                    </div>
+                                </section>
+                            {% endif %}
+                        </article>
+                    </div><!-- /content-wrapper -->
+
+                    {% include 'static-sections/latest-posts.twig' with {
+                        title: 'Related Insights',
+                        ignore_container: 1,
+                        columns: 2,
+                        posts: related_posts
+                    } %}
+
+                </div>
+                <div class="col-xl-3 offset-xl-1">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 {% endblock %}
