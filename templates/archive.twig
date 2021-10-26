@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <section class="page-section page-section--padding50">
+    <section class="page-section page-section--padding50 section-archive">
         <div class="container">
 
             <div class="row">
@@ -40,10 +40,12 @@
                         </div>
 
                         <div class="sa-pagination">
-                            {% if posts.pagination.prev %}
-                                <a href="{{posts.pagination.prev.link}}" class="prev {{posts.pagination.prev.link|length ? '' : 'invisible'}}">Prev</a>
-                            {% endif %}
                             <ul class="pages">
+                                {% if posts.pagination.prev %}
+                                    <li>
+                                        <a href="{{posts.pagination.prev.link}}" class="prev {{posts.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
+                                    </li>
+                                {% endif %}
                                 {% for page in posts.pagination.pages %}
                                     <li>
                                         {% if page.link %}
@@ -53,10 +55,13 @@
                                         {% endif %}
                                     </li>
                                 {% endfor %}
+
+                                {% if posts.pagination.next %}
+                                    <li>
+                                        <a href="{{posts.pagination.next.link}}" class="next {{posts.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
+                                    </li>
+                                {% endif %}
                             </ul>
-                            {% if posts.pagination.next %}
-                                <a href="{{posts.pagination.next.link}}" class="next {{posts.pagination.next.link|length ? '' : 'invisible'}}">Next</a>
-                            {% endif %}
                         </div>
 
                     {% else %}
