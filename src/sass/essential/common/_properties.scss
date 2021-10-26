@@ -139,6 +139,12 @@ ul.properties{
             }
         }
     }
+
+    &.view-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px 30px;
+    }
 }
 
 .section-properties{
@@ -156,6 +162,7 @@ ul.properties{
     }
 }
 
+/*
 .propertyhive-similar-properties-shortcode{
     ul.properties{
         display: grid;
@@ -163,8 +170,9 @@ ul.properties{
         gap: 40px 30px;
 
         & > li{
-            /*display: flex;*/
+            !*display: flex;*!
 
         }
     }
 }
+*/
