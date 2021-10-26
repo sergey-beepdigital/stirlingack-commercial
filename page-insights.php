@@ -16,8 +16,8 @@ $posts_query = new Timber\PostQuery([
 $posts_total_text_parts[] = $posts_query->found_posts;
 $posts_total_text_parts[] = get_the_title($post);
 
-if(isset($_GET['branch'])) {
-    $posts_total_text_parts[] = '<span class="branch-name">on '. get_the_title($_GET['branch']) . '</span>';
+if(isset($_GET['branch_id'])) {
+    $posts_total_text_parts[] = '<span class="branch-name">on '. get_the_title($_GET['branch_id']) . '</span>';
 }
 
 $context['posts_total_text'] = join(' ', $posts_total_text_parts);

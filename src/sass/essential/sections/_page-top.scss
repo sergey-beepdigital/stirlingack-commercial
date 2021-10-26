@@ -13,4 +13,14 @@
     &--image-wrap{
         margin-top: 27px;
     }
+
+    &.has-branch-area{
+        .section-page-top--left-wrap{
+            padding-bottom: 110px;
+        }
+
+        .branch-area-box-shortcode{
+            margin: -77px 100px 0 55px;
+        }
+    }
 }

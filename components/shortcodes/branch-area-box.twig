@@ -1,0 +1,26 @@
+<div class="branch-area-box-shortcode">
+    <h5>Property Market Intelligence</h5>
+    <p>Choose a branch area for tailored property insights.</p>
+
+    <form action="{{ form_url }}" method="get">
+        <div class="dropdown-arrow-wrap">
+            <select class="form-control" name="branch_id">
+                <option>Select Branch Area</option>
+
+                {% for office in offices %}
+
+                    <option {% if request.get.branch_id == office.id %}selected{% endif%} value="{{ office.id }}">{{ office.title }}</option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+    </form>
+    <script type="text/javascript">
+        [].forEach.call(document.getElementsByName('branch_id'),function(e){
+            e.addEventListener('change',(event) => {
+                event.target.closest('form').submit();
+            },false)
+        });
+    </script>
+</div>

@@ -2,12 +2,26 @@
 
 {% block content %}
 
-    {% include 'components/static-sections/page-top.twig' with {
+    {#{% include 'components/static-sections/page-top.twig' with {
         custom: {
             title: title,
             thumbnail: head_thumbnail
         }
+    } %}#}
+
+    {% embed 'components/static-sections/page-top.twig' with {
+        custom: {
+            title: title,
+            thumbnail: head_thumbnail
+        },
+        section_css_class: 'has-branch-area'
     } %}
+
+        {% block left_block_below %}
+            {{ '[branch_area_box]' | shortcodes }}
+        {% endblock %}
+
+    {% endembed %}
 
     <div class="section-insight-total">
         <div class="container">
@@ -86,7 +100,9 @@
 
                 </div>
                 <div class="col-xl-3 offset-xl-1">
-                    Sidebar
+
+                    {% include 'sidebar-insights.twig' %}
+
                 </div>
             </div>
 

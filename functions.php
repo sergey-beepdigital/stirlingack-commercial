@@ -189,6 +189,8 @@ class StarterSite extends TimberSite {
         $context['footer_widgets2'] = Timber::get_widgets('footer-widget-2');
         $context['footer_widgets3'] = Timber::get_widgets('footer-widget-3');
 
+        $context['insight_widgets'] = Timber::get_widgets('insight-widgets');
+
         $context['site'] = $this;
         if (function_exists('get_fields')) {
             $context['options'] = get_fields('option');
@@ -570,6 +572,15 @@ function sa_widgets_init() {
         )
     );
 
+    register_sidebar([
+        'name'          => __('Insight Widgets', 'stirlingack'),
+        'id'            => 'insight-widgets',
+        'description'   => __('Add widgets here to appear in your area.', 'stirlingack'),
+        'before_widget' => '<div id="%1$s" class="insight-widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5 class="h3 widget-title">',
+        'after_title'   => '</h5>',
+    ]);
 }
 add_action('widgets_init', 'sa_widgets_init');
 

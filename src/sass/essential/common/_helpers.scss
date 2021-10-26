@@ -78,3 +78,23 @@
         }
     }
 }
+
+.dropdown-arrow-wrap{
+    position: relative;
+
+    &:before{
+        content: "\f107";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $brand-main-red;
+        font-family: 'Font Awesome 6 Pro';
+        font-weight: 600;
+        z-index: 2;
+    }
+
+    select{
+        appearance: none;
+    }
+}

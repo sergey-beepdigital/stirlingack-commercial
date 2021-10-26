@@ -13,4 +13,16 @@
         margin-top: 60px;
         text-align: right;
     }
+
+    .insight-sidebar{
+        .widget_block{
+            &:first-child{
+                display: none;
+
+                & + * {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 }
