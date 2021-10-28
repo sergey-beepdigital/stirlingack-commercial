@@ -1,0 +1,13 @@
+{% set title = post.post_title %}
+{% set link = post.link %}
+
+<div class="share-page">
+    <div class="share-post--title">Share this:</div>
+    <ul>
+        <li><a href="javascript:;" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ link }}','Facebook','width=600,height=400')"><i class="fa-brands fa-facebook-square"></i></a></li>
+        <li><a href="javascript:;" onclick="window.open('https://twitter.com/intent/tweet?text={{ link }}','Twitter','width=600,height=400')"><i class="fa-brands fa-twitter-square"></i></a></li>
+        <li><a href="javascript:;" onclick="window.open('https://wa.me/?text={{ link }}','WhatsApp','width=600,height=400')"><i class="fa-brands fa-whatsapp-square"></i></a></li>
+        <li><a href="javascript:;" onclick="window.open('mailto:?subject={{ title }}&body={{ link }}','WhatsApp','width=600,height=400')"><i class="fa-solid fa-square-envelope"></i></a></li>
+        <li><a href="javascript:;" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url={{ link }}&title={{ title }}&summary=&source=','WhatsApp','width=600,height=400')"><i class="fa-brands fa-linkedin"></i></a></li>
+    </ul>
+</div>
