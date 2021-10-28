@@ -12,46 +12,72 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <div class="mortgage-calculator">
     <div class="row">
-        <div class="col-xl-5">
-            <div class="form-group">
-                <label><?php echo __( 'Purchase Price', 'propertyhive' ); ?> (&pound;)</label>
-                <input class="form-control" type="text" name="purchase_price" value="<?php echo $atts['price']; ?>" placeholder="500,000">
+        <div class="col-xl-7">
+            <div class="calculator-fields-wrap">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="form-group">
+                            <label>Purchase Price in &pound;</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">&pound;</div>
+                                </div>
+                                <input class="form-control" type="text" name="purchase_price" value="<?php echo $atts['price']; ?>" placeholder="e.g 500,000">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 offset-xl-1">
+                        <div class="form-group">
+                            <label>Deposit Amount in &pound;</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">&pound;</div>
+                                </div>
+                                <input class="form-control" type="text" name="deposit_amount" value="" placeholder="e.g 75,000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="form-group">
+                            <label>Interest Rate Percentage</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="interest_rate" value="" placeholder="e.g 3.2">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 offset-xl-1">
+                        <div class="form-group">
+                            <label>Repayment Period in Years</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="repayment_period" value="" placeholder="e.g 25">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">Yrs</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-lg btn-primary"><?php echo __( 'Calculate', 'propertyhive' ); ?></button>
             </div>
         </div>
-        <div class="col-xl-5 offset-xl-1">
-            <div class="form-group">
-                <label><?php echo __( 'Deposit Amount', 'propertyhive' ); ?> (&pound;)</label>
-                <input class="form-control" type="text" name="deposit_amount" value="" placeholder="75,000">
+        <div class="col-xl-4 offset-xl-1 pl-0">
+            <div class="mortgage-calculator-results" id="results" style="display:none">
+
+                <h3><?php echo __( 'Monthly Costs', 'propertyhive' ); ?></h3>
+
+                <label><?php echo __( 'Repayment', 'propertyhive' ); ?> (&pound;)</label>
+                <input type="text" name="repayment" value="" placeholder="" disabled>
+
+                <label><?php echo __( 'Interest Only', 'propertyhive' ); ?> (&pound;)</label>
+                <input type="text" name="interest" value="" placeholder="" disabled>
+
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-5">
-            <div class="form-group">
-                <label><?php echo __( 'Interest Rate', 'propertyhive' ); ?> (%)</label>
-                <input class="form-control" type="text" name="interest_rate" value="" placeholder="3.2">
-            </div>
-        </div>
-        <div class="col-xl-5 offset-xl-1">
-            <div class="form-group">
-                <label><?php echo __( 'Repayment Period', 'propertyhive' ); ?> (<?php echo __( 'years', 'propertyhive' ); ?>)</label>
-                <input class="form-control" type="text" name="repayment_period" value="" placeholder="25">
-            </div>
-        </div>
-    </div>
-
-    <button class="btn btn-lg btn-primary"><?php echo __( 'Calculate', 'propertyhive' ); ?></button>
-
-    <div class="mortgage-calculator-results" id="results" style="display:none">
-
-        <h4><?php echo __( 'Monthly Costs', 'propertyhive' ); ?>:</h4>
-
-        <label><?php echo __( 'Repayment', 'propertyhive' ); ?> (&pound;)</label>
-        <input type="text" name="repayment" value="" placeholder="" disabled>
-
-        <label><?php echo __( 'Interest Only', 'propertyhive' ); ?> (&pound;)</label>
-        <input type="text" name="interest" value="" placeholder="" disabled>
-
-    </div>
-
 </div>

@@ -537,3 +537,9 @@ function sa_property_detail_back_button() {
     }
 }
 add_action('propertyhive_before_main_content','sa_property_detail_back_button',25);
+
+$rental_yield_calculator = PH_Rental_Yield_Calculator::instance();
+remove_action( 'wp_enqueue_scripts', array($rental_yield_calculator,'load_rental_yield_calculator_styles'));
+
+$stamp_duty_calculator = PH_Stamp_Duty_Calculator::instance();
+remove_action( 'wp_enqueue_scripts', array( $stamp_duty_calculator, 'load_stamp_duty_calculator_styles' ) );

@@ -17,12 +17,11 @@
         .property-calculators-wrapper{
             background-color: #FFF;
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-            padding: 30px;
             position: relative;
             z-index: 20;
 
             ul.nav{
-                margin-bottom: 40px;
+                padding: 30px;
                 text-transform: uppercase;
                 font-weight: normal;
 
@@ -56,6 +55,34 @@
 
                 .form-control{
                     font-weight: 300;
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                .form-control,
+                .input-group-text{
+                    border-top-width: 0;
+                    border-left-width: 0;
+                    border-right-width: 0;
+                }
+
+                .input-group{
+                    .input-group-text{
+                        background: none;
+                        color: $brand-main-blue;
+                    }
+
+                    .input-group-prepend{
+                        .input-group-text{
+                            padding-left: 0;
+                        }
+                    }
+
+                    .input-group-append{
+                        .input-group-text{
+                            padding-right: 0;
+                        }
+                    }
                 }
             }
 
@@ -66,6 +93,26 @@
 
                 &:not(:hover) {
                     background-color: $brand-main-blue;
+                }
+            }
+
+            .tab-content{
+                border-top: 1px solid $support-color4;
+
+                .calculator-fields-wrap{
+                    padding: 30px;
+                }
+
+                #results{
+                    height: 100%;
+                    background: $brand-main-blue;
+                    color: #FFF;
+                    padding: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    flex-wrap: wrap;
                 }
             }
         }
