@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $post;
 ?>
 
-<li class="action-make-enquiry">
+<div class="action-make-enquiry">
     
-    <a data-fancybox data-src="#makeEnquiry<?php echo $post->ID; ?>" href="javascript:;"><?php _e( 'Make Enquiry', 'propertyhive' ); ?></a>
+    <a data-fancybox data-src="#makeEnquiry<?php echo $post->ID; ?>" href="javascript:;" class="link-border link-border--red">Arrange a viewing</a>
 
     <!-- LIGHTBOX FORM -->
     <div id="makeEnquiry<?php echo $post->ID; ?>" style="display:none;">
@@ -28,5 +28,5 @@ global $post;
     </div>
     <!-- END LIGHTBOX FORM -->
     
-</li>
+</div>
 

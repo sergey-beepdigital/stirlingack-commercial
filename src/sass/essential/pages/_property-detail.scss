@@ -13,9 +13,12 @@
     }
 
     div.property{
+        .property-arrange-viewing,
         .entry-summary{
             margin-bottom: 30px;
+        }
 
+        .entry-summary{
             .property-detail-heading{
                 margin-bottom: 20px;
                 display: flex;
@@ -148,6 +151,65 @@
                     }
                 }
             }
+        }
+
+        .property-arrange-viewing{
+            background-color: $brand-main-blue;
+            padding: 20px;
+            color: $support-color3;
+
+            a:not([class]){
+                color: #FFF;
+                text-decoration: underline;
+
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+
+            &--office-contacts{
+                background-color: #FFF;
+                color: $brand-main-blue;
+                padding: 20px;
+
+                .link-border{
+                    color: $brand-main-blue;
+
+                    &:hover{
+                        color: $brand-main-red;
+                    }
+                }
+
+                h3{
+                    margin-bottom: 20px;
+                }
+
+                .branch-info{
+                    &--name{
+                        color: $support-color2;
+                    }
+
+                    .link-border{
+                        display: inline-block;
+                        margin-top: 25px;
+                    }
+                }
+            }
+
+            &--address-info{
+                padding: 20px 40px 10px;
+
+                .link-border{
+                    color: #FFF;
+                    margin-top: 15px;
+                    display: inline-block;
+
+                    &:hover{
+                        color: $brand-main-red;
+                    }
+                }
+            }
+
         }
     }
 

@@ -12,5 +12,6 @@
         position: absolute;
         top: 100%;
         transform: translateY(5px);
+        transition: 0.3s ease background-color;
     }
 }

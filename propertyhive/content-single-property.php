@@ -45,9 +45,9 @@ global $property;
             </div><!-- .summary -->
         </div>
         <div class="col-xl-4">
-            <ul>
-                <?php propertyhive_make_enquiry_button(); ?>
-            </ul>
+
+            <?php Timber::render('propertyhive/property-detail/arrange-viewing.twig'); ?>
+
         </div>
     </div>
 
