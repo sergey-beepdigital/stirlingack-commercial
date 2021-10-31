@@ -213,11 +213,14 @@ class StarterSite extends TimberSite {
 
         // Remove Wp's jQuery
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
+        wp_deregister_script( 'flexslider');
+        wp_deregister_script( 'flexslider-init');
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
         require('includes/cache_bust.php');
 
+        //wp_enque
         wp_enqueue_script( 'essential.js', BUNDLE_JS_SRC, array(), $cache_ver, false); // These will appear at the top of the page
         wp_enqueue_script( 'deferred.js', DEFERRED_BUNDLE_JS_SRC, array(), $cache_ver, true); // These will appear in the footer
 

@@ -43,16 +43,26 @@ global $property;
                 ?>
 
             </div><!-- .summary -->
+        </div>
+        <div class="col-xl-4">
+            <ul>
+                <?php propertyhive_make_enquiry_button(); ?>
+            </ul>
+        </div>
+    </div>
 
-            <?php
-            /**
-             * propertyhive_before_single_property_summary hook
-             *
-             * @hooked propertyhive_template_not_on_market - 5
-             * @hooked propertyhive_show_property_images - 10
-             */
-            do_action( 'propertyhive_before_single_property_summary' );
-            ?>
+    <?php
+    /**
+     * propertyhive_before_single_property_summary hook
+     *
+     * @hooked propertyhive_template_not_on_market - 5
+     * @hooked propertyhive_show_property_images - 10
+     */
+    do_action( 'propertyhive_before_single_property_summary' );
+    ?>
+
+    <div class="row">
+        <div class="col-xl-8">
 
             <?php
             /**
@@ -66,11 +76,6 @@ global $property;
             do_action( 'propertyhive_after_single_property_summary' );
             ?>
 
-        </div>
-        <div class="col-xl-4">
-            <ul>
-                <?php propertyhive_make_enquiry_button(); ?>
-            </ul>
         </div>
     </div>
 

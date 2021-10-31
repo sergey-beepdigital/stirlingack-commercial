@@ -44,6 +44,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-pro": "^6.0.0-beta2",
         "bootstrap": "^4.5.3",
+        "flexslider": "^2.7.2",
         "gulp": "^4.0.2",
         "jquery": "^3.5.1",
         "owl.carousel": "^2.3.4",
