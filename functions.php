@@ -166,6 +166,7 @@ class StarterSite extends TimberSite {
     function register_post_types() {
         // require_once custom post types here
         require_once('includes/post-types/form.php');
+        require_once('includes/post-types/branch.php');
     }
 
     function register_taxonomies() {
@@ -592,4 +593,50 @@ function get_latest_posts() {
         'post_type' => 'post',
         'posts_per_page' => 3
     ]);
+}
+
+function get_property_branch($property) {
+    $branch_result = [];
+
+    $property_ref_id = $property->get_imported_id();
+    $property_ref_id_parts = array_reverse(explode('-',$property_ref_id));
+    $property_ref_office_part = reset($property_ref_id_parts);
+    $property_office_code = substr($property_ref_office_part,0,3);
+
+    $branch_data = [
+        'post_type' => 'sa_branch',
+        'post_status' => 'publish',
+        'nopaging' => true,
+        'meta_query' => []
+    ];
+
+    $meta_department = 'let';
+    if($property->_department == 'residential-sales') {
+        $meta_department = 'sale';
+    }
+
+    $branch_data['meta_query'] = [
+        [
+            'key' => "branch_{$meta_department}_code",
+            'value' => $property_office_code
+        ]/*,
+        [
+            'key' => "branch_{$meta_department}_code",
+            'value' => '',
+            'compare' => '!= '
+        ]*/
+    ];
+
+    $branches_query = new WP_Query($branch_data);
+
+    if($branches_query->have_posts()) {
+        $branch_post = $branches_query->post;
+
+        $branch_result['department'] = $meta_department;
+        $branch_result['branch'] = new Timber\Post($branch_post->ID);
+    }
+
+    wp_reset_query();
+
+    return $branch_result;
 }

@@ -1,16 +1,20 @@
-<div class="property-arrange-viewing text-center">
-    <div class="property-arrange-viewing--office-contacts">
-        <h3 class="text-uppercase">Arrange a viewing</h3>
-        <div class="branch-info">
-            <div class="branch-info--name">West End Branch</div>
-            <div class="branch-info--phone-number h3 mb-0 text-uppercase">020 3917 8218</div>
-            <a href="#" class="link-border link-border--red">Email Us</a>
+{% if branch_data %}
+    {% set phoneKey = 'branch_' ~ branch_data.department ~ '_phone' %}
+
+    <div class="property-arrange-viewing text-center">
+        <div class="property-arrange-viewing--office-contacts">
+            <h3 class="text-uppercase">Arrange a viewing</h3>
+            <div class="branch-info">
+                <div class="branch-info--name">{{ branch_data.branch.title }} Branch</div>
+                <div class="branch-info--phone-number h3 mb-0 text-uppercase">{{ attribute(branch_data.branch,phoneKey) }}</div>
+                <a href="#" class="link-border link-border--red">Email Us</a>
+            </div>
+        </div>
+        <div class="property-arrange-viewing--address-info">
+            <p>{{ branch_data.branch.branch_address }}</p>
+            <p><a href="#property-info-location" data-open-property-tab>View on map</a></p>
+            {#<a href="#" class="link-border link-border--red">Arrange a viewing</a>#}
+            {{ fn('propertyhive_make_enquiry_button') }}
         </div>
     </div>
-    <div class="property-arrange-viewing--address-info">
-        <p>Office 204, 60 St Martins Lane, London, WC2N 4JS</p>
-        <p><a href="#">View on map</a></p>
-        {#<a href="#" class="link-border link-border--red">Arrange a viewing</a>#}
-        {{ fn('propertyhive_make_enquiry_button') }}
-    </div>
-</div>
+{% endif %}
