@@ -35,11 +35,11 @@
             <div class="row">
                 <div class="col-xl-8">
 
-                    {% if posts %}
+                    {% if posts_query.get_posts() %}
 
                         <div class="row">
 
-                            {% for post in posts %}
+                            {% for post in posts_query.get_posts() %}
 
                                 <div class="col-xl-6">
 
@@ -55,12 +55,12 @@
 
                         <div class="sa-pagination">
                             <ul class="pages">
-                                {% if posts.pagination.prev %}
+                                {% if posts_query.pagination.prev %}
                                     <li>
-                                        <a href="{{posts.pagination.prev.link}}" class="prev {{posts.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
+                                        <a href="{{posts_query.pagination.prev.link}}" class="prev {{posts_query.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
                                     </li>
                                 {% endif %}
-                                {% for page in posts.pagination.pages %}
+                                {% for page in posts_query.pagination.pages %}
                                     <li>
                                         {% if page.link %}
                                             <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
@@ -70,9 +70,9 @@
                                     </li>
                                 {% endfor %}
 
-                                {% if posts.pagination.next %}
+                                {% if posts_query.pagination.next %}
                                     <li>
-                                        <a href="{{posts.pagination.next.link}}" class="next {{posts.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
+                                        <a href="{{posts_query.pagination.next.link}}" class="next {{posts_query.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
                                     </li>
                                 {% endif %}
                             </ul>

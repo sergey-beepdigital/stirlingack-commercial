@@ -52,8 +52,10 @@ function branch_area_box_shortcode($atts) {
 
     $context['form_url'] = get_the_permalink($page_urls['blog_page']);
     $context['offices'] = Timber::query_posts([
-        'post_type' => 'office',
-        'nopaging'=> true
+        'post_type' => 'sa_branch',
+        'nopaging'=> true,
+        'orderby'=> 'title',
+        'order' => 'ASC'
     ]);
 
     Timber::render('components/shortcodes/branch-area-box.twig', $context);
