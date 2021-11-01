@@ -64,6 +64,7 @@
 
         if($this->get_branch_id()) {
             $data = [
+                'id' => $this->get_branch_id(),
                 'department' => $this->department,
                 'code' => $this->get_code(),
                 'title' => get_the_title($this->get_branch_id()),
