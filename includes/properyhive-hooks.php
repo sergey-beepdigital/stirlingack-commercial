@@ -446,10 +446,7 @@ function sa_property_detail_related_insights() {
 
     $context = Timber::context();
 
-    $posts = new Timber\PostQuery([
-        'post_type' => 'post',
-        'posts_per_page' => 3
-    ]);
+    $branch = new SA_PropertyBranch($property);
 
     Timber::render('components/static-sections/latest-posts.twig', [
         'title' => 'Property Insights',
@@ -457,7 +454,7 @@ function sa_property_detail_related_insights() {
             'title' => 'More News & Insights for ' . $property->_address_postcode,
             'url' => get_the_permalink($context['options']['page_url']['blog_page'])
         ],
-        'posts' => $posts->get_posts(),
+        'posts' => $branch->get_insights(),
         'theme' => [
             'link' => get_template_directory_uri()
         ]

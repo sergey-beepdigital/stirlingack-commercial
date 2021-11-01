@@ -3,7 +3,7 @@
     {% set grid_css_class = 'col-xl-6' %}
 {% endif %}
 
-{% if posts %}
+{% if posts.found_posts %}
 
     <section class="page-section page-section--padding50 section-latest-posts">
         {% if ignore_container != 1 %}<div class="container">{% endif %}

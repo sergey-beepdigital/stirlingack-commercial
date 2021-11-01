@@ -1,5 +1,7 @@
 <?php
 
+require_once 'includes/classes/class.property-branch.php';
+
 include "includes/shortcodes.php";
 include "includes/properyhive-hooks.php";
 
@@ -37,12 +39,12 @@ function register_plugins () {
 			'required' => true,
             'force_activation' => true
         ),
-        array(
+        /*array(
             'name' => 'Advanced Custom Fields: Font Awesome Field',
             'slug' => 'advanced-custom-fields-font-awesome',
             'required' => true,
             'force_activation' => true
-        ),
+        ),*/
         array(
             'name' => 'Yoast SEO',
             'slug' => 'wordpress-seo',
@@ -595,48 +597,20 @@ function get_latest_posts() {
     ]);
 }
 
-function get_property_branch($property) {
-    $branch_result = [];
-
-    $property_ref_id = $property->get_imported_id();
-    $property_ref_id_parts = array_reverse(explode('-',$property_ref_id));
-    $property_ref_office_part = reset($property_ref_id_parts);
-    $property_office_code = substr($property_ref_office_part,0,3);
-
-    $branch_data = [
-        'post_type' => 'sa_branch',
-        'post_status' => 'publish',
-        'nopaging' => true,
-        'meta_query' => []
-    ];
-
-    $meta_department = 'let';
-    if($property->_department == 'residential-sales') {
-        $meta_department = 'sale';
+function sa_save_insight($post_ID) {
+    // bail out if this is an autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
     }
 
-    $branch_data['meta_query'] = [
-        [
-            'key' => "branch_{$meta_department}_code",
-            'value' => $property_office_code
-        ]/*,
-        [
-            'key' => "branch_{$meta_department}_code",
-            'value' => '',
-            'compare' => '!= '
-        ]*/
-    ];
+    $post_branch_ids = $_POST['acf']['field_617fd0350b13e'];
 
-    $branches_query = new WP_Query($branch_data);
+    delete_post_meta($post_ID, 'post_branch_id');
 
-    if($branches_query->have_posts()) {
-        $branch_post = $branches_query->post;
-
-        $branch_result['department'] = $meta_department;
-        $branch_result['branch'] = new Timber\Post($branch_post->ID);
+    if(!empty($post_branch_ids)) {
+        foreach ($post_branch_ids as $branch_id) {
+            add_post_meta($post_ID,'post_branch_id',$branch_id);
+        }
     }
-
-    wp_reset_query();
-
-    return $branch_result;
 }
+add_action('save_post_post', 'sa_save_insight', 10);

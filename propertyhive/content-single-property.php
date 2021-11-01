@@ -46,8 +46,10 @@ global $property;
         </div>
         <div class="col-xl-4">
 
-            <?php Timber::render('propertyhive/property-detail/arrange-viewing.twig',[
-                'branch_data' => get_property_branch($property)
+            <?php $branch = new SA_PropertyBranch($property);
+
+            Timber::render('propertyhive/property-detail/arrange-viewing.twig',[
+                'branch_data' => $branch->get_data()
             ]); ?>
 
         </div>

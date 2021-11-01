@@ -1,17 +1,15 @@
 {% if branch_data %}
-    {% set phoneKey = 'branch_' ~ branch_data.department ~ '_phone' %}
-
     <div class="property-arrange-viewing text-center">
         <div class="property-arrange-viewing--office-contacts">
             <h3 class="text-uppercase">Arrange a viewing</h3>
             <div class="branch-info">
-                <div class="branch-info--name">{{ branch_data.branch.title }} Branch</div>
-                <div class="branch-info--phone-number h3 mb-0 text-uppercase">{{ attribute(branch_data.branch,phoneKey) }}</div>
+                <div class="branch-info--name">{{ branch_data.title }} Branch</div>
+                <div class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</div>
                 <a href="#" class="link-border link-border--red">Email Us</a>
             </div>
         </div>
         <div class="property-arrange-viewing--address-info">
-            <p>{{ branch_data.branch.branch_address }}</p>
+            <p>{{ branch_data.address }}</p>
             <p><a href="#property-info-location" data-open-property-tab>View on map</a></p>
             {#<a href="#" class="link-border link-border--red">Arrange a viewing</a>#}
             {{ fn('propertyhive_make_enquiry_button') }}
