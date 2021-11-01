@@ -89,9 +89,13 @@
         }
     }
 
-    .from-recent-properties-checkbox{
+    &--checkbox-group{
         margin-top: 15px;
         font-size: 14px;
+
+        .form-check{
+            margin-right: 50px;
+        }
     }
 }
 
