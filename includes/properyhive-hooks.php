@@ -1,5 +1,10 @@
 <?php
 
+add_action("propertyhive_property_imported_jet", "pickup_new_property", 10, 2);
+function pickup_new_property($post_id, $property) {
+    update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
+}
+
 add_filter( 'query_vars', 'propertyhive_register_query_vars' );
 function propertyhive_register_query_vars( $vars )
 {
