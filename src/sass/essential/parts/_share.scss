@@ -1,3 +1,32 @@
 .share-page{
+    display: flex;
+    align-items: center;
 
+    &--title{
+        padding-right: 30px;
+        color: $brand-main-blue;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 28px;
+
+        li{
+            display: inline-block;
+
+            &:not(:first-child) {
+                margin-left: 23px;
+            }
+
+            a{
+                &:hover{
+                    color: $brand-main-red;
+                }
+            }
+        }
+    }
 }

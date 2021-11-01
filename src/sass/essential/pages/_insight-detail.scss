@@ -1,0 +1,48 @@
+.single{
+    article{
+        .article-content {
+            .blog-author{
+                margin-bottom: 20px;
+
+                .separator{
+                    color: $brand-main-red;
+                    display: inline-block;
+                    padding: 0 8px 0 10px;
+                }
+
+                &,
+                a{
+                    color: $support-color2;
+                }
+            }
+
+            .article-body {
+                video,
+                iframe,
+                figure img {
+                    width: 100%;
+                }
+
+                h1, h2, h3, h4, h5 {
+                    margin-top: 40px;
+                }
+
+                h1, h2, h3, h4,
+                ul,
+                p {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    .article-footer{
+        padding-top: 20px;
+        margin-top: 40px;
+        border-top: 1px solid $support-color4;
+
+        .btn{
+            margin-top: 35px;
+        }
+    }
+}
