@@ -1,0 +1,20 @@
+<div class="section-promo-area">
+    <div class="section-promo-area--content-wrap">
+        <h3 class="h2">Promo Area Valuation</h3>
+        <div class="section-promo-area--content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</p>
+        </div>
+
+        {% include 'components/parts/link.twig' with {
+            link: {
+                title: 'Get a free valuation',
+                url: '#'
+            },
+            css_class: 'link-border link-border--red'
+        } %}
+
+    </div>
+    <div class="section-promo-area--image">
+        <img src="{{ theme.link ~ '/dist/images/temp/blog-list-promo-img.jpg' }}">
+    </div>
+</div>

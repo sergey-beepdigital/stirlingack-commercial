@@ -86,7 +86,7 @@
                         asd
                     </section>#}
 
-                    {% include 'sections/content_image.twig' with {
+                    {#{% include 'sections/content_image.twig' with {
                         section: {
                             ci_title: 'Promo Area Valuation',
                             ci_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.' | wpautop,
@@ -96,7 +96,9 @@
                             },
                             ci_image: theme.link ~ '/dist/images/temp/blog-list-promo-img.jpg'
                         }
-                    } %}
+                    } %}#}
+
+                    {% include 'static-sections/promo-area.twig' %}
 
                 </div>
                 <div class="col-xl-3 offset-xl-1">
