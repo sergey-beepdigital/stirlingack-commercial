@@ -5,6 +5,62 @@ function pickup_new_property($post_id, $property) {
     update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
 }
 
+/**
+ * Create custom URL structure for property detail page
+ * @param $post_link
+ * @param $post
+ * @param $leavename
+ * @param $sample
+ * @return string|string[]
+ */
+function customise_property_post_type_link( $post_link, $post, $leavename, $sample ) {
+    if ( get_post_type($post->ID) == 'property' )
+    {
+        $property = new PH_Property($post->ID);
+
+        $suffix = 'for-sale';
+        if ( $property->department == 'residential-lettings' )
+        {
+            $suffix = 'to-rent';
+        }
+
+        $area = $property->address_three;
+        if ( $area == '' )
+        {
+            $area = $property->address_four;
+        }
+        if ( $area == '' )
+        {
+            $area = $property->address_two;
+        }
+        if ( $area == '' )
+        {
+            $area = 'property';
+        }
+
+        $post_link = str_replace("/property/", "/property-" . $suffix . "/" . sanitize_title($area) . "/", $post_link);
+    }
+
+    return $post_link;
+}
+add_filter( 'post_type_link', 'customise_property_post_type_link', 10, 4 );
+
+/**
+ * Add rewrite rules for custom URL structure for property detail page
+ */
+function rewrites_init() {
+    add_rewrite_rule(
+        'property-for-sale/([^/]+)/([^/]+)/?$',
+        'index.php?post_type=property&name=$matches[2]',
+        'top' );
+    add_rewrite_rule(
+        'property-to-rent/([^/]+)/([^/]+)/?$',
+        'index.php?post_type=property&name=$matches[2]',
+        'top' );
+}
+add_action( 'init', 'rewrites_init' );
+
+
 //add_filter( 'query_vars', 'propertyhive_register_query_vars' );
 function propertyhive_register_query_vars( $vars )
 {
