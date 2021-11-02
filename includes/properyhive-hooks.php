@@ -274,7 +274,13 @@ add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop
  * Display branch details for property item
  */
 function sa_property_item_branch_details() {
-    Timber::render('templates/propertyhive/parts/branch-details.twig',[]);
+    global $property;
+
+    $branch = new SA_PropertyBranch($property);
+
+    Timber::render('templates/propertyhive/parts/branch-details.twig',[
+        'branch_data' => $branch->get_data()
+    ]);
 }
 add_action('propertyhive_after_search_results_loop_item_title','sa_property_item_branch_details',20);
 
