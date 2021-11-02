@@ -47,6 +47,18 @@
                 }
             }
 
+            .property-let-additional-links{
+                margin-bottom: 20px;
+
+                a{
+                    text-decoration: underline;
+
+                    &:hover{
+                        text-decoration: none;
+                    }
+                }
+            }
+
             .property-detail-status-shortlisted-wrap{
                 margin-bottom: 30px;
 

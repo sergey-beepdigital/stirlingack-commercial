@@ -578,6 +578,25 @@ add_action('propertyhive_single_property_summary','propertyhive_template_single_
 add_action('propertyhive_single_property_summary','sa_property_residential_details',20);
 remove_action('propertyhive_single_property_summary','propertyhive_template_single_meta',20);
 
+/**
+ * Display additional links for Let properties
+ * Example: Fees page link
+ */
+function sa_property_let_links() {
+    global $property;
+
+    if ($property->department == 'residential-lettings') {
+        echo '<div class="property-let-additional-links">';
+        echo '<a data-fancybox data-src="#lettings_fees_lightbox" href="javascript:;">Permitted Payments</a>';
+        echo '<div id="lettings_fees_lightbox" style="display:none; max-width:400px">
+        <h3>Permitted Payments</h3>
+        ' . nl2br(get_option('propertyhive_lettings_fees')) . '
+        </div>';
+        echo '</div>';
+    }
+}
+add_action('propertyhive_single_property_summary','sa_property_let_links',19);
+
 function sa_property_detail_heading_start_block() {
     echo '<div class="property-detail-heading">';
 }
