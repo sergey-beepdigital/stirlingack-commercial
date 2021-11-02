@@ -104,6 +104,10 @@ function sa_wphive_gettext($translation, $text, $domain) {
             case 'Loading':
                 $translation = '<i class="fa-solid fa-loader fa-spin"></i>';
                 break;
+
+            case 'Save Search':
+                $translation = '<i class="fa-regular fa-bell"></i> ' . $translation;
+                break;
         }
     }
     return $translation;
@@ -361,6 +365,7 @@ add_action('propertyhive_before_main_content','sa_properties_breadcrumbs',10);
 
 $save_search = PH_Save_Search::instance();
 remove_action( 'propertyhive_before_search_results_loop', array( $save_search, 'save_search_button' ), 99 );
+add_action( 'property_search_form_end', array( $save_search, 'save_search_button' ), 10 );
 
 /*function test_button() {
     $save_search = PH_Save_Search::instance();

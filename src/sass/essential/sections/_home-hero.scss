@@ -97,6 +97,16 @@
             margin-right: 50px;
         }
     }
+
+    .propertyhive-save-search-button{
+        margin-top: 15px;
+        display: inline-block;
+        font-size: 14px;
+
+        i{
+            color: $brand-main-red;
+        }
+    }
 }
 
 .section-home-hero{
