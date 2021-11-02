@@ -585,11 +585,11 @@ remove_action('propertyhive_single_property_summary','propertyhive_template_sing
 function sa_property_let_links() {
     global $property;
 
-    if ($property->department == 'residential-lettings') {
+    if ($property->department == 'residential-lettings' && get_option('propertyhive_lettings_fees_display_single_property', '') == 'yes') {
         echo '<div class="property-let-additional-links">';
         echo '<a data-fancybox data-src="#lettings_fees_lightbox" href="javascript:;">Permitted Payments</a>';
-        echo '<div id="lettings_fees_lightbox" style="display:none; max-width:400px">
-        <h3>Permitted Payments</h3>
+        echo '<div id="lettings_fees_lightbox" style="display:none; max-width:900px">
+        <h3 class="mb-3">Permitted Payments</h3>
         ' . nl2br(get_option('propertyhive_lettings_fees')) . '
         </div>';
         echo '</div>';
