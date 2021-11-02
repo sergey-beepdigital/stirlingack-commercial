@@ -427,6 +427,8 @@ add_action('propertyhive_after_main_content','sa_property_detail_wrap_end',50);
  * Property Detail: Display calculators
  */
 function sa_property_detail_calculators() {
+    if(!is_property()) return;
+
     $content = Timber::context();
 
     /*$content['property_id'] = get_the_ID();
@@ -440,6 +442,8 @@ add_action('propertyhive_after_main_content','sa_property_detail_calculators',50
  * Property Detail: Display similar properties
  */
 function sa_property_detail_similar_properties() {
+    if(!is_property()) return;
+
     $content = Timber::context();
 
     $content['property_id'] = get_the_ID();
