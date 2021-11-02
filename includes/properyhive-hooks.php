@@ -542,6 +542,8 @@ add_action('propertyhive_after_main_content','sa_property_detail_similar_propert
  * Property Detail: Display similar properties
  */
 function sa_property_detail_related_insights() {
+    if(!is_property()) return;
+
     global $property;
 
     $context = Timber::context();

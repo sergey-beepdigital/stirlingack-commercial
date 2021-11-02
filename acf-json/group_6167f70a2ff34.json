@@ -345,6 +345,78 @@
                     "sub_fields": [],
                     "min": "",
                     "max": ""
+                },
+                "layout_61814e253c72c": {
+                    "key": "layout_61814e253c72c",
+                    "name": "properties_list",
+                    "label": "Properties List",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61814e2e3c72d",
+                            "label": "Title",
+                            "name": "ppl_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_61814e3f3c72e",
+                            "label": "Shortcode",
+                            "name": "ppl_shortcode",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_618159bf3c72f",
+                            "label": "More Link",
+                            "name": "ppl_more_link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_61816cd19bfab": {
+                    "key": "layout_61816cd19bfab",
+                    "name": "hero_default",
+                    "label": "Hero Default",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -369,5 +441,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634496786
+    "modified": 1635871968
 }
