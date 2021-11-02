@@ -84,3 +84,33 @@
         }
     }
 }
+
+body{
+    &.logged-in{
+        #header{
+            .header-top-nav{
+                ul{
+                    li{
+                        &.item-sign-in{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &:not(.logged-in) {
+        #header{
+            .header-top-nav{
+                ul{
+                    li{
+                        &.item-my-account{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
