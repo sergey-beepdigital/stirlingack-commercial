@@ -33,6 +33,12 @@
                         &:not(:first-child) {
                             margin-left: 17px;
                         }
+
+                        &.current-menu-item{
+                            a{
+                                color: $brand-main-red;
+                            }
+                        }
                     }
                 }
             }
@@ -51,8 +57,17 @@
                             display: inline-block;
                             margin-left: 38px;
 
+                            &.current-menu-item a,
                             i{
                                 color: $brand-main-red;
+                            }
+
+                            &.current-menu-item{
+                                a{
+                                    i{
+                                        font-weight: 600;
+                                    }
+                                }
                             }
                         }
                     }
