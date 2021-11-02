@@ -5,6 +5,7 @@ function pickup_new_property($post_id, $property) {
     update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
 }
 
+
 /**
  * Create custom URL structure for property detail page
  * @param $post_link
@@ -45,6 +46,7 @@ function customise_property_post_type_link( $post_link, $post, $leavename, $samp
 }
 add_filter( 'post_type_link', 'customise_property_post_type_link', 10, 4 );
 
+
 /**
  * Add rewrite rules for custom URL structure for property detail page
  */
@@ -68,6 +70,7 @@ function propertyhive_register_query_vars( $vars )
     return $vars;
 }
 
+
 //add_action( 'init', 'propertyhive_add_rewrite_rules' );
 function propertyhive_add_rewrite_rules()
 {
@@ -81,6 +84,7 @@ function propertyhive_add_rewrite_rules()
         add_rewrite_rule( $post->post_name . "/(.*)/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]', 'top' );
     }
 }
+
 
 //add_action( 'parse_request', 'propertyhive_parse_request' );
 function propertyhive_parse_request($wp_query)
@@ -133,6 +137,7 @@ function propertyhive_parse_request($wp_query)
     }
 }
 
+
 /**
  * Change static text in the plugin
  * @param $translation
@@ -170,6 +175,7 @@ function sa_wphive_gettext($translation, $text, $domain) {
 }
 add_filter('gettext','sa_wphive_gettext',50,3);
 
+
 function include_off_market( $q )
 {
     if ( is_admin() )
@@ -205,6 +211,7 @@ function include_off_market( $q )
 }
 //add_action( 'pre_get_posts', 'include_off_market' );
 
+
 /**
  * Admin Settings: Add image field for property office
  * @param $args
@@ -227,6 +234,7 @@ function sa_property_admin_office_fields($args) {
 }
 add_filter('propertyhive_office_details_settings','sa_property_admin_office_fields',10);
 
+
 /**
  * Admin Settings: Save image field for property office
  * @param $office_post_id
@@ -239,6 +247,7 @@ add_action('propertyhive_save_office', 'sa_property_admin_office_save', 10);
 /*********************************************************************
  ********************* Properties Search *****************************
  *********************************************************************/
+
 
 /**
  * Add Font Awesome Icons to Pagination
@@ -253,6 +262,7 @@ function sa_propertyhive_pagination_args($args) {
 }
 add_filter('propertyhive_pagination_args','sa_propertyhive_pagination_args');
 
+
 /**
  * Remove default styles
  * @param $styles
@@ -265,6 +275,7 @@ function sa_propertyhive_enqueue_styles($styles) {
 }
 add_filter('propertyhive_enqueue_styles','sa_propertyhive_enqueue_styles');
 
+
 /**
  * Properties listing item inner wrap div
  */
@@ -272,6 +283,7 @@ function sa_before_search_results_loop_item() {
     echo '<div class="property-item-inner">';
 }
 add_action('propertyhive_before_search_results_loop_item','sa_before_search_results_loop_item');
+
 
 /**
  * Properties listing item inner wrap end div
@@ -286,6 +298,7 @@ add_action('propertyhive_after_search_results_loop_item','sa_after_search_result
  */
 //remove_action('propertyhive_after_search_results_loop_item_title','propertyhive_template_loop_actions',30);
 //remove_action('propertyhive_after_search_results_loop_item_title','propertyhive_template_loop_price',10);
+
 
 /**
  * Display residential details for property item
@@ -326,6 +339,7 @@ function sa_property_loop_residential_end_block() {
 }
 add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop_residential_end_block',9);
 
+
 /**
  * Display branch details for property item
  */
@@ -339,6 +353,7 @@ function sa_property_item_branch_details() {
     ]);
 }
 add_action('propertyhive_after_search_results_loop_item_title','sa_property_item_branch_details',20);
+
 
 /**
  * Show title and subtitle for property item
@@ -363,6 +378,7 @@ function sa_property_loop_item_title() {
 }
 add_action('propertyhive_after_search_results_loop_item_title','sa_property_loop_item_title',10);
 
+
 /**
  * Display images count for property item
  */
@@ -374,6 +390,7 @@ function sa_property_item_images_count() {
     }
 }
 add_action('propertyhive_before_search_results_loop_item_title','sa_property_item_images_count',20);
+
 
 /**
  * Hide Archive Title
@@ -389,6 +406,7 @@ function sa_property_search_info_wrap_end() {
     echo '</div></div></div>';
 }
 add_action('propertyhive_before_search_results_loop','sa_property_search_info_wrap_end',100);
+
 
 /**
  * Add Grid view to the list of views on property search page
@@ -414,6 +432,7 @@ function sa_property_results_views($views) {
     return $new_order_view;
 }
 add_filter('propertyhive_results_views', 'sa_property_results_views', 1);
+
 
 /**
  * Add breadcrumbs to property pages
@@ -441,6 +460,7 @@ add_action( 'property_search_form_end', array( $save_search, 'save_search_button
 }*/
 //add_action('property_search_form_control_end', 'test_button', 10);
 
+
 /**
  * Wrap Map View on results page - start block
  */
@@ -450,6 +470,7 @@ function sa_property_search_map_wrap_start() {
     }
 }
 add_action('propertyhive_before_search_results_loop','sa_property_search_map_wrap_start',100);
+
 
 /**
  * Wrap Map View on results page - end block
@@ -479,6 +500,7 @@ function sa_property_detail_wrap_end() {
 }
 add_action('propertyhive_after_main_content','sa_property_detail_wrap_end',50);
 
+
 /**
  * Property Detail: Display calculators
  */
@@ -494,6 +516,7 @@ function sa_property_detail_calculators() {
 }
 add_action('propertyhive_after_main_content','sa_property_detail_calculators',50);
 
+
 /**
  * Property Detail: Display similar properties
  */
@@ -508,6 +531,7 @@ function sa_property_detail_similar_properties() {
     Timber::render('propertyhive/shortcode/similar-properties.twig', $content);
 }
 add_action('propertyhive_after_main_content','sa_property_detail_similar_properties',60);
+
 
 /**
  * Property Detail: Display similar properties
@@ -534,16 +558,10 @@ function sa_property_detail_related_insights() {
 }
 add_action('propertyhive_after_main_content','sa_property_detail_related_insights',70);
 
-/*function property_detail_heading() {
-    global $property;
 
-    Timber::render('propertyhive/property-detail/heading.twig', [
-        'title' => get_the_title(),
-        'price' => $property->get_formatted_price()
-    ]);
-}*/
-//add_action('propertyhive_before_single_property_summary','property_detail_heading',2);
-
+/**
+ * Create tabs for property information
+ */
 function sa_property_detail_tabs_nav() {
     global $property;
 
@@ -554,6 +572,10 @@ function sa_property_detail_tabs_nav() {
 }
 add_action('propertyhive_after_single_property_summary','sa_property_detail_tabs_nav',30);
 
+
+/**
+ * Display property information in tabs
+ */
 function sa_property_detail_tabs_content() {
     if(is_singular('property')) {
         global $property;
@@ -570,6 +592,7 @@ function sa_property_detail_tabs_content() {
 }
 add_action('propertyhive_after_main_content','sa_property_detail_tabs_content');
 
+
 remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_actions',10);
 remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_features',20);
 remove_action('propertyhive_after_single_property_summary','propertyhive_template_single_summary',30);
@@ -577,6 +600,7 @@ remove_action('propertyhive_after_single_property_summary','propertyhive_templat
 add_action('propertyhive_single_property_summary','propertyhive_template_single_summary',40);
 add_action('propertyhive_single_property_summary','sa_property_residential_details',20);
 remove_action('propertyhive_single_property_summary','propertyhive_template_single_meta',20);
+
 
 /**
  * Display additional links for Let properties
@@ -607,6 +631,10 @@ function sa_property_detail_heading_end_block() {
 }
 add_action('propertyhive_single_property_summary','sa_property_detail_heading_end_block',15);
 
+
+/**
+ * Show property status and shortlist button as columns in new section
+ */
 function sa_property_detail_status_shortlisted() {
     $flag_html = '';
     ob_start();
@@ -621,9 +649,17 @@ function sa_property_detail_status_shortlisted() {
 }
 add_action('propertyhive_single_property_summary','sa_property_detail_status_shortlisted',18);
 
+
+/**
+ * Remove property status from the images section
+ */
 $template_assistant = PH_Template_Assistant::instance();
 remove_action( 'propertyhive_before_single_property_images', array( $template_assistant, 'add_flag_single' ), 5 );
 
+
+/**
+ * Add back to search results link
+ */
 function sa_property_detail_back_button() {
     if(is_singular('property')) {
         echo '<div class="property-detail-back-action-wrap"><a href="javascript:;" onclick="history.back();"><i class="fa-regular fa-angle-left"></i> BACK TO SEARCH RESULTS</a></div>';
@@ -631,8 +667,16 @@ function sa_property_detail_back_button() {
 }
 add_action('propertyhive_single_property_summary','sa_property_detail_back_button',2);
 
+
+/**
+ * PH_Rental_Yield_Calculator: Remove plugin styles
+ */
 $rental_yield_calculator = PH_Rental_Yield_Calculator::instance();
 remove_action( 'wp_enqueue_scripts', array($rental_yield_calculator,'load_rental_yield_calculator_styles'));
 
+
+/**
+ * PH_Rental_Yield_Calculator: Remove plugin styles
+ */
 $stamp_duty_calculator = PH_Stamp_Duty_Calculator::instance();
 remove_action( 'wp_enqueue_scripts', array( $stamp_duty_calculator, 'load_stamp_duty_calculator_styles' ) );
