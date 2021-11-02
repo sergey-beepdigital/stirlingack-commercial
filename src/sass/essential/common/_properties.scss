@@ -176,3 +176,42 @@ ul.properties{
     }
 }
 */
+
+.propertyhive-form{
+    .control{
+        margin-bottom: 20px;
+
+        & > label[for]{
+            display: block;
+            margin-bottom: 5px;
+            font-weight: normal;
+
+            .required{
+                color: $brand-main-red;
+            }
+        }
+
+        & > textarea,
+        & > input{
+            display: block;
+            width: 100%;
+            font-weight: 300;
+            padding: 10px;
+            border-radius: 0;
+            border: 0;
+        }
+    }
+
+    input[type="submit"] {
+        background-color: $brand-main-blue;
+        color: #FFF;
+        border: 0;
+        text-transform: uppercase;
+        padding: 18px;
+        transition: 0.3s ease all;
+
+        &:hover{
+            background-color: $support-color2;
+        }
+    }
+}

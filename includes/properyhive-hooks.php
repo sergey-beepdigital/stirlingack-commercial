@@ -5,14 +5,14 @@ function pickup_new_property($post_id, $property) {
     update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
 }
 
-add_filter( 'query_vars', 'propertyhive_register_query_vars' );
+//add_filter( 'query_vars', 'propertyhive_register_query_vars' );
 function propertyhive_register_query_vars( $vars )
 {
     $vars[] = 'property_search_criteria';
     return $vars;
 }
 
-add_action( 'init', 'propertyhive_add_rewrite_rules' );
+//add_action( 'init', 'propertyhive_add_rewrite_rules' );
 function propertyhive_add_rewrite_rules()
 {
     global $wp_rewrite;
@@ -26,7 +26,7 @@ function propertyhive_add_rewrite_rules()
     }
 }
 
-add_action( 'parse_request', 'propertyhive_parse_request' );
+//add_action( 'parse_request', 'propertyhive_parse_request' );
 function propertyhive_parse_request($wp_query)
 {
     // First we do redirect if on the search page and have received the standard query string parameters
