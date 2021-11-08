@@ -5,7 +5,7 @@ $args = array(
         'name'          => __('Branches'),
         'singular_name' => __('Branch')
     ),
-	'supports'              => array( 'title' ),
+	'supports'              => array( 'title', 'editor', 'thumbnail' ),
 	'hierarchical'          => false,
 	'public'                => true,
 	'show_ui'               => true,
@@ -18,8 +18,11 @@ $args = array(
 	'has_archive'           => false,
 	'exclude_from_search'   => true,
 	'publicly_queryable'    => true,
-	'rewrite'               => false,
+	'rewrite'               => array(
+	    'slug'=>'our-branches',
+        'with_front' => true
+    ),
 	'capability_type'       => 'post',
-	'show_in_rest'          => true,
+	'show_in_rest'          => false,
 );
 register_post_type( 'sa_branch', $args );

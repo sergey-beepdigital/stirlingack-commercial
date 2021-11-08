@@ -1,0 +1,145 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {% set key_services = post.get_field('branch_key_services') %}
+    {% set opening_hours = post.get_field('branch_opening_hours') %}
+
+    {% include 'components/static-sections/page-top.twig' with {
+        post: post
+    } %}
+
+    <section class="page-section page-section--padding50">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7">
+                    <div class="content-clear">{{ post.branch_property_expertise | wpautop }}</div>
+                </div>
+                <div class="col-xl-4 offset-xl-1">
+                    <div class="branch-opening-hours-block">
+
+                        {% if opening_hours %}
+
+                            <div class="branch-opening-hours-block--hours-wrap">
+                                <h4 class="h3 text-uppercase text-center">Opening Hours</h4>
+                                <div class="opening-hours-list">
+
+                                    {% for day, hours in opening_hours %}
+
+                                        <div class="opening-hours-list--row">
+                                            <div class="opening-hours-list--day">{{ day | capitalize }}</div>
+                                            <div class="opening-hours-list--hours">{{ hours  }}</div>
+                                        </div>
+
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                        {% if key_services %}
+
+                            <div class="branch-opening-hours-block--features-wrap text-center">
+                                <h4 class="h3 text-uppercase">KEY SERVICES</h4>
+
+                                <ul>
+                                    {% for key_service in key_services %}
+                                        <li>{{ key_service.service }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section page-section--padding50 bg-support5">
+        <div class="container">
+            <div class="page-section--heading">
+                <h3 class="text-uppercase">OUR LATEST PROPERTY IN {{ post.title }}</h3>
+            </div>
+
+            {{ '[properties posts_per_page="3" address_keyword="E14"]' | shortcodes }}
+
+            <div class="page-section--actions actions-mt50">
+                <div class="row">
+                    <div class="col-xl-5 offset-xl-1">
+                        <a href="#" class="btn btn-lg btn-primary d-block text-uppercase">Property To Buy Near Canary Wharf (E14)</a>
+                    </div>
+                    <div class="col-xl-5">
+                        <a href="#" class="btn btn-lg btn-primary d-block text-uppercase">Property To Rent Near Canary Wharf (E14)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section page-section--padding50 pb-0 section-two-wide-content-boxes">
+        <div class="container-wide">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="bg-primary content-clear half-content-box half-content-box--left-offset">
+                        <h2>Looking to sell or let your property in Canary Wharf?</h2>
+                        <p>Our property experts have experience selling and letting a variety of property types. Whether it’s your penthouse apartment or flat, mansion, detached or semi-detached house, we go to great lengths to get the best result for you. To book your FREE, no obligation property valuation call 02080365803 now.</p>
+                        <p>Stirling Ackroyd Estate Agents Canary Wharf also provides a range of dedicated property services including:</p>
+                        <p>
+                            <a href="#">Property Management</a><br>
+                            <a href="#">Mortgages and Protection</a><br>
+                            <a href="#">Conveyancing</a><br>
+                            <a href="#">Surveying</a><br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="bg-support3 content-clear half-content-box half-content-box--right-offset">
+                        <h2>Looking to buy or rent a property in Canary Wharf?</h2>
+                        <p>At Stirling Ackroyd Estate Agents Canary Wharf, we understand that choosing where to buy or rent a property is a big decision. That is why all of our staff are experts on the local area, enabling them to not only find you your perfect home in Canary Wharf, but also help you find your perfect lifestyle.</p>
+                        <a href="#" class="btn btn-lg btn-primary text-uppercase d-block">Property To Buy Near Canary Wharf (E14)</a>
+                        <a href="#" class="btn btn-lg btn-primary text-uppercase d-block">Property To Rent Near Canary Wharf (E14)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if post.branch_dataloft_widget_code %}
+
+        <section class="page-section page-section--padding50 section-dataloft">
+            <div class="container">
+                <div class="page-section--heading">
+                    <h2>Your Property Experts</h2>
+                </div>
+
+                {{ post.branch_dataloft_widget_code }}
+
+            </div>
+        </section>
+
+        {% include 'components/sections/separator.twig' %}
+
+    {% endif %}
+
+    {% include 'static-sections/latest-posts.twig' with {
+        title: 'Property Insights',
+        posts: insights_list
+    } %}
+
+    {% include 'components/sections/separator.twig' %}
+
+    <section class="page-section page-section--padding50">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 content-clear">
+                    <h2>About {{ post.title }}</h2>
+                    {{ post.content }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

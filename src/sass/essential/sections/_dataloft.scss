@@ -1,0 +1,39 @@
+.section-dataloft{
+    #inform-widget{
+        & > .inform-widget-container{
+            & > .inform-widget-header{
+                display: none;
+            }
+
+            & > .inform-widget-body{
+                .inform-widget-body-bottom,
+                .inform-widget-body-top{
+                    background: none;
+                }
+
+                .inform-widget-body-top{
+                    margin-top: 0;
+                    padding-top: 0;
+                }
+
+                .inform-widget-column{
+                    padding: 0;
+
+                    .inform-widget-h1{
+                        background-color: #EDEDF0;
+                        padding: 20px;
+                        font-size: 22px;
+                        font-weight: normal;
+                        color: $brand-main-blue;
+                        text-transform: uppercase;
+                        text-align: center;
+
+                        hr{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

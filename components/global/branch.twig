@@ -1,0 +1,23 @@
+<div class="branch-post">
+    <a href="#">
+        {% if post.thumbnail %}
+            <img src="{{ post.thumbnail |resize(740,540) }}" title="{{ post.title }}">
+        {% else %}
+            <img src="{{ theme.link }}/dist/images/placeholder/740x540.jpeg" title="{{ post.title }}">
+        {% endif %}
+    </a>
+    <div class="branch-post--content">
+        <h5><a href="{{ post.link }}">{{ post.title }}</a></h5>
+        <div class="branch-address">{{ post.branch_address }}</div>
+        <ul class="branch-contacts-list">
+            {% if post.branch_sale_phone %}
+                <li><a href="#"><i class="fa-light fa-phone"></i> Sales {{ post.branch_sale_phone }}</a></li>
+            {% endif %}
+            {% if post.branch_let_phone %}
+                <li><a href="#"><i class="fa-light fa-phone"></i> Lettings {{ post.branch_let_phone }}</a></li>
+            {% endif %}
+            <li><a href="#"><i class="fa-light fa-envelope"></i> Email the local team</a></li>
+        </ul>
+        <a class="view-branch-link" href="{{ post.link }}">View Branch Page <i class="fa-regular fa-chevron-right"></i></a>
+    </div>
+</div>

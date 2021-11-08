@@ -9,8 +9,8 @@
                     <nav class="header-top-nav">
                         {% include "menu.twig" with {'menu': top_menu.get_items} %}
                     </nav>
-                    {% if options.page_url.property_valuation %}
-                        <a target="_blank" href="{{ options.page_url.property_valuation }}" class="btn btn-lg btn-warning text-uppercase">Property Valuation</a>
+                    {% if options.page.valuation_page_id %}
+                        <a href="{{ fn('get_the_permalink',options.page.valuation_page_id) }}" class="btn btn-lg btn-warning text-uppercase">Property Valuation</a>
                     {% endif %}
                 </div>
                 <nav class="header-content--menu">

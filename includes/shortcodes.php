@@ -53,6 +53,7 @@ function branch_area_box_shortcode($atts) {
     $context['form_url'] = get_the_permalink($page_urls['blog_page']);
     $context['offices'] = Timber::query_posts([
         'post_type' => 'sa_branch',
+        'post_status' => 'publish',
         'nopaging'=> true,
         'orderby'=> 'title',
         'order' => 'ASC'
@@ -61,3 +62,35 @@ function branch_area_box_shortcode($atts) {
     Timber::render('components/shortcodes/branch-area-box.twig', $context);
 }
 add_shortcode('branch_area_box','branch_area_box_shortcode');
+
+function branches_list_shortcode() {
+    $context = Timber::context();
+
+    $branches_query = new Timber\PostQuery([
+        'post_type' => 'sa_branch',
+        'post_status' => 'publish',
+        'nopaging' => true,
+        'orderby'=> 'title',
+        'order' => 'ASC'
+    ]);
+
+    $context['branches_list'] = $branches_query->get_posts();
+
+    Timber::render('components/shortcodes/branches-list.twig', $context);
+}
+add_shortcode('branches_list','branches_list_shortcode');
+
+function button_shortcode($atts) {
+    $atts = shortcode_atts([
+        'title' => 'Button Title',
+        'url' => '#',
+        'target' => false,
+        'css_class' => 'btn btn-lg btn-primary text-uppercase'
+    ], $atts);
+
+    $css_class = !empty($atts['css_class'])?$atts['css_class']:'';
+    $target = $atts['target']?'target="_blank"':'';
+
+    return '<a ' . $target . ' class="' . $css_class . '" href="' . $atts['url'] . '">' . $atts['title'] . '</a>';
+}
+add_shortcode('button','button_shortcode');

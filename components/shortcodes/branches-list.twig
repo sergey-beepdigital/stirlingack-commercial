@@ -1,0 +1,23 @@
+{% if branches_list %}
+
+    <div class="branches-list-shortcode">
+        <div class="branches-list-grid">
+            <div class="row">
+
+                {% for branch in branches_list %}
+
+                    <div class="col-lg-4 col-md-6">
+
+                        {% include 'global/branch.twig' with {
+                            post: branch
+                        } %}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endif %}

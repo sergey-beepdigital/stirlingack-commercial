@@ -31,6 +31,16 @@ var SA_Common = SA_Common || {};
                         items: 1
                     });
                 }
+            },
+
+            openFancyModal: function (modalId) {
+                if(modalId != undefined) {
+                    parent.jQuery.fancybox.open({
+                        src: modalId
+                    });
+                } else {
+                    alert('Please, set modal ID');
+                }
             }
         }
     }();

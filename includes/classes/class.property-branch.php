@@ -88,4 +88,17 @@
             ]
         ]);
     }
+
+    public static function get_insights_by_id($id, $count = 3) {
+        return new Timber\PostQuery([
+            'post_type' => 'post',
+            'posts_per_page' => $count,
+            'meta_query' => [
+                [
+                    'key' => 'post_branch_id',
+                    'value' => $id
+                ]
+            ]
+        ]);
+    }
 }

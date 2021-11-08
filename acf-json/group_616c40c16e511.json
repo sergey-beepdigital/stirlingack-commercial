@@ -1,6 +1,6 @@
 {
     "key": "group_616c40c16e511",
-    "title": "Page URL Settings",
+    "title": "Assign Page\/URL",
     "fields": [
         {
             "key": "field_616c40d9022e3",
@@ -88,6 +88,67 @@
                     "ui": 1
                 }
             ]
+        },
+        {
+            "key": "field_6183e505328b4",
+            "label": "Pages",
+            "name": "page",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6183e51f328b5",
+                    "label": "Blog Listing",
+                    "name": "blog_list_page_id",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "page"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                },
+                {
+                    "key": "field_6183e6e8328b6",
+                    "label": "Valuation",
+                    "name": "valuation_page_id",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "page"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                }
+            ]
         }
     ],
     "location": [
@@ -107,5 +168,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635181917
+    "modified": 1636034365
 }

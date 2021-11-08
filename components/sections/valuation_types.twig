@@ -1,0 +1,31 @@
+<section class="page-section page-section--padding50 section-valuation-types">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+                {% if section.vt_title %}
+                    <div class="page-section--heading">
+                        <h2>{{ section.vt_title }}</h2>
+                    </div>
+                {% endif %}
+                <div class="valuation-types-wrap">
+                    <div class="row">
+                        <div class="col-xl-6">
+
+                            {% include 'parts/valuation-box.twig' with {
+                                data: section.vt_type_1
+                            } %}
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            {% include 'parts/valuation-box.twig' with {
+                                data: section.vt_type_2
+                            } %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+.section-two-wide-content-boxes{
+    .half-content-box{
+        padding: 60px 70px;
+        height: 100%;
+
+        &--left-offset{
+            padding-left: 80px;
+        }
+
+        &--right-offset{
+            padding-right: 80px;
+        }
+
+        a:not([class]){
+            text-decoration: underline;
+
+            &:hover{
+                text-decoration: none;
+            }
+        }
+
+        &.bg-primary{
+            &,
+            a:not([class]){
+                color: #FFF;
+            }
+        }
+
+        .btn{
+            &.d-block{
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

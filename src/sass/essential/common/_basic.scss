@@ -11,6 +11,26 @@ body{
     color: $brand-main-blue;
 }
 
+.bg-support1{
+    background-color: $support-color1;
+}
+
+.bg-support2{
+    background-color: $support-color2;
+}
+
+.bg-support3{
+    background-color: $support-color3;
+}
+
+.bg-support4{
+    background-color: $support-color4;
+}
+
+.bg-support5{
+    background-color: $support-color5;
+}
+
 .sa-pagination{
     font-size: 16px;
 
@@ -39,6 +59,39 @@ body{
                     color: #FFF;
                 }
             }
+        }
+    }
+}
+
+.wpcf7-form{
+    .wpcf7-form-control-wrap{
+        .wpcf7-form-control{
+            &.wpcf7-not-valid{
+                border-color: $brand-main-red;
+            }
+        }
+
+        .wpcf7-not-valid-tip{
+            background-color: $brand-main-red;
+            padding: 1px 8px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #FFF;
+        }
+    }
+
+    &.submitting{
+        position: relative;
+
+        &:before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            background: rgba(#FFFFFF,0.5);
         }
     }
 }

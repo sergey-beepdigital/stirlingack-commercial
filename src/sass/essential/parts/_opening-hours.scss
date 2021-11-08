@@ -1,0 +1,39 @@
+.branch-opening-hours-block{
+    background-color: $brand-main-blue;
+    padding: 20px;
+
+    h4{
+        margin-bottom: 15px;
+    }
+
+    &--hours-wrap{
+        padding: 25px 35px;
+        background-color: #FFF;
+
+        .opening-hours-list{
+            & > div{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &--hours{
+                color: $support-color2;
+            }
+        }
+
+        & + .branch-opening-hours-block--features-wrap{
+            margin-top: 25px;
+        }
+    }
+
+    &--features-wrap{
+        color: #FFF;
+
+        ul{
+            color: $support-color3;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

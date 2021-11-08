@@ -3,7 +3,9 @@
         <div class="row no-gutters">
             <div class="col-xl-8">
                 <div class="bg-primary section-content-image--content">
-                    <h2 class="h1">{{ section.ci_title }}</h2>
+                    {% if section.ci_title %}
+                        <h2 class="h1">{{ section.ci_title }}</h2>
+                    {% endif %}
                     <div class="section-content-image--content_inner content-clear">{{ section.ci_content }}</div>
                     {% if section.ci_link %}
                         {% include 'components/parts/link.twig' with {

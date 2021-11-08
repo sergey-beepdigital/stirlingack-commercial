@@ -40,23 +40,32 @@
 /*
 * Parts
 */
+@import "popups/valuation";
+
+
+/*
+* Parts
+*/
 @import "parts/header";
 @import "parts/footer";
 @import "parts/breadcrumbs";
 @import "parts/insight-sidebar";
 @import "parts/share";
+@import "parts/opening-hours";
 
 
 /*
 * Global
 */
 @import "global/blog-post";
+@import "global/branch-post";
 
 
 /*
 * Shortcodes
 */
 @import "shortcode/branch-area-box";
+@import "shortcode/branches-list";
 
 
 /*
@@ -69,6 +78,9 @@
 @import "sections/cta-carousel";
 @import "sections/property-calculator";
 @import "sections/promo-area";
+@import "sections/dataloft";
+@import "sections/valuation-types";
+@import "sections/two-wide-content-boxes";
 
 
 /*

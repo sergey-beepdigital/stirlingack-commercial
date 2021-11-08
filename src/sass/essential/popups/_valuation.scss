@@ -1,0 +1,12 @@
+.valuation-popup{
+    &--form-wrap{
+        .wpcf7-submit{
+            width: 100%;
+            max-width: 250px;
+
+            & + .wpcf7-spinner{
+                display: none;
+            }
+        }
+    }
+}

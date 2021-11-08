@@ -1,4 +1,6 @@
 .section-content-image{
+    min-height: calc(480px + 70px);
+
     &--content{
         color: #FFF;
         position: relative;

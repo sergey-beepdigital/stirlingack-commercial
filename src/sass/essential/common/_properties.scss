@@ -11,6 +11,10 @@ ul.properties{
             .thumbnail{
                 position: relative;
 
+                img{
+                    width: 100%;
+                }
+
                 .property-images-count,
                 .flag{
                     padding: 15px 20px!important;

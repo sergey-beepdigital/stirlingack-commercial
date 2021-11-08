@@ -35,6 +35,7 @@
 }
 
 .content-clear{
+    h2, h3, h4, h5,
     p{
         margin-bottom: 25px;
     }
@@ -96,5 +97,11 @@
 
     select{
         appearance: none;
+    }
+}
+
+.page-separator{
+    hr{
+        margin: 0;
     }
 }

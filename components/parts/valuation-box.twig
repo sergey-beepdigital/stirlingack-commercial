@@ -1,0 +1,28 @@
+<div class="valuation-type-block">
+    {% if data.title %}
+        <h3 class="text-uppercase">{{ data.title }}</h3>
+    {% endif %}
+
+    {% if data.features_list %}
+
+        <ul>
+
+            {% for item in data.features_list %}
+
+                <li>{{ item.feature }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% endif %}
+
+    {% if data.button.type == 'link' %}
+        {% include 'components/parts/link.twig' with {
+            link: data.button.link,
+            css_class: 'btn btn-lg btn-block btn-primary text-uppercase'
+        } %}
+    {% else %}
+        <a href="javascript:;" onclick="{{ data.button.function }}" class="btn btn-lg btn-block btn-primary text-uppercase">{{ data.button.title }}</a>
+    {% endif %}
+</div>
