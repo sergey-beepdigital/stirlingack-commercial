@@ -451,7 +451,7 @@ add_action('propertyhive_before_main_content','sa_properties_breadcrumbs',10);
 
 $save_search = PH_Save_Search::instance();
 remove_action( 'propertyhive_before_search_results_loop', array( $save_search, 'save_search_button' ), 99 );
-add_action( 'property_search_form_end', array( $save_search, 'save_search_button' ), 10 );
+add_action( 'property_search_after_form', array( $save_search, 'save_search_button' ), 50 );
 
 /*function test_button() {
     $save_search = PH_Save_Search::instance();

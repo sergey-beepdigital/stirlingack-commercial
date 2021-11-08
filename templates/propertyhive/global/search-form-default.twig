@@ -1,5 +1,5 @@
 <div class="container">
-    <form name="ph_property_search" class="property-search-form property-search-form-{{ form_id }} clear"
+    <form name="ph_property_search" class="property-search-form mb-0 property-search-form-{{ form_id }} clear"
           action="{{ property_archive_link }}" method="get" role="form">
 
         <div class="form-controls-wrap">
@@ -33,7 +33,7 @@
                 </label>
             </div>
         </div>
-
-        {% do action('property_search_form_end') %}
     </form>
+
+    {% do action('property_search_after_form') %}
 </div>
