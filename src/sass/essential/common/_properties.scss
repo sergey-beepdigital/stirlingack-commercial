@@ -207,6 +207,7 @@ ul.properties{
         }
     }
 
+    .button,
     input[type="submit"] {
         background-color: $brand-main-blue;
         color: #FFF;
@@ -214,9 +215,31 @@ ul.properties{
         text-transform: uppercase;
         padding: 18px;
         transition: 0.3s ease all;
+        display: inline-block;
+        text-decoration: none!important;
 
         &:hover{
             background-color: $support-color2;
         }
+    }
+}
+
+#save_search_popup{
+    h2{
+        margin-bottom: 20px;
+    }
+
+    .fa-bell{
+        display: none;
+    }
+
+    .control{
+        input{
+            border-bottom: 1px solid $support-color4;
+        }
+    }
+
+    input[type="submit"]{
+        min-width: 150px;
     }
 }
