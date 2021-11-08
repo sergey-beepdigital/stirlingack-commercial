@@ -1027,7 +1027,49 @@
                     "name": "branch_content",
                     "label": "Branch Content",
                     "display": "block",
-                    "sub_fields": [],
+                    "sub_fields": [
+                        {
+                            "key": "field_618902acb49de",
+                            "label": "Editor",
+                            "name": "bc_editor",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "70",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_618902cab49df",
+                            "label": "Branch",
+                            "name": "bc_branch",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "sa_branch"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
+                        }
+                    ],
                     "min": "",
                     "max": ""
                 }
@@ -1054,5 +1096,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636368852
+    "modified": 1636369178
 }

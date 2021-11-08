@@ -1,0 +1,22 @@
+<section class="page-section page-section--padding50 section-branch-content">
+    <div class="container">
+        <div class="row">
+            <div class="{{ section.bc_branch ? 'col-xl-5 offset-xl-1' : 'col-12' }}">
+                <div class="content-clear pr-5">
+                    {{ section.bc_editor }}
+                </div>
+            </div>
+
+            {% if section.bc_branch %}
+
+                <div class="col-xl-4">
+                    {% include 'global/branch.twig' with {
+                        post: TimberPost(section.bc_branch)
+                    } %}
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</section>
