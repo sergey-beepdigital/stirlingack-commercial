@@ -6,7 +6,19 @@
  * @param $property
  */
 function pickup_new_property($post_id, $property) {
-    update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
+    //update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
+    $new = '';
+
+    if(isset($property->ID)) {
+        $property_id_parts = array_reverse(explode('-',$property->ID));
+        $property_id_office_part = reset($property_id_parts);
+
+        if(substr($property_id_office_part,0,3) == 'NEW') {
+            $new = 'yes';
+        }
+    }
+
+    update_post_meta($post_id, '_new_home', $new);
 }
 add_action("propertyhive_property_imported_jet", "pickup_new_property", 10, 2);
 
@@ -440,30 +452,11 @@ add_filter('propertyhive_results_views', 'sa_property_results_views', 1);
 
 
 /**
- * Add breadcrumbs to property pages
+ * Relocation for save search button
  */
-function sa_properties_breadcrumbs() {
-    if ( function_exists('yoast_breadcrumb') ) {
-        yoast_breadcrumb( '<div id="breadcrumbs"><div class="container">','</div></div>' );
-    }
-}
-add_action('propertyhive_before_main_content','sa_properties_breadcrumbs',10);
-
 $save_search = PH_Save_Search::instance();
 remove_action( 'propertyhive_before_search_results_loop', array( $save_search, 'save_search_button' ), 99 );
 add_action( 'property_search_after_form', array( $save_search, 'save_search_button' ), 50 );
-
-/*function test_button() {
-    $save_search = PH_Save_Search::instance();
-
-    ob_start();
-    $save_search->save_search_button();
-    $html =  ob_get_contents();
-    ob_end_clean();
-
-    echo '<div>'.$html.'</div>';
-}*/
-//add_action('property_search_form_control_end', 'test_button', 10);
 
 
 /**

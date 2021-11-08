@@ -1,0 +1,25 @@
+<section class="page-section page-section--padding50 section-content-image {{ section.ci_logo_watermark ? 'has-logo-watermark' : '' }}">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-xl-8">
+                <div class="bg-primary section-content-image--content">
+                    {% if section.ci_title %}
+                        <h2 class="h1">{{ section.ci_title }}</h2>
+                    {% endif %}
+                    <div class="section-content-image--content_inner content-clear">{{ section.ci_content }}</div>
+                    {% if section.ci_link %}
+                        {% include 'components/parts/link.twig' with {
+                            link: section.ci_link,
+                            css_class: 'link-border link-border--red'
+                        } %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="section-content-image--image-wrap">
+                    <img src="{{ section.ci_image }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

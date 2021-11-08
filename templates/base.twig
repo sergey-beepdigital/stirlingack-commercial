@@ -13,6 +13,8 @@
             {% include 'header.twig' %}
         {% endblock %}
 
+        {% do action('after_header_breadcrumbs') %}
+
 		<section id="content" role="main">
 			{#{% if title %}<h1>{{title}}</h1>{% endif %}#}
 			<div class="wrapper">

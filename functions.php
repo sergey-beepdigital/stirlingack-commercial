@@ -614,3 +614,15 @@ function sa_save_insight($post_ID) {
     }
 }
 add_action('save_post_post', 'sa_save_insight', 10);
+
+/**
+ * Add breadcrumbs to the pages
+ */
+function sa_breadcrumbs() {
+    if(is_front_page()) return;
+
+    if ( function_exists('yoast_breadcrumb') ) {
+        yoast_breadcrumb( '<div id="breadcrumbs"><div class="container">','</div></div>' );
+    }
+}
+add_action('after_header_breadcrumbs','sa_breadcrumbs',10);
