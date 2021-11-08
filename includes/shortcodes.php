@@ -85,11 +85,17 @@ function button_shortcode($atts) {
         'title' => 'Button Title',
         'url' => '#',
         'target' => false,
-        'css_class' => 'btn btn-lg btn-primary text-uppercase'
+        'css_class' => 'btn btn-lg btn-primary text-uppercase',
+        'block' => false
     ], $atts);
 
     $css_class = !empty($atts['css_class'])?$atts['css_class']:'';
     $target = $atts['target']?'target="_blank"':'';
+    $block = filter_var($atts['block'], FILTER_VALIDATE_BOOLEAN);
+
+    if($block) {
+        $css_class = $css_class . ' btn-block';
+    }
 
     return '<a ' . $target . ' class="' . $css_class . '" href="' . $atts['url'] . '">' . $atts['title'] . '</a>';
 }

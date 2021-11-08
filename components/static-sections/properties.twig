@@ -1,0 +1,42 @@
+<section class="page-section page-section--padding50 section-shortcode-properties {{ css_class }}">
+    <div class="container">
+        {% if title %}
+            <div class="page-section--heading">
+                <h3>{{ title }}</h3>
+            </div>
+        {% endif %}
+
+        {{ shortcode | shortcodes }}
+
+        {% if actions %}
+
+            <div class="page-section--actions">
+
+                {% if actions %}
+
+                    <div class="row">
+                        {% for button in actions %}
+
+                            {% if actions | length > 1 %}
+                                <div class="col-xl-5 {{ loop.first ? 'offset-xl-1' : '' }}">
+                            {% else %}
+                                <div class="col-xl-2 offset-xl-5">
+                            {% endif %}
+
+                                {% include 'components/parts/link.twig' with {
+                                    link: button.link,
+                                    css_class: 'btn btn-lg btn-primary d-block text-uppercase'
+                                } %}
+
+                            </div>
+
+                        {% endfor %}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+    </div>
+</section>

@@ -1,4 +1,14 @@
-<section class="page-section page-section--padding50">
+{% include 'components/static-sections/properties.twig' with {
+    title: section.ppl_title,
+    shortcode: section.ppl_shortcode,
+    actions: {
+        button: {
+            link: section.ppl_more_link
+        }
+    }
+} %}
+
+{#<section class="page-section page-section--padding50">
     <div class="container">
         <div class="page-section--heading">
             <h3>{{ section.ppl_title }}</h3>
@@ -13,4 +23,4 @@
             } %}
         </div>
     </div>
-</section>
+</section>#}

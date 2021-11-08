@@ -3,10 +3,25 @@
 {% block content %}
     {% set key_services = post.get_field('branch_key_services') %}
     {% set opening_hours = post.get_field('branch_opening_hours') %}
+    {% set latest_properties = post.get_field('branch_latest_properties') %}
+    {% set two_side_cta = post.get_field('branch_two_side_cta') %}
 
-    {% include 'components/static-sections/page-top.twig' with {
-        post: post
+    {% embed 'components/static-sections/page-top.twig' with {
+        post: post,
+        short_description: post.hero_short_description,
+        custom: {
+            title: 'Stirling Ackroyd<br>' ~ post.title,
+        },
+        section_css_class: 'has-reviews-area'
     } %}
+
+        {% block left_block_below %}
+            <div class="feefo-widget-wrap">
+                <div id="feefo-service-review-widgetId" class="feefo-review-widget-service"></div>
+            </div>
+        {% endblock %}
+
+    {% endembed %}
 
     <section class="page-section page-section--padding50">
         <div class="container">
@@ -57,54 +72,37 @@
         </div>
     </section>
 
-    <section class="page-section page-section--padding50 bg-support5">
-        <div class="container">
-            <div class="page-section--heading">
-                <h3 class="text-uppercase">OUR LATEST PROPERTY IN {{ post.title }}</h3>
-            </div>
+    {% if latest_properties.shortcode %}
 
-            {{ '[properties posts_per_page="3" address_keyword="E14"]' | shortcodes }}
+        {% include 'components/static-sections/properties.twig' with {
+            css_class: 'bg-support5',
+            title: latest_properties.title,
+            shortcode: latest_properties.shortcode,
+            actions: latest_properties.buttons
+        } %}
 
-            <div class="page-section--actions actions-mt50">
+    {% endif %}
+
+    {% if two_side_cta.content_left != '' or two_side_cta.content_right != '' %}
+
+        <section class="page-section page-section--padding50 pb-0 section-two-wide-content-boxes">
+            <div class="container-wide">
                 <div class="row">
-                    <div class="col-xl-5 offset-xl-1">
-                        <a href="#" class="btn btn-lg btn-primary d-block text-uppercase">Property To Buy Near Canary Wharf (E14)</a>
+                    <div class="col-xl-6">
+                        <div class="bg-primary content-clear half-content-box half-content-box--left-offset">
+                            {{ two_side_cta.content_left }}
+                        </div>
                     </div>
-                    <div class="col-xl-5">
-                        <a href="#" class="btn btn-lg btn-primary d-block text-uppercase">Property To Rent Near Canary Wharf (E14)</a>
+                    <div class="col-xl-6">
+                        <div class="bg-support3 content-clear half-content-box half-content-box--right-offset">
+                            {{ two_side_cta.content_right }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="page-section page-section--padding50 pb-0 section-two-wide-content-boxes">
-        <div class="container-wide">
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="bg-primary content-clear half-content-box half-content-box--left-offset">
-                        <h2>Looking to sell or let your property in Canary Wharf?</h2>
-                        <p>Our property experts have experience selling and letting a variety of property types. Whether it’s your penthouse apartment or flat, mansion, detached or semi-detached house, we go to great lengths to get the best result for you. To book your FREE, no obligation property valuation call 02080365803 now.</p>
-                        <p>Stirling Ackroyd Estate Agents Canary Wharf also provides a range of dedicated property services including:</p>
-                        <p>
-                            <a href="#">Property Management</a><br>
-                            <a href="#">Mortgages and Protection</a><br>
-                            <a href="#">Conveyancing</a><br>
-                            <a href="#">Surveying</a><br>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="bg-support3 content-clear half-content-box half-content-box--right-offset">
-                        <h2>Looking to buy or rent a property in Canary Wharf?</h2>
-                        <p>At Stirling Ackroyd Estate Agents Canary Wharf, we understand that choosing where to buy or rent a property is a big decision. That is why all of our staff are experts on the local area, enabling them to not only find you your perfect home in Canary Wharf, but also help you find your perfect lifestyle.</p>
-                        <a href="#" class="btn btn-lg btn-primary text-uppercase d-block">Property To Buy Near Canary Wharf (E14)</a>
-                        <a href="#" class="btn btn-lg btn-primary text-uppercase d-block">Property To Rent Near Canary Wharf (E14)</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {% endif %}
 
     {% if post.branch_dataloft_widget_code %}
 

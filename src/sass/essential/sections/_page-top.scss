@@ -14,13 +14,43 @@
         margin-top: 27px;
     }
 
+    &--short-description{
+        font-size: 22px;
+        margin-top: 15px;
+    }
+
     &.has-branch-area{
         .section-page-top--left-wrap{
             padding-bottom: 110px;
         }
 
         .branch-area-box-shortcode{
-            margin: -77px 100px 0 55px;
+            margin: -80px 100px 0 55px;
+        }
+    }
+
+    &.has-reviews-area{
+        .section-page-top--left-wrap{
+            padding-bottom: 180px;
+        }
+
+        .feefo-widget-wrap{
+            padding: 17px;
+            margin: -77px 100px 0 80px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+            background: #FFF;
+
+            .feefowidget-global-container,
+            .feefowidget-global-container-header{
+                padding: 0;
+            }
+
+            .feefowidget-merchant-header__summary .feefowidget-header-information-title,
+            .feefowidget-merchant-header__summary .feefowidget-header-image,
+            .feefowidget-footer,
+            .feefowidget-global-container-body{
+                display: none;
+            }
         }
     }
 }
