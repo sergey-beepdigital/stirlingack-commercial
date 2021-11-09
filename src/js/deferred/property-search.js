@@ -32,6 +32,13 @@ var SA_PropertySearch = SA_PropertySearch || {};
                 $this.parent().addClass('active');
                 $('#department_' + departmentValue).click();
 
+                if(departmentValue == 'residential-sales'){
+                    $('#new-homes-checkbox').parent().show();
+                } else {
+                    $('#new-homes-checkbox').parent().hide();
+                    $('#new-homes-checkbox').prop('checked',false);
+                }
+
                 return false;
             }
         }

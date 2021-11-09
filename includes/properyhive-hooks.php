@@ -680,3 +680,57 @@ remove_action( 'wp_enqueue_scripts', array($rental_yield_calculator,'load_rental
  */
 $stamp_duty_calculator = PH_Stamp_Duty_Calculator::instance();
 remove_action( 'wp_enqueue_scripts', array( $stamp_duty_calculator, 'load_stamp_duty_calculator_styles' ) );
+
+function sa_property_search_checkboxes() {
+    $new_home_checked = '';
+    $new_home_display = 'inline-block';
+    if(!empty($_GET['department']) && $_GET['department'] != 'residential-sales') {
+        $new_home_display = 'none';
+    }
+
+    if(!empty($_GET['new_home']) && $_GET['new_home'] == 1) {
+        $new_home_checked = 'checked';
+    } ?>
+
+    <div class="property-search-form--checkbox-group">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="include-recent-props-checkbox">
+            <label class="form-check-label" for="include-recent-props-checkbox">
+                Include Recently Let Properties
+            </label>
+        </div>
+        <div class="form-check form-check-inline" style="display: <?php echo $new_home_display; ?>">
+            <input class="form-check-input" type="checkbox" name="new_home" value="1" <?php echo $new_home_checked; ?> id="new-homes-checkbox">
+            <label class="form-check-label" for="new-homes-checkbox">
+                New Homes Only
+            </label>
+        </div>
+    </div>
+<?php }
+add_action('property_search_before_end_form','sa_property_search_checkboxes',10);
+
+function sg_get_properties_query($q) {
+    if (is_admin())
+        return;
+
+    if (!$q->is_main_query())
+        return;
+
+    if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
+        return;
+
+    if (isset($_GET['shortlisted']))
+        return;
+
+    $meta_query = $q->get('meta_query');
+
+    if (isset($_REQUEST['new_home'])) {
+        $meta_query[] = array(
+            'key' => '_new_home',
+            'value' => 'yes'
+        );
+    }
+
+    $q->set('meta_query', $meta_query);
+}
+add_action('pre_get_posts', 'sg_get_properties_query');

@@ -19,20 +19,7 @@
             {% do action('property_search_form_control_end') %}
         </div>
 
-        <div class="property-search-form--checkbox-group">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="" id="include-recent-props-checkbox">
-                <label class="form-check-label" for="include-recent-props-checkbox">
-                    Include Recently Let Properties
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="" id="new-homes-checkbox">
-                <label class="form-check-label" for="new-homes-checkbox">
-                    New Homes Only
-                </label>
-            </div>
-        </div>
+        {% do action('property_search_before_end_form') %}
     </form>
 
     {% do action('property_search_after_form') %}
