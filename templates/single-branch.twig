@@ -6,6 +6,44 @@
     {% set latest_properties = post.get_field('branch_latest_properties') %}
     {% set two_side_cta = post.get_field('branch_two_side_cta') %}
 
+    <div class="branch-contact-details">
+        <div class="branch-contact-details--heading bg-primary text-uppercase">
+            <div class="container">
+                Contact Our {{ post.title }} Branch
+            </div>
+        </div>
+        <div class="branch-contact-details--contacts">
+            <div class="container">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <ul class="mb-0">
+                            {% if post.branch_sale_phone %}
+                                <li><i class="fa-light fa-phone"></i> Sales {{ post.branch_sale_phone }}</li>
+                            {% endif %}
+                            {% if post.branch_let_phone %}
+                                <li><i class="fa-light fa-phone"></i> Lettings {{ post.branch_let_phone }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="flex-grow-1">
+                        {% if post.branch_address %}
+                            <div>{{ post.branch_address }}<br><a href="#">View Map</a></div>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% include 'components/parts/link.twig' with {
+                            link: {
+                                title: 'Email',
+                                url: '#'
+                            },
+                            css_class: 'link-border link-border--red'
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% embed 'components/static-sections/page-top.twig' with {
         post: post,
         short_description: post.hero_short_description,
