@@ -18,10 +18,10 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_616c4177022e5",
-                    "label": "Sign In",
-                    "name": "sign_in",
-                    "type": "url",
+                    "key": "field_618aa719e9470",
+                    "label": "Portal Login",
+                    "name": "portal_login",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -31,7 +31,10 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": ""
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_616c4138022e4",
@@ -48,44 +51,6 @@
                     },
                     "default_value": "",
                     "placeholder": ""
-                },
-                {
-                    "key": "field_616c418f022e6",
-                    "label": "Property Valuation",
-                    "name": "property_valuation",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_6176dab8fa7b5",
-                    "label": "Blog Page",
-                    "name": "blog_page",
-                    "type": "post_object",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "page"
-                    ],
-                    "taxonomy": "",
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "return_format": "id",
-                    "ui": 1
                 }
             ]
         },
@@ -168,5 +133,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636034365
+    "modified": 1636478489
 }

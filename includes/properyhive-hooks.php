@@ -548,7 +548,7 @@ function sa_property_detail_related_insights() {
         'title' => 'Property Insights',
         'more_link' => [
             'title' => 'More News & Insights for ' . $branch_data['title'],
-            'url' => get_the_permalink($context['options']['page_url']['blog_page']) . '?branch_id=' . $branch_data['id']
+            'url' => get_the_permalink($context['options']['page']['blog_list_page_id']) . '?branch_id=' . $branch_data['id']
         ],
         'posts' => $branch->get_insights(),
         'theme' => [

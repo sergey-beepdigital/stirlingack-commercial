@@ -1,0 +1,72 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+    <section class="page-section page-section--padding50 section-login-register">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10 offset-xl-1">
+                    <h1>{{ post.title }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-login-register--inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 offset-xl-1">
+                        <div class="section-login-register--login-box">
+                            <h2>Homebuyers Sign In</h2>
+                            {{ '[propertyhive_login_form]' | shortcodes }}
+                        </div>
+                    </div>
+                    <div class="col-xl-4 offset-xl-1">
+                        <div class="section-login-register--register-cta">
+                            <h2>Register</h2>
+                            <div class="flex-grow-1">
+                                {{ post.content }}
+                            </div>
+                            <div>
+                                <a href="{{ register_page_url }}" class="btn btn-primary btn-lg text-uppercase">Register Here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section page-section--padding50 section-portal-login">
+        <div class="container-wide">
+            <div class="row">
+                <div class="col-xl-5 offset-xl-1">
+                    <div class="section-portal-login--content">
+                        <h2 class="h1">Login to Your Portal</h2>
+                        <ul>
+                            <li>
+                                <h3 class="h2">Landlords</h3>
+                                <p>Login to manage your lettings properties online.</p>
+                                <a href="{{ options.page_url.portal_login }}" target="_blank" class="text-uppercase">Landlords login <i class="fa-regular fa-chevron-right"></i></a>
+                            </li>
+                            <li>
+                                <h3 class="h2">Tenants</h3>
+                                <p>Quickly and easily report any maintenance issues.</p>
+                                <a href="{{ options.page_url.portal_login }}" target="_blank" class="text-uppercase">Tenants login <i class="fa-regular fa-chevron-right"></i></a>
+                            </li>
+                            <li>
+                                <h3 class="h2">Stirling Ackroyd<br>Landlords or Tenants</h3>
+                                <a href="{{ options.page_url.portal_login }}" target="_blank" class="text-uppercase">Please Click Here <i class="fa-regular fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <img src="{{ post.thumbnail }}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'sections.twig' with { 'sections' : post.get_field('page_sections') } %}
+
+{% endblock %}

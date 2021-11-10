@@ -1,0 +1,18 @@
+<section class="page-section page-section--padding50 section-cta-text text-center">
+    <div class="container">
+        <div class="section-cta-text--style style-{{ section.ctat_style }}">
+            {% if section.ctat_title %}
+                <h3 class="text-uppercase">{{ section.ctat_title }}</h3>
+            {% endif %}
+            <div class="section-cta-text--content">{{ section.ctat_content }}</div>
+            {% if section.ctat_link %}
+                <div class="section-cta-text--actions">
+                    {% include 'components/parts/link.twig' with {
+                        link: section.ctat_link,
+                        css_class: 'link-border link-border--red'
+                    } %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

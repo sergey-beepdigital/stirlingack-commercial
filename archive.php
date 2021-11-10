@@ -37,7 +37,7 @@ if ( is_day() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
-$blog_page_id = $context['options']['page_url']['blog_page'];
+$blog_page_id = $context['options']['page']['blog_list_page_id'];
 
 $posts_query = new Timber\PostQuery($wp_query);
 

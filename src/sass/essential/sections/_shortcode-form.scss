@@ -1,0 +1,52 @@
+.section-shortcode-form{
+    position: relative;
+
+    &:before{
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 50%;
+        width: calc(50% + 285px);
+        background-color: $support-color5;
+    }
+
+    &--box{
+        background-color: #FFF;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        padding: 30px;
+        margin-left: -30px;
+        margin-right: -30px;
+
+        .applicant-registration-form{
+            input[type="number"]{
+                max-width: 100%!important;
+            }
+
+            .control{
+                &:not(.control-department):not(.control-property_type) {
+                    border-bottom: 1px solid $support-color5;
+                }
+
+                &.control-department{
+                    label:not([for]) {
+                        margin-right: 40px;
+                    }
+                }
+
+                &.control-property_type{
+                    .ms-options-wrap{
+                        width: 100%;
+                    }
+                }
+            }
+
+            input[type="submit"]{
+                max-width: 230px;
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+}
