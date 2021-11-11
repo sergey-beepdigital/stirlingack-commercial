@@ -1,8 +1,44 @@
-<section class="page-section page-section--padding50 section-content">
+<section class="page-section page-section--padding50 section-content {{ section.text_2_columns ? 'section-content--2-columns' : '' }}" {{ section.cont_css_class }}>
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 offset-lg-1 content-clear">
-                {{ section.cont_editor_1 }}
+            <div class="{{ section.const_fullwidth_container ? 'col-xl-12' : 'col-lg-10 offset-lg-1' }}">
+
+                {% if section.sidebar and section.cont_has_image != 1 %}
+
+                    <div class="row">
+                        <div class="col-xl-7">
+                            <div class="content-clear">
+                                {{ section.cont_editor_1 }}
+                            </div>
+                        </div>
+                        <div class="col-xl-4 offset-xl-1">
+                            <div class="section-content--sidebar">
+                                {{ section.sidebar }}
+                            </div>
+                        </div>
+                    </div>
+
+                {% elseif section.cont_has_image and section.cont_image %}
+
+                    <div class="row">
+                        <div class="col-xl-5">
+                            <div class="content-clear">
+                                {{ section.cont_editor_1 }}
+                            </div>
+                        </div>
+                        <div class="col-xl-6 offset-xl-1">
+                            <img src="{{ section.cont_image }}">
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    <div class="content-clear">
+                        {{ section.cont_editor_1 }}
+                    </div>
+
+                {% endif %}
+
             </div>
         </div>
     </div>

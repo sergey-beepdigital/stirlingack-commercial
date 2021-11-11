@@ -69,6 +69,13 @@
 
 
 /*
+* Blocks
+*/
+@import "blocks/latest-posts";
+@import "blocks/cta-box";
+
+
+/*
 * Sections
 */
 @import "sections/404";
@@ -78,6 +85,7 @@
 @import "sections/home-hero";
 @import "sections/page-top";
 @import "sections/newsletter";
+@import "sections/content";
 @import "sections/content-image";
 @import "sections/cta-carousel";
 @import "sections/cta-text";

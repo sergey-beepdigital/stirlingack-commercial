@@ -1,26 +1,6 @@
 {% include 'components/static-sections/properties.twig' with {
     title: section.ppl_title,
     shortcode: section.ppl_shortcode,
-    actions: {
-        button: {
-            link: section.ppl_more_link
-        }
-    }
+    css_class: section.ppl_css_class,
+    actions: section.ppl_actions,
 } %}
-
-{#<section class="page-section page-section--padding50">
-    <div class="container">
-        <div class="page-section--heading">
-            <h3>{{ section.ppl_title }}</h3>
-        </div>
-
-        {{ section.ppl_shortcode | shortcodes }}
-
-        <div class="page-section--actions text-center">
-            {% include 'components/parts/link.twig' with {
-                link: section.ppl_more_link,
-                css_class: 'btn btn-lg btn-primary text-uppercase'
-            } %}
-        </div>
-    </div>
-</section>#}

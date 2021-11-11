@@ -1,0 +1,33 @@
+{#
+/**
+ * Block Name: Latest Post
+ *
+ */
+#}
+
+{% if is_preview %}
+    <style type="text/css">
+        .blog-post img{width: 100%;}
+    </style>
+{% endif %}
+
+<div id="block-latest-posts-{{ block.id }}" class="block-latest-posts">
+    <h3>{{ fields.title }}</h3>
+
+    {% if posts %}
+        <div class="block-latest-posts--list">
+            {% for post in posts %}
+
+                {% include 'global/post.twig' with {
+                    post : post
+                } %}
+
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% include 'components/parts/link.twig' with {
+        link: fields.more_link,
+        css_class: 'more-link'
+    } %}
+</div>

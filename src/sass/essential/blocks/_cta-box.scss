@@ -1,0 +1,22 @@
+.block-cta-box{
+    border: 20px solid $brand-main-blue;
+    background-color: #FFF;
+    padding: 25px;
+
+    & > h3{
+        margin-bottom: 20px;
+    }
+
+    &--content{
+        color: $support-color2;
+
+        & > *:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    .block-action-link{
+        margin-top: 35px;
+        display: inline-block;
+    }
+}

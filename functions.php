@@ -182,6 +182,8 @@ class StarterSite extends TimberSite {
         // require_once custom acf blocks here
 
         // require_once('includes/blocks/example.php');
+        require_once('includes/blocks/cta-box.php');
+        require_once('includes/blocks/latest-post.php');
     }
 
     function add_to_context( $context ) {
@@ -218,6 +220,10 @@ class StarterSite extends TimberSite {
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
         wp_deregister_script( 'flexslider');
         wp_deregister_script( 'flexslider-init');
+
+        if(is_singular('sa_branch')) {
+            wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
+        }
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
@@ -583,6 +589,16 @@ function sa_widgets_init() {
         'id'            => 'insight-widgets',
         'description'   => __('Add widgets here to appear in your area.', 'stirlingack'),
         'before_widget' => '<div id="%1$s" class="insight-widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5 class="h3 widget-title">',
+        'after_title'   => '</h5>',
+    ]);
+
+    register_sidebar([
+        'name'          => __('Content Widgets', 'stirlingack'),
+        'id'            => 'content-widgets',
+        'description'   => __('Add widgets here to appear in your area.', 'stirlingack'),
+        'before_widget' => '<div id="%1$s" class="content-widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h5 class="h3 widget-title">',
         'after_title'   => '</h5>',

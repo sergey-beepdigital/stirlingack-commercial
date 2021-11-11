@@ -100,3 +100,23 @@ function button_shortcode($atts) {
     return '<a ' . $target . ' class="' . $css_class . '" href="' . $atts['url'] . '">' . $atts['title'] . '</a>';
 }
 add_shortcode('button','button_shortcode');
+
+function link_arrow_shortcode($atts) {
+    $atts = shortcode_atts([
+        'title' => 'Link Title',
+        'url' => '#',
+        'target' => false,
+        'css_class' => 'shortcode-link-arrow'
+    ], $atts);
+
+    $css_class = !empty($atts['css_class'])?$atts['css_class']:'';
+    $target = filter_var($atts['target'], FILTER_VALIDATE_BOOLEAN);
+
+    return '<a ' . $target . ' class="' . $css_class . '" href="' . $atts['url'] . '">' . $atts['title'] . ' <i class="fa-regular fa-chevron-right"></i></a>';
+}
+add_shortcode('link_arrow','link_arrow_shortcode');
+
+function text_two_columns_shortcode($atts, $content) {
+    return '<div class="content-2-columns">' . do_shortcode($content) . '</div>';
+}
+add_shortcode('text_two_columns','text_two_columns_shortcode');

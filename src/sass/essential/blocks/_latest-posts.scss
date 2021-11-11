@@ -1,0 +1,25 @@
+.block-latest-posts{
+    & > h3{
+        margin-bottom: 20px;
+    }
+
+    &--list{
+        .blog-post{
+            &:not(:first-child) {
+                border-top: 1px solid $support-color5;
+                margin-top: 20px;
+                padding-top: 25px;
+            }
+        }
+    }
+
+    .more-link{
+        margin-top: 30px;
+        display: inline-block;
+        text-decoration: underline;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}

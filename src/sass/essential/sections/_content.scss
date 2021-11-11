@@ -1,0 +1,15 @@
+.section-content{
+    .content-clear {
+
+    }
+
+    &--sidebar{
+        .acf-widget-area{
+            .content-widget{
+                &:not(:first-child) {
+                    margin-top: 50px;
+                }
+            }
+        }
+    }
+}

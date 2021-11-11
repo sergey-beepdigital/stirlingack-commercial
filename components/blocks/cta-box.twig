@@ -1,0 +1,21 @@
+{#
+/**
+ * Block Name: CTA Box
+ *
+ */
+#}
+
+{% if is_preview %}{% endif %}
+
+<div id="block-cta-box-{{ block.id }}" class="block-cta-box text-center">
+    <h3 class="text-uppercase">{{ fields.title }}</h3>
+
+    <div class="block-cta-box--content">
+        {{ fields.text }}
+    </div>
+
+    {% include 'components/parts/link.twig' with {
+        link: fields.action_link,
+        css_class: 'link-border link-border--red block-action-link'
+    } %}
+</div>
