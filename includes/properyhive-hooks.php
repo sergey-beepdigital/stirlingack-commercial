@@ -5,7 +5,7 @@
  * @param $post_id
  * @param $property
  */
-function pickup_new_property($post_id, $property) {
+function DEPREACTED_pickup_new_property($post_id, $property) {
     //update_post_meta($post_id, '_new_home', ((isset($property->New) && $property->New == '1') ? 'yes' : ''));
     $new = '';
 
@@ -16,6 +16,16 @@ function pickup_new_property($post_id, $property) {
         if(substr($property_id_office_part,0,3) == 'NEW') {
             $new = 'yes';
         }
+    }
+
+    update_post_meta($post_id, '_new_home', $new);
+}
+
+function pickup_new_property($post_id, $property) {
+    $new = '';
+
+    if(!empty($property->Age) && in_array('New',$property->Age)) {
+        $new = 'yes';
     }
 
     update_post_meta($post_id, '_new_home', $new);
