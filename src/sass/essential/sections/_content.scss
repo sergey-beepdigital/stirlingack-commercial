@@ -12,4 +12,8 @@
             }
         }
     }
+
+    & + .section-block-links{
+        padding-top: 0;
+    }
 }

@@ -1,0 +1,25 @@
+{% if section.bl_blocks_list %}
+
+    <section class="page-section page-section--padding50 section-block-links">
+        <div class="container">
+            <div class="block-links-wrapper">
+                <div class="row">
+
+                    {% for block in section.bl_blocks_list %}
+                        <div class="col-xl-4">
+                            <div class="item-block-link">
+                                <a {% if block.url.target %}target="_blank"{% endif%} href="{{ block.url.url }}"><img src="{{ block.image }}" alt="{{ block.url.title }}"></a>
+                                {% if block.url %}
+                                    <h3><a {% if block.url.target %}target="_blank"{% endif%} href="{{ block.url.url }}">{{ block.url.title }}</a></h3>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endif %}
