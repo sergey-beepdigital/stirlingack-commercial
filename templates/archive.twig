@@ -36,21 +36,22 @@
                 <div class="col-xl-8">
 
                     {% if posts_query.get_posts() %}
+                        <div class="section-archive--list">
+                            <div class="row">
 
-                        <div class="row">
+                                {% for post in posts_query.get_posts() %}
 
-                            {% for post in posts_query.get_posts() %}
+                                    <div class="col-xl-6">
 
-                                <div class="col-xl-6">
+                                        {% include 'global/post.twig' with {
+                                            post : post
+                                        } %}
 
-                                    {% include 'global/post.twig' with {
-                                        post : post
-                                    } %}
+                                    </div>
 
-                                </div>
+                                {% endfor %}
 
-                            {% endfor %}
-
+                            </div>
                         </div>
 
                         <div class="sa-pagination">

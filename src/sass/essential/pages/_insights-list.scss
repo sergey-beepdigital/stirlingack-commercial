@@ -9,6 +9,17 @@
         }
     }
 
+    .section-archive{
+        &--list{
+            overflow: hidden;
+            margin-bottom: -50px;
+
+            .blog-post{
+                margin-bottom: 50px;
+            }
+        }
+    }
+
     .sa-pagination{
         margin-top: 60px;
         text-align: right;
