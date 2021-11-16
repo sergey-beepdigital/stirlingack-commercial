@@ -1,3 +1,32 @@
+.property-search-department-tabs{
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li{
+            display: inline-block;
+
+            a{
+                background-color: $support-color2;
+                color: #FFF;
+                display: block;
+                font-size: 16px;
+                font-weight: normal;
+                text-transform: uppercase;
+                padding: 13px;
+                text-decoration: none;
+            }
+
+            &.active{
+                a{
+                    background-color: $brand-main-blue;
+                }
+            }
+        }
+    }
+}
+
 .property-search-form{
     font-size: 16px;
     width: auto;
