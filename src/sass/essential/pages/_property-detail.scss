@@ -1,6 +1,6 @@
 .single-property{
     .property-detail-back-action-wrap{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
 
         a{
             font-weight: normal;
@@ -13,8 +13,8 @@
     }
 
     div.property{
-        .property-arrange-viewing,
-        .entry-summary{
+        /*.property-arrange-viewing,*/
+        .entry-summary .summary{
             margin-bottom: 30px;
         }
 
@@ -40,9 +40,21 @@
 
                     .price-qualifier{
                         display: block;
-                        font-size: 22px;
+                        font-size: 16px;
                         font-weight: 300;
                         color: $support-color2;
+                    }
+
+                    .property-flag-wrap{
+                        margin-top: 9px;
+
+                        .flag{
+                            position: relative!important;
+                            display: inline-block;
+                            font-size: 14px!important;
+                            font-weight: 300;
+                            text-transform: none!important;
+                        }
                     }
                 }
             }
@@ -59,8 +71,9 @@
                 }
             }
 
+            .property-detail-shortlisted-button-wrap,
             .property-detail-status-shortlisted-wrap{
-                margin-bottom: 30px;
+                /*margin-bottom: 30px;*/
 
                 .flag{
                     position: relative!important;
@@ -114,13 +127,14 @@
         }
 
         .images{
-            margin-bottom: 70px;
+            margin-bottom: 55px;
 
             .flexslider{
                 border-width: 0;
 
                 &.thumbnails{
-                    margin-top: 30px;
+                    margin-top: 20px;
+                    margin-bottom: 0;
 
                     li{
                         &.flex-active-slide{
@@ -193,12 +207,32 @@
                 }
 
                 h3{
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
                 }
 
                 .branch-info{
+                    color: $support-color2;
+
                     &--name{
-                        color: $support-color2;
+                        margin-bottom: 10px;
+                    }
+
+                    &--phone-number{
+                        color: $brand-main-blue;
+                    }
+
+                    .btn{
+                        margin: 10px auto;
+                        max-width: 200px;
+                        width: 100%;
+                    }
+
+                    &--address{
+                        margin: 10px 20px;
+
+                        a{
+                            color: $brand-main-blue;
+                        }
                     }
 
                     .link-border{
@@ -226,6 +260,34 @@
     }
 
     .section-property-detail-content-tabs{
+        .property-detail-tabs{
+            font-weight: normal;
+            text-transform: uppercase;
+            border-bottom: 1px solid $support-color4;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+
+            li{
+                &:not(:first-child) {
+                    margin-left: 30px;
+                }
+
+                a{
+                    @include link-border;
+
+                    &:hover{
+                        color: $brand-main-red;
+                    }
+
+                    &.active{
+                        &:before{
+                            background-color: $brand-main-red;
+                        }
+                    }
+                }
+            }
+        }
+
         .property-detail-description-wrapper{
             ul {
                 list-style: none;
@@ -272,5 +334,9 @@
             padding: 40px;
             text-align: center;
         }
+    }
+
+    #content + .page-separator{
+        margin-top: 50px;
     }
 }

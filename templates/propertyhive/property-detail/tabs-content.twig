@@ -1,5 +1,34 @@
 <section class="section-property-detail-content-tabs">
     <div class="container">
+        <ul class="property-detail-tabs nav">
+            <li>
+                <a class="active" data-toggle="tab" href="#property-info-description">Description</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#property-info-location">Location</a>
+            </li>
+
+            {% if floorplan_urls %}
+
+                <li>
+                    <a data-toggle="tab" href="#property-info-floorplan">Floorplan</a>
+                </li>
+
+            {% endif %}
+
+            {% if epc_urls %}
+
+                <li>
+                    <a data-toggle="tab" href="#property-info-epc">EPC</a>
+                </li>
+
+            {% endif %}
+
+            <li>
+                <a data-toggle="tab" href="#property-info-schools">Schools</a>
+            </li>
+        </ul>
+
         <div class="tab-content">
             <div id="property-info-description" class="tab-pane fade show active">
                 <div class="property-detail-description-wrapper">

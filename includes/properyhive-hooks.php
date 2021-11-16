@@ -515,12 +515,18 @@ add_action('propertyhive_after_main_content','sa_property_detail_wrap_end',50);
 function sa_property_detail_calculators() {
     if(!is_property()) return;
 
+    global $property;
+
     $content = Timber::context();
 
     /*$content['property_id'] = get_the_ID();
     $content['property_search_link'] = get_the_permalink(ph_get_page_id('search_results'));*/
 
-    Timber::render('propertyhive/shortcode/calculators.twig', $content);
+    if($property->_department == 'residential-sales') {
+        Timber::render('propertyhive/shortcode/calculators.twig', $content);
+    } else {
+        Timber::render('components/sections/separator.twig');
+    }
 }
 add_action('propertyhive_after_main_content','sa_property_detail_calculators',50);
 
@@ -580,7 +586,7 @@ function sa_property_detail_tabs_nav() {
         'epc_urls' => $property->_epc_urls
     ]);
 }
-add_action('propertyhive_after_single_property_summary','sa_property_detail_tabs_nav',30);
+//add_action('propertyhive_after_single_property_summary','sa_property_detail_tabs_nav',30);
 
 
 /**
@@ -645,19 +651,19 @@ add_action('propertyhive_single_property_summary','sa_property_detail_heading_en
 /**
  * Show property status and shortlist button as columns in new section
  */
-function sa_property_detail_status_shortlisted() {
-    $flag_html = '';
+function sa_property_detail_shortlisted_button() {
+    /*$flag_html = '';
     ob_start();
     $template_assistant = PH_Template_Assistant::instance();
     $template_assistant->add_flag_single();
     $flag_html = ob_get_contents();
-    ob_end_clean();
+    ob_end_clean();*/
 
     Timber::render('propertyhive/property-detail/status-shortlisted.twig',[
-        'flag_html' => $flag_html
+        //'flag_html' => $flag_html
     ]);
 }
-add_action('propertyhive_single_property_summary','sa_property_detail_status_shortlisted',18);
+add_action('propertyhive_single_property_summary','sa_property_detail_shortlisted_button',45);
 
 
 /**
@@ -675,7 +681,8 @@ function sa_property_detail_back_button() {
         echo '<div class="property-detail-back-action-wrap"><a href="javascript:;" onclick="history.back();"><i class="fa-regular fa-angle-left"></i> BACK TO SEARCH RESULTS</a></div>';
     }
 }
-add_action('propertyhive_single_property_summary','sa_property_detail_back_button',2);
+add_action('propertyhive_before_single_property_summary','sa_property_detail_back_button',2);
+//add_action('propertyhive_single_property_summary','sa_property_detail_back_button',2);
 
 
 /**

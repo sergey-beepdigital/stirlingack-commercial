@@ -22,4 +22,19 @@ global $post, $property;
        	}
     ?>
 
+    <?php
+
+    $flag_html = '';
+    ob_start();
+    $template_assistant = PH_Template_Assistant::instance();
+    $template_assistant->add_flag_single();
+    $flag_html = ob_get_contents();
+    ob_end_clean();
+
+    if(!empty($flag_html)) {
+        echo '<div class="property-flag-wrap">'.$flag_html.'</div>';
+    }
+
+    ?>
+
 </div>

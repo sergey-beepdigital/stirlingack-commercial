@@ -15,32 +15,28 @@
         }
 
         .property-calculators-wrapper{
-            background-color: #FFF;
-            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
             position: relative;
             z-index: 20;
 
             ul.nav{
-                padding: 30px;
                 text-transform: uppercase;
                 font-weight: normal;
 
                 li{
                     &:not(:first-child) {
-                        margin-left: 20px;
+                        margin-left: 2px;
                     }
 
                     a{
-                        @include link-border;
-
-                        &:hover{
-                            color: $brand-main-red;
-                        }
+                        background-color: $support-color2;
+                        color: #FFF;
+                        text-transform: uppercase;
+                        padding: 13px;
+                        display: block;
+                        text-decoration: none;
 
                         &.active{
-                            &:before{
-                                background-color: $brand-main-red;
-                            }
+                            background-color: $brand-main-blue;
                         }
                     }
                 }
@@ -97,7 +93,8 @@
             }
 
             .tab-content{
-                border-top: 1px solid $support-color4;
+                background-color: #FFF;
+                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
                 .calculator-fields-wrap{
                     padding: 30px;

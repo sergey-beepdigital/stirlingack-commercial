@@ -14,7 +14,7 @@ global $post;
 
 <div class="action-make-enquiry">
     
-    <a data-fancybox data-src="#makeEnquiry<?php echo $post->ID; ?>" href="javascript:;" class="link-border link-border--red">Arrange a viewing</a>
+    <a data-fancybox data-src="#makeEnquiry<?php echo $post->ID; ?>" href="javascript:;" class="btn btn-lg btn-secondary text-uppercase">Arrange a viewing</a>
 
     <!-- LIGHTBOX FORM -->
     <div id="makeEnquiry<?php echo $post->ID; ?>" style="display:none;">

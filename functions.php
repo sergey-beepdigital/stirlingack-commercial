@@ -638,6 +638,8 @@ add_action('save_post_post', 'sa_save_insight', 10);
 function sa_breadcrumbs() {
     if(is_front_page()) return;
 
+    if(is_property()) return;
+
     if ( function_exists('yoast_breadcrumb') ) {
         yoast_breadcrumb( '<div id="breadcrumbs"><div class="container">','</div></div>' );
     }
