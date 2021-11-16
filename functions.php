@@ -169,6 +169,7 @@ class StarterSite extends TimberSite {
         // require_once custom post types here
         require_once('includes/post-types/form.php');
         require_once('includes/post-types/branch.php');
+        require_once('includes/post-types/new-home.php');
     }
 
     function register_taxonomies() {
