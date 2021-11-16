@@ -18,7 +18,7 @@
             line-height: 1.7;
             color: $support-color2;
 
-            a{
+            a:not([class]){
                 text-decoration: underline;
 
                 &:hover{
