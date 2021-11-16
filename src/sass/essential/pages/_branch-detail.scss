@@ -16,6 +16,7 @@
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
             font-size: 14px;
             line-height: 1.7;
+            color: $support-color2;
 
             a{
                 text-decoration: underline;
@@ -28,6 +29,8 @@
             ul{
                 list-style: none;
                 padding: 0;
+                font-weight: normal;
+                color: $brand-main-blue;
 
                 li{
                     i{
