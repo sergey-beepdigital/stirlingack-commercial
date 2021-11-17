@@ -33,10 +33,14 @@ var SA_PropertySearch = SA_PropertySearch || {};
                 $('#department_' + departmentValue).click();
 
                 if(departmentValue == 'residential-sales'){
-                    $('#new-homes-checkbox').parent().show();
+                    $('#new-homes-checkbox').prop('disabled',false);
+                    $('#include-recent-props-checkbox').prop('disabled',false);
                 } else {
-                    $('#new-homes-checkbox').parent().hide();
+                    $('#new-homes-checkbox').prop('disabled',true);
                     $('#new-homes-checkbox').prop('checked',false);
+
+                    $('#include-recent-props-checkbox').prop('disabled',true);
+                    $('#include-recent-props-checkbox').prop('checked',false);
                 }
 
                 return false;

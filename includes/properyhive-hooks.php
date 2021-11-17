@@ -203,42 +203,6 @@ function sa_wphive_gettext($translation, $text, $domain) {
 add_filter('gettext','sa_wphive_gettext',50,3);
 
 
-function include_off_market( $q )
-{
-    if ( is_admin() )
-        return;
-
-    if ( ! $q->is_main_query() )
-        return;
-
-    if  ( ! $q->is_post_type_archive( 'property' ) && ! $q->is_tax( get_object_taxonomies( 'property' ) ) )
-        return;
-
-    if ( isset($_GET['marketing_flag']) && $_GET['marketing_flag'] == 73 ) // 123 is our marketing flag ID
-    {
-        // we're filtering by sold properties
-
-        $meta_query = $q->meta_query;
-
-        $new_meta_query = array();
-        foreach ( $meta_query as $meta_query_part )
-        {
-            if ( isset($meta_query_part['key']) && $meta_query_part['key'] == '_on_market' )
-            {
-                // we don't want this part so do nothing
-            }
-            else
-            {
-                $new_meta_query[] = $meta_query_part;
-            }
-        }
-
-        $q->set('meta_query', $new_meta_query);
-    }
-}
-//add_action( 'pre_get_posts', 'include_off_market' );
-
-
 /**
  * Admin Settings: Add image field for property office
  * @param $args
@@ -699,28 +663,28 @@ $stamp_duty_calculator = PH_Stamp_Duty_Calculator::instance();
 remove_action( 'wp_enqueue_scripts', array( $stamp_duty_calculator, 'load_stamp_duty_calculator_styles' ) );
 
 function sa_property_search_checkboxes() {
-    $new_home_checked = '';
-    $new_home_display = 'inline-block';
-    if(!empty($_GET['department']) && $_GET['department'] != 'residential-sales') {
-        $new_home_display = 'none';
+    $new_home_checked = $recently_sold_checked = '';
+    $new_home_display = $recently_sold_display = 'inline-block';
+    if(!empty($_REQUEST['department']) && $_REQUEST['department'] != 'residential-sales') {
+        $new_home_display = $recently_sold_display = 'none';
     }
 
-    if(!empty($_GET['new_home']) && $_GET['new_home'] == 1) {
+    if($_REQUEST['new_home'] == 1) {
         $new_home_checked = 'checked';
+    }
+
+    if($_REQUEST['include_sold'] == 1) {
+        $recently_sold_checked = 'checked';
     } ?>
 
-    <div class="property-search-form--checkbox-group">
+    <div class="property-search-form--checkbox-group" style="display: <?php echo $recently_sold_display; ?>">
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="include-recent-props-checkbox">
-            <label class="form-check-label" for="include-recent-props-checkbox">
-                Include Recently Let Properties
-            </label>
+            <input class="form-check-input" type="checkbox" name="include_sold" value="1" <?php echo $recently_sold_checked; ?> id="include-recent-props-checkbox">
+            <label class="form-check-label" for="include-recent-props-checkbox">Include Recently Sold Properties</label>
         </div>
         <div class="form-check form-check-inline" style="display: <?php echo $new_home_display; ?>">
             <input class="form-check-input" type="checkbox" name="new_home" value="1" <?php echo $new_home_checked; ?> id="new-homes-checkbox">
-            <label class="form-check-label" for="new-homes-checkbox">
-                New Homes Only
-            </label>
+            <label class="form-check-label" for="new-homes-checkbox">New Homes Only</label>
         </div>
     </div>
 <?php }
@@ -751,3 +715,51 @@ function sg_get_properties_query($q) {
     $q->set('meta_query', $meta_query);
 }
 add_action('pre_get_posts', 'sg_get_properties_query');
+
+
+/**
+ * Remove Sold Properties by default for search pages
+ * @param $q
+ */
+function remove_sold_properties_by_default($q) {
+    if (is_admin())
+        return;
+
+    if (!$q->is_main_query())
+        return;
+
+    if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
+        return;
+
+    if (isset($_GET['shortlisted']))
+        return;
+
+    $tax_query = $q->get('tax_query');
+
+    if (!isset($_REQUEST['include_sold'])) {
+        $tax_query[] = array(
+            'taxonomy' => 'availability',
+            'field' => 'term_id',
+            'terms' => array(4, 5), // 4 - Sold, 5 - Sold STC
+            'operator' => 'NOT IN'
+        );
+    }
+
+    $q->set('tax_query', $tax_query);
+}
+add_action('pre_get_posts', 'remove_sold_properties_by_default');
+
+
+/**
+ * Remove Hidden Checkboxes for search form
+ * @param $form_controls
+ * @return mixed
+ */
+function remove_sold_new_homes_hidden($form_controls) {
+    if (isset($form_controls['include_sold'])) { unset($form_controls['include_sold']); }
+
+    if (isset($form_controls['new_home'])) { unset($form_controls['new_home']); }
+
+    return $form_controls;
+}
+add_filter( 'propertyhive_search_form_fields_after', 'remove_sold_new_homes_hidden', 10, 1 );
