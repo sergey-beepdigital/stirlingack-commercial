@@ -236,6 +236,13 @@ class StarterSite extends TimberSite {
 
         // Enqueue a main stylesheet as a sensible default
         wp_enqueue_style( 'main.css', MAIN_CSS_SRC, array(), $cache_ver, 'all' );
+
+        wp_localize_script('deferred.js', 'sg_config', [
+            'google_maps' => [
+                'api_key' => get_option('propertyhive_google_maps_api_key'),
+                'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
+            ]
+        ]);
     }
 
     /**

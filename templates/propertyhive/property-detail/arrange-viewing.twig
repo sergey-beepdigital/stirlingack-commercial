@@ -6,10 +6,12 @@
                 <div class="branch-info--name">{{ branch_data.title }} Branch</div>
                 <div class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</div>
                 <a href="#" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
-                <div class="branch-info--address">
-                    {{ branch_data.address }}<br>
-                    <a href="#property-info-location" data-open-property-tab>View on map</a>
-                </div>
+                {% if branch_data.address %}
+                    <div class="branch-info--address">
+                        {{ branch_data.address }}<br>
+                        <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address }}','branch-google-map-image');">View on map</a>
+                    </div>
+                {% endif %}
                 {{ fn('propertyhive_make_enquiry_button') }}
             </div>
         </div>

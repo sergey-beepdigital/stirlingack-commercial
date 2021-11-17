@@ -27,7 +27,7 @@
                     </div>
                     <div class="flex-grow-1">
                         {% if post.branch_address %}
-                            <div>{{ post.branch_address }}<br><a href="#">View on Map</a></div>
+                            <div>{{ post.branch_address }}<br><a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ post.branch_address }}','branch-google-map-image');">View on Map</a></div>
                         {% endif %}
                     </div>
                     <div>
