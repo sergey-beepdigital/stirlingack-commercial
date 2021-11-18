@@ -196,6 +196,10 @@ function sa_wphive_gettext($translation, $text, $domain) {
             case 'Save Search':
                 $translation = '<i class="fa-regular fa-bell"></i> ' . $translation;
                 break;
+
+            case 'Remove Saved Search':
+                $translation = 'Delete Search';
+                break;
         }
     }
     return $translation;

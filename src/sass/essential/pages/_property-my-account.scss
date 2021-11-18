@@ -104,6 +104,21 @@
             margin-bottom: 20px;
         }
 
+        .saved-search-attributes{
+            color: $brand-main-blue!important;
+        }
+
+        .control-update_search_send_emails{
+            margin-bottom: 30px;
+        }
+
+        .btn-primary,
+        .button-delete-search{
+            min-width: 230px;
+            text-align: left;
+            padding: 17px 2rem;
+        }
+
         .button-delete-search{
             margin-top: 10px;
 
