@@ -1,0 +1,38 @@
+.section-new-home-details{
+    &--heading{
+        margin-bottom: 35px;
+
+        .price-block{
+            color: $support-color2;
+            text-align: right;
+
+            &--price{
+                font-size: 30px;
+                line-height: 1;
+                font-weight: normal;
+                color: $brand-main-blue;
+            }
+
+            &--flag{
+                font-size: 14px;
+                color: #FFF;
+                background-color: $brand-main-blue;
+                display: inline-block;
+                padding: 2px 11px;
+                margin-top: 5px;
+            }
+        }
+    }
+
+    &--short-description{
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    &--short-description,
+    &--description{
+        & > *:last-child{
+            margin-bottom: 0;
+        }
+    }
+}

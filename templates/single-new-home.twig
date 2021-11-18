@@ -1,17 +1,67 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    {% set key_services = post.get_field('branch_key_services') %}
-    {% set opening_hours = post.get_field('branch_opening_hours') %}
-    {% set latest_properties = post.get_field('branch_latest_properties') %}
-    {% set two_side_cta = post.get_field('branch_two_side_cta') %}
+    {% set gallery_images = post.get_field('ng_gallery') %}
 
-    <section class="page-section page-section--padding50">
+    {% if gallery_images %}
+
+        <div class="section-gallery-images">
+            <div class="container">
+
+                <div class="owl-carousel owl-theme" data-gallery-carousel>
+
+                    {% for image in gallery_images %}
+                        <a href="{{ image.url }}"><img src="{{ image.url | resize(1170,450) }}"></a>
+                    {% endfor %}
+
+                </div>
+
+                <div class="owl-carousel owl-theme" data-gallery-thumbnail-carousel>
+
+                    {% for image in gallery_images %}
+                        <img src="{{ image.url | resize(170,100) }}">
+                    {% endfor %}
+
+                </div>
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    <section class="page-section page-section--padding50 section-new-home-details">
         <div class="container">
             <div class="row">
-                <div class="col-xl-8 content-clear">
-                    <h2>About {{ post.title }}</h2>
-                    {{ post.content }}
+                <div class="col-xl-8">
+                    <div class="section-new-home-details--heading">
+                        <div class="row align-items-center">
+                            <div class="col-xl-6">
+                                <h1>{{ post.title }}</h1>
+                            </div>
+                            <div class="col-xl-6 d-flex justify-content-end">
+                                <div class="price-block">
+                                    <div class="price-block--from">Price From</div>
+                                    <div class="price-block--price">£{{ fn('ph_display_price_field',post.nh_price) }}</div>
+                                    <div class="price-block--flag">New Home</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if post.nh_short_description %}
+
+                        <div class="section-new-home-details--short-description">
+                            {{ post.nh_short_description | wpautop }}
+                        </div>
+
+                    {% endif %}
+
+                    <div class="section-new-home-details--description content-clear">
+                        {{ post.content }}
+                    </div>
+                </div>
+                <div class="col-xl-4">
+
                 </div>
             </div>
         </div>
