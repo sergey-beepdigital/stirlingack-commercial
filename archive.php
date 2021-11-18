@@ -49,6 +49,6 @@ $posts_total_text_parts[] = '<span class="branch-name">in '. $context['title'] .
 
 $context['head_thumbnail'] = get_the_post_thumbnail_url($blog_page_id);
 $context['posts_total_text'] = join(' ', $posts_total_text_parts);
-$context['posts'] = $posts_query;
+$context['posts_query'] = $posts_query;
 
 Timber::render( $templates, $context );
