@@ -13,20 +13,26 @@
             padding: 30px;
             list-style: none;
             margin: 0;
+            font-weight: normal;
+            text-transform: uppercase;
 
             li{
                 &:not(:first-child) {
-                    margin-top: 10px;
+                    margin-top: 15px;
                 }
 
                 a{
                     color: #FFF;
+                    text-decoration: none;
+
+                    &:hover{
+                        color: $brand-main-red;
+                    }
                 }
 
                 &.active{
                     a{
-                        color: $brand-main-red;
-                        text-decoration: underline;
+                        @include link-border(#FFFFFF, $brand-main-red);
                     }
                 }
             }
