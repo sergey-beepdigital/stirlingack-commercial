@@ -48,9 +48,9 @@ add_shortcode('social_links', 'social_links_shortcode');
 function branch_area_box_shortcode($atts) {
     $context = Timber::context();
 
-    $page_urls = get_field('page_url','option');
+    $page_option = get_field('page','option');
 
-    $context['form_url'] = get_the_permalink($page_urls['blog_page']);
+    $context['form_url'] = get_the_permalink($page_option['blog_list_page_id']);
     $context['offices'] = Timber::query_posts([
         'post_type' => 'sa_branch',
         'post_status' => 'publish',
