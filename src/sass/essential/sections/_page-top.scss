@@ -20,6 +20,10 @@
 
         .shortcode-link-arrow{
             display: inline-block;
+
+            &:last-child{
+                margin-bottom: 0;
+            }
         }
 
         .shortcode-link-arrow,
