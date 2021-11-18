@@ -273,7 +273,7 @@
                 }
 
                 a{
-                    @include link-border;
+                    @include link-border($brand-main-blue);
 
                     &:hover{
                         color: $brand-main-red;
