@@ -1,1 +1,6 @@
-{% include 'static-sections/page-top.twig' %}
+{% include 'static-sections/page-top.twig' with {
+    custom: {
+        title: section.dhero_title,
+        content: section.dhero_content
+    }
+} %}

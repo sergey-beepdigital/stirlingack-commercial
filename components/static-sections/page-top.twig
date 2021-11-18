@@ -1,4 +1,5 @@
 {% set title = custom.title ? custom.title : post.title %}
+{% set content = custom.content ? custom.content : '' %}
 {% set image = custom.thumbnail ? custom.thumbnail : post.thumbnail %}
 
 <section class="section-page-top {{ section_css_class }}">
@@ -7,6 +8,10 @@
             <div class="col-xl-6">
                 <div class="section-page-top--left-wrap">
                     <h1>{{ title }}</h1>
+
+                    {% if content %}
+                        <div class="section-page-top--content">{{ content }}</div>
+                    {% endif %}
 
                     {% if short_description %}
                         <div class="section-page-top--short-description">{{ short_description }}</div>

@@ -1,0 +1,21 @@
+{% set gallery_images = post.get_field('ng_gallery') %}
+
+<div class="new-home-post-item">
+    <div class="new-home-post-item--image-wrap">
+        <span class="new-home-amount-images"><i class="fa-light fa-camera"></i> {{ gallery_images | length }}</span>
+        <span class="new-home-flag">New Home</span>
+        <a href="{{ post.link }}">
+            {% if gallery_images %}
+                <img src="{{ gallery_images[0].url | resize(740,740) }}">
+            {% else %}
+                <img src="https://via.placeholder.com/740x740">
+            {% endif %}
+        </a>
+    </div>
+    <div class="new-home-post-item--content">
+        <h4 class="new-home-title"><a href="{{ post.link }}">{{ post.title }}</a></h4>
+        {% if post.nh_price %}
+            <div class="new-home-price">Prices From <span class="price">£{{ fn('ph_display_price_field',post.nh_price) }}</span></div>
+        {% endif %}
+    </div>
+</div>

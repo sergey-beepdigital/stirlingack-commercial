@@ -144,7 +144,46 @@
                     "name": "hero_default",
                     "label": "Hero Default",
                     "display": "block",
-                    "sub_fields": [],
+                    "sub_fields": [
+                        {
+                            "key": "field_619631d0b9720",
+                            "label": "Title",
+                            "name": "dhero_title",
+                            "type": "text",
+                            "instructions": "Leave empty to use default page title",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_619631e6b9721",
+                            "label": "Content",
+                            "name": "dhero_content",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        }
+                    ],
                     "min": "",
                     "max": ""
                 },
@@ -1378,5 +1417,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636722094
+    "modified": 1637233159
 }

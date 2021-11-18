@@ -120,3 +120,16 @@ function text_two_columns_shortcode($atts, $content) {
     return '<div class="content-2-columns">' . do_shortcode($content) . '</div>';
 }
 add_shortcode('text_two_columns','text_two_columns_shortcode');
+
+function new_homes_list_shortcode() {
+    $context = Timber::context();
+
+    $context['new_homes_list'] = Timber::query_posts([
+        'post_type' => 'sa_new_home',
+        'post_status' => 'publish',
+        'nopaging'=> true
+    ]);
+
+    Timber::render('components/shortcodes/new-homes-list.twig', $context);
+}
+add_shortcode('new_homes_list','new_homes_list_shortcode');

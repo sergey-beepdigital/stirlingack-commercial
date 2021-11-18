@@ -652,3 +652,24 @@ function sa_breadcrumbs() {
     }
 }
 add_action('after_header_breadcrumbs','sa_breadcrumbs',10);
+
+
+/**
+ * Add dynamic slug for custom post types
+ * @param $args
+ * @param $post_type
+ * @return mixed
+ */
+function sa_assign_post_type_dynamic_slugs($args, $post_type) {
+    if($post_type == 'sa_new_home') {
+        $page_options = get_field('page','option');
+
+        if(!empty($page_options['new_homes_list_page_id'])) {
+            $new_homes_list_page = get_post_field('post_name', $page_options['new_homes_list_page_id']);
+            $args['rewrite']['slug'] = $new_homes_list_page;
+        }
+    }
+
+    return $args;
+}
+add_filter('register_post_type_args','sa_assign_post_type_dynamic_slugs',10,2);

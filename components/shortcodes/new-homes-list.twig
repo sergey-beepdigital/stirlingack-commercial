@@ -1,0 +1,19 @@
+<div class="new-homes-list-shortcode">
+    <div class="new-homes-list-grid">
+        <div class="row">
+
+            {% for new_home_post in new_homes_list %}
+
+                <div class="col-lg-4 col-md-6">
+
+                    {% include 'global/new-home.twig' with {
+                        post: new_home_post
+                    } %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
