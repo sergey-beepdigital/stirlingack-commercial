@@ -137,8 +137,12 @@
                     margin-bottom: 0;
 
                     li{
-                        &.flex-active-slide{
+                        img{
+                            cursor: pointer;
+                        }
 
+                        &:not(.flex-active-slide) {
+                            opacity: 0.7;
                         }
                     }
                 }
