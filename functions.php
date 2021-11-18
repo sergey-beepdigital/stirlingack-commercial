@@ -661,15 +661,50 @@ add_action('after_header_breadcrumbs','sa_breadcrumbs',10);
  * @return mixed
  */
 function sa_assign_post_type_dynamic_slugs($args, $post_type) {
-    if($post_type == 'sa_new_home') {
-        $page_options = get_field('page','option');
+    $page_options = get_field('page','option');
 
+    if($post_type == 'sa_new_home') {
         if(!empty($page_options['new_homes_list_page_id'])) {
-            $new_homes_list_page = get_post_field('post_name', $page_options['new_homes_list_page_id']);
-            $args['rewrite']['slug'] = $new_homes_list_page;
+            $args['rewrite']['slug'] = get_post_field('post_name', $page_options['new_homes_list_page_id']);
+        }
+    } else if($post_type == 'post') {
+        if(!empty($page_options['blog_list_page_id'])) {
+            $args['rewrite']['slug'] = get_post_field('post_name', $page_options['blog_list_page_id']);
+            $args['rewrite']['with_front'] = false;
         }
     }
 
     return $args;
 }
 add_filter('register_post_type_args','sa_assign_post_type_dynamic_slugs',10,2);
+
+
+function post_permalink_add_parent_slug($permalink, $post) {
+    $page_options = get_field('page','option');
+
+    if ($post->post_type !== 'post' && empty($page_options['blog_list_page_id'])) {
+        return $permalink;
+    }
+
+    return '/' . get_post_field('post_name', $page_options['blog_list_page_id']) . '/%postname%/';
+}
+add_filter('pre_post_link', 'post_permalink_add_parent_slug', 10, 2);
+
+
+function breadcrumbs_add_post_parent_page( $links ) {
+    if ( is_singular( 'post' )) {
+        $page_options = get_field('page','option');
+
+        if(!empty($page_options)) {
+            $breadcrumb[] = array(
+                'url' => get_permalink($page_options['blog_list_page_id']),
+                'text' => get_the_title($page_options['blog_list_page_id']),
+            );
+
+            array_splice( $links, 1, -2, $breadcrumb );
+        }
+    }
+
+    return $links;
+}
+add_filter( 'wpseo_breadcrumb_links', 'breadcrumbs_add_post_parent_page' );
