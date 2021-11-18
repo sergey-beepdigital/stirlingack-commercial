@@ -10,5 +10,9 @@
         <div class="blog-post--image__cat text-danger">Market Insights</div>
     </div>
     <h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
-    {{ post.post_content | excerpt(20) | wpautop }}
+    {% if post.post_excerpt %}
+        {{ post.post_excerpt | wpautop }}
+    {% else %}
+        {{ post.post_content | excerpt(20) | wpautop }}
+    {% endif %}
 </div>
