@@ -39,7 +39,7 @@
                                     <h3 class="text-uppercase">Letting Details</h3>
                                     <ul>
                                         {% if available_date %}
-                                            <li><strong>Let available date:</strong> {{ available_date }}</li>
+                                            <li><strong>Let available date</strong><br>{{ available_date | date('d F Y') }}</li>
                                         {% endif %}
                                         {% if property_type %}
                                             <li><strong>Let type:</strong> {{ property_type }}</li>
