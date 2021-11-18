@@ -45,7 +45,7 @@ $posts_total_text_parts = [];
 
 $posts_total_text_parts[] = $posts_query->found_posts;
 $posts_total_text_parts[] = get_the_title($blog_page_id);
-$posts_total_text_parts[] = '<span class="branch-name">in '. $context['title'] . '</span>';
+$posts_total_text_parts[] = '<span class="branch-name">on '. $context['title'] . '</span>';
 
 $context['head_thumbnail'] = get_the_post_thumbnail_url($blog_page_id);
 $context['posts_total_text'] = join(' ', $posts_total_text_parts);
