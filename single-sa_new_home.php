@@ -16,7 +16,6 @@ $context['post'] = $post;
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {
-
     $context['insights_list'] = SA_PropertyBranch::get_insights_by_id($post->ID);
 	Timber::render( array( 'single-new-home.twig', 'single.twig' ), $context );
 }

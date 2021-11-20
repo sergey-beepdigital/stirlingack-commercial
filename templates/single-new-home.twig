@@ -2,32 +2,42 @@
 
 {% block content %}
     {% set gallery_images = post.get_field('ng_gallery') %}
+    {% set contacts = post.get_field('nh_contacts') %}
 
-    {% if gallery_images %}
-
-        <div class="section-gallery-images">
-            <div class="container">
-
-                <div class="owl-carousel owl-theme" data-gallery-carousel>
-
-                    {% for image in gallery_images %}
-                        <a href="{{ image.url }}"><img src="{{ image.url | resize(1170,450) }}"></a>
-                    {% endfor %}
-
-                </div>
-
-                <div class="owl-carousel owl-theme" data-gallery-thumbnail-carousel>
-
-                    {% for image in gallery_images %}
-                        <img src="{{ image.url | resize(170,100) }}">
-                    {% endfor %}
-
-                </div>
-
+    <section class="page-section page-section--padding50 pb-0 section-gallery-images">
+        <div class="container">
+            <div class="property-detail-back-action-wrap">
+                <a href="javascript:;" onclick="history.back();"><i class="fa-regular fa-angle-left"></i> BACK TO SEARCH RESULTS</a>
             </div>
-        </div>
 
-    {% endif %}
+            {% if gallery_images %}
+
+                <div class="gallery-images-wrap">
+                    <div class="flexslider" id="slider">
+                        <ul class="slides">
+                            {% for image in gallery_images %}
+                                <li>
+                                    <a href="{{ image.url }}" data-fancybox="gallery"><img src="{{ image.url | resize(1170,450) }}" /></a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="thumbnails flexslider" id="carousel">
+                        <ul class="slides">
+                            {% for image in gallery_images %}
+                                <li>
+                                    <img src="{{ image.url | resize(170,100) }}" />
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </section>
 
     <section class="page-section page-section--padding50 section-new-home-details">
         <div class="container">
@@ -59,24 +69,52 @@
                     <div class="section-new-home-details--description content-clear">
                         {{ post.content }}
                     </div>
+
+                    {% if contacts.map %}
+
+                        <div class="section-new-home-details--view-map">
+                            <a href="javascript:;" onclick='SA_Common.viewGoogleMap("#google-map-popup",{{ contacts.map | json }})' class="btn btn-lg btn-secondary text-uppercase">View On Map</a>
+                            <div style="display: none;" id="google-map-popup" class="google-map-popup">
+                                <div class="acf-map" data-zoom="18">
+                                    <div class="marker" data-lat="{{ contacts.map.lat }}" data-lng="{{ contacts.map.lng }}"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
                 </div>
                 <div class="col-xl-4">
-
+                    <div class="property-arrange-viewing text-center">
+                        <div class="property-arrange-viewing--office-contacts">
+                            <h3 class="text-uppercase">Get in Contact</h3>
+                            <div class="branch-info">
+                                {% if contacts.phone_number %}
+                                    <div class="branch-info--phone-number h3 text-uppercase">{{ contacts.phone_number }}</div>
+                                {% endif %}
+                                <a href="#" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="page-section page-section--padding50 section-dataloft">
-        <div class="container">
-            <div class="page-section--heading">
-                <h3 class="text-uppercase">Properties at this development</h3>
+    {% if post.nh_properties_development_shortcode %}
+
+        <section class="page-section page-section--padding50 section-new-home-developments">
+            <div class="container">
+                <div class="page-section--heading">
+                    <h3 class="text-uppercase">Properties at this development</h3>
+                </div>
+
+                {{ post.nh_properties_development_shortcode | shortcodes }}
+
             </div>
+        </section>
 
-
-
-        </div>
-    </section>
+    {% endif %}
 
 
 {% endblock %}

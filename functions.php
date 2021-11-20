@@ -213,6 +213,8 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
+        $google_map_api_key = get_option('propertyhive_google_maps_api_key');
+
         // Get rid of default media element
         // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
@@ -222,8 +224,15 @@ class StarterSite extends TimberSite {
         wp_deregister_script( 'flexslider');
         wp_deregister_script( 'flexslider-init');
 
+        wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
+
         if(is_singular('sa_branch')) {
             wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
+        }
+
+        if(is_singular('sa_new_home')) {
+            wp_enqueue_script('google-maps');
+            wp_enqueue_style( 'flexslider_css', plugins_url('propertyhive/assets/css/flexslider.css') );
         }
 
         // Define globals with for cache busting
@@ -239,7 +248,7 @@ class StarterSite extends TimberSite {
 
         wp_localize_script('deferred.js', 'sg_config', [
             'google_maps' => [
-                'api_key' => get_option('propertyhive_google_maps_api_key'),
+                'api_key' => $google_map_api_key,
                 'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
             ]
         ]);
@@ -708,3 +717,12 @@ function breadcrumbs_add_post_parent_page( $links ) {
     return $links;
 }
 add_filter( 'wpseo_breadcrumb_links', 'breadcrumbs_add_post_parent_page' );
+
+function sa_acf_set_google_map() {
+    $api_key = get_option('propertyhive_google_maps_api_key');
+
+    if(!empty($api_key)) {
+        acf_update_setting('google_api_key', $api_key);
+    }
+}
+add_action('acf/init', 'sa_acf_set_google_map');

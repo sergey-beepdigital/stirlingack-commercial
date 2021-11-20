@@ -1,0 +1,24 @@
+.single-sa_new_home{
+    .section-new-home-developments{
+        ul.properties{
+            display: block;
+            border: 1px solid $support-color4;
+
+            li{
+                padding: 20px;
+
+                &:not(:first-child) {
+                    border-top: 1px solid $support-color4;
+                }
+
+                &.dev-item{
+                    display: flex;
+
+                    & > *{
+                        flex: 1;
+                    }
+                }
+            }
+        }
+    }
+}

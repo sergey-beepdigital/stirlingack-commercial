@@ -1,3 +1,82 @@
+.property-arrange-viewing{
+    background-color: $brand-main-blue;
+    padding: 20px;
+    color: $support-color3;
+
+    a:not([class]){
+        color: #FFF;
+        text-decoration: underline;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+    &--office-contacts{
+        background-color: #FFF;
+        color: $brand-main-blue;
+        padding: 20px;
+
+        .link-border{
+            color: $brand-main-blue;
+
+            &:hover{
+                color: $brand-main-red;
+            }
+        }
+
+        h3{
+            margin-bottom: 15px;
+        }
+
+        .branch-info{
+            color: $support-color2;
+
+            &--name{
+                margin-bottom: 10px;
+            }
+
+            &--phone-number{
+                color: $brand-main-blue;
+            }
+
+            .btn{
+                margin: 10px auto;
+                max-width: 200px;
+                width: 100%;
+            }
+
+            &--address{
+                margin: 10px 20px;
+
+                a{
+                    color: $brand-main-blue;
+                }
+            }
+
+            .link-border{
+                display: inline-block;
+                margin-top: 25px;
+            }
+        }
+    }
+
+    &--address-info{
+        padding: 20px 40px 10px;
+
+        .link-border{
+            color: #FFF;
+            margin-top: 15px;
+            display: inline-block;
+
+            &:hover{
+                color: $brand-main-red;
+            }
+        }
+    }
+
+}
+
 .single-property{
     .property-detail-back-action-wrap{
         margin-bottom: 20px;
@@ -181,85 +260,6 @@
                     }
                 }
             }
-        }
-
-        .property-arrange-viewing{
-            background-color: $brand-main-blue;
-            padding: 20px;
-            color: $support-color3;
-
-            a:not([class]){
-                color: #FFF;
-                text-decoration: underline;
-
-                &:hover{
-                    text-decoration: none;
-                }
-            }
-
-            &--office-contacts{
-                background-color: #FFF;
-                color: $brand-main-blue;
-                padding: 20px;
-
-                .link-border{
-                    color: $brand-main-blue;
-
-                    &:hover{
-                        color: $brand-main-red;
-                    }
-                }
-
-                h3{
-                    margin-bottom: 15px;
-                }
-
-                .branch-info{
-                    color: $support-color2;
-
-                    &--name{
-                        margin-bottom: 10px;
-                    }
-
-                    &--phone-number{
-                        color: $brand-main-blue;
-                    }
-
-                    .btn{
-                        margin: 10px auto;
-                        max-width: 200px;
-                        width: 100%;
-                    }
-
-                    &--address{
-                        margin: 10px 20px;
-
-                        a{
-                            color: $brand-main-blue;
-                        }
-                    }
-
-                    .link-border{
-                        display: inline-block;
-                        margin-top: 25px;
-                    }
-                }
-            }
-
-            &--address-info{
-                padding: 20px 40px 10px;
-
-                .link-border{
-                    color: #FFF;
-                    margin-top: 15px;
-                    display: inline-block;
-
-                    &:hover{
-                        color: $brand-main-red;
-                    }
-                }
-            }
-
         }
     }
 

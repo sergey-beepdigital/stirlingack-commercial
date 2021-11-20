@@ -35,4 +35,13 @@
             margin-bottom: 0;
         }
     }
+
+    &--view-map{
+        margin-top: 35px;
+
+        a{
+            max-width: 270px;
+            width: 100%;
+        }
+    }
 }

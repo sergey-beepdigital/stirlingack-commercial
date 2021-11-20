@@ -1,0 +1,34 @@
+.section-gallery-images{
+    .property-detail-back-action-wrap{
+        margin-bottom: 20px;
+
+        a{
+            font-weight: normal;
+            text-transform: uppercase;
+
+            i{
+                color: $brand-main-red;
+            }
+        }
+    }
+
+    .gallery-images-wrap{
+        .flexslider{
+            background: none;
+            border: 0;
+            margin: 0;
+
+            &.thumbnails{
+                margin-top: 20px;
+
+                .slides{
+                    li{
+                        &:not(.flex-active-slide) {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

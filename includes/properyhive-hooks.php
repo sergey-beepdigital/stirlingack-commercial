@@ -767,3 +767,20 @@ function remove_sold_new_homes_hidden($form_controls) {
     return $form_controls;
 }
 add_filter( 'propertyhive_search_form_fields_after', 'remove_sold_new_homes_hidden', 10, 1 );
+
+
+/**
+ * Display custom property item template for New Home detail page
+ * @param $template
+ * @param $slug
+ * @param $name
+ * @return string
+ */
+function sa_new_home_item_template($template, $slug, $name) {
+    if(is_singular('sa_new_home')){
+        $template = TEMPLATEPATH . '/propertyhive/new-home-content-property.php';
+    }
+
+    return $template;
+}
+add_filter('ph_get_template_part','sa_new_home_item_template',10,3);

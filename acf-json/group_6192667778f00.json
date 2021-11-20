@@ -121,10 +121,10 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_61926711ff69b",
-                    "label": "Address",
-                    "name": "address",
-                    "type": "text",
+                    "key": "field_61981d88bf8fa",
+                    "label": "Map",
+                    "name": "map",
+                    "type": "google_map",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -133,13 +133,31 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "center_lat": "",
+                    "center_lng": "",
+                    "zoom": "",
+                    "height": ""
                 }
             ]
+        },
+        {
+            "key": "field_61995365f5638",
+            "label": "Properties at this developments Shortcode",
+            "name": "nh_properties_development_shortcode",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -159,5 +177,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636984604
+    "modified": 1637438615
 }

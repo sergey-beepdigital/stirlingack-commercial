@@ -16,6 +16,24 @@ var SA_GalleryCarousel = SA_GalleryCarousel || {};
 
         return {
             init: function () {
+                /*$('#carousel').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    itemWidth: 210,
+                    itemMargin: 5,
+                    asNavFor: '#slider'
+                });
+
+                $('#slider').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    sync: "#carousel"
+                });*/
+
                 $carousel = $(element.galleryCarousel);
                 $carouselThumbnail = $(element.galleryThumbnailCarousel);
 
@@ -51,6 +69,9 @@ var SA_GalleryCarousel = SA_GalleryCarousel || {};
             },
 
             syncPosition: function(el) {
+                console.log(el);
+                console.log(el.item);
+
                 //if you set loop to false, you have to restore this next line
                 //var current = el.item.index;
 
@@ -75,6 +96,7 @@ var SA_GalleryCarousel = SA_GalleryCarousel || {};
                     .removeClass("current")
                     .eq(current)
                     .addClass("current");
+
                 var onscreen = $carouselThumbnail.find('.owl-item.active').length - 1;
                 var start = $carouselThumbnail.find('.owl-item.active').first().index();
                 var end = $carouselThumbnail.find('.owl-item.active').last().index();
@@ -85,10 +107,22 @@ var SA_GalleryCarousel = SA_GalleryCarousel || {};
                 console.log('start: ' + start);
                 console.log('end: ' + end);
 
+                /*
+count: 12
+current: 7
+onscreen: 5
+start: 6
+end: 11
+                 */
+
+                console.log($carouselThumbnail.data('owl.carousel'));
+
                 if (current > end) {
+                    console.log('current > end');
                     $carouselThumbnail.data('owl.carousel').to(current, 100, true);
                 }
                 if (current < start) {
+                    console.log('current < start');
                     $carouselThumbnail.data('owl.carousel').to(current - onscreen, 100, true);
                 }
             },

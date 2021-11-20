@@ -229,7 +229,8 @@ var SA_Common = SA_Common || {};
 
             viewAddressMapImage: function (address, wrap_css_class) {
                 if(address != '') {
-                    var wrap_css_class = wrap_css_class ? wrap_css_class : '';
+                    wrap_css_class = wrap_css_class ? wrap_css_class : '';
+
                     var map_url = 'https://maps.googleapis.com/maps/api/staticmap';
                     var map_params = $.param({
                         size: '512x512',
@@ -245,6 +246,20 @@ var SA_Common = SA_Common || {};
                 } else {
                     alert('Address is empty')
                 }
+            },
+
+            viewGoogleMap: function (id) {
+                parent.jQuery.fancybox.open({
+                    src: id,
+                    type: 'inline',
+                    touch: false,
+                    momentum: false,
+                    /*opts : {
+                        afterShow : function( instance, current ) {
+                            google.maps.event.trigger(map, 'resize');
+                        }
+                    }*/
+                });
             }
         }
     }();
