@@ -1,6 +1,5 @@
 #breadcrumbs{
     padding: 11px;
-    border-bottom: 1px solid $support-color4;
     font-size: 14px;
 
     i{
@@ -15,5 +14,11 @@
         &.breadcrumb_last{
             color: $brand-main-blue;
         }
+    }
+}
+
+.post-type-archive-property{
+    #breadcrumbs{
+        border-bottom: 1px solid $support-color4;
     }
 }
