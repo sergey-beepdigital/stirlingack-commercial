@@ -12,3 +12,32 @@ h3,.h3{
     font-size: 22px;
     font-weight: normal;
 }
+
+.form-group{
+    & > label{
+        font-weight: normal;
+
+        .optional{
+            font-weight: 300;
+        }
+    }
+}
+
+.wpcf7-form{
+    .wpcf7-spinner{
+        display: none!important;
+    }
+
+    .form-group{
+        .wpcf7-form-control-wrap{
+            .wpcf7-radio{
+                display: block;
+
+                & > span{
+                    display: block;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
