@@ -288,6 +288,41 @@ ul.properties{
                 }
             }
         }
+
+        &.promo{
+            background-color: $brand-main-blue;
+            color: #FFF;
+            padding: 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            img{
+                width: 70px;
+                margin: 0 auto 20px;
+            }
+
+            h2{
+                margin-bottom: 20px;
+            }
+
+            a{
+                @include link-border(#FFFFFF,$brand-main-red);
+                display: inline-block;
+                margin-top: 20px;
+
+                &:hover{
+                    color: $brand-main-red;
+                }
+            }
+
+            .item-promo-content{
+                & > *:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
 
     &.view-grid{
