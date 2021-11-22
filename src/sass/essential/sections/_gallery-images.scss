@@ -26,6 +26,10 @@
                         &:not(.flex-active-slide) {
                             opacity: 0.7;
                         }
+
+                        img{
+                            cursor: pointer;
+                        }
                     }
                 }
             }
