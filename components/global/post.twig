@@ -2,9 +2,9 @@
     <div class="blog-post--image">
         <a href="{{ post.link }}">
             {% if post.thumbnail %}
-                <img src="{{ post.thumbnail |resize(740,540) }}">
+                <img src="{{ post.thumbnail | resize(740,540) }}">
             {% else %}
-                <img src="{{ theme.link }}/dist/images/placeholder/740x540.jpeg">
+                <img src="{{ theme.link ~ '/dist/images/placeholder/placeholder740x540.jpg' }}">
             {% endif %}
         </a>
         <div class="blog-post--image__cat text-danger">Market Insights</div>
