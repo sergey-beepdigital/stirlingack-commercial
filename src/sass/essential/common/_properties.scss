@@ -134,6 +134,12 @@
         .form-check{
             margin-right: 50px;
         }
+
+        .custom-control{
+            .custom-control-label{
+                line-height: 1.8;
+            }
+        }
     }
 
     & + .propertyhive-save-search-button{

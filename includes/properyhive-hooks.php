@@ -681,15 +681,23 @@ function sa_property_search_checkboxes() {
         $recently_sold_checked = 'checked';
     } ?>
 
-    <div class="property-search-form--checkbox-group" style="display: <?php echo $recently_sold_display; ?>">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="include_sold" value="1" <?php echo $recently_sold_checked; ?> id="include-recent-props-checkbox">
+    <div class="property-search-form--checkbox-group">
+        <div class="custom-control custom-checkbox custom-control-inline" style="display: <?php echo $recently_sold_display; ?>">
+            <input type="checkbox" class="custom-control-input" name="include_sold" value="1" <?php echo $recently_sold_checked; ?> id="include-recent-props-checkbox">
+            <label class="custom-control-label" for="include-recent-props-checkbox">Include Recently Sold Properties</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline" style="display: <?php echo $new_home_display; ?>">
+            <input type="checkbox" class="custom-control-input" name="new_home" value="1" <?php echo $new_home_checked; ?> id="new-homes-checkbox">
+            <label class="custom-control-label" for="new-homes-checkbox">New Homes Only</label>
+        </div>
+        <!--<div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="include_sold" value="1" <?php /*echo $recently_sold_checked; */?> id="include-recent-props-checkbox">
             <label class="form-check-label" for="include-recent-props-checkbox">Include Recently Sold Properties</label>
         </div>
         <div class="form-check form-check-inline" style="display: <?php echo $new_home_display; ?>">
             <input class="form-check-input" type="checkbox" name="new_home" value="1" <?php echo $new_home_checked; ?> id="new-homes-checkbox">
             <label class="form-check-label" for="new-homes-checkbox">New Homes Only</label>
-        </div>
+        </div>-->
     </div>
 <?php }
 add_action('property_search_before_end_form','sa_property_search_checkboxes',10);
