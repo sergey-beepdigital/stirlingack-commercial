@@ -1,7 +1,7 @@
 <section class="page-section page-section--padding50 section-content-image {{ section.ci_logo_watermark ? 'has-logo-watermark' : '' }}">
     <div class="container">
         <div class="row no-gutters">
-            <div class="col-xl-8">
+            <div class="col-xl-8" data-aos="fade-down">
                 <div class="bg-primary section-content-image--content">
                     {% if section.ci_title %}
                         <h2 class="h1">{{ section.ci_title }}</h2>
@@ -15,7 +15,7 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-4" data-aos="fade-up">
                 <div class="section-content-image--image-wrap">
                     <img src="{{ section.ci_image }}">
                 </div>

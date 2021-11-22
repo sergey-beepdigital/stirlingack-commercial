@@ -1,6 +1,7 @@
 import 'bootstrap';
 import 'owl.carousel';
-import 'owl.carousel2.thumbs';
+/*import 'aos'*/
+import AOS from 'aos';
 
 var SA_Common = SA_Common || {};
 
@@ -23,6 +24,7 @@ var SA_Common = SA_Common || {};
                 SA_Common.events();
                 SA_Common.initCtaCarousel();
                 //SA_Common.initGalleryCarousel();
+                AOS.init();
             },
 
             events: function () {
