@@ -31,10 +31,31 @@
             bottom: 0;
             padding: 0 15px;
 
+            &:after,
+            &:before{
+                content: "";
+                height: 2px;
+                width: 170px;
+                position: absolute;
+                top: 0;
+                left: 15px;
+            }
+
+            &:before{
+                background-color: $support-color4;
+            }
+
+            &:after{
+                background-color: $brand-main-red;
+                width: 0;
+                animation: progress 5s infinite;
+            }
+
             .owl-dot{
                 position: relative;
+                border-width: 0;
 
-                &:last-child{
+                /*&:last-child{
                     &:after{
                         content: "";
                         position: absolute;
@@ -44,8 +65,44 @@
                         background-color: $support-color4;
                         height: 2px;
                     }
-                }
+                }*/
             }
         }
+    }
+}
+
+@-webkit-keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 170px;
+    }
+}
+
+@-moz-keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 170px;
+    }
+}
+
+@-o-keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 170px;
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 170px;
     }
 }
