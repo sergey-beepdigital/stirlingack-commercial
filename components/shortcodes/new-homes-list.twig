@@ -1,9 +1,13 @@
+{% set promo_position = options.section_new_homes_promo.position %}
+{% if new_homes_list | length < options.section_new_homes_promo.position %}
+    {% set promo_position = new_homes_list | length %}
+{% endif %}
+
 <div class="new-homes-list-shortcode">
     <div class="new-homes-list-grid">
         <div class="row">
 
             {% for new_home_post in new_homes_list %}
-
                 <div class="col-lg-4 col-md-6">
 
                     {% include 'global/new-home.twig' with {
@@ -11,6 +15,16 @@
                     } %}
 
                 </div>
+
+
+
+                {% if options.section_new_homes_promo_active and loop.index == promo_position %}
+                    <div class="col-lg-4 col-md-6 promo-column">
+                        <div class="new-home-promo-box text-center">
+                            {{ options.section_new_homes_promo.content }}
+                        </div>
+                    </div>
+                {% endif %}
 
             {% endfor %}
 

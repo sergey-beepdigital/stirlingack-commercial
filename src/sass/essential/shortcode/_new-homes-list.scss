@@ -1,0 +1,35 @@
+.new-homes-list-shortcode{
+    .new-homes-list-grid{
+        .new-home-promo-box,
+        .promo-column{
+            min-height: 100%;
+        }
+
+        .new-home-promo-box{
+            display: flex;
+            background-color: $brand-main-blue;
+            color: #FFF;
+            flex-direction: column;
+            padding: 25px;
+            justify-content: center;
+
+            img{
+                margin-bottom: calc(25px - 1rem);
+            }
+
+            h2{
+                margin-bottom: 15px;
+            }
+
+            a{
+                @include link-border(#FFFFFF,$brand-main-red);
+                display: inline-block;
+                margin-top: 20px;
+
+                &:hover{
+                    color: $brand-main-red;
+                }
+            }
+        }
+    }
+}
