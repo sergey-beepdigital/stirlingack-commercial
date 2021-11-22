@@ -25,7 +25,10 @@
 
             .control{
                 &:not(.control-department):not(.control-property_type) {
-                    border-bottom: 1px solid $support-color5;
+                    input,
+                    textarea{
+                        border-bottom: 1px solid $support-color5;
+                    }
                 }
 
                 &.control-department{
@@ -38,6 +41,10 @@
                     .ms-options-wrap{
                         width: 100%;
                     }
+                }
+
+                textarea{
+                    border: 1px solid $support-color5;
                 }
             }
 
