@@ -219,5 +219,33 @@
                 margin-right: 10px;
             }
         }
+
+        a:not(id),
+        #ph_draw_a_search_clear{
+            padding: 13px 0;
+            text-decoration: none;
+        }
+
+        #ph_draw_a_search_clear{
+            background-color: $support-color2;
+            border-color: $support-color2;
+            color: #FFF;
+
+            &:hover{
+                background-color: $brand-main-blue;
+                border-color: $brand-main-blue;
+            }
+        }
+
+        a:not(id){
+            background-color: #FFF;
+            border-color: $brand-main-blue;
+            color: $brand-main-blue;
+
+            &:hover{
+                background-color: $brand-main-blue;
+                color: #FFF;
+            }
+        }
     }
 }
