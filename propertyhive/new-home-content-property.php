@@ -64,7 +64,4 @@ if ( $property->featured == 'yes' )
 
         ?>
     </div>
-    <div class="dev-item--sqft">
-
-    </div>
 </li>
