@@ -703,13 +703,22 @@ add_filter('pre_post_link', 'post_permalink_add_parent_slug', 10, 2);
 
 
 function breadcrumbs_add_post_parent_page( $links ) {
-    if ( is_singular( 'post' )) {
-        $page_options = get_field('page','option');
+    $page_options = get_field('page','option');
 
-        if(!empty($page_options)) {
+    if ( is_singular( 'post' )) {
+        if(!empty($page_options['blog_list_page_id'])) {
             $breadcrumb[] = array(
                 'url' => get_permalink($page_options['blog_list_page_id']),
                 'text' => get_the_title($page_options['blog_list_page_id']),
+            );
+
+            array_splice( $links, 1, -2, $breadcrumb );
+        }
+    } else if ( is_singular( 'sa_new_home' )) {
+        if(!empty($page_options['new_homes_list_page_id'])) {
+            $breadcrumb[] = array(
+                'url' => get_permalink($page_options['new_homes_list_page_id']),
+                'text' => get_the_title($page_options['new_homes_list_page_id']),
             );
 
             array_splice( $links, 1, -2, $breadcrumb );
