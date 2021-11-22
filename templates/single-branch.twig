@@ -30,14 +30,13 @@
                             <div>{{ post.branch_address }}<br><a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ post.branch_address }}','branch-google-map-image');">View on Map</a></div>
                         {% endif %}
                     </div>
-                    <div>
-                        {% include 'components/parts/link.twig' with {
-                            link: {
-                                title: 'Email Us',
-                                url: '#'
-                            },
-                            css_class: 'btn btn-lg btn-primary text-uppercase'
-                        } %}
+                    <div class="contact-emails">
+                        {% if post.branch_sale_email_address %}
+                            <a target="_blank" href="mailto:{{ post.branch_sale_email_address }}" class="btn btn-lg btn-primary text-uppercase">Email Sales</a>
+                        {% endif %}
+                        {% if post.branch_let_email_address %}
+                            <a target="_blank" href="mailto:{{ post.branch_let_email_address }}" class="btn btn-lg btn-primary text-uppercase">Email Lettings</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -76,6 +76,24 @@
             "maxlength": ""
         },
         {
+            "key": "field_619c0125f66e6",
+            "label": "Email Address",
+            "name": "branch_sale_email_address",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_617fb90d615ca",
             "label": "Lettings",
             "name": "",
@@ -128,6 +146,24 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_619c0140f66e7",
+            "label": "Email Address",
+            "name": "branch_let_email_address",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -147,5 +183,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635939905
+    "modified": 1637613903
 }
