@@ -250,7 +250,8 @@ class StarterSite extends TimberSite {
         wp_localize_script('deferred.js', 'sg_config', [
             'google_maps' => [
                 'api_key' => $google_map_api_key,
-                'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
+                //'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
+                'marker_url' => 'https://tinyurl.com/32z7h9fj'
             ]
         ]);
     }
