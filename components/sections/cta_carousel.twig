@@ -1,50 +1,37 @@
-<section class="page-section page-section--padding50 section-cta-carousel">
-    <div class="container-wide">
+{% if section.carousel_items %}
 
-        <div class="owl-carousel sa-cta-carousel sa-carousel-numeric-dots" data-carousel="cta">
-            <div class="cta-slide">
-                <div class="row">
-                    <div class="col-xl-6" data-aos="slide-down">
-                        <div class="cta-slide--content">
-                            <h2 class="h1">Marketing Message Lorem Ipsum Dolor Sit Amet</h2>
-                            <p>Supporting message lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                            <a href="#" class="link-border link-border--red">Find out more</a>
+    <section class="page-section page-section--padding50 section-cta-carousel">
+        <div class="container-wide">
+
+            <div class="owl-carousel sa-cta-carousel sa-carousel-numeric-dots" data-carousel="cta">
+
+                {% for item in section.carousel_items %}
+
+                    <div class="cta-slide">
+                        <div class="row">
+                            <div class="col-xl-6" data-aos="slide-down">
+                                <div class="cta-slide--content">
+                                    {% if item.title %}
+                                        <h2 class="h1">{{ item.title }}</h2>
+                                    {% endif %}
+                                    {{ item.content }}
+                                    {% include 'components/parts/link.twig' with {
+                                        link: item.link,
+                                        css_class: 'link-border link-border--red'
+                                    } %}
+                                </div>
+                            </div>
+                            <div class="col-xl-6" data-aos="slide-up">
+                                <img src="{{ item.image | resize(650,540) }}">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xl-6" data-aos="slide-up">
-                        <img src="{{ theme.link }}/dist/images/temp/cta-slide.jpg">
-                    </div>
-                </div>
+
+                {% endfor %}
+
             </div>
-            <div class="cta-slide">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="cta-slide--content">
-                            <h2 class="h1">Marketing Message Lorem Ipsum Dolor Sit Amet</h2>
-                            <p>Supporting message lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                            <a href="#" class="link-border link-border--red">Find out more</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <img src="{{ theme.link }}/dist/images/temp/cta-slide.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="cta-slide">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="cta-slide--content">
-                            <h2 class="h1">Marketing Message Lorem Ipsum Dolor Sit Amet</h2>
-                            <p>Supporting message lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                            <a href="#" class="link-border link-border--red">Find out more</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <img src="{{ theme.link }}/dist/images/temp/cta-slide.jpg">
-                    </div>
-                </div>
-            </div>
+
         </div>
+    </section>
 
-    </div>
-</section>
+{% endif %}
