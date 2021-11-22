@@ -32,11 +32,11 @@
             </div>
         </div>
         <div class="col-xl-4 offset-xl-1 pl-0">
-            <div class="rental-yield-calculator-results" id="results" style="display:none">
+            <div class="rental-yield-calculator-results text-center" id="results" style="display:none">
 
                 <!--<h3><?php /*echo __( 'Results', 'propertyhive' ); */?></h3>-->
                 <div>
-                    <div class="form-group">
+                    <div class="form-group mb-2">
                         <label><?php echo __( 'Annual Rent', 'propertyhive' ); ?> (&pound;)</label>
                         <input type="text" name="annual_rent" value="" placeholder="" disabled class="form-control">
                     </div>

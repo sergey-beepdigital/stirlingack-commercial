@@ -67,16 +67,19 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             </div>
         </div>
         <div class="col-xl-4 offset-xl-1 pl-0">
-            <div class="mortgage-calculator-results" id="results" style="display:none">
+            <div class="mortgage-calculator-results text-center" id="results" style="display:none">
+                <div>
+                    <h3 class="mb-3"><?php echo __( 'Monthly Costs', 'propertyhive' ); ?></h3>
 
-                <h3><?php echo __( 'Monthly Costs', 'propertyhive' ); ?></h3>
-
-                <label><?php echo __( 'Repayment', 'propertyhive' ); ?> (&pound;)</label>
-                <input type="text" name="repayment" value="" placeholder="" disabled>
-
-                <label><?php echo __( 'Interest Only', 'propertyhive' ); ?> (&pound;)</label>
-                <input type="text" name="interest" value="" placeholder="" disabled>
-
+                    <div class="form-group mb-2">
+                        <label><?php echo __( 'Repayment', 'propertyhive' ); ?> (&pound;)</label>
+                        <input type="text" name="repayment" value="" placeholder="" disabled class="form-control">
+                    </div>
+                    <div class="form-group mb-0">
+                        <label><?php echo __( 'Interest Only', 'propertyhive' ); ?> (&pound;)</label>
+                        <input type="text" name="interest" value="" placeholder="" disabled class="form-control">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

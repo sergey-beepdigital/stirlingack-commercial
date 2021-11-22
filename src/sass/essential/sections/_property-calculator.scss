@@ -110,6 +110,18 @@
                     justify-content: center;
                     flex-direction: column;
                     flex-wrap: wrap;
+
+                    input{
+                        text-align: center;
+                        display: inline-block;
+                        font-size: 38px;
+                        font-weight: 500;
+                        background: none;
+                        border: 0;
+                        color: #FFF;
+                        padding: 0;
+                        height: auto;
+                    }
                 }
             }
         }

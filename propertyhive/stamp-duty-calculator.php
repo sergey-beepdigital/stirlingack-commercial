@@ -39,12 +39,14 @@
             </div>
         </div>
         <div class="col-xl-4 pl-0">
-            <div class="stamp-duty-calculator-results" id="results" style="display:none">
-
-                <!--<h3><?php /*echo __( 'Stamp Duty', 'propertyhive' ); */?></h3>-->
-
-                <label><?php echo __( 'Stamp Duty', 'propertyhive' ); ?> (&pound;)</label>
-                <input type="text" name="stamp_duty" value="" placeholder="" disabled>
+            <div class="stamp-duty-calculator-results text-center" id="results" style="display:none">
+                <div>
+                    <!--<h3><?php /*echo __( 'Stamp Duty', 'propertyhive' ); */?></h3>-->
+                    <div class="form-group mb-0">
+                        <label><?php echo __( 'Stamp Duty', 'propertyhive' ); ?> (&pound;)</label>
+                        <input type="text" name="stamp_duty" value="" placeholder="" disabled class="form-control">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
