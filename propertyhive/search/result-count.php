@@ -23,5 +23,10 @@ global $propertyhive;
 	} else {
 		printf( _x( 'Showing %1$s–%2$s of %3$s properties', '%1$s = first, %2$s = last, %3$s = total', 'propertyhive' ), number_format($first), number_format($last), number_format($total) );
 	}
+
+	if(!empty($_GET['address_keyword'])) {
+	    echo ' <span class="address-keyword-text">IN <span class="keyword-name">' . $_GET['address_keyword'] . '<span></span>';
+    }
+
 	?>
 </p>
