@@ -6,30 +6,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 offset-xl-1">
-                    <h1>We couldn’t find that page</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
+                    {{ options.section_404.content }}
                 </div>
                 <div class="col-xl-5 text-xl-right">
-                    <img src="{{ theme.link }}/dist/images/keys404.jpg">
+                    <img src="{{ options.section_404.image }}">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="page-section page-section--padding50 section-404-search-properties-form">
-        <div class="container">
-            <div class="section-404-search-properties-form--inner">
-                <div class="row">
-                    <div class="col-xl-10 offset-xl-1">
-                        <div class="page-section--heading">
-                            <h2>Looking For A Property?</h2>
+    {% if options.section_404.property_search_shortcode %}
+
+        <section class="page-section page-section--padding50 section-404-search-properties-form">
+            <div class="container">
+                <div class="section-404-search-properties-form--inner">
+                    <div class="row">
+                        <div class="col-xl-10 offset-xl-1">
+
+                            {% if options.section_404.property_search_title %}
+
+                                <div class="page-section--heading">
+                                    <h2>{{ options.section_404.property_search_title }}</h2>
+                                </div>
+
+                            {% endif %}
+
+                            {{ options.section_404.property_search_shortcode | shortcodes }}
                         </div>
-                        {{ '[property_search_form id="hero_search"]' | shortcodes }}
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    {% endif %}
 
     {% include 'components/static-sections/book-valuation.twig' %}
 {% endblock %}
