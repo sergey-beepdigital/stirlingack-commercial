@@ -108,7 +108,10 @@
             }
 
             select{
-                max-width: 130px;
+                min-width: 100%;
+                cursor: pointer;
+                appearance : none;
+                background: transparent;
             }
 
             .autocomplete-container input,
