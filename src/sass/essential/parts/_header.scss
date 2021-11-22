@@ -34,9 +34,26 @@
                             margin-left: 17px;
                         }
 
+                        a{
+                            @include link-border($brand-main-blue,$brand-main-red);
+
+                            &:before{
+                                width: 0;
+                                transition: 0.3s all;
+                            }
+
+                            &:hover{
+                                &:before{
+                                    width: 100%;
+                                }
+                            }
+                        }
+
                         &.current-menu-item{
                             a{
-                                color: $brand-main-red;
+                                &:before{
+                                    width: 100%;
+                                }
                             }
                         }
                     }
