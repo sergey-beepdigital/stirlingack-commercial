@@ -4,7 +4,7 @@
     &--content{
         color: #FFF;
         position: relative;
-        padding: 70px 200px 70px 80px;
+        padding: 60px 280px 60px 80px;
         left: -80px;
         margin-right: -80px;
 
@@ -13,7 +13,7 @@
         }
 
         .link-border{
-            font-size: 24px;
+            font-size: 20px;
             margin-top: 40px;
             display: inline-block;
 
@@ -26,7 +26,7 @@
     }
 
     &--image-wrap{
-        transform: scale(1.4);
+        transform: scale(1.4616);
         transform-origin: right top;
         margin-top: 70px;
     }
@@ -34,8 +34,20 @@
     &.has-logo-watermark{
         .section-content-image--content{
             background-image: url("../images/logo-watermark.svg");
-            background-position: bottom 25px right 25px;
+            background-position: bottom 30px right 200px;
             background-repeat: no-repeat;
+            background-size: 105px;
+        }
+    }
+
+    &.section-valuation{
+        .section-content-image--image-wrap{
+            transform: scale(1.6);
+            margin-top: 50px;
+        }
+
+        .section-content-image--content{
+            padding: 50px 365px 50px 80px;
         }
     }
 }

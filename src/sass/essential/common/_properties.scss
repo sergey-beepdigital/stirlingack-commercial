@@ -330,6 +330,12 @@ ul.properties{
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px 30px;
     }
+
+    &.view-list{
+        .promo{
+            padding: 40px 25px;
+        }
+    }
 }
 
 .section-properties{

@@ -818,6 +818,15 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_619b808e4482b": {
+                    "key": "layout_619b808e4482b",
+                    "name": "book_valuation",
+                    "label": "Book Valuation",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_6183ea75d5fb2": {
                     "key": "layout_6183ea75d5fb2",
                     "name": "valuation_types",
@@ -1417,5 +1426,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637233159
+    "modified": 1637580962
 }
