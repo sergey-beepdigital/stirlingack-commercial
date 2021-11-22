@@ -154,6 +154,8 @@
 }
 
 ul.properties{
+    --image-height: 370px;
+
     list-style: none;
     margin: 0;
     padding: 0;
@@ -168,7 +170,7 @@ ul.properties{
 
                 img{
                     width: 100%;
-                    height: 250px;
+                    height: var(--image-height)!important;
                     object-fit: cover;
                 }
 
@@ -340,6 +342,10 @@ ul.properties{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px 30px;
+
+        li.promo{
+            max-height: var(--image-height);
+        }
     }
 
     &.view-list{
