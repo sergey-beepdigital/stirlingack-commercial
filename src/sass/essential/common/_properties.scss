@@ -347,6 +347,38 @@ ul.properties{
     }
 }
 
+body .properties-map-popup{
+    .title-close{
+        padding: 10px 15px;
+        background-color: $brand-main-blue;
+
+        .close{
+            a{
+                color: #FFF
+            }
+        }
+    }
+
+    .properties{
+        .property{
+            .image{
+                img{
+                    padding: 0;
+                    border-width: 0;
+                }
+            }
+
+            .details{
+                width: 160px;
+
+                .summary{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
 .section-properties{
     .property-search-form{
         padding: 15px 0;
