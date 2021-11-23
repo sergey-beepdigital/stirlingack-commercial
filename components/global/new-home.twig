@@ -2,9 +2,10 @@
 
 <div class="new-home-post-item">
     <div class="new-home-post-item--image-wrap">
-        <span class="new-home-amount-images"><i class="fa-light fa-camera"></i> {{ gallery_images | length }}</span>
-        <span class="new-home-flag">New Home</span>
         <a href="{{ post.link }}">
+            <span class="new-home-amount-images"><i class="fa-light fa-camera"></i> {{ gallery_images | length }}</span>
+            <span class="new-home-flag">New Home</span>
+
             {% if gallery_images %}
                 <img src="{{ gallery_images[0].url | resize(740,740) }}">
             {% else %}
