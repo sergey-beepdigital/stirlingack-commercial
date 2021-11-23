@@ -49,5 +49,19 @@
         .section-content-image--content{
             padding: 50px 365px 50px 80px;
         }
+
+        &--short{
+            min-height: 0;
+
+            .section-content-image--image-wrap{
+                transform: scale(2.9);
+            }
+
+            .section-content-image--content{
+                padding: 50px 265px 70px 80px;
+                background-position: bottom 40px right 250px;
+                background-size: 90px;
+            }
+        }
     }
 }

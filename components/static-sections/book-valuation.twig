@@ -1,12 +1,12 @@
 {% if options.section_valuation.content %}
 
-    <section class="page-section page-section--padding50 section-content-image section-valuation has-logo-watermark">
+    <section class="page-section page-section--padding50 section-content-image section-valuation has-logo-watermark {{ short ? 'section-valuation--short' : '' }}">
         <div class="container">
             <div class="row no-gutters">
-                <div class="col-xl-9">
+                <div class="{{ short ? 'col-xl-10' : 'col-xl-9' }}">
                     <div class="bg-primary section-content-image--content">
                         {% if options.section_valuation.title %}
-                            <h2 class="h1">{{ options.section_valuation.title }}</h2>
+                            <h2 class="{{ not short ? 'h1' : '' }}">{{ options.section_valuation.title }}</h2>
                         {% endif %}
                         <div class="section-content-image--content_inner content-clear">{{ options.section_valuation.content }}</div>
                         {% if options.section_valuation.link %}
@@ -17,7 +17,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="col-xl-3">
+                <div class="{{ short ? 'col-xl-2' : 'col-xl-3' }}">
                     <div class="section-content-image--image-wrap">
                         <img src="{{ options.section_valuation.image }}">
                     </div>
