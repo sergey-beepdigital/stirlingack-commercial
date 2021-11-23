@@ -21,6 +21,11 @@
         .shortcode-link-arrow{
             display: inline-block;
 
+            &:hover{
+                text-decoration: none;
+                color: $brand-main-red;
+            }
+
             &:last-child{
                 margin-bottom: 0;
             }
