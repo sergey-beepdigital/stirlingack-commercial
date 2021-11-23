@@ -37,6 +37,14 @@
                         color: $brand-main-red;
                         margin-right: 5px;
                     }
+
+                    a{
+                        text-decoration: none!important;
+
+                        &:hover{
+                            color: $brand-main-red;
+                        }
+                    }
                 }
             }
 
