@@ -1,6 +1,15 @@
 .branch-post{
     position: relative;
 
+    &--thumbnail-link{
+        overflow: hidden;
+        display: inline-block;
+
+        img{
+            transition: transform .2s;
+        }
+    }
+
     &--content{
         padding: 25px;
         background-color: #FFF;
@@ -44,6 +53,14 @@
         .view-branch-link{
             text-transform: uppercase;
             font-weight: normal;
+        }
+    }
+
+    &:hover{
+        .branch-post--thumbnail-link{
+            img{
+                transform: scale(1.2);
+            }
         }
     }
 }

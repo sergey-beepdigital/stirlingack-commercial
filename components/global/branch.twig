@@ -1,5 +1,5 @@
 <div class="branch-post">
-    <a href="{{ post.link }}">
+    <a href="{{ post.link }}" class="branch-post--thumbnail-link">
         {% if post.thumbnail %}
             <img src="{{ post.thumbnail |resize(740,540) }}" title="{{ post.title }}">
         {% else %}

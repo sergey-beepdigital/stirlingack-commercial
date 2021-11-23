@@ -1,12 +1,18 @@
 .new-home-post-item{
     &--image-wrap{
         position: relative;
+        overflow: hidden;
+
+        img{
+            transition: transform .2s;
+        }
 
         .new-home-amount-images,
         .new-home-flag{
             position: absolute;
             top: 0;
             padding: 13px 15px;
+            z-index: 10;
         }
 
         .new-home-amount-images{
@@ -45,6 +51,14 @@
             .price{
                 font-size: 22px;
                 font-weight: normal;
+            }
+        }
+    }
+
+    &:hover{
+        .new-home-post-item--image-wrap{
+            img {
+                transform: scale(1.2);
             }
         }
     }

@@ -167,11 +167,13 @@ ul.properties{
         .property-item-inner{
             .thumbnail{
                 position: relative;
+                overflow: hidden;
 
                 img{
                     width: 100%;
                     height: var(--image-height)!important;
                     object-fit: cover;
+                    transition: transform .2s;
                 }
 
                 .property-images-count,
@@ -333,6 +335,16 @@ ul.properties{
             .item-promo-content{
                 & > *:last-child{
                     margin-bottom: 0;
+                }
+            }
+        }
+
+        &:hover{
+            .property-item-inner{
+                .thumbnail{
+                    img{
+                        transform: scale(1.2);
+                    }
                 }
             }
         }
