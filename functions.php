@@ -190,7 +190,7 @@ class StarterSite extends TimberSite {
 
     function add_to_context( $context ) {
         $context['top_menu'] = new TimberMenu('top-nav');
-        $context['menu'] = new TimberMenu('main-nav');
+        $context['menu'] = new TimberMenu('main-nav',['menu_id' => 'main-nav']);
 
         $context['footer_widgets1'] = Timber::get_widgets('footer-widget');
         $context['footer_widgets2'] = Timber::get_widgets('footer-widget-2');
@@ -729,6 +729,7 @@ function breadcrumbs_add_post_parent_page( $links ) {
 }
 add_filter( 'wpseo_breadcrumb_links', 'breadcrumbs_add_post_parent_page' );
 
+
 function sa_acf_set_google_map() {
     $api_key = get_option('propertyhive_google_maps_api_key');
 
@@ -737,3 +738,27 @@ function sa_acf_set_google_map() {
     }
 }
 add_action('acf/init', 'sa_acf_set_google_map');
+
+
+/**
+ * Add current css class for post type parent pages
+ * @param $classes
+ * @param $item
+ * @param $args
+ * @return mixed
+ */
+function sa_highlight_post_type_parent_pages_nav($classes, $item, $args) {
+    $page_options = get_field('page','option');
+
+    if($args->menu_id == 'main-nav' && !empty($page_options['new_homes_list_page_id'])) {
+        if (
+            (is_singular('sa_new_home') && $item->object_id == $page_options['new_homes_list_page_id']) ||
+            (is_singular('sa_branch') && $item->object_id == $page_options['branch_list_page_id'])
+        ) {
+            $classes[] = 'current-menu-item';
+        }
+    }
+
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'sa_highlight_post_type_parent_pages_nav', 1, 3);
