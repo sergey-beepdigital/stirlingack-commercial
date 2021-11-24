@@ -10,7 +10,7 @@
     }
 
     public function get_code() {
-        $property_ref_id = $this->property->get_imported_id();
+        $property_ref_id = get_field('_office_id',$this->property->id);
         $property_ref_id_parts = array_reverse(explode('-',$property_ref_id));
         $property_ref_office_part = reset($property_ref_id_parts);
 

@@ -5,14 +5,14 @@
             <div class="branch-info">
                 <div class="branch-info--name">{{ branch_data.title }} Branch</div>
                 <a href="tel:{{ branch_data.phone | replace({' ':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</a>
-                <a href="#" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
+                <a href="#" class="btn btn-lg btn-secondary text-uppercase">Arrange a Viewing</a>
                 {% if branch_data.address %}
                     <div class="branch-info--address">
                         {{ branch_data.address }}<br>
                         <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address }}','branch-google-map-image');">View on map</a>
                     </div>
                 {% endif %}
-                {{ fn('propertyhive_make_enquiry_button') }}
+                {#{{ fn('propertyhive_make_enquiry_button') }}#}
             </div>
         </div>
     </div>

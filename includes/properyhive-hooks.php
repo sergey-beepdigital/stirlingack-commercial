@@ -21,16 +21,21 @@ function DEPREACTED_pickup_new_property($post_id, $property) {
     update_post_meta($post_id, '_new_home', $new);
 }
 
-function pickup_new_property($post_id, $property) {
-    $new = '';
+function sa_save_custom_meta_property($post_id, $property) {
+    $new = $office_id = '';
 
     if(!empty($property->Age) && in_array('New',$property->Age)) {
         $new = 'yes';
     }
 
+    if(!empty($property->Office) && !empty($property->Office->ID)) {
+        $office_id = $property->Office->ID;
+    }
+
     update_post_meta($post_id, '_new_home', $new);
+    update_post_meta($post_id, '_office_id', $office_id);
 }
-add_action("propertyhive_property_imported_jet", "pickup_new_property", 10, 2);
+add_action("propertyhive_property_imported_jet", "sa_save_custom_meta_property", 10, 2);
 
 
 /**
