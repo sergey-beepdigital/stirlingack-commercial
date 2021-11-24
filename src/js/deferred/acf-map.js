@@ -61,7 +61,8 @@
         // Create marker instance.
         var marker = new google.maps.Marker({
             position : latLng,
-            map: map
+            map: map,
+            icon: sg_config.google_maps.marker_url
         });
 
         // Append to reference for later use.
