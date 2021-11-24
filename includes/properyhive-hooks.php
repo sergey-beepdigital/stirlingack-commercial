@@ -817,3 +817,19 @@ function sa_property_meta_description() {
     }
 }
 add_action('wp_head', 'sa_property_meta_description');
+
+
+/**
+ * Custom color options for map view on property listing page
+ * @param $options
+ * @return mixed
+ */
+function sa_map_search_draw_options($options) {
+    $options['stroke_weight'] = 2;
+    $options['fill_color'] = '#151E46';
+    $options['fill_opacity'] = 0.1;
+    $options['stroke_color'] = '#151E46';
+
+    return $options;
+}
+add_filter('propertyhive_map_search_draw_options','sa_map_search_draw_options');

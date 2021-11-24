@@ -1,0 +1,49 @@
+.section-features-image{
+    &--content-wrap{
+        padding: 65px 80px;
+        background-color: $support-color5;
+
+        & > h2{
+            margin-bottom: 35px;
+        }
+
+        &__content{
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li{
+                    padding-left: 30px;
+                    position: relative;
+
+                    &:not(:first-child) {
+                        margin-top: 15px;
+                    }
+
+                    &:before{
+                        content: "\f058";
+                        font-family: "Font Awesome 6 Pro";
+                        color: $brand-main-red;
+                        position: absolute;
+                        top: 2px;
+                        left: 0;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        &__actions{
+            margin-top: 35px;
+
+            .btn{
+                min-width: 200px;
+            }
+        }
+    }
+
+    &--image{
+        padding-top: 27px;
+    }
+}

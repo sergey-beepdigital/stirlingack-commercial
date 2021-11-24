@@ -69,4 +69,42 @@
             }
         }
     }
+
+    .section-new-home-cta{
+        .new-home-cta-block{
+            &--thumb-link{
+                display: inline-block;
+                overflow: hidden;
+
+                img{
+                    transition: transform .2s;
+                }
+            }
+
+            &--content{
+                padding: 35px 30px 40px;
+                background: #fff;
+                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+                h4{
+                    font-size: 22px;
+                    margin-bottom: 20px;
+                }
+
+                .btn{
+                    margin-top: calc(30px - 1rem);
+                    display: inline-block;
+                    min-width: 230px;
+                }
+            }
+
+            &:hover{
+                .new-home-cta-block--thumb-link{
+                    img{
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
 }

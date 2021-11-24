@@ -3,6 +3,9 @@
 {% block content %}
     {% set gallery_images = post.get_field('ng_gallery') %}
     {% set contacts = post.get_field('nh_contacts') %}
+    {% set features = post.get_field('nh_features') %}
+    {% set cta_list = post.get_field('nh_cta') %}
+    {% set similar_new_homes = post.get_field('similar_new_homes') %}
 
     <section class="page-section page-section--padding50 pb-0 section-gallery-images">
         <div class="container">
@@ -92,7 +95,7 @@
                                 {% if contacts.phone_number %}
                                     <a href="tel:{{ contacts.phone_number | replace({' ':''}) }}" class="branch-info--phone-number h3 text-uppercase">{{ contacts.phone_number }}</a>
                                 {% endif %}
-                                <a href="#" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
+                                <a href="javascript:;" onclick="SA_Common.openFancyModal('#new-home-form-popup')" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
                             </div>
                         </div>
                     </div>
@@ -100,6 +103,36 @@
             </div>
         </div>
     </section>
+
+    {% if features.content %}
+
+        <section class="page-section page-section--padding50 section-features-image">
+            <div class="container-wide">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="section-features-image--content-wrap">
+                            {% if features.title %}
+                                <h2>{{ features.title }}</h2>
+                            {% endif %}
+                            <div class="section-features-image--content-wrap__content content-clear">
+                                {{ features.content }}
+                            </div>
+
+                            <div class="section-features-image--content-wrap__actions">
+                                <a href="javascript:;" onclick="SA_Common.openFancyModal('#new-home-form-popup')" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="section-features-image--image">
+                            <img src="{{ features.image }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
 
     {% if post.nh_properties_development_shortcode %}
 
@@ -110,6 +143,65 @@
                 </div>
 
                 {{ post.nh_properties_development_shortcode | shortcodes }}
+
+            </div>
+        </section>
+
+    {% endif %}
+
+    {% if cta_list %}
+
+        <section class="page-section page-section--padding50 section-new-home-cta">
+            <div class="container">
+                <div class="row">
+
+                    {% for cta_item in cta_list %}
+
+                        <div class="col-xl-6">
+                            <div class="new-home-cta-block text-center">
+                                <a class="new-home-cta-block--thumb-link" href="{{ cta_item.link.url }}"><img src="{{ cta_item.image }}"></a>
+                                <div class="new-home-cta-block--content">
+                                    <h4 class="text-uppercase">{{ cta_item.title }}</h4>
+                                    {{ cta_item.short_description }}
+                                    {% include 'components/parts/link.twig' with {
+                                        link: cta_item.link,
+                                        css_class: 'btn btn-lg btn-secondary text-uppercase'
+                                    } %}
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+    {% if similar_new_homes %}
+
+        <section class="page-section page-section--padding50">
+            <div class="container">
+                <div class="page-section--heading">
+                    <h3 class="text-uppercase">Similar New Homes</h3>
+                </div>
+
+                <div class="row">
+
+                    {% for item in similar_new_homes %}
+
+                        <div class="col-xl-4">
+
+                            {% include 'components/global/new-home.twig' with {
+                                post: item
+                            } %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
 
             </div>
         </section>

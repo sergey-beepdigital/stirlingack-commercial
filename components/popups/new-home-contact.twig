@@ -1,0 +1,8 @@
+{% if fn('is_singular','sa_new_home') %}
+    <div id="new-home-form-popup" class="valuation-popup" style="display:none; max-width:600px">
+        <h3 class="mb-3">Email Us</h3>
+        <div class="valuation-popup--form-wrap">
+            {{ options.shortcode.new_home_contact_popup | shortcodes }}
+        </div>
+    </div>
+{% endif %}
