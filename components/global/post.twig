@@ -2,7 +2,7 @@
     <div class="blog-post--image">
         <a href="{{ post.link }}">
             {% if post.thumbnail %}
-                <img src="{{ post.thumbnail | resize(740,540) }}">
+                <img src="{{ post.thumbnail | resize(370,270) }}" srcset="{{ post.thumbnail | resize(740,540) }} 2x">
             {% else %}
                 <img src="{{ theme.link ~ '/dist/images/placeholder/placeholder740x540.jpg' }}">
             {% endif %}
