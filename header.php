@@ -7,9 +7,9 @@
  * WooCommerce) you can delete this file and footer.php
  */
 
-//if(get_query_var('post_type') == 'property' && $_GET['view'] == 'map') {
+if(get_query_var('post_type') == 'property' && $_GET['view'] == 'map') {
     wp_head();
-//}
+}
 
 $GLOBALS['timberContext'] = Timber::get_context();
 ob_start();
