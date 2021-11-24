@@ -792,3 +792,28 @@ function sa_new_home_item_template($template, $slug, $name) {
     return $template;
 }
 add_filter('ph_get_template_part','sa_new_home_item_template',10,3);
+
+
+/**
+ * Add custom description meta tag for property detail page
+ */
+function sa_property_meta_description() {
+    if(is_singular('property')) {
+        global $property;
+
+        $description_parts = [];
+
+        $description_parts[] = $property->post_title;
+        if($property->bedrooms) {
+            $description_parts[] = $property->bedrooms;
+            $description_parts[] = 'bedroom';
+        }
+        $description_parts[] = 'property for';
+        $description_parts[] = str_replace(['-'], ' ', $property->department);
+        $description_parts[] = 'in';
+        $description_parts[] = $property->get_formatted_summary_address();
+
+        echo "<meta name='description' content='".join(' ',$description_parts)."' />";
+    }
+}
+add_action('wp_head', 'sa_property_meta_description');
