@@ -9,7 +9,7 @@
                 {% if branch_data.address %}
                     <div class="branch-info--address">
                         {{ branch_data.address }}<br>
-                        <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address }}','branch-google-map-image');">View on map</a>
+                        <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address | replace({"'":''}) }}','branch-google-map-image');">View on map</a>
                     </div>
                 {% endif %}
                 {#{{ fn('propertyhive_make_enquiry_button') }}#}
