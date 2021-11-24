@@ -838,3 +838,12 @@ function sa_map_search_draw_options($options) {
     return $options;
 }
 add_filter('propertyhive_map_search_draw_options','sa_map_search_draw_options');
+
+/**
+ * Change amount of properties on listing page
+ * @return int
+ */
+function sa_loop_search_results_per_page() {
+    return 14;
+}
+add_filter( 'loop_search_results_per_page', 'sa_loop_search_results_per_page', 20 );
