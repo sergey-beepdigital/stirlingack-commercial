@@ -26,6 +26,11 @@
                     i{
                         color: $brand-main-red;
                     }
+
+                    &:hover{
+                        text-decoration: none;
+                        color: $brand-main-red;
+                    }
                 }
             }
         }
