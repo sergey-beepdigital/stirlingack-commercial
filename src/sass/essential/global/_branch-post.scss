@@ -54,6 +54,11 @@
         .view-branch-link{
             text-transform: uppercase;
             font-weight: normal;
+
+            &:hover{
+                color: $brand-main-red;
+                text-decoration: none;
+            }
         }
     }
 
