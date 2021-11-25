@@ -365,6 +365,8 @@ function sa_property_loop_item_title() {
 
     if($property->bedrooms) {
         $subtitle_parts[] = $property->bedrooms . ' Bed';
+    } else {
+        $subtitle_parts[] = 'Studio';
     }
 
     if($property->property_type) {
