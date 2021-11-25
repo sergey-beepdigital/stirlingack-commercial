@@ -11,13 +11,17 @@
         <div class="branch-address">{{ post.branch_address }}</div>
         <ul class="branch-contacts-list">
             {% if post.branch_sale_phone %}
-                <li><a href="#"><i class="fa-light fa-phone"></i> Sales {{ post.branch_sale_phone }}</a></li>
+                <li><a href="tel:{{ post.branch_sale_phone | replace({' ':''}) }}"><i class="fa-light fa-phone"></i> Sales {{ post.branch_sale_phone }}</a></li>
             {% endif %}
             {% if post.branch_let_phone %}
-                <li><a href="#"><i class="fa-light fa-phone"></i> Lettings {{ post.branch_let_phone }}</a></li>
+                <li><a href="tel:{{ post.branch_let_phone | replace({' ':''}) }}"><i class="fa-light fa-phone"></i> Lettings {{ post.branch_let_phone }}</a></li>
             {% endif %}
-            <li><a href="#"><i class="fa-light fa-envelope"></i> Email the sales local team</a></li>
-            <li><a href="#"><i class="fa-light fa-envelope"></i> Email the lettings local team</a></li>
+            {% if post.branch_sale_email_address %}
+                <li><a href="mailto:{{ post.branch_sale_email_address }}"><i class="fa-light fa-envelope"></i> Email the sales local team</a></li>
+            {% endif %}
+            {% if post.branch_let_email_address %}
+                <li><a href="mailto:{{ post.branch_let_email_address }}"><i class="fa-light fa-envelope"></i> Email the lettings local team</a></li>
+            {% endif %}
         </ul>
         <a class="view-branch-link" href="{{ post.link }}">View Branch Page <i class="fa-regular fa-chevron-right"></i></a>
     </div>
