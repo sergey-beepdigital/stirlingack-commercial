@@ -11,6 +11,7 @@ var SA_Common = SA_Common || {};
 
         var element = {
             ctaCarousel: '[data-carousel="cta"]',
+            featuredPropertiesCarousel: '.propertyhive-featured-properties-shortcode > .properties',
             galleryCarousel: '[data-gallery-carousel]',
             galleryThumbnailCarousel: '[data-gallery-thumbnail-carousel]'
         };
@@ -23,6 +24,7 @@ var SA_Common = SA_Common || {};
             init: function () {
                 SA_Common.events();
                 SA_Common.initCtaCarousel();
+                SA_Common.initFeaturedPropertiesCarousel();
                 //SA_Common.initGalleryCarousel();
                 AOS.init();
             },
@@ -39,6 +41,21 @@ var SA_Common = SA_Common || {};
                         items: 1,
                         autoplay: true
                     });
+                }
+            },
+
+            initFeaturedPropertiesCarousel: function() {
+                var $carousel = $(element.featuredPropertiesCarousel);
+
+                if($carousel.length) {
+                    $carousel
+                        .addClass('owl-carousel owl-theme')
+                        .owlCarousel({
+                            items: 3,
+                            autoplay: true,
+                            autoplayHoverPause: true,
+                            margin: 30
+                        });
                 }
             },
 

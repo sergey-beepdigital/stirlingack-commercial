@@ -849,3 +849,8 @@ function sa_loop_search_results_per_page() {
     return 14;
 }
 add_filter( 'loop_search_results_per_page', 'sa_loop_search_results_per_page', 20 );
+
+function sa_featured_properties_shortcode_output($output) {
+    return str_replace('ul','div',$output);
+}
+add_filter('propertyhive_featured_properties_shortcode_output','sa_featured_properties_shortcode_output');

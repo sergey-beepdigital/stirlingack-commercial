@@ -1,0 +1,33 @@
+.propertyhive-featured-properties-shortcode{
+    .properties.owl-theme{
+        display: block;
+
+        & > div:hover{
+            img{
+                transform: none!important;
+            }
+        }
+
+        .owl-stage-outer{
+            padding-bottom: 10px;
+
+            .owl-item{
+                &:hover{
+                    img{
+                        transform: scale(1.2)!important;
+                    }
+                }
+            }
+        }
+
+        .owl-dots{
+            .owl-dot{
+                &.active{
+                    span{
+                        background-color: $brand-main-blue;
+                    }
+                }
+            }
+        }
+    }
+}

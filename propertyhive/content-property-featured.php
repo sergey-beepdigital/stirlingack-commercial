@@ -37,7 +37,7 @@ if ( 0 == $propertyhive_loop['loop'] % $propertyhive_loop['columns'] )
 if ( $property->featured == 'yes' )
     $classes[] = 'featured';
 ?>
-<li <?php post_class( $classes ); ?>>
+<div <?php post_class( $classes ); ?>>
 
 	<?php do_action( 'propertyhive_before_search_results_loop_item' ); ?>
 
@@ -56,7 +56,7 @@ if ( $property->featured == 'yes' )
     
     <div class="details">
     
-    	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+    	<!--<h3><a href="<?php /*the_permalink(); */?>"><?php /*the_title(); */?></a></h3>-->
         
     	<?php
     		/**
@@ -73,4 +73,4 @@ if ( $property->featured == 'yes' )
     
 	<?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
 
-</li>
+</div>

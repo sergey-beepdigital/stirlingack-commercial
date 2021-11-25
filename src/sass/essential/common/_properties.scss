@@ -154,6 +154,7 @@
     }
 }
 
+div.properties,
 ul.properties{
     --image-height: 370px;
 
@@ -161,6 +162,7 @@ ul.properties{
     margin: 0;
     padding: 0;
 
+    & > div,
     & > li{
         width: auto!important;
         margin-left: 0!important;
