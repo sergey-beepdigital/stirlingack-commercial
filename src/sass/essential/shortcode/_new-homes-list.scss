@@ -1,7 +1,5 @@
 .new-homes-list-shortcode{
     .new-homes-list-grid{
-        overflow: hidden;
-
         .new-home-promo-box,
         .promo-column{
             min-height: 100%;
@@ -34,9 +32,13 @@
             }
         }
 
-        .new-home-promo-box,
-        .new-home-post-item{
-            margin-bottom: 40px;
+        & > .row{
+            overflow: hidden;
+            margin-bottom: -40px;
+
+            & > div{
+                margin-bottom: 40px;
+            }
         }
     }
 }
