@@ -64,4 +64,7 @@ if ( $property->featured == 'yes' )
 
         ?>
     </div>
+    <div class="dev-item--actions">
+        <a href="<?php echo get_the_permalink($property->ID); ?>" class="btn btn-secondary">MORE DETAILS</a>
+    </div>
 </li>
