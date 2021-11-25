@@ -25,7 +25,7 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    <div class="thumbnails flexslider" id="carousel">
+                    <div class="thumbnails flexslider" id="carousel" {% if gallery_images | length <= 1 %}style="display: none"{% endif %}>
                         <ul class="slides">
                             {% for image in gallery_images %}
                                 <li>
