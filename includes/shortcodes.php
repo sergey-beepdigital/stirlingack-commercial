@@ -127,7 +127,9 @@ function new_homes_list_shortcode() {
     $context['new_homes_list'] = Timber::query_posts([
         'post_type' => 'sa_new_home',
         'post_status' => 'publish',
-        'nopaging'=> true
+        'nopaging'=> true,
+        'order' => 'ASC',
+        'orderby' => 'date'
     ]);
 
     Timber::render('components/shortcodes/new-homes-list.twig', $context);
