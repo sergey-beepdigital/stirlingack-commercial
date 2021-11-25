@@ -18,25 +18,6 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_619e1c362bb61",
-                    "label": "Valuation Popup",
-                    "name": "valuation_popup",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
                     "key": "field_619e1c472bb62",
                     "label": "New Home Contact Popup",
                     "name": "new_home_contact_popup",
@@ -75,5 +56,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637751894
+    "modified": 1637879958
 }

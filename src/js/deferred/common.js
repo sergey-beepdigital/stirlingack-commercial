@@ -237,7 +237,7 @@ var SA_Common = SA_Common || {};
 
             },
 
-            openFancyModal: function (modalId) {
+            /*openFancyModal: function (modalId) {
                 if(modalId != undefined) {
                     parent.jQuery.fancybox.open({
                         src: modalId
@@ -245,7 +245,7 @@ var SA_Common = SA_Common || {};
                 } else {
                     alert('Please, set modal ID');
                 }
-            },
+            },*/
 
             viewAddressMapImage: function (address, wrap_css_class) {
                 if(address != '') {

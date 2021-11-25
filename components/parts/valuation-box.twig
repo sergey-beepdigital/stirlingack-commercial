@@ -1,3 +1,5 @@
+{% set shortcode_form_id = 'shortcode-popup-' ~ random() %}
+
 <div class="valuation-type-block">
     {% if data.title %}
         <h3 class="text-uppercase">{{ data.title }}</h3>
@@ -22,6 +24,16 @@
             link: data.button.link,
             css_class: 'btn btn-lg btn-block btn-primary text-uppercase'
         } %}
+    {% elseif data.button.type == 'shortcode_form' %}
+        <a class="btn btn-lg btn-block btn-primary text-uppercase" data-fancybox data-src="#{{ shortcode_form_id}}" href="javascript:;">{{ data.button.title }}</a>
+
+        <div id="{{ shortcode_form_id }}" class="valuation-popup" style="display:none; max-width:600px">
+            <h3 class="mb-3">{{ data.button.title }}</h3>
+            <div class="valuation-popup--form-wrap">
+                {{ data.button.shortcode_form | shortcodes }}
+            </div>
+        </div>
+
     {% else %}
         <a href="javascript:;" onclick="{{ data.button.function }}" class="btn btn-lg btn-block btn-primary text-uppercase">{{ data.button.title }}</a>
     {% endif %}

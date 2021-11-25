@@ -1055,7 +1055,8 @@
                                             },
                                             "choices": {
                                                 "link": "Link",
-                                                "js_function": "Javascript function"
+                                                "js_function": "Javascript function",
+                                                "shortcode_form": "Shortcode Form"
                                             },
                                             "default_value": false,
                                             "allow_null": 0,
@@ -1102,6 +1103,13 @@
                                                         "operator": "==",
                                                         "value": "js_function"
                                                     }
+                                                ],
+                                                [
+                                                    {
+                                                        "field": "field_61840de9130cc",
+                                                        "operator": "==",
+                                                        "value": "shortcode_form"
+                                                    }
                                                 ]
                                             ],
                                             "wrapper": {
@@ -1138,6 +1146,33 @@
                                             },
                                             "default_value": "",
                                             "placeholder": "my_function()",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        },
+                                        {
+                                            "key": "field_61a00d1a88b77",
+                                            "label": "Shortcode Form",
+                                            "name": "shortcode_form",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61840de9130cc",
+                                                        "operator": "==",
+                                                        "value": "shortcode_form"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
                                             "prepend": "",
                                             "append": "",
                                             "maxlength": ""
@@ -1250,14 +1285,15 @@
                                             },
                                             "choices": {
                                                 "link": "Link",
-                                                "js_function": "Javascript function"
+                                                "js_function": "Javascript function",
+                                                "shortcode_form": "Shortcode Form"
                                             },
                                             "default_value": false,
                                             "allow_null": 0,
                                             "multiple": 0,
                                             "ui": 0,
-                                            "ajax": 0,
                                             "return_format": "value",
+                                            "ajax": 0,
                                             "placeholder": ""
                                         },
                                         {
@@ -1297,6 +1333,13 @@
                                                         "operator": "==",
                                                         "value": "js_function"
                                                     }
+                                                ],
+                                                [
+                                                    {
+                                                        "field": "field_61840ed2267d8",
+                                                        "operator": "==",
+                                                        "value": "shortcode_form"
+                                                    }
                                                 ]
                                             ],
                                             "wrapper": {
@@ -1333,6 +1376,33 @@
                                             },
                                             "default_value": "",
                                             "placeholder": "my_function()",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        },
+                                        {
+                                            "key": "field_61a00cb888b76",
+                                            "label": "Shortcode Form",
+                                            "name": "shortcode_form",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61840ed2267d8",
+                                                        "operator": "==",
+                                                        "value": "shortcode_form"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
                                             "prepend": "",
                                             "append": "",
                                             "maxlength": ""
@@ -1525,5 +1595,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637611776
+    "modified": 1637879631
 }
