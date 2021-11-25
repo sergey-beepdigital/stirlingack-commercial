@@ -730,14 +730,17 @@ function breadcrumbs_add_post_parent_page( $links ) {
 add_filter( 'wpseo_breadcrumb_links', 'breadcrumbs_add_post_parent_page' );
 
 
-function sa_acf_set_google_map() {
+function sa_acf_set_google_map( $api ){
     $api_key = get_option('propertyhive_google_maps_api_key');
 
     if(!empty($api_key)) {
-        acf_update_setting('google_api_key', $api_key);
+        $api['key'] = $api_key;
     }
+
+    return $api;
+
 }
-add_action('acf/init', 'sa_acf_set_google_map');
+add_filter('acf/fields/google_map/api', 'sa_acf_set_google_map');
 
 
 /**
