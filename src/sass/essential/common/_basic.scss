@@ -72,11 +72,17 @@ body{
         }
 
         .wpcf7-not-valid-tip{
-            background-color: $brand-main-red;
-            padding: 1px 8px;
+            color: $brand-main-red;
+            padding: 1px 0;
             font-size: 14px;
             font-weight: 300;
-            color: #FFF;
+
+            &:before{
+                content: "\f00d";
+                font-family: "Font Awesome 6 Pro";
+                font-weight: 400;
+                margin-right: 5px;
+            }
         }
     }
 
@@ -92,6 +98,12 @@ body{
             bottom: 0;
             z-index: 10;
             background: rgba(#FFFFFF,0.5);
+        }
+    }
+
+    &:not(.sent){
+        .wpcf7-response-output{
+            display: none!important;
         }
     }
 }
