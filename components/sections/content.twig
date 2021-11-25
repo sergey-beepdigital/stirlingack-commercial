@@ -6,12 +6,12 @@
                 {% if section.sidebar and section.cont_has_image != 1 %}
 
                     <div class="row">
-                        <div class="col-xl-7">
+                        <div class="col-xl-7" data-aos="fade-down">
                             <div class="content-clear">
                                 {{ section.cont_editor_1 }}
                             </div>
                         </div>
-                        <div class="col-xl-4 offset-xl-1">
+                        <div class="col-xl-4 offset-xl-1" data-aos="fade-up">
                             <div class="section-content--sidebar">
                                 {{ section.sidebar }}
                             </div>
@@ -21,19 +21,19 @@
                 {% elseif section.cont_has_image and section.cont_image %}
 
                     <div class="row">
-                        <div class="col-xl-5">
+                        <div class="col-xl-5" data-aos="fade-down">
                             <div class="content-clear">
                                 {{ section.cont_editor_1 }}
                             </div>
                         </div>
-                        <div class="col-xl-6 offset-xl-1">
+                        <div class="col-xl-6 offset-xl-1" data-aos="fade-up">
                             <img src="{{ section.cont_image }}">
                         </div>
                     </div>
 
                 {% else %}
 
-                    <div class="content-clear">
+                    <div class="content-clear" data-aos="fade-up">
                         {{ section.cont_editor_1 }}
                     </div>
 
