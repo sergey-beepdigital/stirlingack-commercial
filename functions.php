@@ -810,6 +810,10 @@ function branch_contact_submit() {
             $errors['phone_number'] = 'Phone Number must not be empty';
         }
 
+        if(empty($_REQUEST['email_address'])) {
+            $errors['phone_number'] = 'Email Address must not be empty';
+        }
+
         if(!empty($_REQUEST['email_address']) && !is_email($_REQUEST['email_address'])) {
             $errors['email_address'] = 'Email Address is not valid';
         }
@@ -837,7 +841,7 @@ function branch_contact_submit() {
             }
         } else {
             $result['status'] = false;
-            $result['message'] = join('<br>', $errors);
+            $result['message'] = join("\n", $errors);
         }
     } else {
         $result['status'] = false;
