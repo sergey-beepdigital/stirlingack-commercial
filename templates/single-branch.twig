@@ -32,10 +32,10 @@
                     </div>
                     <div class="contact-emails">
                         {% if post.branch_sale_email_address %}
-                            <a target="_blank" href="mailto:{{ post.branch_sale_email_address }}" class="btn btn-lg btn-primary text-uppercase">Email Sales</a>
+                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="{{ post.id }}" class="btn btn-lg btn-primary text-uppercase">Email Sales</a>
                         {% endif %}
                         {% if post.branch_let_email_address %}
-                            <a target="_blank" href="mailto:{{ post.branch_let_email_address }}" class="btn btn-lg btn-primary text-uppercase">Email Lettings</a>
+                            <a href="javascript:;" data-action="branchContact" data-department="lettings" data-id="{{ post.id }}" class="btn btn-lg btn-primary text-uppercase">Email Lettings</a>
                         {% endif %}
                     </div>
                 </div>

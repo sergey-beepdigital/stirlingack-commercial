@@ -17,7 +17,8 @@ var SA_Common = SA_Common || {};
         };
 
         var action = {
-
+            branchContactPopup: '[data-action="branchContact"]',
+            branchContactForm: '[data-form="branchContact"]'
         };
 
         return {
@@ -30,7 +31,10 @@ var SA_Common = SA_Common || {};
             },
 
             events: function () {
-
+                $(document)
+                    .on('click', action.branchContactPopup, SA_Common.branchContactPopup)
+                    .on('submit', action.branchContactForm, SA_Common.branchContactSubmit)
+                ;
             },
 
             initCtaCarousel: function () {
@@ -280,6 +284,55 @@ var SA_Common = SA_Common || {};
                         }
                     }*/
                 });
+            },
+
+            branchContactPopup: function () {
+                var $that = $(this);
+                var id = $that.data('id');
+                var department = $that.data('department');
+
+                $.ajax({
+                    method: "POST",
+                    url: crowdAjax,
+                    data: {
+                        action: 'branch_contact_popup',
+                        id: id,
+                        department: department
+                    },
+                    success: function (response) {
+                        parent.jQuery.fancybox.open({
+                            src: response,
+                            type: 'inline',
+                            touch: false,
+                            momentum: false
+                        });
+                    }
+                });
+            },
+
+            branchContactSubmit: function (e) {
+                var data = new FormData(e.target);
+
+                data.append('action', 'branch_contact_submit');
+
+                $.ajax({
+                    url: crowdAjax,
+                    method: "POST",
+                    data: new URLSearchParams(data).toString(),
+                    success: function (response) {
+                        if(response.status) {
+                            e.target.reset();
+
+                            $(e.target)
+                                .hide()
+                                .after('<div class="alert alert-success">' + response.message + '</div>')
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+
+                e.preventDefault();
             }
         }
     }();

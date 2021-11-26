@@ -1,5 +1,7 @@
 <?php
 
+require_once 'includes/help-functions.php';
+require_once 'includes/classes/class.mailer.php';
 require_once 'includes/classes/class.property-branch.php';
 
 include "includes/shortcodes.php";
@@ -765,3 +767,84 @@ function sa_highlight_post_type_parent_pages_nav($classes, $item, $args) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'sa_highlight_post_type_parent_pages_nav', 1, 3);
+
+function sa_branch_contact_popup() {
+    $context = Timber::get_context();
+
+    $context['id'] = $_REQUEST['id'];
+    $context['department'] = $_REQUEST['department'];
+
+    die(Timber::compile('components/popups/branch-contact.twig',$context));
+}
+add_action('wp_ajax_branch_contact_popup','sa_branch_contact_popup');
+add_action('wp_ajax_nopriv_branch_contact_popup','sa_branch_contact_popup');
+
+function branch_contact_submit() {
+    $result = $errors = [];
+
+    $property = null;
+    $id = $_REQUEST['id'];
+    $department_key = ($_REQUEST['department'] == 'sales') ? 'sale' : 'let';
+    
+    $post_type = get_post_type($id);
+
+    if($post_type == 'property') {
+        $property = get_property(get_post($id));
+
+        $branch = new SA_PropertyBranch($property);
+        $id = $branch->get_branch_id();
+    }
+
+    $email_destination = get_field("branch_{$department_key}_email_address", $id);
+
+    if(!empty($email_destination)) {
+        if(empty($_REQUEST['first_name'])) {
+            $errors['first_name'] = 'First Name must not be empty';
+        }
+
+        if(empty($_REQUEST['surname'])) {
+            $errors['surname'] = 'Surname must not be empty';
+        }
+
+        if(empty($_REQUEST['phone_number'])) {
+            $errors['phone_number'] = 'Phone Number must not be empty';
+        }
+
+        if(!empty($_REQUEST['email_address']) && !is_email($_REQUEST['email_address'])) {
+            $errors['email_address'] = 'Email Address is not valid';
+        }
+
+        if(sizeof($errors) == 0) {
+            $mailer = new WP_Mailer();
+
+            $sent = $mailer
+                ->set_type('branch-contact')
+                ->add_recipient_email($email_destination)
+                ->set_subject('Branch Contact Request')
+                ->set_email_data([
+                    'form_data' => $_REQUEST,
+                    'property' => $property,
+                    'branch' => new TimberPost($id)
+                ])
+                ->send();
+
+            if ($sent) {
+                $result['status'] = true;
+                $result['message'] = 'Email sent successfully.';
+            } else {
+                $result['status'] = false;
+                $result['message'] = 'Email is not send. Server problem. Try Later.';
+            }
+        } else {
+            $result['status'] = false;
+            $result['message'] = join('<br>', $errors);
+        }
+    } else {
+        $result['status'] = false;
+        $result['message'] = 'Email destination not found';
+    }
+
+    wp_send_json($result);
+}
+add_action('wp_ajax_branch_contact_submit','branch_contact_submit');
+add_action('wp_ajax_nopriv_branch_contact_submit','branch_contact_submit');

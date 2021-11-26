@@ -59,7 +59,8 @@ global $property;
             <?php $branch = new SA_PropertyBranch($property);
 
             Timber::render('propertyhive/property-detail/arrange-viewing.twig',[
-                'branch_data' => $branch->get_data()
+                'branch_data' => $branch->get_data(),
+                'property' => $property
             ]); ?>
 
         </div>

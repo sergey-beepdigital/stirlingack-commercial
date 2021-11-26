@@ -17,10 +17,10 @@
                 <li><a href="tel:{{ post.branch_let_phone | replace({' ':''}) }}"><i class="fa-light fa-phone"></i> Lettings {{ post.branch_let_phone }}</a></li>
             {% endif %}
             {% if post.branch_sale_email_address %}
-                <li><a href="mailto:{{ post.branch_sale_email_address }}"><i class="fa-light fa-envelope"></i> Email the sales local team</a></li>
+                <li><a href="javascript:;" data-action="branchContact" data-department="sales" data-id="{{ post.id }}"><i class="fa-light fa-envelope"></i> Email the sales local team</a></li>
             {% endif %}
             {% if post.branch_let_email_address %}
-                <li><a href="mailto:{{ post.branch_let_email_address }}"><i class="fa-light fa-envelope"></i> Email the lettings local team</a></li>
+                <li><a href="javascript:;" data-action="branchContact" data-department="lettings" data-id="{{ post.id }}"><i class="fa-light fa-envelope"></i> Email the lettings local team</a></li>
             {% endif %}
         </ul>
         <a class="view-branch-link" href="{{ post.link }}">View Branch Page <i class="fa-regular fa-chevron-right"></i></a>
