@@ -823,7 +823,7 @@ function branch_contact_submit() {
         }
 
         if(empty($_REQUEST['email_address'])) {
-            $errors['phone_number'] = 'Email Address must not be empty';
+            $errors['email_address'] = 'Email Address must not be empty';
         }
 
         if(!empty($_REQUEST['email_address']) && !is_email($_REQUEST['email_address'])) {
@@ -853,7 +853,7 @@ function branch_contact_submit() {
             }
         } else {
             $result['status'] = false;
-            $result['message'] = join("\n", $errors);
+            $result['errors'] = $errors;
         }
     } else {
         $result['status'] = false;

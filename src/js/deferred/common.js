@@ -320,12 +320,26 @@ var SA_Common = SA_Common || {};
                     method: "POST",
                     data: new URLSearchParams(data).toString(),
                     success: function (response) {
+                        var $form = $(e.target);
+
                         if(response.status) {
                             e.target.reset();
 
-                            $(e.target)
+                            $form
                                 .hide()
                                 .after('<div class="alert alert-success">' + response.message + '</div>')
+                            ;
+                        } else if(response.errors) {
+
+                            $('.invalid-feedback',$form).remove();
+                            $('.form-control',$form).removeClass('is-invalid');
+
+                            $.each(response.errors, function (input_name,message) {
+                                $('[name="' + input_name + '"]', $form)
+                                    .addClass('is-invalid')
+                                    .after('<div class="invalid-feedback"><i class="fas fa-times"></i> ' + message + '</div>')
+                                ;
+                            });
                         } else {
                             alert(response.message);
                         }
