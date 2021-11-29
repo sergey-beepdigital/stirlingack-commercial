@@ -1,0 +1,16 @@
+{% if id %}
+    <script src='https://www.workable.com/assets/embed.js' type='text/javascript'>
+    </script><script type='text/javascript' charset='utf-8'>
+        whr(document).ready(function(){
+            whr_embed({{ id }}, {
+                detail: 'titles',
+                base: 'jobs',
+                zoom: 'city',
+                grouping: 'departments'
+            });
+        });
+    </script>
+    <div id="whr_embed_hook">&#160;</div>
+{% else %}
+    <div class="alert alert-warning">ID is not included</div>
+{% endif %}

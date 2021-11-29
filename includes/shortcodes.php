@@ -59,7 +59,7 @@ function branch_area_box_shortcode($atts) {
         'order' => 'ASC'
     ]);
 
-    Timber::render('components/shortcodes/branch-area-box.twig', $context);
+    return Timber::compile('components/shortcodes/branch-area-box.twig', $context);
 }
 add_shortcode('branch_area_box','branch_area_box_shortcode');
 
@@ -76,7 +76,7 @@ function branches_list_shortcode() {
 
     $context['branches_list'] = $branches_query->get_posts();
 
-    Timber::render('components/shortcodes/branches-list.twig', $context);
+    return Timber::compile('components/shortcodes/branches-list.twig', $context);
 }
 add_shortcode('branches_list','branches_list_shortcode');
 
@@ -132,6 +132,15 @@ function new_homes_list_shortcode() {
         'orderby' => 'date'
     ]);
 
-    Timber::render('components/shortcodes/new-homes-list.twig', $context);
+    return Timber::compile('components/shortcodes/new-homes-list.twig', $context);
 }
 add_shortcode('new_homes_list','new_homes_list_shortcode');
+
+function workable_careers_list_shortcode($atts) {
+    $atts = shortcode_atts([
+        'id' => 0
+    ], $atts);
+
+    return Timber::compile('components/shortcodes/workable-careers-list.twig', $atts);
+}
+add_shortcode('workable_careers_list','workable_careers_list_shortcode');
