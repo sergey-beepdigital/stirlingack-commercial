@@ -771,6 +771,18 @@ add_filter('nav_menu_css_class', 'sa_highlight_post_type_parent_pages_nav', 1, 3
 function sa_branch_contact_popup() {
     $context = Timber::get_context();
 
+    $branch_id = $_REQUEST['id'];
+
+    $post_type = get_post_type($branch_id);
+    if($post_type == 'property') {
+        $property = get_property(get_post($branch_id));
+
+        $branch = new SA_PropertyBranch($property);
+        $branch_id = $branch->get_branch_id();
+    }
+
+
+    $context['branch_title'] = get_the_title($branch_id);
     $context['id'] = $_REQUEST['id'];
     $context['department'] = $_REQUEST['department'];
 
