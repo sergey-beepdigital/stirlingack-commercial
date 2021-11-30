@@ -325,6 +325,41 @@
                     "delay": 0
                 }
             ]
+        },
+        {
+            "key": "field_61a60e93e37e5",
+            "label": "Footer",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_61a60eb1e37e6",
+            "label": "Address",
+            "name": "footer_address",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -344,5 +379,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637600282
+    "modified": 1638272711
 }

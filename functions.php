@@ -193,6 +193,7 @@ class StarterSite extends TimberSite {
     function add_to_context( $context ) {
         $context['top_menu'] = new TimberMenu('top-nav');
         $context['menu'] = new TimberMenu('main-nav',['menu_id' => 'main-nav']);
+        $context['footer_menu'] = new TimberMenu('footer-nav');
 
         $context['footer_widgets1'] = Timber::get_widgets('footer-widget');
         $context['footer_widgets2'] = Timber::get_widgets('footer-widget-2');

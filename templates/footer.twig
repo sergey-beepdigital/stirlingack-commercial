@@ -28,15 +28,13 @@
     </div>
 
     <div class="footer-copyright">
-        <p>Stirling Ackroyd Shoreditch 40 Great Eastern Street, London, EC2A 3EP TRSL Limited 2653200.<br>Registered Office: Unit 2, Wintersells Road, Byfleet, Surrey, KT14 7LF</p>
+        {{ options.footer_address | wpautop }}
         <div class="footer-copyright--nav">
             <div>&copy; {{"now"|date('Y')}} Stirling Ackroyd</div>
             <nav>
-                <ul>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookies</a></li>
-                </ul>
+
+                {% include "menu.twig" with {'menu': footer_menu.get_items} %}
+
             </nav>
             <div class="developed-by">
                 Site by <a href="https://thisiscrowd.com" target="_blank">Crowd</a>
