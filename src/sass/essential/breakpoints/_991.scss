@@ -24,4 +24,25 @@
             }
         }
     }
+
+    .section-content-image{
+        &--content{
+            padding: 60px;
+        }
+
+        &.has-logo-watermark{
+            .section-content-image--content{
+                padding-bottom: 130px;
+                background-position: bottom 30px center;
+            }
+        }
+
+        &--mobile-image{
+            margin-top: 50px;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
 }

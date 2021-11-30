@@ -29,4 +29,14 @@
             }
         }
     }
+
+    .section-content-image{
+        &--content{
+            padding-right: 210px;
+
+            & > h2{
+                font-size: 30px;
+            }
+        }
+    }
 }
