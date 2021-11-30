@@ -242,4 +242,21 @@
             }
         }
     }
+
+    .property-search-info-wrap{
+        padding: 20px 0;
+
+        &--inner{
+            flex-direction: column;
+
+            .propertyhive-ordering{
+                margin-right: 0;
+            }
+
+            .propertyhive-result-count,
+            .propertyhive-ordering{
+                margin-bottom: 10px;
+            }
+        }
+    }
 }

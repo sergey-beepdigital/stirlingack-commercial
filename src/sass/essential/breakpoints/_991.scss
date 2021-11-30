@@ -106,4 +106,33 @@
             }
         }
     }
+
+    div.properties.view-grid,
+    ul.properties.view-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .property-search-info-wrap{
+        &--inner{
+            .propertyhive-result-count{
+                font-size: 18px;
+            }
+
+            .propertyhive-views{
+                ul{
+                    li.list-view{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    /*.section-properties{
+        .properties-list-wrapper{
+            ul.properties{
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }*/
 }
