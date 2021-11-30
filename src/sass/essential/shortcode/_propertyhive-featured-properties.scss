@@ -12,6 +12,25 @@
             padding-bottom: 10px;
 
             .owl-item{
+                div.property{
+                    .sa-shortlist-button{
+                        text-decoration: none!important;
+
+                        i{
+                            font-family: "Font Awesome 6 Pro";
+                            font-style: normal;
+
+                            &.fa-solid{
+                                font-weight: 600;
+                            }
+
+                            &.fa-regular{
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+
                 &:hover{
                     img{
                         transform: scale(1.2)!important;
