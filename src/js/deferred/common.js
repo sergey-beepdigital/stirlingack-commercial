@@ -43,7 +43,8 @@ var SA_Common = SA_Common || {};
                 if($carousel.length) {
                     $carousel.owlCarousel({
                         items: 1,
-                        autoplay: true
+                        //autoplay: true,
+                        loop: true
                     });
                 }
             },

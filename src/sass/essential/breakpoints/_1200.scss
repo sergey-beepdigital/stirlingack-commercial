@@ -39,4 +39,16 @@
             }
         }
     }
+
+    .section-cta-carousel{
+        .cta-slide{
+            &--content{
+                font-size: 18px;
+
+                h2 {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
 }

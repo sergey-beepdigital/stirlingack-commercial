@@ -9,7 +9,7 @@
 
                     <div class="cta-slide">
                         <div class="row">
-                            <div class="col-xl-6" data-aos="slide-down">
+                            <div class="col-lg-6" data-aos="slide-down">
                                 <div class="cta-slide--content">
                                     {% if item.title %}
                                         <h2 class="h1">{{ item.title }}</h2>
@@ -21,8 +21,10 @@
                                     } %}
                                 </div>
                             </div>
-                            <div class="col-xl-6" data-aos="slide-up">
-                                <img src="{{ item.image | resize(650,540) }}">
+                            <div class="col-lg-6 cta-slide--image-column" data-aos="slide-up">
+                                <div class="cta-slide--image">
+                                    <img src="{{ item.image | resize(650,540) }}">
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -17,4 +17,22 @@
             margin-right: -30px;
         }
     }
+
+    .section-cta-carousel {
+        .cta-slide {
+            &--content {
+                padding: 30px 30px 45px;
+                font-size: 14px;
+
+                h2{
+                    font-size: 22px;
+                }
+
+                .link-border{
+                    font-size: 20px;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 }

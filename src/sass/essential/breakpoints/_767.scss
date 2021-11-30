@@ -98,4 +98,12 @@
             margin-top: 30px;
         }
     }
+
+    .section-cta-carousel {
+        .cta-slide {
+            &--content {
+                padding: 30px;
+            }
+        }
+    }
 }
