@@ -58,7 +58,18 @@ var SA_Common = SA_Common || {};
                             items: 3,
                             autoplay: true,
                             autoplayHoverPause: true,
-                            margin: 30
+                            margin: 30,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                767: {
+                                    items: 2
+                                },
+                                991: {
+                                    items: 3
+                                }
+                            }
                         });
                 }
             },

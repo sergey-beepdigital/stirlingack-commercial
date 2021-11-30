@@ -90,7 +90,7 @@
                 font-weight: normal;
             }
 
-            &:not(.control-address_keyword) {
+            /*&:not(.control-address_keyword) {
                 & > label {
                     display: block;
 
@@ -101,7 +101,7 @@
                         margin-left: 10px;
                     }
                 }
-            }
+            }*/
 
             &-department{
                 display: none;
