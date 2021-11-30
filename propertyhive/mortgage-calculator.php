@@ -12,10 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <div class="mortgage-calculator">
     <div class="row">
-        <div class="col-xl-7">
+        <div class="col-xl-7 col-lg-8 col-md-7">
             <div class="calculator-fields-wrap">
                 <div class="row">
-                    <div class="col-xl-5">
+                    <div class="col-6 col-xl-5">
                         <div class="form-group">
                             <label>Purchase Price in &pound;</label>
                             <div class="input-group">
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 offset-xl-1">
+                    <div class="col-6 col-xl-5 offset-xl-1">
                         <div class="form-group">
                             <label>Deposit Amount in &pound;</label>
                             <div class="input-group">
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-5">
+                    <div class="col-6 col-xl-5">
                         <div class="form-group">
                             <label>Interest Rate Percentage</label>
                             <div class="input-group">
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 offset-xl-1">
+                    <div class="col-6 col-xl-5 offset-xl-1">
                         <div class="form-group">
                             <label>Repayment Period in Years</label>
                             <div class="input-group">
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 <button class="btn btn-lg btn-primary"><?php echo __( 'Calculate', 'propertyhive' ); ?></button>
             </div>
         </div>
-        <div class="col-xl-4 offset-xl-1 pl-0">
+        <div class="col-lg-4 col-md-5 offset-xl-1 pl-md-0">
             <div class="mortgage-calculator-results text-center" id="results" style="display:none">
                 <div>
                     <h3 class="mb-3"><?php echo __( 'Monthly Costs', 'propertyhive' ); ?></h3>

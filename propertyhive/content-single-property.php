@@ -35,7 +35,7 @@ global $property;
     ?>
 
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-lg-8 col-md-7">
 
             <div class="summary entry-summary">
 
@@ -54,7 +54,7 @@ global $property;
 
             </div><!-- .summary -->
         </div>
-        <div class="col-xl-4">
+        <div class="col-lg-4 col-md-5">
 
             <?php $branch = new SA_PropertyBranch($property);
 

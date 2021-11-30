@@ -121,4 +121,77 @@
             }
         }
     }
+
+    .section-property-detail-content-tabs{
+        font-size: 14px;
+
+        .property-detail-tabs {
+            display: none;
+        }
+
+        .tab-content{
+            .tab-pane{
+                display: block!important;
+                opacity: 1;
+
+                &:not(:first-child) {
+                    margin-top: 40px;
+                }
+
+                .tab-pane-hidden-title{
+                    display: block;
+                }
+            }
+        }
+
+        .property-detail-description-wrapper{
+            .features {
+                margin-bottom: 30px;
+
+                ul {
+                    li:not(:first-child){
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .single-property{
+        div.property{
+            .images{
+                margin-bottom: 15px;
+            }
+
+            .entry-summary{
+                .property-detail-heading{
+                    h1{
+                        font-size: 30px;
+                    }
+
+                    .price{
+                        margin-top: 10px;
+                        font-size: 22px;
+                    }
+                }
+            }
+        }
+
+        .section-property-calculator{
+            &--inner{
+                padding: 0;
+
+                &:before{
+                    background: none;
+                }
+
+                .tab-pane{
+                    button.btn-primary{
+                        width: 100%;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
 }

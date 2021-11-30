@@ -31,6 +31,7 @@
 
         <div class="tab-content">
             <div id="property-info-description" class="tab-pane fade show active">
+                <h3 class="tab-pane-hidden-title">Description</h3>
                 <div class="property-detail-description-wrapper">
                     <div class="row">
                         <div class="col-xl-4 offset-xl-1 order-xl-2">
@@ -60,12 +61,14 @@
                 </div>
             </div>
             <div id="property-info-location" class="tab-pane fade">
+                <h3 class="tab-pane-hidden-title">Location</h3>
                 {{ '[property_map]' | shortcodes }}
             </div>
 
             {% if floorplan_urls %}
 
                 <div id="property-info-floorplan" class="tab-pane fade">
+                    <h3 class="tab-pane-hidden-title">Floor Plan</h3>
                     <div class="property-floorplan-epc-wrap">
                         <div class="row">
 
@@ -84,6 +87,7 @@
             {% if epc_urls %}
 
                 <div id="property-info-epc" class="tab-pane fade">
+                    <h3 class="tab-pane-hidden-title">EPC</h3>
                     <div class="property-floorplan-epc-wrap">
                         <div class="row">
 
@@ -99,6 +103,7 @@
             {% endif %}
 
             <div id="property-info-schools" class="tab-pane fade">
+                <h3 class="tab-pane-hidden-title">Schools</h3>
                 {#{{ fn('do_shortcode','[locrating_all_in_one_map]') }}#}
                 {{ fn('do_shortcode','[locrating_schools_map]') }}
             </div>

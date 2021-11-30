@@ -77,6 +77,22 @@
 
 }
 
+.arrange-viewing-box-wrap{
+    .btn-mobile-arrange-viewing{
+        display: none;
+
+        i{
+            display: none;
+        }
+
+        &.box-opened{
+            i{
+                display: inline-block;
+            }
+        }
+    }
+}
+
 .single-property{
     .property-detail-back-action-wrap{
         margin-bottom: 20px;
@@ -289,6 +305,13 @@
                         }
                     }
                 }
+            }
+        }
+
+        .tab-pane{
+            .tab-pane-hidden-title{
+                display: none;
+                margin-bottom: 20px;
             }
         }
 

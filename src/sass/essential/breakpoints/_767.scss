@@ -259,4 +259,60 @@
             }
         }
     }
+
+    .section-property-calculator{
+        &--inner {
+            .property-calculators-wrapper{
+                ul.nav{
+                    flex-wrap: nowrap;
+
+                    li{
+                        flex: 1 1 auto;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .single-property{
+        div.property{
+            .entry-summary{
+                .property-detail-heading{
+                    display: block;
+
+                    .price{
+                        text-align: left;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+
+        .arrange-viewing-box-wrap{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+
+            .property-arrange-viewing{
+                display: none;
+            }
+
+            .btn-mobile-arrange-viewing{
+                display: block;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .single-property{
+        .arrange-viewing-box-wrap{
+            .property-arrange-viewing{
+                display: block!important;
+            }
+        }
+    }
 }

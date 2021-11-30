@@ -1,19 +1,24 @@
 {% if branch_data %}
-    <div class="property-arrange-viewing text-center">
-        <div class="property-arrange-viewing--office-contacts">
-            <h3 class="text-uppercase">Arrange a viewing</h3>
-            <div class="branch-info">
-                <div class="branch-info--name">{{ branch_data.title }} Branch</div>
-                <a href="tel:{{ branch_data.phone | replace({' ':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</a>
-                <a href="javascript:;" data-action="branchContact" data-department="{{ property._department == 'residential-sales' ? 'sales' : 'lettings' }}" data-id="{{ property.id }}" class="btn btn-lg btn-secondary text-uppercase">Arrange a Viewing</a>
-                {% if branch_data.address %}
-                    <div class="branch-info--address">
-                        {{ branch_data.address }}<br>
-                        <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address | replace({"'":''}) }}','branch-google-map-image');">View on map</a>
+    <div class="arrange-viewing-box-wrap">
+        <div class="property-arrange-viewing text-center" id="property-arrange-viewing">
+            <div class="property-arrange-viewing--office-contacts">
+                <h3 class="text-uppercase">Arrange a viewing</h3>
+                <div class="branch-info">
+                    <div class="branch-info--name">{{ branch_data.title }} Branch</div>
+                    <div>
+                        <a href="tel:{{ branch_data.phone | replace({' ':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</a>
                     </div>
-                {% endif %}
-                {#{{ fn('propertyhive_make_enquiry_button') }}#}
+                    <a href="javascript:;" data-action="branchContact" data-department="{{ property._department == 'residential-sales' ? 'sales' : 'lettings' }}" data-id="{{ property.id }}" class="btn btn-lg btn-secondary text-uppercase">Arrange a Viewing</a>
+                    {% if branch_data.address %}
+                        <div class="branch-info--address">
+                            {{ branch_data.address }}<br>
+                            <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address | replace({"'":''}) }}','branch-google-map-image');">View on map</a>
+                        </div>
+                    {% endif %}
+                    {#{{ fn('propertyhive_make_enquiry_button') }}#}
+                </div>
             </div>
         </div>
+        <a href="#property-arrange-viewing" data-action="mobileArrangeViewingToggle" class="btn btn-block btn-lg btn-primary btn-mobile-arrange-viewing text-uppercase" data-open_text="Arrange a viewing" data-close_text="Close"><i class="fas fa-times"></i> <span>Arrange a viewing</span></a>
     </div>
 {% endif %}

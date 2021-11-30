@@ -19,7 +19,8 @@ var SA_Common = SA_Common || {};
         var action = {
             branchContactPopup: '[data-action="branchContact"]',
             branchContactForm: '[data-form="branchContact"]',
-            mobileMenuLink: 'a[href="#mobile-menu"]'
+            mobileMenuLink: 'a[href="#mobile-menu"]',
+            mobileArrangeViewing: '[data-action="mobileArrangeViewingToggle"]',
         };
 
         return {
@@ -36,6 +37,7 @@ var SA_Common = SA_Common || {};
                     .on('click', action.branchContactPopup, SA_Common.branchContactPopup)
                     .on('submit', action.branchContactForm, SA_Common.branchContactSubmit)
                     .on('click', action.mobileMenuLink, SA_Common.toggleMobileMenu)
+                    .on('click', action.mobileArrangeViewing, SA_Common.arrangeViewingToggle)
                 ;
             },
 
@@ -369,6 +371,28 @@ var SA_Common = SA_Common || {};
                 });
 
                 e.preventDefault();
+            },
+
+            arrangeViewingToggle: function () {
+                var $this = $(this);
+                var anchor = $this.attr('href');
+                var closeText = $this.data('close_text');
+                var openText = $this.data('open_text');
+                var $box = $(anchor);
+
+                if($box.length) {
+                    if($box.css('display') == 'none') {
+                        $box.show();
+                        $this.addClass('box-opened');
+                        $('span',$this).text(closeText)
+                    } else {
+                        $box.hide();
+                        $this.removeClass('box-opened');
+                        $('span',$this).text(openText)
+                    }
+                }
+
+                return false;
             }
         }
     }();
