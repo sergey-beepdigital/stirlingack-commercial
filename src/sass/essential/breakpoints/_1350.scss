@@ -1,0 +1,10 @@
+@media screen and (max-width: 1350px) {
+    #footer{
+        .footer-copyright{
+            &:before{
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+}
