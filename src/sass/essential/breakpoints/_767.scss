@@ -6,4 +6,96 @@
             margin-right: -15px;
         }
     }
+
+    .section-home-hero{
+        padding-top: 15px;
+        padding-bottom: 45px;
+
+        &--image{
+            margin-top: 15px;
+            margin-left: -15px;
+            margin-right: -15px;
+
+            img{
+                height: 320px;
+            }
+        }
+
+        &--content{
+            text-align: center;
+            font-size: 16px;
+            padding: 20px;
+
+            &:before{
+                top: 0;
+            }
+
+            h1{
+                font-size: 30px;
+            }
+        }
+
+        &--search{
+            margin-top: -140px;
+
+            .property-search-department-tabs{
+                ul{
+                    display: flex;
+                    margin: 0 -2px;
+
+                    li{
+                        flex: 1 1 auto;
+                        text-align: center;
+                        padding: 0 2px;
+                    }
+                }
+            }
+
+            .property-search-form{
+                .form-controls-wrap{
+                    flex-direction: column;
+                    align-items: normal;
+
+                    .control{
+                        padding: 0;
+                        margin-bottom: 20px;
+                        border-left-width: 0;
+
+                        select,
+                        input[type="text"]{
+                            border: 1px solid $support-color4;
+                            padding: 10px;
+                            height: auto;
+                            width: 100%;
+                        }
+
+                        &:not(.control-address_keyword){
+                            position: relative;
+
+                            & > label{
+                                &:after{
+                                    content: normal;
+                                }
+                            }
+
+                            &:after{
+                                content: "\f107";
+                                font-family: 'Font Awesome 6 Pro';
+                                color: $brand-main-red;
+                                position: absolute;
+                                right: 10px;
+                                bottom: 10px;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &--valuation{
+            text-align: center;
+            margin-top: 30px;
+        }
+    }
 }

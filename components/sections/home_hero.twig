@@ -5,22 +5,20 @@
 <section class="section-home-hero">
     <div class="container-wide">
         <div class="row">
-            <div class="col-xl-6">
+            <div class="col-md-6">
                 <div class="section-home-hero--content">
                     {{ section.hh_content }}
                 </div>
             </div>
-            <div class="col-xl-6">
-                <div>
+            <div class="col-md-6">
+                <div class="section-home-hero--image">
                     <img src="{{ section.hh_image }}">
                 </div>
             </div>
         </div>
         <div class="section-home-hero--search">
-            <div class="row">
-                <div class="col-xl-8">
-                    {{ section.wph_search_property_shortcode | shortcodes }}
-                </div>
+            <div class="section-home-hero--search__shortcode">
+                {{ section.wph_search_property_shortcode | shortcodes }}
             </div>
 
             <div class="row">
