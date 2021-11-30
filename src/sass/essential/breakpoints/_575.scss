@@ -1,4 +1,65 @@
 @media screen and (max-width: 575px) {
+    .page-section{
+        &--padding50{
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        &--heading{
+            margin-bottom: 30px;
+        }
+    }
+
+    .section-newsletter{
+        .newsletter-form{
+            &--box{
+                display: block;
+                background-color: transparent;
+
+                .sg-input{
+                    display: block;
+                    width: 100%;
+                    padding: 13px;
+                    margin-bottom: 10px;
+                }
+
+                input[type="submit"] {
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    #footer{
+        .footer-widgets{
+            padding: 30px 0;
+
+            &--widget{
+                h5{
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .footer-supported-brands{
+                margin-top: 30px;
+            }
+        }
+
+        .footer-copyright{
+            &--nav{
+                nav{
+                    ul{
+                        li{
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .section-content-image{
         &--content{
             padding: 30px 15px;

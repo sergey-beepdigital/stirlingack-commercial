@@ -1,4 +1,4 @@
-{% set grid_css_class = 'col-xl-4' %}
+{% set grid_css_class = 'col-lg-4 col-sm-6' %}
 {% if columns == 2 %}
     {% set grid_css_class = 'col-xl-6' %}
 {% endif %}
@@ -7,13 +7,13 @@
 
     <section class="page-section page-section--padding50 section-latest-posts" data-aos="fade-left">
         {% if ignore_container != 1 %}<div class="container">{% endif %}
-            <div class="page-section--heading">
+            <div class="page-section--heading text-center text-md-left">
                 <div class="row align-items-center">
                     <div class="col-xl-{{ more_link?'6':'12' }}">
                         <h3 class="text-uppercase">{{ title }}</h3>
                     </div>
                     {% if more_link %}
-                        <div class="col-xl-6 text-xl-right">
+                        <div class="col-xl-6 text-xl-right mt-3 mt-md-0">
                             {% include 'components/parts/link.twig' with {
                                 link: more_link
                             } %}
@@ -27,7 +27,7 @@
 
                     {% for post in posts %}
 
-                        <div class="{{ grid_css_class }}">
+                        <div class="{{ grid_css_class }} {{ loop.index == 3 ? 'd-none d-lg-block' : '' }} {{ loop.index == 2 ? 'd-none d-sm-block' : '' }}">
 
                             {% include 'global/post.twig' with { post : post } %}
 

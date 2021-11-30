@@ -1,9 +1,49 @@
 @media screen and (max-width: 767px) {
+    .page-section {
+        &--padding50 {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    }
+
     .section-page-top{
         &--image-wrap{
             margin-top: 15px;
             margin-left: -15px;
             margin-right: -15px;
+        }
+    }
+
+    .section-newsletter{
+        padding-top: 25px;
+        padding-bottom: 15px;
+
+        &--socials{
+            h3{
+                font-size: 22px;
+            }
+        }
+    }
+
+    #footer{
+        .footer-copyright{
+            &--nav{
+                display: block;
+
+                nav{
+                    ul{
+                        li{
+                            &:first-child{
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+
+                & > *:not(:first-child) {
+                    margin-top: 10px;
+                }
+            }
         }
     }
 
