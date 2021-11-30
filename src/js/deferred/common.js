@@ -18,7 +18,8 @@ var SA_Common = SA_Common || {};
 
         var action = {
             branchContactPopup: '[data-action="branchContact"]',
-            branchContactForm: '[data-form="branchContact"]'
+            branchContactForm: '[data-form="branchContact"]',
+            mobileMenuLink: 'a[href="#mobile-menu"]'
         };
 
         return {
@@ -34,7 +35,16 @@ var SA_Common = SA_Common || {};
                 $(document)
                     .on('click', action.branchContactPopup, SA_Common.branchContactPopup)
                     .on('submit', action.branchContactForm, SA_Common.branchContactSubmit)
+                    .on('click', action.mobileMenuLink, SA_Common.toggleMobileMenu)
                 ;
+            },
+
+            toggleMobileMenu: function() {
+                var $body = $('body');
+
+                $body.toggleClass('menu-opened');
+
+                return false;
             },
 
             initCtaCarousel: function () {

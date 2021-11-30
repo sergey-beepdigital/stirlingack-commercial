@@ -1,4 +1,36 @@
 @media screen and (max-width: 991px) {
+    #header{
+        font-size: 13px;
+
+        .header-inner{
+            .header-logo{
+                max-width: 65px;
+                flex-basis: 65px;
+            }
+
+            .header-content{
+                &--top{
+                    .btn-valuation{
+                        padding: 8px;
+                        font-size: 13px;
+                    }
+                }
+
+                &--menu{
+                    ul {
+                        li:not(:first-child){
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sticky-header{
+        padding-top: 119px;
+    }
+
     .section-home-hero{
         &--image {
             img {

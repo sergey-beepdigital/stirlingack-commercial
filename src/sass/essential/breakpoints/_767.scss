@@ -1,4 +1,100 @@
 @media screen and (max-width: 767px) {
+    :root{
+        --header-offset: 86px;
+    }
+
+    #header{
+        padding: 15px 0;
+
+        .header-inner{
+            align-items: center;
+
+            .header-logo{
+                max-width: 50px;
+                flex-basis: 50px;
+            }
+
+            .header-content{
+                &--top{
+                    .header-top-nav{
+                        ul{
+                            li{
+                                margin-left: 20px;
+
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+
+                                a{
+                                    display: inline-block;
+                                    text-align: center;
+
+                                    i{
+                                        font-size: 22px;
+                                    }
+
+                                    span{
+                                        font-size: 0;
+                                        display: block;
+
+                                        &:before{
+                                            content: attr(data-alt);
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+
+                                &.mobile-menu-toggle{
+                                    display: inline-block;
+                                }
+                            }
+                        }
+                    }
+
+                    .btn-valuation{
+                        display: none;
+                    }
+                }
+
+                &--menu{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .mobile-menu{
+        top: var(--header-offset);
+    }
+
+    .menu-opened{
+        overflow: hidden;
+
+        .mobile-menu{
+            display: flex;
+        }
+
+        #header{
+            .header-inner{
+                .header-content{
+                    &--top{
+                        .mobile-menu-toggle{
+                            i{
+                                &:before{
+                                    content: "\f00d";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sticky-header{
+        padding-top: var(--header-offset);
+    }
+
     .page-section {
         &--padding50 {
             padding-top: 40px;

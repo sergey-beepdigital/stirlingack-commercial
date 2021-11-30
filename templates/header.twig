@@ -1,3 +1,23 @@
+{#<pre>
+    {{ top_menu.get_items | print_r }}
+</pre>#}
+
+<div id="mobile-menu" class="mobile-menu">
+    <div>
+        {% if options.page.valuation_page_id %}
+            <a href="{{ fn('get_the_permalink',options.page.valuation_page_id) }}" class="btn btn-lg btn-warning text-uppercase btn-valuation">Property Valuation</a>
+        {% endif %}
+
+        <nav>
+            {% include "menu.twig" with {'menu': menu.get_items} %}
+        </nav>
+    </div>
+    <div class="mobile-menu--socials">
+        <h6>Follow us on:</h6>
+        {{ '[social_links]' | shortcodes }}
+    </div>
+</div>
+
 <header id="header">
     <div class="container">
         <div class="header-inner">
@@ -8,9 +28,20 @@
                 <div class="header-content--top">
                     <nav class="header-top-nav">
                         {% include "menu.twig" with {'menu': top_menu.get_items} %}
+
+                        {#{% if top_menu.get_items %}
+
+                            <ul class="header-top-nav--mobile">
+                                {% for menu_item in top_menu.get_items %}
+                                    <li class="{{menu_item.classes | join(' ')}}"><a {% if item.target %}target="_blank" {% endif%} href="{{ menu_item.get_link }}">{{ menu_item.title }}</a></li>
+                                {% endfor %}
+                                <li><a href="#"><i class="far fa-bars"></i> Menu</a></li>
+                            </ul>
+
+                        {% endif %}#}
                     </nav>
                     {% if options.page.valuation_page_id %}
-                        <a href="{{ fn('get_the_permalink',options.page.valuation_page_id) }}" class="btn btn-lg btn-warning text-uppercase">Property Valuation</a>
+                        <a href="{{ fn('get_the_permalink',options.page.valuation_page_id) }}" class="btn btn-lg btn-warning text-uppercase btn-valuation">Property Valuation</a>
                     {% endif %}
                 </div>
                 <nav class="header-content--menu">
