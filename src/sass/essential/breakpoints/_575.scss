@@ -262,4 +262,99 @@
             }
         }
     }
+
+    .section-new-home-cta{
+        .new-home-cta-block{
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+    }
+
+    .section-new-home-developments{
+        ul.properties{
+            .dev-item{
+                &--details{
+                    h6{
+                        font-size: 14px;
+                    }
+
+                    .property-residential-details{
+                        li:not(:first-child){
+                            margin-left: 10px!important;
+                        }
+                    }
+
+                    .mobile-property-more{
+                        display: inline-block!important;
+                    }
+                }
+
+                &--price{
+                    flex-basis: 140px!important;
+                    max-width: 140px;
+
+                    padding: 0 15px;
+
+                    .price-box{
+                        .price{
+                            font-size: 14px!important;
+                        }
+                    }
+                }
+
+                &--actions{
+                    display: none;
+
+                    a{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-features-image{
+        &--content-wrap{
+            padding: 20px;
+
+            & > h2{
+                font-size: 22px;
+                margin-bottom: 25px;
+            }
+
+            &__actions{
+                .btn{
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .section-new-home-details{
+        &--heading{
+            h1{
+                font-size: 30px;
+            }
+
+            .price-block{
+                &--price{
+                    font-size: 22px;
+                }
+            }
+        }
+
+        &--short-description{
+            font-size: 14px;
+        }
+
+        &--view-map{
+            margin-top: 25px;
+
+            .btn{
+                display: block;
+                max-width: 100%;
+            }
+        }
+    }
 }

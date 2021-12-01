@@ -51,6 +51,7 @@ if ( $property->featured == 'yes' )
 
         ?>
         <h6><?php echo $property->post_title; ?></h6>
+        <a href="<?php echo get_the_permalink($property->ID); ?>" class="mobile-property-more">More Details</a>
     </div>
     <div class="dev-item--price">
         <div class="price-box">

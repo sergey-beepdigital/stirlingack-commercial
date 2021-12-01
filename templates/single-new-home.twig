@@ -45,13 +45,13 @@
     <section class="page-section page-section--padding50 section-new-home-details">
         <div class="container">
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-lg-8 col-md-7">
                     <div class="section-new-home-details--heading">
                         <div class="row align-items-center">
-                            <div class="col-xl-6">
+                            <div class="col-md-7">
                                 <h1>{{ post.title }}</h1>
                             </div>
-                            <div class="col-xl-6 d-flex justify-content-end">
+                            <div class="col-md-5 d-flex justify-content-md-end">
                                 <div class="price-block">
                                     {% if post.nh_price is numeric %}
                                         <div class="price-block--from">Prices From</div>
@@ -91,19 +91,22 @@
                     {% endif %}
 
                 </div>
-                <div class="col-xl-4">
-                    <div class="property-arrange-viewing text-center">
-                        <div class="property-arrange-viewing--office-contacts">
-                            <h3 class="text-uppercase">Get in Contact</h3>
-                            <div class="branch-info">
-                                {% if contacts.phone_number %}
-                                    <div>
-                                        <a href="tel:{{ contacts.phone_number | replace({' ':''}) }}" class="branch-info--phone-number h3 text-uppercase">{{ contacts.phone_number }}</a>
-                                    </div>
-                                {% endif %}
-                                <a href="javascript:;" data-fancybox data-src="#new-home-form-popup" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
+                <div class="col-lg-4 col-md-5">
+                    <div class="arrange-viewing-box-wrap">
+                        <div id="property-arrange-viewing" class="property-arrange-viewing text-center">
+                            <div class="property-arrange-viewing--office-contacts">
+                                <h3 class="text-uppercase">Get in Contact</h3>
+                                <div class="branch-info">
+                                    {% if contacts.phone_number %}
+                                        <div>
+                                            <a href="tel:{{ contacts.phone_number | replace({' ':''}) }}" class="branch-info--phone-number h3 text-uppercase">{{ contacts.phone_number }}</a>
+                                        </div>
+                                    {% endif %}
+                                    <a href="javascript:;" data-fancybox data-src="#new-home-form-popup" class="btn btn-lg btn-secondary text-uppercase">Email Us</a>
+                                </div>
                             </div>
                         </div>
+                        <a href="#property-arrange-viewing" data-action="mobileArrangeViewingToggle" class="btn btn-block btn-lg btn-primary btn-mobile-arrange-viewing text-uppercase" data-open_text="Get in Contact" data-close_text="Close"><i class="fas fa-times" aria-hidden="true"></i> <span>Get in Contact</span></a>
                     </div>
                 </div>
             </div>
@@ -115,7 +118,7 @@
         <section class="page-section page-section--padding50 section-features-image">
             <div class="container-wide">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-lg-6">
                         <div class="section-features-image--content-wrap">
                             {% if features.title %}
                                 <h2>{{ features.title }}</h2>
@@ -129,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-lg-6">
                         <div class="section-features-image--image">
                             <img src="{{ features.image }}">
                         </div>
@@ -144,7 +147,7 @@
 
         <section class="page-section page-section--padding50 section-new-home-developments">
             <div class="container">
-                <div class="page-section--heading">
+                <div class="page-section--heading text-center text-md-left">
                     <h3 class="text-uppercase">Properties at this development</h3>
                 </div>
 
@@ -163,7 +166,7 @@
 
                     {% for cta_item in cta_list %}
 
-                        <div class="col-xl-6">
+                        <div class="col-md-6 {% if not loop.first %}mt-4 mt-md-0{% endif %}">
                             <div class="new-home-cta-block text-center">
                                 <a class="new-home-cta-block--thumb-link" href="{{ cta_item.link.url }}"><img src="{{ cta_item.image }}"></a>
                                 <div class="new-home-cta-block--content">
@@ -189,7 +192,7 @@
 
         <section class="page-section page-section--padding50">
             <div class="container">
-                <div class="page-section--heading">
+                <div class="page-section--heading text-center text-md-left">
                     <h3 class="text-uppercase">Similar New Homes</h3>
                 </div>
 
@@ -197,7 +200,7 @@
 
                     {% for item in similar_new_homes %}
 
-                        <div class="col-xl-4">
+                        <div class="col-lg-4 col-md-6">
 
                             {% include 'components/global/new-home.twig' with {
                                 post: item

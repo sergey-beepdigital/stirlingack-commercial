@@ -287,9 +287,28 @@
         }
     }
 
+    .arrange-viewing-box-wrap{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+
+        .property-arrange-viewing{
+            display: none;
+        }
+
+        .btn-mobile-arrange-viewing{
+            display: block;
+        }
+    }
+
+    .single-sa_new_home,
     .single-property{
         padding-bottom: 60px;
+    }
 
+    .single-property{
         div.property{
             .entry-summary{
                 .property-detail-heading{
@@ -302,31 +321,33 @@
                 }
             }
         }
+    }
 
-        .arrange-viewing-box-wrap{
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-
-            .property-arrange-viewing{
-                display: none;
+    .single-sa_new_home{
+        .section-new-home-developments{
+            ul.properties{
+                .dev-item{
+                    &--floorplan{
+                        display: none;
+                    }
+                }
             }
+        }
+    }
 
-            .btn-mobile-arrange-viewing{
-                display: block;
+    .section-new-home-details{
+        &--heading{
+            .price-block{
+                text-align: left;
             }
         }
     }
 }
 
 @media screen and (min-width: 768px) {
-    .single-property{
-        .arrange-viewing-box-wrap{
-            .property-arrange-viewing{
-                display: block!important;
-            }
+    .arrange-viewing-box-wrap{
+        .property-arrange-viewing{
+            display: block!important;
         }
     }
 }

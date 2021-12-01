@@ -45,6 +45,16 @@
                             }
                         }
                     }
+
+                    .mobile-property-more{
+                        display: none;
+                        color: $support-color2;
+                        text-decoration: underline;
+
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
                 }
 
                 &--price{

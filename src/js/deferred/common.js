@@ -398,11 +398,11 @@ var SA_Common = SA_Common || {};
 
                 if($box.length) {
                     if($box.css('display') == 'none') {
-                        $box.show();
+                        $box.slideDown();
                         $this.addClass('box-opened');
                         $('span',$this).text(closeText)
                     } else {
-                        $box.hide();
+                        $box.slideUp();
                         $this.removeClass('box-opened');
                         $('span',$this).text(openText)
                     }
