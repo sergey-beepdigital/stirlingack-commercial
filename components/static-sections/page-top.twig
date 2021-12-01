@@ -23,9 +23,9 @@
                 <div class="section-page-top--image-wrap">
                     {% if image %}
                         {% if thumbnail_size %}
-                            <img src="{{ image | resize(thumbnail_size.w,thumbnail_size.h) }}">
+                            <img src="{{ image | resize(thumbnail_size.w,thumbnail_size.h) }}" loading="lazy">
                         {% else %}
-                            <img src="{{ image }}">
+                            <img src="{{ image }}" loading="lazy">
                         {% endif %}
                     {% else %}
                         <img src="{{ theme.link ~ '/dist/images/placeholder/placeholder1300x400.jpg' }}">

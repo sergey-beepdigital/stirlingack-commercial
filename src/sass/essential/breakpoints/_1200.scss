@@ -8,6 +8,15 @@
                 font-size: 30px;
             }
         }
+
+        &.has-branch-area{
+            .branch-area-box-shortcode{
+                margin-left: 15px;
+                margin-right: 15px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
     }
 
     .section-home-hero{

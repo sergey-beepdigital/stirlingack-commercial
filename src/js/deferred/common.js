@@ -21,6 +21,7 @@ var SA_Common = SA_Common || {};
             branchContactForm: '[data-form="branchContact"]',
             mobileMenuLink: 'a[href="#mobile-menu"]',
             mobileArrangeViewing: '[data-action="mobileArrangeViewingToggle"]',
+            mobileToggleCategories: '.wp-block-group.categories-list > .wp-block-group__inner-container > h5'
         };
 
         return {
@@ -38,6 +39,7 @@ var SA_Common = SA_Common || {};
                     .on('submit', action.branchContactForm, SA_Common.branchContactSubmit)
                     .on('click', action.mobileMenuLink, SA_Common.toggleMobileMenu)
                     .on('click', action.mobileArrangeViewing, SA_Common.arrangeViewingToggle)
+                    .on('click', action.mobileToggleCategories, SA_Common.mobileToggleCategories)
                 ;
             },
 
@@ -47,6 +49,19 @@ var SA_Common = SA_Common || {};
                 $body.toggleClass('menu-opened');
 
                 return false;
+            },
+
+            mobileToggleCategories: function() {
+                var $this = $(this);
+                var $ul = $this.next();
+
+                if($ul.css('display') == 'none') {
+                    $ul.slideDown();
+                    $this.parent().addClass('list-opened');
+                } else {
+                    $ul.slideUp();
+                    $this.parent().removeClass('list-opened');
+                }
             },
 
             initCtaCarousel: function () {

@@ -33,7 +33,12 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-lg-3 offset-xl-1 order-lg-2 mb-4 mb-lg-0">
+
+                    {% include 'sidebar-insights.twig' %}
+
+                </div>
+                <div class="col-xl-8 col-lg-9 order-lg-1">
 
                     {% if posts_query.get_posts() %}
                         <div class="section-archive--list">
@@ -41,7 +46,7 @@
 
                                 {% for post in posts_query.get_posts() %}
 
-                                    <div class="col-xl-6">
+                                    <div class="col-md-6">
 
                                         {% include 'global/post.twig' with {
                                             post : post
@@ -103,11 +108,6 @@
                     {% include 'static-sections/book-valuation.twig' with {
                         short: 1
                     } %}
-
-                </div>
-                <div class="col-xl-3 offset-xl-1">
-
-                    {% include 'sidebar-insights.twig' %}
 
                 </div>
             </div>

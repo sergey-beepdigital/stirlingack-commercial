@@ -20,7 +20,7 @@
                         <ul class="slides">
                             {% for image in gallery_images %}
                                 <li>
-                                    <a href="{{ image.url }}" data-fancybox="gallery"><img src="{{ image.url | resize(1170,450,'center') }}" /></a>
+                                    <a href="{{ image.url }}" data-fancybox="gallery"><img src="{{ image.url | resize(1170,450,'center') }}" loading="lazy" /></a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -29,7 +29,7 @@
                         <ul class="slides">
                             {% for image in gallery_images %}
                                 <li>
-                                    <img src="{{ image.url | resize(170,100,'center') }}" />
+                                    <img src="{{ image.url | resize(170,100,'center') }}" loading="lazy" />
                                 </li>
                             {% endfor %}
 
