@@ -141,13 +141,40 @@
             ]
         },
         {
+            "key": "field_61a74e05899ad",
+            "label": "Has Features",
+            "name": "nh_has_features",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_619e154a20fea",
             "label": "Features",
             "name": "nh_features",
             "type": "group",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61a74e05899ad",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -381,5 +408,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637753286
+    "modified": 1638354472
 }
