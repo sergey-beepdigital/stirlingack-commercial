@@ -213,6 +213,7 @@ class StarterSite extends TimberSite {
         // Add your own twig functions
         $twig->addFunction( new Twig_SimpleFunction('query_cat', array($this, 'query_cat')));
         $twig->addFilter(new Twig_SimpleFilter('json', array($this, 'json')));
+        $twig->addTest(new \Twig\TwigTest('numeric', function ($value) { return  is_numeric($value); }));
         return $twig;
     }
 

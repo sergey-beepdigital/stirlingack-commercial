@@ -16,7 +16,13 @@
     <div class="new-home-post-item--content">
         <h4 class="new-home-title"><a href="{{ post.link }}">{{ post.title }}</a></h4>
         {% if post.nh_price %}
-            <div class="new-home-price">Prices From <span class="price">£{{ fn('ph_display_price_field',post.nh_price) }}</span></div>
+            <div class="new-home-price">
+                {% if post.nh_price is numeric %}
+                    Prices From <span class="price">£{{ fn('ph_display_price_field',post.nh_price) }}</span>
+                {% else %}
+                    <span class="price">{{ post.nh_price }}</span>
+                {% endif %}
+            </div>
         {% endif %}
     </div>
 </div>

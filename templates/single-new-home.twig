@@ -53,8 +53,12 @@
                             </div>
                             <div class="col-xl-6 d-flex justify-content-end">
                                 <div class="price-block">
-                                    <div class="price-block--from">Prices From</div>
-                                    <div class="price-block--price">£{{ fn('ph_display_price_field',post.nh_price) }}</div>
+                                    {% if post.nh_price is numeric %}
+                                        <div class="price-block--from">Prices From</div>
+                                        <div class="price-block--price">£{{ fn('ph_display_price_field',post.nh_price) }}</div>
+                                    {% else %}
+                                        <div class="price-block--price">{{ post.nh_price }}</div>
+                                    {% endif %}
                                     <div class="price-block--flag">New Home</div>
                                 </div>
                             </div>
