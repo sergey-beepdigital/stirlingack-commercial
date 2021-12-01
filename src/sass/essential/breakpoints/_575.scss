@@ -1,4 +1,14 @@
 @media screen and (max-width: 575px) {
+    body{
+        font-size: 14px;
+    }
+
+    .content-clear{
+        h2{
+            font-size: 22px;
+        }
+    }
+
     .page-section{
         &--padding50{
             padding-top: 30px;
@@ -67,7 +77,6 @@
     .section-content-image{
         &--content{
             padding: 30px 15px;
-            font-size: 14px;
 
             & > h2{
                 font-size: 22px;
@@ -133,8 +142,6 @@
     }
 
     .section-property-detail-content-tabs{
-        font-size: 14px;
-
         .property-detail-tabs {
             display: none;
         }
@@ -223,8 +230,6 @@
 
     .section-valuation-types{
         .valuation-type-block{
-            font-size: 14px;
-
             h3{
                 font-size: 16px;
                 margin-bottom: 20px;
