@@ -54,7 +54,7 @@ if ( $property->featured == 'yes' )
     </div>
     <div class="dev-item--price">
         <div class="price-box">
-            Price From
+            Price
             <div class="price"><?php echo $property->get_formatted_price(); ?></div>
         </div>
         <?php
