@@ -242,4 +242,24 @@
             }
         }
     }
+
+    .single{
+        .article-footer{
+            text-align: center;
+
+            .share-page{
+                display: block;
+
+                &--title{
+                    margin-bottom: 10px;
+                    padding-right: 0;
+                }
+            }
+
+            .btn{
+                display: block;
+                width: 100%;
+            }
+        }
+    }
 }
