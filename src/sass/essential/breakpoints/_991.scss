@@ -71,9 +71,17 @@
 
         &--mobile-image{
             margin-top: 50px;
+        }
 
-            img{
-                width: 100%;
+        &.section-valuation{
+            .section-content-image--content{
+                padding: 60px;
+            }
+
+            &.has-logo-watermark{
+                .section-content-image--content{
+                    padding-bottom: 130px;
+                }
             }
         }
     }

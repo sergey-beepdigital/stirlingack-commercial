@@ -2,8 +2,8 @@
 
     <section class="page-section page-section--padding50 section-content-image section-valuation has-logo-watermark {{ short ? 'section-valuation--short' : '' }}">
         <div class="container">
-            <div class="row no-gutters">
-                <div data-aos="fade-down" class="{{ short ? 'col-xl-10' : 'col-xl-9' }}">
+            <div class="row no-gutters text-center text-lg-left">
+                <div data-aos="fade-down" class="{{ short ? 'col-xl-10' : 'col-lg-9' }}">
                     <div class="bg-primary section-content-image--content">
                         {% if options.section_valuation.title %}
                             <h2 class="{{ not short ? 'h1' : '' }}">{{ options.section_valuation.title }}</h2>
@@ -15,9 +15,12 @@
                                 css_class: 'link-border link-border--red'
                             } %}
                         {% endif %}
+                        <div class="section-content-image--mobile-image d-block d-lg-none">
+                            <img src="{{ options.section_valuation.image }}">
+                        </div>
                     </div>
                 </div>
-                <div data-aos="fade-up" class="{{ short ? 'col-xl-2' : 'col-xl-3' }}">
+                <div data-aos="fade-up" class="{{ short ? 'col-xl-2' : 'col-lg-3' }} d-none d-lg-block">
                     <div class="section-content-image--image-wrap">
                         <img src="{{ options.section_valuation.image }}">
                     </div>

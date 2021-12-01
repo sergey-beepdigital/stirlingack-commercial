@@ -31,6 +31,12 @@
         margin-top: 70px;
     }
 
+    &--mobile-image{
+        img{
+            width: 100%;
+        }
+    }
+
     &.has-logo-watermark{
         .section-content-image--content{
             background-image: url("../images/logo-watermark.svg");
