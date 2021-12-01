@@ -194,4 +194,20 @@
             }
         }
     }
+
+    #whr_embed_hook{
+        .whr-group{
+            font-size: 22px;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
+
+        .whr-items{
+            .whr-item{
+                .whr-title{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }
