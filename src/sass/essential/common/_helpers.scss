@@ -52,6 +52,16 @@
         margin-bottom: 25px;
     }
 
+    p{
+        a{
+            text-decoration: underline;
+
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+
     & > *:last-child{
         margin-bottom: 0;
     }
