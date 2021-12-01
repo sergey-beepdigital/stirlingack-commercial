@@ -68,6 +68,14 @@
                 }*/
             }
         }
+
+        &:hover{
+            .owl-dots{
+                &:after{
+                    animation-play-state: paused;
+                }
+            }
+        }
     }
 }
 
