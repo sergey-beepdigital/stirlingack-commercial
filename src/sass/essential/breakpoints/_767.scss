@@ -103,6 +103,8 @@
     }
 
     .section-page-top{
+        margin-bottom: 0;
+
         &--left-wrap{
             text-align: center;
         }
@@ -294,6 +296,7 @@
         right: 0;
         z-index: 100;
 
+        .branch-opening-hours-block,
         .property-arrange-viewing{
             display: none;
         }
@@ -303,6 +306,7 @@
         }
     }
 
+    .single-sa_branch,
     .single-sa_new_home,
     .single-property{
         padding-bottom: 60px;
@@ -342,10 +346,41 @@
             }
         }
     }
+
+    .single-sa_branch{
+        .branch-contact-details{
+            &--heading{
+                cursor: pointer;
+                position: relative;
+
+                &:after{
+                    content: "\f078";
+                    font-family: "Font Awesome 6 Pro";
+                    color: $brand-main-red;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    transition: 0.5s ease;
+                    right: 15px;
+                }
+
+                &.item-opened{
+                    &:after{
+                        transform: translateY(-50%) rotate(180deg);
+                    }
+                }
+            }
+
+            &--contacts{
+                display: none;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
     .arrange-viewing-box-wrap{
+        .branch-opening-hours-block,
         .property-arrange-viewing{
             display: block!important;
         }

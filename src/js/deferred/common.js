@@ -21,7 +21,8 @@ var SA_Common = SA_Common || {};
             branchContactForm: '[data-form="branchContact"]',
             mobileMenuLink: 'a[href="#mobile-menu"]',
             mobileArrangeViewing: '[data-action="mobileArrangeViewingToggle"]',
-            mobileToggleCategories: '.wp-block-group.categories-list > .wp-block-group__inner-container > h5'
+            mobileToggleCategories: '.wp-block-group.categories-list > .wp-block-group__inner-container > h5',
+            mobileToggleBranchContacts: '[data-action="mobileToggleBranchContacts"]'
         };
 
         return {
@@ -409,11 +410,41 @@ var SA_Common = SA_Common || {};
                 }
 
                 return false;
+            },
+
+            branchMobileContactsToggle: function (status) {
+                var $action = $(action.mobileToggleBranchContacts);
+
+                if($action.length) {
+                    $action.off();
+
+                    if (status) {
+                        $action.on('click', function () {
+                            var $this = $(this);
+                            var $box = $this.next();
+
+                            if($box.css('display') == 'none') {
+                                $this.addClass('item-opened');
+                                $box.slideDown();
+                            } else {
+                                $this.removeClass('item-opened');
+                                $box.slideUp();
+                            }
+                        });
+                    }
+                }
             }
         }
     }();
 
     $(window).on('load', SA_Common.init);
+    $(window).on('load resize', function () {
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            SA_Common.branchMobileContactsToggle(true);
+        } else {
+            SA_Common.branchMobileContactsToggle(false);
+        }
+    });
 })(jQuery);
 
 window.SA_Common = SA_Common;

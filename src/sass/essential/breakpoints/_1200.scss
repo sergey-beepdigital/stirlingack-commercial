@@ -17,6 +17,19 @@
                 padding-right: 15px;
             }
         }
+
+        &.has-reviews-area{
+            .feefo-widget-wrap{
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+
+            .section-page-top{
+                &--left-wrap{
+                    padding-bottom: 120px;
+                }
+            }
+        }
     }
 
     .section-home-hero{

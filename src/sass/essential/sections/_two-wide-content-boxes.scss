@@ -11,14 +11,6 @@
             padding-right: 80px;
         }
 
-        a:not([class]){
-            text-decoration: underline;
-
-            &:hover{
-                text-decoration: none;
-            }
-        }
-
         &.bg-primary{
             &,
             a:not([class]){

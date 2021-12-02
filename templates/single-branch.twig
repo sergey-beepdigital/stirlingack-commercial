@@ -7,14 +7,14 @@
     {% set two_side_cta = post.get_field('branch_two_side_cta') %}
 
     <div class="branch-contact-details">
-        <div class="branch-contact-details--heading bg-primary text-uppercase">
+        <div class="branch-contact-details--heading bg-primary text-uppercase" data-action="mobileToggleBranchContacts">
             <div class="container">
                 Contact Our {{ post.title }} Branch
             </div>
         </div>
         <div class="branch-contact-details--contacts">
             <div class="container">
-                <div class="d-flex align-items-center">
+                <div class="d-md-flex align-items-center text-center text-md-left">
                     <div>
                         <ul class="mb-0">
                             {% if post.branch_sale_phone %}
@@ -25,12 +25,12 @@
                             {% endif %}
                         </ul>
                     </div>
-                    <div class="flex-grow-1">
+                    <div class="flex-grow-1 mt-4 mt-md-0">
                         {% if post.branch_address %}
                             <div>{{ post.branch_address }}<br><a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ post.branch_address | replace({"'":''}) }}','branch-google-map-image');">View on Map</a></div>
                         {% endif %}
                     </div>
-                    <div class="contact-emails">
+                    <div class="contact-emails mt-4 mt-md-0">
                         {% if post.branch_sale_email_address %}
                             <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="{{ post.id }}" class="btn btn-lg btn-primary text-uppercase">Email Sales</a>
                         {% endif %}
@@ -63,46 +63,49 @@
     <section class="page-section page-section--padding50">
         <div class="container">
             <div class="row">
-                <div class="col-xl-7">
+                <div class="col-md-7">
                     <div class="content-clear">{{ post.branch_property_expertise | wpautop }}</div>
                 </div>
-                <div class="col-xl-4 offset-xl-1">
-                    <div class="branch-opening-hours-block">
+                <div class="col-lg-4 offset-lg-1 col-md-5">
+                    <div class="arrange-viewing-box-wrap">
+                        <div id="property-arrange-viewing" class="branch-opening-hours-block">
 
-                        {% if opening_hours %}
+                            {% if opening_hours %}
 
-                            <div class="branch-opening-hours-block--hours-wrap">
-                                <h4 class="h3 text-uppercase text-center">Opening Hours</h4>
-                                <div class="opening-hours-list">
+                                <div class="branch-opening-hours-block--hours-wrap">
+                                    <h4 class="h3 text-uppercase text-center">Opening Hours</h4>
+                                    <div class="opening-hours-list">
 
-                                    {% for day, hours in opening_hours %}
+                                        {% for day, hours in opening_hours %}
 
-                                        <div class="opening-hours-list--row">
-                                            <div class="opening-hours-list--day">{{ day | capitalize }}</div>
-                                            <div class="opening-hours-list--hours">{{ hours  }}</div>
-                                        </div>
+                                            <div class="opening-hours-list--row">
+                                                <div class="opening-hours-list--day">{{ day | capitalize }}</div>
+                                                <div class="opening-hours-list--hours">{{ hours  }}</div>
+                                            </div>
 
-                                    {% endfor %}
+                                        {% endfor %}
 
+                                    </div>
                                 </div>
-                            </div>
 
-                        {% endif %}
+                            {% endif %}
 
-                        {% if key_services %}
+                            {% if key_services %}
 
-                            <div class="branch-opening-hours-block--features-wrap text-center">
-                                <h4 class="h3 text-uppercase">KEY SERVICES</h4>
+                                <div class="branch-opening-hours-block--features-wrap text-center">
+                                    <h4 class="h3 text-uppercase">KEY SERVICES</h4>
 
-                                <ul>
-                                    {% for key_service in key_services %}
-                                        <li>{{ key_service.service }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                                    <ul>
+                                        {% for key_service in key_services %}
+                                            <li>{{ key_service.service }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
 
-                        {% endif %}
+                            {% endif %}
 
+                        </div>
+                        <a href="#property-arrange-viewing" data-action="mobileArrangeViewingToggle" class="btn btn-block btn-lg btn-primary btn-mobile-arrange-viewing text-uppercase" data-open_text="Opening Hours" data-close_text="Close"><i class="fas fa-times" aria-hidden="true"></i> <span>Opening Hours</span></a>
                     </div>
                 </div>
             </div>
@@ -125,12 +128,12 @@
         <section class="page-section page-section--padding50 pb-0 section-two-wide-content-boxes">
             <div class="container-wide">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-lg-6">
                         <div class="bg-primary content-clear half-content-box half-content-box--left-offset">
                             {{ two_side_cta.content_left }}
                         </div>
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-lg-6 mt-4 mt-lg-0">
                         <div class="bg-support3 content-clear half-content-box half-content-box--right-offset">
                             {{ two_side_cta.content_right }}
                         </div>
@@ -145,7 +148,7 @@
 
         <section class="page-section page-section--padding50 section-dataloft">
             <div class="container">
-                <div class="page-section--heading">
+                <div class="page-section--heading heading text-center text-md-left">
                     <h2>Your Property Experts</h2>
                 </div>
 

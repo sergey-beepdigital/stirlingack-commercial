@@ -74,6 +74,20 @@
         }
     }
 
+    .section-page-top{
+        &--short-description{
+            font-size: 16px;
+        }
+
+        &.has-reviews-area{
+            .section-page-top{
+                &--left-wrap{
+                    padding: 25px 25px 100px;
+                }
+            }
+        }
+    }
+
     .section-content-image{
         &--content{
             padding: 30px 15px;
@@ -355,6 +369,13 @@
                 display: block;
                 max-width: 100%;
             }
+        }
+    }
+
+    .section-two-wide-content-boxes{
+        .half-content-box{
+            padding: 20px;
+            text-align: center;
         }
     }
 }
