@@ -4,6 +4,10 @@
     }
 
     .content-clear{
+        h1{
+            font-size: 30px;
+        }
+
         h2{
             font-size: 22px;
         }
@@ -392,6 +396,19 @@
 
         &--actions{
             margin-top: 30px;
+        }
+    }
+
+    .section-shortcode-form{
+        &--box{
+            padding: 20px;
+
+            .wpcf7{
+                input[type="submit"] {
+                    width: 100%;
+                    display: block;
+                }
+            }
         }
     }
 }

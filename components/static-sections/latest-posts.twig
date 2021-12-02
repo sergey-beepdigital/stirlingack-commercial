@@ -9,11 +9,11 @@
         {% if ignore_container != 1 %}<div class="container">{% endif %}
             <div class="page-section--heading text-center text-md-left">
                 <div class="row align-items-center">
-                    <div class="col-xl-{{ more_link?'6':'12' }}">
+                    <div class="{{ more_link?'col-md-6':'col-12' }}">
                         <h3 class="text-uppercase">{{ title }}</h3>
                     </div>
                     {% if more_link %}
-                        <div class="col-xl-6 text-xl-right mt-3 mt-md-0">
+                        <div class="col-md-6 text-md-right mt-3 mt-md-0">
                             {% include 'components/parts/link.twig' with {
                                 link: more_link
                             } %}

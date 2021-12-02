@@ -412,6 +412,17 @@
             padding: 40px 25px;
         }
     }
+
+    .section-shortcode-form{
+        &:before{
+            content: normal;
+        }
+
+        &--box{
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
