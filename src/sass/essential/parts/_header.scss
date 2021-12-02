@@ -124,8 +124,6 @@
 body{
     &.logged-in{
         #header{
-            top:32px;
-
             .header-top-nav{
                 ul{
                     li{
@@ -135,6 +133,12 @@ body{
                     }
                 }
             }
+        }
+    }
+
+    &.admin-bar{
+        #header{
+            top:32px;
         }
     }
 

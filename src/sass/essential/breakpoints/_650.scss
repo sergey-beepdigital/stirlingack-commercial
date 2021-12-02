@@ -3,4 +3,16 @@
     ul.properties.view-grid{
         grid-template-columns: 1fr;
     }
+
+    body{
+        &.admin-bar{
+            #header{
+                top: 0;
+            }
+
+            .mobile-menu{
+                top: var(--header-offset);
+            }
+        }
+    }
 }

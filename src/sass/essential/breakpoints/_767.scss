@@ -71,6 +71,18 @@
         top: var(--header-offset);
     }
 
+    body{
+        &.admin-bar{
+            #header{
+                top: 46px;
+            }
+
+            .mobile-menu{
+                top: calc(var(--header-offset) + 46px);
+            }
+        }
+    }
+
     .menu-opened{
         overflow: hidden;
 
