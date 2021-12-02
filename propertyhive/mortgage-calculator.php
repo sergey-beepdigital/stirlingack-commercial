@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 <div class="row">
                     <div class="col-6 col-xl-5">
                         <div class="form-group">
-                            <label>Purchase Price in &pound;</label>
+                            <label>Purchase Price</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&pound;</div>
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     </div>
                     <div class="col-6 col-xl-5 offset-xl-1">
                         <div class="form-group">
-                            <label>Deposit Amount in &pound;</label>
+                            <label>Deposit Amount</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&pound;</div>

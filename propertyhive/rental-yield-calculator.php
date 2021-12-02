@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-6 col-xl-5">
                         <div class="form-group">
-                            <label>Purchase Price in &pound;</label>
+                            <label>Purchase Price</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&pound;</div>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-6 col-xl-5 offset-xl-1">
                         <div class="form-group">
-                            <label>Monthly Rent in &pound;</label>
+                            <label>Monthly Rent</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&pound;</div>
