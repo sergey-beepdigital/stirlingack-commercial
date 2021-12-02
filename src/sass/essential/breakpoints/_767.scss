@@ -205,7 +205,8 @@
                 }
             }
 
-            .property-search-form{
+            @include search-form-column;
+            /*.property-search-form{
                 .form-controls-wrap{
                     flex-direction: column;
                     align-items: normal;
@@ -244,7 +245,7 @@
                         }
                     }
                 }
-            }
+            }*/
         }
 
         &--valuation{
@@ -421,6 +422,27 @@
         &--box{
             margin-left: 0;
             margin-right: 0;
+        }
+    }
+
+    .section-404-search-properties-form{
+        @include search-form-column;
+
+        .property-search-department-tabs{
+            ul{
+                display: flex;
+                margin: 0 -2px;
+
+                li{
+                    flex: 1 1 auto;
+                    text-align: center;
+                    padding: 0 2px;
+                }
+            }
+        }
+
+        &--inner{
+            padding-top: 30px;
         }
     }
 }

@@ -15,3 +15,46 @@
         transition: 0.3s ease background-color;
     }
 }
+
+@mixin search-form-column{
+    .property-search-form{
+        .form-controls-wrap{
+            flex-direction: column;
+            align-items: normal;
+
+            .control{
+                padding: 0;
+                margin-bottom: 20px;
+                border-left-width: 0;
+
+                select,
+                input[type="text"]{
+                    border: 1px solid $support-color4;
+                    padding: 10px;
+                    height: auto;
+                    width: 100%;
+                }
+
+                &:not(.control-address_keyword){
+                    position: relative;
+
+                    & > label{
+                        &:after{
+                            content: normal;
+                        }
+                    }
+
+                    &:after{
+                        content: "\f107";
+                        font-family: 'Font Awesome 6 Pro';
+                        color: $brand-main-red;
+                        position: absolute;
+                        right: 10px;
+                        bottom: 10px;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+}
