@@ -22,7 +22,8 @@ var SA_Common = SA_Common || {};
             mobileMenuLink: 'a[href="#mobile-menu"]',
             mobileArrangeViewing: '[data-action="mobileArrangeViewingToggle"]',
             mobileToggleCategories: '.wp-block-group.categories-list > .wp-block-group__inner-container > h5',
-            mobileToggleBranchContacts: '[data-action="mobileToggleBranchContacts"]'
+            mobileToggleBranchContacts: '[data-action="mobileToggleBranchContacts"]',
+            mobileTogglePropertiesFilter: '[data-action="mobileTogglePropertiesFilter"]',
         };
 
         return {
@@ -433,12 +434,43 @@ var SA_Common = SA_Common || {};
                         });
                     }
                 }
+            },
+
+            propertiesMobileFilterToggle: function (status) {
+                var $action = $(action.mobileTogglePropertiesFilter);
+
+                if($action.length) {
+                    $action.off();
+
+                    if (status) {
+                        $action.on('click', function () {
+                            var $this = $(this);
+                            var $box = $($this.attr('href'));
+
+                            if($box.css('display') == 'none') {
+                                $this.addClass('item-opened');
+                                $box.slideDown();
+                            } else {
+                                $this.removeClass('item-opened');
+                                $box.slideUp();
+                            }
+
+                            return false;
+                        });
+                    }
+                }
             }
         }
     }();
 
     $(window).on('load', SA_Common.init);
     $(window).on('load resize', function () {
+        if (window.matchMedia("(max-width: 991px)").matches) {
+            SA_Common.propertiesMobileFilterToggle(true);
+        } else {
+            SA_Common.propertiesMobileFilterToggle(false);
+        }
+
         if (window.matchMedia("(max-width: 767px)").matches) {
             SA_Common.branchMobileContactsToggle(true);
         } else {

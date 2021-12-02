@@ -1,26 +1,32 @@
 <div class="container">
-    <form name="ph_property_search" class="property-search-form mb-0 property-search-form-{{ form_id }} clear"
-          action="{{ property_archive_link }}" method="get" role="form">
+    <div class="property-search-expandable">
+        <a class="property-search-expandable--collapse-control btn btn-lg btn-primary" href="#property-search-collapse-box" data-action="mobileTogglePropertiesFilter"><i class="fal fa-sliders-h"></i> REFINE</a>
 
-        <div class="form-controls-wrap">
+        <div class="property-search-expandable--collapse" id="property-search-collapse-box">
+            <form name="ph_property_search" class="property-search-form mb-0 property-search-form-{{ form_id }} clear"
+                  action="{{ property_archive_link }}" method="get" role="form">
 
-            {% for key, field in form_controls %}
+                <div class="form-controls-wrap">
 
-                {{ fn('ph_form_field',key,field) }}
+                    {% for key, field in form_controls %}
 
-            {% endfor %}
+                        {{ fn('ph_form_field',key,field) }}
 
-            <div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase"><i
-                        class="fa-regular fa-magnifying-glass"></i> Update Results
-                </button>
-            </div>
+                    {% endfor %}
 
-            {% do action('property_search_form_control_end') %}
+                    <div>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase"><i
+                                class="fa-regular fa-magnifying-glass"></i> Update Results
+                        </button>
+                    </div>
+
+                    {% do action('property_search_form_control_end') %}
+                </div>
+
+                {% do action('property_search_before_end_form') %}
+            </form>
+
+            {% do action('property_search_after_form') %}
         </div>
-
-        {% do action('property_search_before_end_form') %}
-    </form>
-
-    {% do action('property_search_after_form') %}
+    </div>
 </div>

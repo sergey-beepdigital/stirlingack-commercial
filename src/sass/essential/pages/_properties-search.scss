@@ -249,3 +249,27 @@
         }
     }
 }
+
+.section-properties{
+    .property-search-expandable{
+        &--collapse-control{
+            background: #FFF;
+            color: $brand-main-blue;
+            display: none;
+
+            i{
+                color: $brand-main-red;
+            }
+
+            /*&:hover{
+                background-color: $support-color2;
+                color: #FFF;
+            }*/
+
+            &:focus{
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
+}

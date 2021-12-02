@@ -145,13 +145,21 @@
         }
     }
 
-    /*.section-properties{
-        .properties-list-wrapper{
-            ul.properties{
-                grid-template-columns: 1fr 1fr;
+    .section-properties{
+        @include search-form-column;
+
+        .property-search-expandable{
+            padding: 15px 0;
+
+            &--collapse-control{
+                display: block;
+            }
+
+            &--collapse{
+                display: none;
             }
         }
-    }*/
+    }
 
     .insight-sidebar{
         .insight-widget{
@@ -256,5 +264,15 @@
 
     #my-account-saved_searches{
         grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .section-properties{
+        .property-search-expandable{
+            &--collapse{
+                display: block!important;
+            }
+        }
     }
 }
