@@ -3,6 +3,10 @@
         --header-offset: 86px;
     }
 
+    .content-2-columns{
+        columns: auto;
+    }
+
     #header{
         padding: 15px 0;
 
@@ -400,6 +404,12 @@
                     }
                 }
             }
+        }
+    }
+
+    .section-cta-text{
+        &--style{
+            padding: 40px 25px;
         }
     }
 }
