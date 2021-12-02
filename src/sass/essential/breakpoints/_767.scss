@@ -445,6 +445,34 @@
             padding-top: 30px;
         }
     }
+
+    .propertyhive-my-account{
+        display: block;
+
+        .my-account-navigation {
+            max-width: 100%;
+            padding: 15px 0;
+        }
+
+        .my-account-sections{
+            padding: 15px;
+
+            &:before{
+                content: normal;
+            }
+
+            .propertyhive-shorlisted-properties{
+                tbody{
+                    tr{
+                        td:first-child,
+                        th:first-child{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {

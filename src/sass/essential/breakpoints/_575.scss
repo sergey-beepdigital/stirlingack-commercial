@@ -420,9 +420,23 @@
     }
 
     .section-login-register{
-        &--register-cta h2,
-        &--login-box h2{
-            font-size: 22px;
+        &--login-box,
+        &--register-cta{
+            h2{
+                font-size: 22px;
+            }
+
+            .btn,
+            input[type="submit"]{
+                display: block;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        &--register-cta{
+            padding-left: 30px;
+            padding-right: 30px;
         }
     }
 
