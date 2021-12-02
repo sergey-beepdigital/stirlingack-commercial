@@ -376,6 +376,32 @@
             }
         }
     }
+
+    .section-content{
+        &--sidebar{
+            .acf-widget-area{
+                .content-widget{
+                    &:not(:first-child){
+                        margin-top: 30px;
+                    }
+                }
+
+                .block-latest-posts{
+                    & > h3{
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+
+                    .more-link{
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
