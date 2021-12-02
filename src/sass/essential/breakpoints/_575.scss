@@ -411,4 +411,32 @@
             }
         }
     }
+
+    .section-portal-login--content h2,
+    .section-login-register h1{
+        font-size: 30px;
+    }
+
+    .section-login-register{
+        &--register-cta h2,
+        &--login-box h2{
+            font-size: 22px;
+        }
+    }
+
+    .section-portal-login{
+        &--content{
+            h2{
+                margin-bottom: 20px;
+            }
+
+            ul{
+                li{
+                    h3{
+                        font-size: 22px;
+                    }
+                }
+            }
+        }
+    }
 }
