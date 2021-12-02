@@ -25,7 +25,7 @@
                             {% endif %}
                         </ul>
                     </div>
-                    <div class="flex-grow-1 mt-4 mt-md-0">
+                    <div class="flex-grow-1 mt-4 mt-md-0 pl-md-4">
                         {% if post.branch_address %}
                             <div>{{ post.branch_address }}<br><a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ post.branch_address | replace({"'":''}) }}','branch-google-map-image');">View on Map</a></div>
                         {% endif %}

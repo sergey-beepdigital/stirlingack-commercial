@@ -385,4 +385,12 @@
             display: block!important;
         }
     }
+
+    .single-sa_branch{
+        .branch-contact-details{
+            &--contacts{
+                display: block!important;
+            }
+        }
+    }
 }
