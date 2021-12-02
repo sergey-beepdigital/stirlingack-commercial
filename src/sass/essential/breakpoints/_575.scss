@@ -403,10 +403,12 @@
         &--box{
             padding: 20px;
 
+            .propertyhive-form,
             .wpcf7{
                 input[type="submit"] {
                     width: 100%;
                     display: block;
+                    max-width: 100%;
                 }
             }
         }
