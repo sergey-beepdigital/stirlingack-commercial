@@ -52,13 +52,11 @@
         margin-bottom: 25px;
     }
 
-    p{
-        a:not([class]){
-            text-decoration: underline;
+    a:not([class]){
+        text-decoration: underline;
 
-            &:hover{
-                text-decoration: none;
-            }
+        &:hover{
+            text-decoration: none;
         }
     }
 
