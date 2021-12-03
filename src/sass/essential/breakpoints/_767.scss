@@ -496,6 +496,13 @@
             }
         }
     }
+
+    #save_search_popup .button,
+    #save_search_popup input[type="submit"]{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 @media screen and (min-width: 768px) {
