@@ -1,3 +1,4 @@
 <div class="page-section page-section--padding50">
-    <img class="w-100" src="{{ section.fwb_image }}">
+    <img class="w-100 d-none d-md-block" src="{{ section.fwb_image }}">
+    <img class="w-100 d-block d-md-none" src="{{ section.fwb_image | resize(720, 460) }}">
 </div>
