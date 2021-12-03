@@ -502,4 +502,10 @@
             display: block;
         }
     }
+
+    #my-account-saved_searches{
+        & > div{
+            padding: 15px;
+        }
+    }
 }

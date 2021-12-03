@@ -3,24 +3,24 @@
         & > input[type="checkbox"] {
             visibility: hidden;
             opacity: 0;
-        }
 
-        & > span{
-            position: relative;
-            padding-left: 5px;
+            & + span{
+                position: relative;
+                padding-left: 5px;
 
-            &:after{
-                position: absolute;
-                top: -2px;
-                left: -16px;
-                display: block;
-                content: "";
-            }
+                &:after{
+                    position: absolute;
+                    top: -2px;
+                    left: -16px;
+                    display: block;
+                    content: "";
+                }
 
-            &:after{
-                font-family: "Font Awesome 6 Pro";
-                font-weight: 500;
-                content: "\f0c8";
+                &:after{
+                    font-family: "Font Awesome 6 Pro";
+                    font-weight: 500;
+                    content: "\f0c8";
+                }
             }
         }
 

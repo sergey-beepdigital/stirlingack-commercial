@@ -264,6 +264,20 @@
 
     #my-account-saved_searches{
         grid-template-columns: 1fr;
+
+        & > div{
+            .btn-primary,
+            .button-delete-search{
+                display: block;
+                width: 100%;
+                text-align: center;
+                min-width: 0;
+
+                & + br{
+                    display: none;
+                }
+            }
+        }
     }
 }
 
