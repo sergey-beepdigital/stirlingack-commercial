@@ -200,6 +200,12 @@
         div.property{
             .images{
                 margin-bottom: 15px;
+                margin-left: -15px;
+                margin-right: -15px;
+
+                .flexslider.thumbnails{
+                    display: none;
+                }
             }
 
             .entry-summary{
@@ -468,5 +474,18 @@
         padding: 0;
         margin-left: -15px;
         margin-right: -15px;
+    }
+
+    .section-gallery-images{
+        .gallery-images-wrap{
+            #slider{
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+
+            .flexslider.thumbnails{
+                display: none;
+            }
+        }
     }
 }
