@@ -488,4 +488,13 @@
             }
         }
     }
+
+    .archive .section-insight-total,
+    .page-template-page-insights .section-insight-total{
+        text-align: center;
+
+        .branch-name{
+            display: block;
+        }
+    }
 }
