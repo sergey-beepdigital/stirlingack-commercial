@@ -266,104 +266,6 @@
             "maxlength": ""
         },
         {
-            "key": "field_619e21578f63d",
-            "label": "CTA",
-            "name": "nh_cta",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_619e217e8f63f",
-            "min": 1,
-            "max": 2,
-            "layout": "block",
-            "button_label": "",
-            "sub_fields": [
-                {
-                    "key": "field_619e216f8f63e",
-                    "label": "Image",
-                    "name": "image",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "preview_size": "medium",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_619e217e8f63f",
-                    "label": "Title",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_619e21858f640",
-                    "label": "Short Description",
-                    "name": "short_description",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": 6,
-                    "new_lines": "wpautop"
-                },
-                {
-                    "key": "field_619e21aa8f641",
-                    "label": "Link",
-                    "name": "link",
-                    "type": "link",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array"
-                }
-            ]
-        },
-        {
             "key": "field_619e1f2699208",
             "label": "Similar New Homes",
             "name": "similar_new_homes",
@@ -408,5 +310,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638354472
+    "modified": 1638527270
 }
