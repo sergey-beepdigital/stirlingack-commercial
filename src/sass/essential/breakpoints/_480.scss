@@ -20,4 +20,20 @@
             }
         }
     }
+
+    .section-property-calculator{
+        &--inner{
+            .property-calculators-wrapper{
+                ul.nav{
+                    li{
+                        a{
+                            padding: 10px;
+                            font-size: 11px;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
