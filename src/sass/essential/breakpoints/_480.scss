@@ -1,3 +1,13 @@
 @media screen and (max-width: 480px) {
-
+    .property-search-department-tabs{
+        ul{
+            li{
+                a{
+                    font-size: 11px;
+                    height: 100%;
+                    padding: 10px;
+                }
+            }
+        }
+    }
 }
