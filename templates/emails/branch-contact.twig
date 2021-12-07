@@ -3,7 +3,8 @@
 <p><strong>E-mail:</strong> {{ body.form_data.email_address }}</p>
 <p><strong>Source:</strong> {{ body.site_title }}</p>
 <p><strong>Enquiry Type:</strong> {{ body.form_data.department | capitalize }} Viewing Request</p>
-<div style="margin-bottom: 10px;"><strong>Message:</strong> {{ body.form_data.department | capitalize }} {{ body.form_data.enquiry_text }}</div>
+<div style="margin-bottom: 10px;"><strong>Message:</strong> {{ body.form_data.enquiry_text }}</div>
 {% if body.property.id %}
     <p><strong>Property:</strong> <a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></p>
+    <p><strong>Property Ref ID:</strong> {{ fn('get_field','_reference_number',body.property.id) }}</p>
 {% endif %}
