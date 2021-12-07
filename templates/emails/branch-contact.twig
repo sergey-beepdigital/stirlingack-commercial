@@ -1,38 +1,9 @@
-<table cellpadding="5" border="1">
-    <tr>
-        <th style="text-align: left;">First Name</th>
-        <td>{{ body.form_data.first_name }}</td>
-    </tr>
-    <tr>
-        <th style="text-align: left;">Surname</th>
-        <td>{{ body.form_data.surname }}</td>
-    </tr>
-    <tr>
-        <th style="text-align: left;">Phone Number</th>
-        <td>{{ body.form_data.phone_number }}</td>
-    </tr>
-    <tr>
-        <th style="text-align: left;">Email Address</th>
-        <td>{{ body.form_data.email_address }}</td>
-    </tr>
-    <tr>
-        <th style="text-align: left;">Enquiry Details</th>
-        <td>{{ body.form_data.enquiry_text }}</td>
-    </tr>
-    <tr>
-        <th style="text-align: left;">Department</th>
-        <td>{{ body.form_data.department | capitalize }}</td>
-    </tr>
-    <tr>
-        <th style="text-align: left;">Branch</th>
-        <td><a href="{{ fn('get_the_permalink',body.branch.id) }}">{{ body.branch.title }}</a></td>
-    </tr>
-
-    {% if body.property.id %}
-        <tr>
-            <th style="text-align: left;">Property</th>
-            <td><a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></td>
-        </tr>
-    {% endif %}
-</table>
-
+<p><strong>Name:</strong> {{ body.form_data.first_name }} {{ body.form_data.surname }}</p>
+<p><strong>Telephone:</strong> {{ body.form_data.phone_number }}</p>
+<p><strong>E-mail:</strong> {{ body.form_data.email_address }}</p>
+<p><strong>Source:</strong> {{ body.site_title }}</p>
+<p><strong>Enquiry Type:</strong> {{ body.form_data.department | capitalize }} Viewing Request</p>
+<div style="margin-bottom: 10px;"><strong>Message:</strong> {{ body.form_data.department | capitalize }} {{ body.form_data.enquiry_text }}</div>
+{% if body.property.id %}
+    <p><strong>Property:</strong> <a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></p>
+{% endif %}

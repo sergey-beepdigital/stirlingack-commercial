@@ -809,6 +809,7 @@ function branch_contact_submit() {
         $id = $branch->get_branch_id();
     }
 
+    $email_subject = get_the_title($id) . ' viewing request';
     $email_destination = get_field("branch_{$department_key}_email_address", $id);
 
     if(!empty($email_destination)) {
@@ -838,11 +839,12 @@ function branch_contact_submit() {
             $sent = $mailer
                 ->set_type('branch-contact')
                 ->add_recipient_email($email_destination)
-                ->set_subject('Branch Contact Request')
+                ->set_subject($email_subject)
                 ->set_email_data([
                     'form_data' => $_REQUEST,
                     'property' => $property,
-                    'branch' => new TimberPost($id)
+                    'branch' => new TimberPost($id),
+                    'site_title' => get_bloginfo('name')
                 ])
                 ->send();
 
