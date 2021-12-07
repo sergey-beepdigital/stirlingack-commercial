@@ -31,12 +31,14 @@ class WP_Mailer {
     /**
      * Set header line in array of headers
      * @param string $header_item
-     * @return bool
+     * @return $this
      */
     public function set_header_line($header_item = '') {
-        if(empty($item)) return false;
+        if(empty($header_item)) return $this;
 
         $this->headers[] = $header_item;
+
+        return $this;
     }
 
     /** Set admin email
@@ -176,6 +178,7 @@ class WP_Mailer {
             return $mail_sent;
         } else {
             write_log(array(
+                'headers'     => $this->headers,
                 'recipients'  => $this->recipients,
                 'subject'     => $subject,
                 'attachments' => $this->attachments,

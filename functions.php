@@ -838,6 +838,7 @@ function branch_contact_submit() {
 
             $sent = $mailer
                 ->set_type('branch-contact')
+                ->set_header_line("From: Stirling Ackroyd <no-reply@stirlingackroyd.com>")
                 ->add_recipient_email($email_destination)
                 ->set_subject($email_subject)
                 ->set_email_data([
