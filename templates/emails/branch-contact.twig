@@ -5,6 +5,6 @@
 <p><strong>Enquiry Type:</strong> {{ body.form_data.department | capitalize }} Viewing Request</p>
 <div style="margin-bottom: 10px;"><strong>Message:</strong> {{ body.form_data.enquiry_text }}</div>
 {% if body.property.id %}
-    <p><strong>Property:</strong> <a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></p>
-    <p><strong>Property Ref ID:</strong> {{ fn('get_field','_reference_number',body.property.id) }}</p>
+    <p><strong>More Details:</strong> <a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></p>
+    <p><strong>Property:</strong> {{ fn('get_field','_reference_number',body.property.id) }}</p>
 {% endif %}
