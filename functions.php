@@ -850,8 +850,11 @@ function branch_contact_submit() {
                 ->send();
 
             if ($sent) {
+                $pages = get_field('page','option');
+
                 $result['status'] = true;
                 $result['message'] = 'Email sent successfully.';
+                $result['redirect_url'] = get_the_permalink($pages['thank_you_page_id']);
             } else {
                 $result['status'] = false;
                 $result['message'] = 'Email is not send. Server problem. Try Later.';

@@ -367,10 +367,12 @@ var SA_Common = SA_Common || {};
                         if(response.status) {
                             e.target.reset();
 
-                            $form
+                            location.href = response.redirect_url;
+
+                            /*$form
                                 .hide()
                                 .after('<div class="alert alert-success">' + response.message + '</div>')
-                            ;
+                            ;*/
                         } else if(response.errors) {
 
                             $('.invalid-feedback',$form).remove();
