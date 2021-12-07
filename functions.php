@@ -872,3 +872,8 @@ function branch_contact_submit() {
 }
 add_action('wp_ajax_branch_contact_submit','branch_contact_submit');
 add_action('wp_ajax_nopriv_branch_contact_submit','branch_contact_submit');
+
+function sa_cf7_change_dropdown_label($html) {
+    return str_replace('---', 'Please select', $html);
+}
+add_filter('wpcf7_form_elements', 'sa_cf7_change_dropdown_label');
