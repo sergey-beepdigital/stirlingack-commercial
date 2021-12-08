@@ -5,7 +5,7 @@
     {% set contacts = post.get_field('nh_contacts') %}
     {% set features = post.get_field('nh_features') %}
     {% set cta_list = fn('get_field','section_new_homes_cta','option') %}
-    {% set similar_new_homes = post.get_field('similar_new_homes') %}
+    {% set similar_new_homes = Post(options.section_similar_new_homes) %}
 
     <section class="page-section page-section--padding50 pb-0 section-gallery-images">
         <div class="container">

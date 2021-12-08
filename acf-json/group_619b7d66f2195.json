@@ -425,6 +425,33 @@
             ]
         },
         {
+            "key": "field_61b0855078e24",
+            "label": "Similar Homes",
+            "name": "section_similar_new_homes",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "sa_new_home"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": 3,
+            "return_format": "object"
+        },
+        {
             "key": "field_61a60e93e37e5",
             "label": "Footer",
             "name": "",
@@ -477,5 +504,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638524836
+    "modified": 1638958560
 }

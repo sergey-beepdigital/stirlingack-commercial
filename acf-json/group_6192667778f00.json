@@ -264,33 +264,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_619e1f2699208",
-            "label": "Similar New Homes",
-            "name": "similar_new_homes",
-            "type": "relationship",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "sa_new_home"
-            ],
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "elements": [
-                "featured_image"
-            ],
-            "min": 1,
-            "max": 3,
-            "return_format": "object"
         }
     ],
     "location": [
@@ -310,5 +283,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638527270
+    "modified": 1638958872
 }
