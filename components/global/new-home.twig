@@ -9,7 +9,7 @@
             {% if gallery_images %}
                 <img src="{{ gallery_images[0].url | resize(740,740) }}">
             {% else %}
-                <img src="https://via.placeholder.com/740x740">
+                <img src="{{ theme.link ~ '/dist/images/placeholder/placeholder740x740.jpg' }}">
             {% endif %}
         </a>
     </div>
