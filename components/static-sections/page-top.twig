@@ -23,7 +23,7 @@
                 <div class="section-page-top--image-wrap">
                     {% if image %}
                         {% if thumbnail_size %}
-                            <img src="{{ image | resize(thumbnail_size.w,thumbnail_size.h) }}" loading="lazy">
+                            <img src="{{ image | resize(thumbnail_size.w,thumbnail_size.h,'center') }}" loading="lazy">
                         {% else %}
                             <img src="{{ image }}" loading="lazy">
                         {% endif %}
