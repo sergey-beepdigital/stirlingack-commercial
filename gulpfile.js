@@ -46,8 +46,14 @@ const gulp = require('gulp'),
                 {
                     entryFiles: glob.sync('./src/js/deferred/**/*.js'),
                     outputName: 'deferred'
-                },
+                }
             ]
+        },
+        includeJs: {
+            src: [
+                'src/js/phone.js',
+            ],
+            dist: 'dist/js',
         },
         images: {
             src: 'src/images/**/*',
@@ -154,6 +160,11 @@ function scripts() {
         .pipe(gulp.dest(paths.js.dist));
 }
 
+function includeScripts() {
+    return gulp.src(paths.includeJs.src)
+        .pipe(gulp.dest(paths.includeJs.dist));
+}
+
 /**
  * `gulp images`
  *
@@ -239,6 +250,6 @@ function disableAcf() {
         })).pipe(gulp.dest(dest));
 }
 
-gulp.task('default', gulp.series(fonts, images, styles, scripts, watch));
+gulp.task('default', gulp.series(fonts, images, styles, scripts, includeScripts, watch));
 
-gulp.task('package', gulp.series(fonts, images, styles, scripts, deploy, disableAcf));
+gulp.task('package', gulp.series(fonts, images, styles, scripts, includeScripts, deploy, disableAcf));

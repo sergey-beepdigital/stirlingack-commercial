@@ -233,6 +233,7 @@ class StarterSite extends TimberSite {
 
         if(is_singular('sa_branch')) {
             wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
+            wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
         }
 
         if(is_singular('sa_new_home')) {
@@ -896,3 +897,17 @@ function sa_pagination_add_rel_attribute($r,$args) {
     return $r;
 }
 add_filter('paginate_links_output','sa_pagination_add_rel_attribute',10,2);
+
+/**
+ * Add phone tracking code to the bottom branch page
+ */
+function sa_branch_add_phone_tracking_code() {
+    global $wp_query;
+
+    if(!is_singular('sa_branch')) return;
+
+    $tracking_code = get_post_meta($wp_query->post->ID, 'branch_phone_tracking', true);
+
+    if(!empty($tracking_code)) echo $tracking_code;
+}
+add_action('wp_footer', 'sa_branch_add_phone_tracking_code');

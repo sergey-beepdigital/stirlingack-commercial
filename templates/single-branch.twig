@@ -18,10 +18,12 @@
                     <div>
                         <ul class="mb-0">
                             {% if post.branch_sale_phone %}
-                                <li><i class="fa-light fa-phone"></i> <a href="tel:{{ post.branch_sale_phone | replace({' ':''}) }}">Sales {{ post.branch_sale_phone }}</a></li>
+                                {% set sale_phone = post.branch_sale_phone | replace({' ':''}) %}
+                                <li><i class="fa-light fa-phone"></i> Sales <a class="sales" href="tel:{{ sale_phone }}" title="{{ sale_phone }}">{{ post.branch_sale_phone }}</a></li>
                             {% endif %}
                             {% if post.branch_let_phone %}
-                                <li><i class="fa-light fa-phone"></i> <a href="tel:{{ post.branch_let_phone | replace({' ':''}) }}">Lettings {{ post.branch_let_phone }}</a></li>
+                                {% set let_phone = post.branch_let_phone | replace({' ':''}) %}
+                                <li><i class="fa-light fa-phone"></i> Lettings <a class="lettings" href="tel:{{ let_phone }}" title="{{ let_phone }}">{{ post.branch_let_phone }}</a></li>
                             {% endif %}
                         </ul>
                     </div>
