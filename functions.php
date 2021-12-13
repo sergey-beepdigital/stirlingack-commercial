@@ -873,7 +873,26 @@ function branch_contact_submit() {
 add_action('wp_ajax_branch_contact_submit','branch_contact_submit');
 add_action('wp_ajax_nopriv_branch_contact_submit','branch_contact_submit');
 
+/**
+ * CF7: Change default dropdown value to custom one
+ * @param $html
+ * @return string|string[]
+ */
 function sa_cf7_change_dropdown_label($html) {
     return str_replace('---', 'Please select', $html);
 }
 add_filter('wpcf7_form_elements', 'sa_cf7_change_dropdown_label');
+
+/**
+ * Add REL attribute to the pagination
+ * @param $r
+ * @param $args
+ * @return string|string[]
+ */
+function sa_pagination_add_rel_attribute($r,$args) {
+    $r = str_replace('<a class="next', '<a rel="next" class="next', $r);
+    $r = str_replace('<a class="prev', '<a rel="prev" class="prev', $r);
+
+    return $r;
+}
+add_filter('paginate_links_output','sa_pagination_add_rel_attribute',10,2);
