@@ -56,7 +56,7 @@
 		<script type='application/ld+json'>
 			{
 				"@context": "https://schema.org",
-				"@type": "Organization",
+				"@type": "{{ fn('is_singular','sa_branch') ? 'RealEstateAgent' : 'Organization' }}",
 				"name": "{{ site.name }}",
 				"url": "{{ site.url }}",
 				"description": "{{ site.description }}",
