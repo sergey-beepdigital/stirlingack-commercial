@@ -1,6 +1,6 @@
 {% if branch_data %}
-    <div class="arrange-viewing-box-wrap">
-        <div class="property-arrange-viewing text-center" id="property-arrange-viewing">
+    {#<div class="arrange-viewing-box-wrap">#}
+        <div class="property-arrange-viewing text-center mt-4 mt-md-0" id="property-arrange-viewing">
             <div class="property-arrange-viewing--office-contacts">
                 <h3 class="text-uppercase">Arrange a viewing</h3>
                 <div class="branch-info">
@@ -19,6 +19,17 @@
                 </div>
             </div>
         </div>
-        <a href="#property-arrange-viewing" data-action="mobileArrangeViewingToggle" class="btn btn-block btn-lg btn-primary btn-mobile-arrange-viewing text-uppercase" data-open_text="Arrange a viewing" data-close_text="Close"><i class="fas fa-times"></i> <span>Arrange a viewing</span></a>
+        {#<a href="#property-arrange-viewing" data-action="mobileArrangeViewingToggle" class="btn btn-block btn-lg btn-primary btn-mobile-arrange-viewing text-uppercase" data-open_text="Arrange a viewing" data-close_text="Close"><i class="fas fa-times"></i> <span>Arrange a viewing</span></a>
+    </div>#}
+
+    <div class="mobile-sticky-contact-box d-block d-md-none">
+        <div class="row">
+            <div class="col-6">
+                <a href="tel:{{ branch_data.phone | replace({' ':''}) }}" class="btn btn-block btn-primary">Call Agent</a>
+            </div>
+            <div class="col-6">
+                <a href="javascript:;" data-action="branchContact" data-department="{{ property._department == 'residential-sales' ? 'sales' : 'lettings' }}" data-id="{{ property.id }}" class="btn btn-block btn-primary">Email Agent</a>
+            </div>
+        </div>
     </div>
 {% endif %}

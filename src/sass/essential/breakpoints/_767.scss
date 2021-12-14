@@ -341,6 +341,16 @@
                     }
                 }
             }
+
+            .mobile-sticky-contact-box{
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                padding: 15px;
+                background-color: $support-color4;
+                z-index: 100;
+            }
         }
     }
 
