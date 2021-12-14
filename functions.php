@@ -659,6 +659,12 @@ add_action('save_post_post', 'sa_save_insight', 10);
  * Add breadcrumbs to the pages
  */
 function sa_breadcrumbs() {
+    global $post;
+
+    $context = Timber::get_context();
+
+    if($post->ID == $context['options']['page']['thank_you_page_id']) return;
+
     if(is_front_page()) return;
 
     if(is_property()) return;
