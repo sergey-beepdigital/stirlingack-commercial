@@ -367,6 +367,12 @@ var SA_Common = SA_Common || {};
                         if(response.status) {
                             e.target.reset();
 
+                            if (typeof ga === 'function') {
+                                document.addEventListener( 'wpcf7mailsent', function( event ) {
+                                    ga( 'send', 'event', 'Branch Contact Form', 'submit' );
+                                }, false );
+                            }
+
                             location.href = response.redirect_url;
 
                             /*$form
