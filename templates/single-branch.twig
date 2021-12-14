@@ -170,16 +170,20 @@
 
     {% include 'components/sections/separator.twig' %}
 
-    <section class="page-section page-section--padding50">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-8 content-clear">
-                    <h2>About {{ post.title }}</h2>
-                    {{ post.content }}
+    {% if post.content %}
+
+        <section class="page-section page-section--padding50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 content-clear">
+                        <h2>About {{ post.title }}</h2>
+                        {{ post.content }}
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    {% endif %}
 
 
 {% endblock %}
