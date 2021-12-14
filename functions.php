@@ -231,9 +231,10 @@ class StarterSite extends TimberSite {
 
         wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
 
+        wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
+
         if(is_singular('sa_branch')) {
             wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
-            wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
         }
 
         if(is_singular('sa_new_home')) {
@@ -917,3 +918,12 @@ function sa_branch_add_phone_tracking_code() {
     if(!empty($tracking_code)) echo $tracking_code;
 }
 add_action('wp_footer', 'sa_branch_add_phone_tracking_code');
+
+function sa_page_custom_js_code() {
+    global $wp_query;
+
+    $js_code = get_post_meta($wp_query->post->ID, 'page_custom_javascript', true);
+
+    if(!empty($js_code)) echo $js_code;
+}
+add_action('wp_footer', 'sa_page_custom_js_code');

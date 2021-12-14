@@ -1026,6 +1026,21 @@
                                     ]
                                 },
                                 {
+                                    "key": "field_61b8c71863022",
+                                    "label": "Alt Action",
+                                    "name": "alt_action",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array"
+                                },
+                                {
                                     "key": "field_61840ddc130cb",
                                     "label": "Button",
                                     "name": "button",
@@ -1595,5 +1610,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637879631
+    "modified": 1639499621
 }

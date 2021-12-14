@@ -33,6 +33,40 @@
                 }
             }
         }
+
+        .alt-action {
+            margin-bottom: 15px;
+            .phone-number {
+                position: relative;
+                font-size: 20px;
+                font-weight: normal;
+
+                &:before,
+                &:after{
+                    font-weight: 300;
+                    font-size: 15px;
+                    color: $support-color2;
+                }
+
+                &:before {
+                    content: "Call: ";
+                }
+
+                &:after {
+                    content: " or";
+                }
+
+                &:hover{
+                    text-decoration: none;
+                    color: $brand-main-red;
+
+                    &:before,
+                    &:after{
+                        color: $support-color2;
+                    }
+                }
+            }
+        }
     }
 
     .valuation-types-wrap{

@@ -19,6 +19,19 @@
 
     {% endif %}
 
+    {% if data.alt_action %}
+        {% set alt_action_css = '' %}
+        {% if 'tel:' in data.alt_action.url %}
+            {% set alt_action_css = 'phone-number sales' %}
+        {% endif %}
+        <div class="alt-action text-center">
+            {% include 'components/parts/link.twig' with {
+                link: data.alt_action,
+                css_class: alt_action_css
+            } %}
+        </div>
+    {% endif %}
+
     {% if data.button.type == 'link' %}
         {% include 'components/parts/link.twig' with {
             link: data.button.link,
