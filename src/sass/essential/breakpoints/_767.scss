@@ -530,4 +530,18 @@
             }
         }
     }
+
+    .archive .sa-pagination,
+    .page-template-page-insights .sa-pagination{
+        text-align: center;
+        font-size: 14px;
+
+        ul.pages{
+            li{
+                a{
+                    padding: 2px 0.580rem;
+                }
+            }
+        }
+    }
 }
