@@ -8,7 +8,7 @@
                     <div>
                         <a href="tel:{{ branch_data.phone | replace({' ':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</a>
                     </div>
-                    <a href="javascript:;" data-action="branchContact" data-department="{{ property._department == 'residential-sales' ? 'sales' : 'lettings' }}" data-id="{{ property.id }}" class="btn btn-lg btn-secondary text-uppercase">Arrange a Viewing</a>
+                    <a href="javascript:;" data-action="branchContact" data-department="{{ property._department == 'residential-sales' ? 'sales' : 'lettings' }}" data-id="{{ property.id }}" class="btn btn-lg btn-primary text-uppercase">Arrange a Viewing</a>
                     {% if branch_data.address %}
                         <div class="branch-info--address">
                             {{ branch_data.address }}<br>
