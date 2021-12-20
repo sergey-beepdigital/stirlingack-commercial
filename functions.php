@@ -927,3 +927,44 @@ function sa_page_custom_js_code() {
     if(!empty($js_code)) echo $js_code;
 }
 add_action('wp_footer', 'sa_page_custom_js_code');
+
+
+/**
+ * Add Property reference code to the redirect page
+ */
+function sa_property_ref_rewrite_rule() {
+    add_rewrite_rule('^more-details/([^/]*)/?', 'index.php?prop_ref_id=$matches[1]', 'top');
+}
+add_action('init', 'sa_property_ref_rewrite_rule', 10, 0);
+
+
+/**
+ * Add property ref number to query wars
+ * @param $query_vars
+ * @return mixed
+ */
+function sa_property_ref_query_vars($query_vars) {
+    $query_vars[] = 'prop_ref_id';
+
+    return $query_vars;
+}
+add_filter('query_vars', 'sa_property_ref_query_vars');
+
+
+/**
+ * Redirect to property page if access by reference number
+ */
+function sa_property_ref_redirect() {
+    global $wpdb;
+
+    $property_ref_id = get_query_var('prop_ref_id');
+
+    if(!empty($property_ref_id)) {
+        $meta_item_data = $wpdb->get_row("SELECT * FROM `{$wpdb->postmeta}` WHERE `meta_value` LIKE '%{$property_ref_id}%'");
+
+        if(!empty($meta_item_data->post_id)) {
+            wp_redirect(get_the_permalink($meta_item_data->post_id));die;
+        }
+    }
+}
+add_action('wp_head', 'sa_property_ref_redirect');
