@@ -38,6 +38,76 @@ function sa_save_custom_meta_property($post_id, $property) {
 add_action("propertyhive_property_imported_jet", "sa_save_custom_meta_property", 10, 2);
 
 
+add_filter( 'propertyhive_jet_property_fields', 'include_available_field' );
+function include_available_field( $fields )
+{
+    $fields[] = 'Available';
+    return $fields;
+}
+
+add_filter( 'propertyhive_jet_sales_criteria', 'unavailable_properties_also' );
+function unavailable_properties_also( $criteria )
+{
+    $criteria['PropertyStatus'] = array('for sale', 'under offer'/*, 'sold'*/);
+    $criteria['Unavailable'] = true;
+    return $criteria;
+}
+
+// Only import:
+// - All available properties
+// - Unavailable properties with status 'Sold'
+add_filter( "propertyhive_jet_properties_due_import", 'sort_properties_to_import' );
+function sort_properties_to_import($properties)
+{
+    $new_properties = array();
+    foreach ( $properties as $property )
+    {
+        if ( isset($property->Available) && (string)$property->Available == '1' )
+        {
+            // do as we normally do as this is an available property
+            $new_properties[] = $property;
+        }
+        else
+        {
+            // this isn't an available property. only import if status is 'Under Offer'
+            if ( isset($property->Status) && (/*$property->Status == 'Sold' || */$property->Status == 'Under Offer') )
+            {
+                $new_properties[] = $property;
+            }
+        }
+    }
+    return $new_properties;
+}
+
+add_action( "propertyhive_property_imported_jet", 'correct_sold_unavailable_status', 10, 2 );
+function correct_sold_unavailable_status($post_id, $property)
+{
+    if ( !isset($property->Available) || ( isset($property->Available) && (string)$property->Available != '1' ) )
+    {
+        // this property is unavailable ...
+
+        if ( isset($property->Status) && ($property->Status == 'Sold' || $property->Status == 'Under Offer') )
+        {
+            // ... and sold
+            wp_suspend_cache_invalidation( false );
+            wp_defer_term_counting( false );
+            wp_defer_comment_counting( false );
+
+            if ( $property->department == 'residential-lettings' ) {
+                wp_set_object_terms( $post_id, 10, 'availability' ); // CHANGE 10 TO BE THE TERM ID YOU WANT TO USE FOR UNDER OFFER UNAVAILABLE LETTINGS PROPERTIES
+            }
+            else
+            {
+                wp_set_object_terms( $post_id, 10, 'availability' ); // CHANGE 10 TO BE THE TERM ID YOU WANT TO USE FOR UNDER OFFER UNAVAILABLE SALES PROPERTIES
+            }
+
+            wp_suspend_cache_invalidation( true );
+            wp_defer_term_counting( true );
+            wp_defer_comment_counting( true );
+        }
+    }
+}
+
 /**
  * Create custom URL structure for property detail page
  * @param $post_link
