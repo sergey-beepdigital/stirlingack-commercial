@@ -862,7 +862,7 @@ function branch_contact_submit() {
                 ->set_type('branch-contact-user')
                 ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
                 ->add_recipient_email($_REQUEST['email_address'])
-                ->set_subject('Thank You')
+                ->set_subject('Thank you for your Stirling Ackroyd enquiry.')
                 ->set_email_data([
                     'form_data' => $_REQUEST,
                     'property' => $property,
