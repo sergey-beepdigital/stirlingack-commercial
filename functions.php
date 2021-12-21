@@ -819,6 +819,7 @@ function branch_contact_submit() {
 
     $email_subject = get_the_title($id) . ' viewing request';
     $email_destination = get_field("branch_{$department_key}_email_address", $id);
+    $branch_phone = get_field("branch_{$department_key}_phone", $id);
 
     if(!empty($email_destination)) {
         if(empty($_REQUEST['first_name'])) {
@@ -854,6 +855,26 @@ function branch_contact_submit() {
                     'property' => $property,
                     'branch' => new TimberPost($id),
                     'site_title' => get_bloginfo('name')
+                ])
+                ->send();
+
+            $mailer
+                ->set_type('branch-contact-user')
+                ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
+                ->add_recipient_email($_REQUEST['email_address'])
+                ->set_subject('Thank You')
+                ->set_email_data([
+                    'form_data' => $_REQUEST,
+                    'property' => $property,
+                    'property_image' => $property->get_main_photo_src(),
+                    'property_desc' => $property->get_formatted_description(),
+                    'property_price' => $property->get_formatted_price(),
+                    'property_beds' => $property->bedrooms,
+                    'property_department' => $property->_department,
+                    'branch' => new TimberPost($id),
+                    'branch_phone' => $branch_phone,
+                    'site_title' => get_bloginfo('name'),
+                    'logo_url' => get_template_directory_uri() . '/dist/images/logo.svg'
                 ])
                 ->send();
 
@@ -968,3 +989,37 @@ function sa_property_ref_redirect() {
     }
 }
 add_action('wp_head', 'sa_property_ref_redirect');
+
+if(isset($_GET['test_email'])) {
+    $id = 7607;
+    $property = get_property(get_post(6107));
+    $branch_phone = '12312312313123';
+
+    $mailer = new WP_Mailer();
+
+    $sent = $mailer
+        ->set_debug()
+        ->set_type('branch-contact-user')
+        ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
+        ->add_recipient_email('test@gmail.com')
+        ->set_subject('Thank You')
+        ->set_email_data([
+            'form_data' => [
+                'first_name' => 'Sergey',
+                'surname' => 'Test',
+                'phone_number' => '12312312313',
+                'email_address' => 'ddddd@asdasd.com',
+            ],
+            'property' => $property,
+            'property_image' => $property->get_main_photo_src(),
+            'property_desc' => $property->get_formatted_description(),
+            'property_price' => $property->get_formatted_price(),
+            'property_beds' => $property->bedrooms,
+            'property_department' => $property->_department,
+            'branch' => new TimberPost($id),
+            'branch_phone' => $branch_phone,
+            'site_title' => get_bloginfo('name'),
+            'logo_url' => get_template_directory_uri() . '/dist/images/logo.svg'
+        ])
+        ->send();
+}
