@@ -990,7 +990,7 @@ function sa_property_ref_redirect() {
 }
 add_action('wp_head', 'sa_property_ref_redirect');
 
-if(isset($_GET['test_email'])) {
+/*if(isset($_GET['test_email'])) {
     $id = 7607;
     $property = get_property(get_post(6107));
     $branch_phone = '12312312313123';
@@ -1022,4 +1022,4 @@ if(isset($_GET['test_email'])) {
             'logo_url' => get_template_directory_uri() . '/dist/images/logo.svg'
         ])
         ->send();
-}
+}*/
