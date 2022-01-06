@@ -516,4 +516,12 @@
             margin-bottom: -30px;
         }
     }
+
+    .single-sa_branch{
+        .section-page-top{
+            &--image-wrap{
+                display: none;
+            }
+        }
+    }
 }
