@@ -137,6 +137,20 @@
                 }
             }*/
 
+            &.control-address_keyword{
+                position: relative;
+
+                .current-location{
+                    bottom: 4px!important;
+                    right: 0!important;
+
+                    img{
+                        width: 17px;
+                        height: 17px;
+                    }
+                }
+            }
+
             &-department{
                 display: none;
             }
