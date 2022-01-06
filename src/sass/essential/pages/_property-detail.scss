@@ -224,6 +224,30 @@
         .images{
             margin-bottom: 55px;
 
+            .flex-direction-nav{
+                li{
+                    a{
+                        opacity: 1;
+
+                        &:before{
+                            content: "\f104";
+                            font-family: "Font Awesome 6 Pro";
+                            color: #FFF;
+                        }
+
+                        &.flex-prev{
+
+                        }
+
+                        &.flex-next{
+                            &:before{
+                                transform: rotate(-180deg);
+                            }
+                        }
+                    }
+                }
+            }
+
             .flexslider{
                 border-width: 0;
 
