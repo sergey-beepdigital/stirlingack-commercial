@@ -735,6 +735,15 @@ function breadcrumbs_add_post_parent_page( $links ) {
 
             array_splice( $links, 1, -2, $breadcrumb );
         }
+    } else if ( is_singular( 'sa_branch' )) {
+        if(!empty($page_options['branch_list_page_id'])) {
+            $breadcrumb[] = array(
+                'url' => get_permalink($page_options['branch_list_page_id']),
+                'text' => get_the_title($page_options['branch_list_page_id']),
+            );
+
+            array_splice( $links, 1, -2, $breadcrumb );
+        }
     }
 
     return $links;
