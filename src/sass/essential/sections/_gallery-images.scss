@@ -18,6 +18,30 @@
             border: 0;
             margin: 0;
 
+            .flex-direction-nav{
+                li{
+                    a{
+                        opacity: 1;
+
+                        &:before{
+                            content: "\f104";
+                            font-family: "Font Awesome 6 Pro";
+                            color: #FFF;
+                        }
+
+                        &.flex-prev{
+
+                        }
+
+                        &.flex-next{
+                            &:before{
+                                transform: rotate(-180deg);
+                            }
+                        }
+                    }
+                }
+            }
+
             &.thumbnails{
                 margin-top: 20px;
 
