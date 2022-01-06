@@ -208,8 +208,22 @@
                 margin-left: -15px;
                 margin-right: -15px;
 
-                .flexslider.thumbnails{
-                    display: none;
+                .flexslider {
+                    &:not(.thumbnails) {
+                        .slides{
+                            li{
+                                a{
+                                    img{
+                                        height: 210px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .thumbnails {
+                        display: none;
+                    }
                 }
             }
 

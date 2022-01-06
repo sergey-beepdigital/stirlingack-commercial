@@ -251,6 +251,43 @@
             .flexslider{
                 border-width: 0;
 
+                &:not(.thumbnails) {
+                    .slides{
+                        li{
+                            a{
+                                display: block;
+
+                                img{
+                                    height: 450px;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                        /*li.flex-active-slide{
+                            a{
+                                display: block;
+
+                                &:before{
+                                    width: 50px;
+                                    height: 50px;
+                                    text-align: center;
+                                    line-height: 53px;
+                                    content: "\f31d";
+                                    font-family: "Font Awesome 6 Pro";
+                                    left: 20px;
+                                    bottom: 20px;
+                                    position: absolute;
+                                    z-index: 20;
+                                    background-color: #FFF;
+                                    font-size: 20px;
+                                    font-weight: 400;
+                                    display: block;
+                                }
+                            }
+                        }*/
+                    }
+                }
+
                 &.thumbnails{
                     margin-top: 20px;
                     margin-bottom: 0;
