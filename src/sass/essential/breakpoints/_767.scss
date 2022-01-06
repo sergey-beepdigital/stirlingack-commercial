@@ -385,6 +385,7 @@
             &--heading{
                 cursor: pointer;
                 position: relative;
+                display: none;
 
                 &:after{
                     content: "\f078";
@@ -410,9 +411,9 @@
                 }
             }
 
-            &--contacts{
+            /*&--contacts{
                 display: none;
-            }
+            }*/
         }
     }
 
