@@ -538,6 +538,7 @@ add_action('propertyhive_after_search_results_loop','sa_property_search_map_wrap
 /*********************************************************************
  *********************** Property Detail *****************************
  *********************************************************************/
+remove_action( 'propertyhive_product_thumbnails', 'propertyhive_show_property_thumbnails', 20 );
 
 function sa_property_detail_wrap_start() {
     if(is_singular('property')) {
