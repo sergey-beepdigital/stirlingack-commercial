@@ -1579,6 +1579,35 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_61d82c6d3e6cb": {
+                    "key": "layout_61d82c6d3e6cb",
+                    "name": "developments",
+                    "label": "Developments",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61d82de9c2137",
+                            "label": "Title",
+                            "name": "lnh_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -1610,5 +1639,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1639499621
+    "modified": 1641557507
 }

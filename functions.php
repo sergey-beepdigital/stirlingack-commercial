@@ -1032,3 +1032,10 @@ add_action('wp_head', 'sa_property_ref_redirect');
         ])
         ->send();
 }*/
+
+function get_latest_new_homes($limit = 3) {
+    return new Timber\PostQuery([
+        'post_type' => 'sa_new_home',
+        'posts_per_page' => $limit
+    ]);
+}

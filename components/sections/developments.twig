@@ -1,0 +1,35 @@
+{% set latest_new_homes = fn('get_latest_new_homes') %}
+
+{% if latest_new_homes %}
+
+    <section class="page-section page-section--padding50 section-new-home-similar-properties bg-support5">
+        <div class="container aos-init" data-aos="fade-left">
+
+            {% if section.lnh_title %}
+
+                <div class="page-section--heading text-center text-md-left">
+                    <h3 class="text-uppercase">{{ section.lnh_title }}</h3>
+                </div>
+
+            {% endif %}
+
+            <div class="row">
+
+                {% for item in latest_new_homes %}
+
+                    <div class="col-lg-4 col-md-6 {{ loop.index > 1 ? 'mt-4 mt-md-0' : '' }} {{ loop.index == 3 ? 'd-none d-md-block' : '' }}">
+
+                        {% include 'components/global/new-home.twig' with {
+                            post: item
+                        } %}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+{% endif %}
