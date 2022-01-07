@@ -23,6 +23,14 @@
                 }
             }
         }
+
+        .shortcode-link-arrow{
+            color: #FFF;
+
+            &:hover{
+                color: $brand-main-red;
+            }
+        }
     }
 
     &--image-wrap{
