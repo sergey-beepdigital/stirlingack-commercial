@@ -1,0 +1,21 @@
+.block-promo{
+    background-color: $brand-main-blue;
+    padding: 35px 25px;
+    color: #FFF;
+
+    h2{
+        margin: 20px 0;
+    }
+
+    p{
+        a{
+            @include link-border(#FFF, $brand-main-red);
+            display: inline-block;
+            margin-top: 30px;
+
+            &:hover{
+                color: $brand-main-red;
+            }
+        }
+    }
+}

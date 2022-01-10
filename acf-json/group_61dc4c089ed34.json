@@ -1,0 +1,49 @@
+{
+    "key": "group_61dc4c089ed34",
+    "title": "Block: Promo",
+    "fields": [
+        {
+            "key": "field_61dc4c0e1c72a",
+            "label": "Type",
+            "name": "promo_type",
+            "type": "select",
+            "instructions": "Content will be loaded from the Options > Sections",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "valuation": "Valuation",
+                "new_home": "New Home"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/sa-block-promo"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1641827601
+}
