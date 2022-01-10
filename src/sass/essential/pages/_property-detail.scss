@@ -223,6 +223,7 @@
 
         .images{
             margin-bottom: 55px;
+            position: relative;
 
             .flex-direction-nav{
                 li{
@@ -306,6 +307,18 @@
 
             #slider{
                 margin-bottom: 0;
+            }
+
+            .images-count{
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: #FFF;
+                padding: 15px 20px;
+
+                i{
+                    color: $brand-main-red;
+                }
             }
         }
 
