@@ -16,6 +16,17 @@
         ul{
             padding-left: 17px;
         }
+
+        img{
+            width: 100%;
+
+            &.alignright,
+            &.alignleft{
+                float: none;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
     }
 
     .page-section{
