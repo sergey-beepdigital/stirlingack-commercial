@@ -336,6 +336,7 @@ var SA_Common = SA_Common || {};
                 $.ajax({
                     method: "POST",
                     url: crowdAjax,
+                    beforeLoad: ajaxLoader(true),
                     data: {
                         action: 'branch_contact_popup',
                         id: id,
@@ -348,6 +349,8 @@ var SA_Common = SA_Common || {};
                             touch: false,
                             momentum: false
                         });
+
+                        ajaxLoader(false);
                     }
                 });
             },
