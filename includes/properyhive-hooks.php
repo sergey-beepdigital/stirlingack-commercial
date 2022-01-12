@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * Change radius search value
+ */
+function set_default_radius() {
+    if ( !isset($_GET['radius']) || empty($_GET['radius']) )
+    {
+        $_GET['radius'] = 0.5;
+        $_REQUEST['radius'] = 0.5;
+    }
+}
+add_action( 'init', 'set_default_radius' );
+
+/**
  * Save new homes from the import to db
  * @param $post_id
  * @param $property
