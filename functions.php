@@ -629,6 +629,16 @@ function sa_widgets_init() {
         'before_title'  => '<h5 class="h3 widget-title">',
         'after_title'   => '</h5>',
     ]);
+
+    register_sidebar([
+        'name'          => __('Content Widgets 2', 'stirlingack'),
+        'id'            => 'content-widgets-2',
+        'description'   => __('Add widgets here to appear in your area.', 'stirlingack'),
+        'before_widget' => '<div id="%1$s" class="content-widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5 class="h3 widget-title">',
+        'after_title'   => '</h5>',
+    ]);
 }
 add_action('widgets_init', 'sa_widgets_init');
 
