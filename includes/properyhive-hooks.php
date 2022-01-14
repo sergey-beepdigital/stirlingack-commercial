@@ -4,8 +4,9 @@
  * Change radius search value
  */
 function set_default_radius() {
-    if ( !isset($_GET['radius']) || empty($_GET['radius']) )
-    {
+    if(is_admin()) return;
+
+    if ( !isset($_GET['radius']) || empty($_GET['radius']) ) {
         $_GET['radius'] = 0.5;
         $_REQUEST['radius'] = 0.5;
     }
