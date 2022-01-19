@@ -371,8 +371,14 @@ var SA_Common = SA_Common || {};
                             e.target.reset();
 
                             if (typeof ga === 'function') {
+                                var gaEventName = 'PropertyLettings';
+
+                                if(response.status == 'sale') {
+                                    gaEventName = 'PropertySales';
+                                }
+
                                 document.addEventListener( 'wpcf7mailsent', function( event ) {
-                                    ga( 'send', 'event', 'Branch Contact Form', 'submit' );
+                                    ga( 'send', 'event', gaEventName, 'submit' );
                                 }, false );
                             }
 
