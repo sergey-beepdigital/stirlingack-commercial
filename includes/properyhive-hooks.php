@@ -791,7 +791,8 @@ function sa_property_search_checkboxes() {
         </div>-->
     </div>
 <?php }
-add_action('property_search_before_end_form','sa_property_search_checkboxes',10);
+//TODO: Back for display checkboxes in search form
+//add_action('property_search_before_end_form','sa_property_search_checkboxes',10);
 
 function sg_get_properties_query($q) {
     if (is_admin())
