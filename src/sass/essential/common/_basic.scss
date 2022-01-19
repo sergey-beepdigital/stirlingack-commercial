@@ -116,3 +116,23 @@ body{
 #content{
     overflow: hidden;
 }
+
+ul.properties{
+    li.property{
+        .thumbnail{
+            .flag{
+                display: none!important;
+            }
+        }
+    }
+}
+
+.single-property{
+    .property-detail-heading{
+        .price{
+            .flag{
+                display: none!important;
+            }
+        }
+    }
+}
