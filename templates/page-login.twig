@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="offset-lg-1 col-lg-5">
                         <div class="section-login-register--login-box">
-                            <h2>Homebuyers Sign In</h2>
+                            <h2>Sign In</h2>
                             {{ '[propertyhive_login_form]' | shortcodes }}
                         </div>
                     </div>
@@ -36,7 +36,7 @@
         </div>
     </section>
 
-    <section class="page-section page-section--padding50 section-portal-login">
+    {#<section class="page-section page-section--padding50 section-portal-login">
         <div class="container-wide">
             <div class="row">
                 <div class="col-xl-5 offset-xl-1 col-lg-6">
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>#}
 
     {% include 'sections.twig' with { 'sections' : post.get_field('page_sections') } %}
 
