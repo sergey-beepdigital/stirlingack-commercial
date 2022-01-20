@@ -51,4 +51,4 @@ pipelines:
           script:
             - echo "Build Package... 🙌"
             - echo "Deploying to Production... 😬"
-            - "rsync --ignore-times -rvz -e 'ssh' pipeline/ $THEME_DIR"
+            - "rsync --ignore-times -rvz -e 'ssh -p 18765' pipeline/ $THEME_DIR"
