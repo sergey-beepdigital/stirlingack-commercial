@@ -43,12 +43,12 @@ pipelines:
           script:
             - echo "Deploying to UAT... 🙌"
             - "rsync --ignore-times -rvz -e 'ssh' pipeline/ $THEME_DIR"
-#      - step:
-#          name: "Deploy to Production"
-#          image: andthensome/docker-node-rsync
-#          trigger: manual
-#          deployment: production
-#          script:
-#            - echo "Build Package... 🙌"
-#            - echo "Deploying to Production... 😬"
-#            - "rsync --ignore-times -rvz -e 'ssh -p 22' pipeline/ $THEME_DIR"
+      - step:
+          name: "Deploy to Production"
+          image: andthensome/docker-node-rsync
+          trigger: manual
+          deployment: production
+          script:
+            - echo "Build Package... 🙌"
+            - echo "Deploying to Production... 😬"
+            - "rsync --ignore-times -rvz -e 'ssh -p 22' pipeline/ $THEME_DIR"
