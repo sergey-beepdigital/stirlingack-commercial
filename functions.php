@@ -896,6 +896,7 @@ function branch_contact_submit() {
             }
 
             $mailer
+                ->set_debug()
                 ->set_type('branch-contact-user')
                 ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
                 ->add_recipient_email($_REQUEST['email_address'])

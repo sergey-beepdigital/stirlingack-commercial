@@ -22,8 +22,8 @@
                             <div style="padding: 20px;border: 1px solid silver;">
                                 <table width="100%" cellpadding="5">
                                     <tr>
-                                        <td>
-                                            <a href="{{ fn('get_the_permalink',body.property.id) }}"><img src="{{ body.property_image }}" style="max-width:100%;"></a>
+                                        <td align="center">
+                                            <a href="{{ fn('get_the_permalink',body.property.id) }}"><img src="{{ body.property_image }}" style="max-width:300px;"></a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -65,7 +65,9 @@
                         <h3>Contact Us</h3>
 
                         <div style="padding: 15px;border: 1px solid silver;">
-                            <img src="{{ body.branch.thumbnail }}" style="max-width: 100%;">
+                            <div style="text-align: center;">
+                                <img src="{{ body.branch.thumbnail }}" style="max-width: 300px;">
+                            </div>
                             <h2>{{ body.branch.title }}</h2>
                             <p style="font-size: 20px;">{{ body.branch.branch_address }}<br>{{ body.branch_phone }}</p>
                         </div>

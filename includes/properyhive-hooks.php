@@ -432,7 +432,8 @@ function sa_property_item_branch_details() {
     $branch = new SA_PropertyBranch($property);
 
     Timber::render('templates/propertyhive/parts/branch-details.twig',[
-        'branch_data' => $branch->get_data()
+        'branch_data' => $branch->get_data(),
+        'property' => $property
     ]);
 }
 add_action('propertyhive_after_search_results_loop_item_title','sa_property_item_branch_details',20);
