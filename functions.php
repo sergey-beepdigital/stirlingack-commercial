@@ -878,24 +878,29 @@ function branch_contact_submit() {
                 ])
                 ->send();
 
+            $mail_body_data = [
+                'form_data' => $_REQUEST,
+                'branch' => new TimberPost($id),
+                'branch_phone' => $branch_phone,
+                'site_title' => get_bloginfo('name'),
+                'logo_url' => get_template_directory_uri() . '/dist/images/logo.svg'
+            ];
+
+            if(!is_null($property)) {
+                $mail_body_data['property'] = $property;
+                $mail_body_data['property_image'] = $property->get_main_photo_src();
+                $mail_body_data['property_desc'] = $property->get_formatted_description();
+                $mail_body_data['property_price'] = $property->get_formatted_price();
+                $mail_body_data['property_beds'] = $property->bedrooms;
+                $mail_body_data['property_department'] = $property->_department;
+            }
+
             $mailer
                 ->set_type('branch-contact-user')
                 ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
                 ->add_recipient_email($_REQUEST['email_address'])
                 ->set_subject('Thank you for your Stirling Ackroyd enquiry.')
-                ->set_email_data([
-                    'form_data' => $_REQUEST,
-                    'property' => $property,
-                    'property_image' => !is_null($property)?$property->get_main_photo_src():'',
-                    'property_desc' => $property->get_formatted_description(),
-                    'property_price' => $property->get_formatted_price(),
-                    'property_beds' => $property->bedrooms,
-                    'property_department' => $property->_department,
-                    'branch' => new TimberPost($id),
-                    'branch_phone' => $branch_phone,
-                    'site_title' => get_bloginfo('name'),
-                    'logo_url' => get_template_directory_uri() . '/dist/images/logo.svg'
-                ])
+                ->set_email_data($mail_body_data)
                 ->send();
 
             if ($sent) {
