@@ -127,6 +127,16 @@ ul.properties{
     }
 }
 
+div.properties{
+    .owl-item{
+        .thumbnail{
+            .flag{
+                display: none!important;
+            }
+        }
+    }
+}
+
 .single-property{
     .property-detail-heading{
         .price{
