@@ -886,7 +886,7 @@ function branch_contact_submit() {
                 ->set_email_data([
                     'form_data' => $_REQUEST,
                     'property' => $property,
-                    'property_image' => $property->get_main_photo_src(),
+                    'property_image' => !is_null($property)?$property->get_main_photo_src():'',
                     'property_desc' => $property->get_formatted_description(),
                     'property_price' => $property->get_formatted_price(),
                     'property_beds' => $property->bedrooms,
