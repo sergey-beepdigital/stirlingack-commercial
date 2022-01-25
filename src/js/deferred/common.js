@@ -379,7 +379,10 @@ var SA_Common = SA_Common || {};
                                     gaEventName = 'PropertySales';
                                 }
 
-                                gtag('event', gaEventName);
+                                gtag('event', gaEventName, {
+                                    'event_category': 'PropertyViewing',
+                                    'event_label': 'Submit Form'
+                                });
                             }
 
                             location.href = response.redirect_url;
