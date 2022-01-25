@@ -379,7 +379,7 @@ var SA_Common = SA_Common || {};
                                     gaEventName = 'PropertySales';
                                 }
 
-                                gtag('event', gaEventName + ' Test');
+                                gtag('event', gaEventName);
                             }
 
                             location.href = response.redirect_url;
