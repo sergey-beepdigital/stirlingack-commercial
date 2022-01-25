@@ -657,6 +657,7 @@ function sa_property_detail_tabs_content() {
         global $property;
 
         Timber::render('propertyhive/property-detail/tabs-content.twig',[
+            'virtual_tours_urls' => $property->get_virtual_tours(),
             'floorplan_urls' => $property->_floorplan_urls,
             'epc_urls' => $property->_epc_urls,
             'department' => $property->_department,

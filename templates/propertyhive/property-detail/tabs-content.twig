@@ -24,6 +24,14 @@
 
             {% endif %}
 
+            {% if virtual_tours_urls %}
+
+                <li>
+                    <a data-toggle="tab" href="#property-info-virtual-tours">Virtual Tours</a>
+                </li>
+
+            {% endif %}
+
             <li>
                 <a data-toggle="tab" href="#property-info-schools">Schools</a>
             </li>
@@ -98,6 +106,29 @@
                             {% endfor %}
                         </div>
                     </div>
+                </div>
+
+            {% endif %}
+
+            {% if virtual_tours_urls %}
+
+                <div id="property-info-virtual-tours"  class="tab-pane fade">
+                    <h3 class="tab-pane-hidden-title">Virtual Tours</h3>
+
+                    <div class="virtual-tours-list">
+                        <div class="row">
+
+                            {% for tour_item in virtual_tours_urls %}
+
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <a class="btn btn-primary btn-block" target="_blank" href="{{ tour_item.url }}">{{ tour_item.label }}</a>
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
                 </div>
 
             {% endif %}
