@@ -370,20 +370,19 @@ var SA_Common = SA_Common || {};
                         if(response.status) {
                             e.target.reset();
 
-                            console.log(response);
                             console.log(typeof gtag === 'function');
 
                             if (typeof gtag === 'function') {
                                 var gaEventName = 'PropertyLettings';
 
-                                if(response.status == 'sale') {
+                                if(response.department == 'sale') {
                                     gaEventName = 'PropertySales';
                                 }
 
-                                gtag('event', gaEventName);
+                                gtag('event', gaEventName + ' Test');
                             }
 
-                            //location.href = response.redirect_url;
+                            location.href = response.redirect_url;
 
                             /*$form
                                 .hide()
