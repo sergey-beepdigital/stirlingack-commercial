@@ -370,14 +370,14 @@ var SA_Common = SA_Common || {};
                         if(response.status) {
                             e.target.reset();
 
-                            if (typeof ga === 'function') {
+                            if (typeof gtag === 'function') {
                                 var gaEventName = 'PropertyLettings';
 
                                 if(response.status == 'sale') {
                                     gaEventName = 'PropertySales';
                                 }
 
-                                ga('send', 'event', gaEventName, 'submit');
+                                gtag('event', gaEventName);
                             }
 
                             location.href = response.redirect_url;
