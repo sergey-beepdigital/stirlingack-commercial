@@ -377,9 +377,7 @@ var SA_Common = SA_Common || {};
                                     gaEventName = 'PropertySales';
                                 }
 
-                                document.addEventListener( 'wpcf7mailsent', function( event ) {
-                                    ga( 'send', 'event', gaEventName, 'submit' );
-                                }, false );
+                                ga('send', 'event', gaEventName, 'submit');
                             }
 
                             location.href = response.redirect_url;
