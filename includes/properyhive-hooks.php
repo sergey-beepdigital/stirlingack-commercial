@@ -107,11 +107,11 @@ function correct_sold_unavailable_status($post_id, $property)
             wp_defer_comment_counting( false );
 
             if ( $property->department == 'residential-lettings' ) {
-                wp_set_object_terms( $post_id, 10, 'availability' ); // CHANGE 10 TO BE THE TERM ID YOU WANT TO USE FOR UNDER OFFER UNAVAILABLE LETTINGS PROPERTIES
+                wp_set_object_terms( $post_id, 8, 'availability' ); // CHANGE 10 TO BE THE TERM ID YOU WANT TO USE FOR UNDER OFFER UNAVAILABLE LETTINGS PROPERTIES
             }
             else
             {
-                wp_set_object_terms( $post_id, 10, 'availability' ); // CHANGE 10 TO BE THE TERM ID YOU WANT TO USE FOR UNDER OFFER UNAVAILABLE SALES PROPERTIES
+                wp_set_object_terms( $post_id, 5, 'availability' ); // CHANGE 10 TO BE THE TERM ID YOU WANT TO USE FOR UNDER OFFER UNAVAILABLE SALES PROPERTIES
             }
 
             wp_suspend_cache_invalidation( true );
