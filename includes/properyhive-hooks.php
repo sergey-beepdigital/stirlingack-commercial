@@ -775,10 +775,10 @@ function sa_property_search_checkboxes() {
     } ?>
 
     <div class="property-search-form--checkbox-group">
-        <!--<div class="custom-control custom-checkbox custom-control-inline" style="display: <?php echo $recently_sold_display; ?>">
+        <div class="custom-control custom-checkbox custom-control-inline" style="display: <?php echo $recently_sold_display; ?>">
             <input type="checkbox" class="custom-control-input" name="include_sold" value="1" <?php echo $recently_sold_checked; ?> id="include-recent-props-checkbox">
             <label class="custom-control-label" for="include-recent-props-checkbox">Include Recently Sold Properties</label>
-        </div>-->
+        </div>
         <div class="custom-control custom-checkbox custom-control-inline" style="display: <?php echo $new_home_display; ?>">
             <input type="checkbox" class="custom-control-input" name="new_home" value="1" <?php echo $new_home_checked; ?> id="new-homes-checkbox">
             <label class="custom-control-label" for="new-homes-checkbox">New Homes Only</label>
