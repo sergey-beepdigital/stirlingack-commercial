@@ -111,6 +111,15 @@
             gap: 40px 30px;
         }*/
 
+        & > li{
+            .flag{
+                &.flag-for-sale,
+                &.flag-to-let{
+                    display: none!important;
+                }
+            }
+        }
+
         &.view-list{
             & > li{
                 &:not(:first-child) {
