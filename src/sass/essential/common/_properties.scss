@@ -216,6 +216,13 @@ ul.properties{
         width: auto!important;
         margin-left: 0!important;
 
+        .flag{
+            &.flag-for-sale,
+            &.flag-to-let{
+                display: none!important;
+            }
+        }
+
         .property-item-inner{
             .thumbnail{
                 position: relative;
