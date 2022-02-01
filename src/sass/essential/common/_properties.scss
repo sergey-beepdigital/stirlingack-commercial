@@ -217,6 +217,7 @@ ul.properties{
         margin-left: 0!important;
 
         .flag{
+            &.flag-under-offer,
             &.flag-for-sale,
             &.flag-to-let{
                 display: none!important;
