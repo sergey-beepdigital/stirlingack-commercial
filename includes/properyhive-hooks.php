@@ -941,3 +941,14 @@ function sa_featured_properties_shortcode_output($output) {
     return str_replace('ul','div',$output);
 }
 add_filter('propertyhive_featured_properties_shortcode_output','sa_featured_properties_shortcode_output');
+
+function pickup_projector($post_id, $property) {
+    update_post_meta( $post_id, '_featured', ( (isset($property->Projector) && $property->Projector == '1') ? 'yes' : '' ) );
+}
+add_action( "propertyhive_property_imported_jet", "pickup_projector", 10, 2 );
+
+function add_projector_field($property_fields) {
+    $property_fields[] = 'Projector';
+    return $property_fields;
+}
+add_filter('propertyhive_jet_property_fields', 'add_projector_field');
