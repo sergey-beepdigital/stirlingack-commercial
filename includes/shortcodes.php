@@ -85,7 +85,7 @@ function button_shortcode($atts) {
         'title' => 'Button Title',
         'url' => '#',
         'target' => false,
-        'css_class' => 'btn btn-lg btn-primary text-uppercase',
+        'css_class' => 'btn btn-lg btn-primary text-uppercase btn-shortcode',
         'block' => false
     ], $atts);
 
