@@ -370,8 +370,6 @@ var SA_Common = SA_Common || {};
                         if(response.status) {
                             e.target.reset();
 
-                            console.log(typeof gtag === 'function');
-
                             if (typeof gtag === 'function') {
                                 var gaEventKey = (response.department == 'sale') ? 'Sales' : 'Lettings';
                                 var gaEventPrefix = (response.type == 'property') ? 'Property' : 'Branch';
@@ -381,8 +379,6 @@ var SA_Common = SA_Common || {};
                                     'event_label': 'Submit Form'
                                 });
                             }
-
-                            return;
 
                             location.href = response.redirect_url;
 
