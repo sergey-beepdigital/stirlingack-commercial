@@ -373,17 +373,16 @@ var SA_Common = SA_Common || {};
                             console.log(typeof gtag === 'function');
 
                             if (typeof gtag === 'function') {
-                                var gaEventName = 'PropertyLettings';
+                                var gaEventKey = (response.department == 'sale') ? 'Sales' : 'Lettings';
+                                var gaEventPrefix = (response.type == 'property') ? 'Property' : 'Branch';
 
-                                if(response.department == 'sale') {
-                                    gaEventName = 'PropertySales';
-                                }
-
-                                gtag('event', gaEventName, {
-                                    'event_category': 'PropertyViewing',
+                                gtag('event', gaEventPrefix + gaEventKey, {
+                                    'event_category': gaEventPrefix + 'Viewing',
                                     'event_label': 'Submit Form'
                                 });
                             }
+
+                            return;
 
                             location.href = response.redirect_url;
 

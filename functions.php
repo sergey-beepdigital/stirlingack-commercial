@@ -910,6 +910,7 @@ function branch_contact_submit() {
                 $result['status'] = true;
                 $result['message'] = 'Email sent successfully.';
                 $result['department'] = $department_key;
+                $result['type'] = $post_type;
                 $result['redirect_url'] = get_the_permalink($pages['thank_you_page_id']);
             } else {
                 $result['status'] = false;
