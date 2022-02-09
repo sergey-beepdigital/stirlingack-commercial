@@ -258,7 +258,7 @@ class StarterSite extends TimberSite {
             'google_maps' => [
                 'api_key' => $google_map_api_key,
                 //'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
-                'marker_url' => 'https://tinyurl.com/32z7h9fj'
+                'marker_url' => 'https://tinyurl.com/markerurl'
             ]
         ]);
     }
