@@ -534,6 +534,7 @@ add_action( 'property_search_after_form', array( $save_search, 'save_search_butt
 function sa_property_search_map_wrap_start() {
     if(get_query_var('post_type') == 'property' && $_GET['view'] == 'map') {
         echo '<div class="property-search-map-view"><div class="container">';
+        echo '<div class="text-center mb-3 property-search-map-view--help-message"><strong>Use your mouse and click points to draw an area starting and ending at the same point. Move points to edit a current area or clear to plot a new area from scratch.</strong></div>';
     }
 }
 add_action('propertyhive_before_search_results_loop','sa_property_search_map_wrap_start',100);
