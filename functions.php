@@ -883,7 +883,7 @@ function branch_contact_submit() {
                 'branch' => new TimberPost($id),
                 'branch_phone' => $branch_phone,
                 'site_title' => get_bloginfo('name'),
-                'logo_url' => get_template_directory_uri() . '/dist/images/logo.svg'
+                'logo_url' => get_template_directory_uri() . '/dist/images/email-logo.jpg'
             ];
 
             if(!is_null($property)) {
