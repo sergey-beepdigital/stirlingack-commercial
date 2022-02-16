@@ -1,0 +1,48 @@
+<div class="DataloftContainer" id="DataloftOne" style="width:100%; height:400px;"></div>
+<script type="text/javascript">
+    jQuery.ajax({
+        url: 'https://inform.dataloft.co.uk/api/BAh7CEkiCGdpZAY6BkVUSSIqZ2lkOi8vaW5mb3JtL1VzZXJBcmVhLzk1Mjg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiDGRlZmF1bHQGOwBUSSIPZXhwaXJlc19hdAY7AFQw--27b078af2b1ff5cb5885450b4123f996e20a782d/mMsINFSDDRxVlleN0-7NJQ/change_in_average_prices',
+        success: function (chart_data) {
+            Highcharts.chart('DataloftOne', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: chart_data.area.name + ': ' + chart_data.title
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        enabled: false
+                    },
+                    labels: {
+                        format: '{value}%'
+                    }
+                },
+                credits: {
+                    text: '<a href="https://www.stirlingackroyd.com" title="East and Central London - Annual % change in average prices (12 months)">stirlingackroyd.com</a>'
+                },
+                tooltip: {
+                    pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+                        '<td style="text-align: right"> <b>{point.y:,.2f}%</b></td></tr>'
+                },
+                series: [
+                    {
+                        data: chart_data.area.data.map(function(d){
+                            return { name: d.period, y: d.percentage_change }
+                        }),
+                        name: chart_data.area.name,
+                    },
+                    {
+                        data: chart_data.region.data.map(function(d){
+                            return { name: d.period, y: d.percentage_change }
+                        }),
+                        name: chart_data.region.name,
+                    },
+                ]
+            });
+        }
+    });
+</script> <!--DATALOFT WIDGET 1-->
