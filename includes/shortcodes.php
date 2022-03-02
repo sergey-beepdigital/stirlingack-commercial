@@ -145,9 +145,7 @@ function workable_careers_list_shortcode($atts) {
 }
 add_shortcode('workable_careers_list','workable_careers_list_shortcode');
 
-function dataloft_chart_shortcode() {
-    wp_enqueue_script('highcharts','https://code.highcharts.com/highcharts.js');
-
+/*function dataloft_chart_shortcode() {
     return Timber::compile('components/shortcodes/dataloft.twig');
 }
-add_shortcode('dataloft_chart','dataloft_chart_shortcode');
+add_shortcode('dataloft_chart','dataloft_chart_shortcode');*/

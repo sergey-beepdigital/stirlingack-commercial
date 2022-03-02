@@ -233,6 +233,7 @@ class StarterSite extends TimberSite {
         wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
 
         wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
+        wp_enqueue_script('highcharts','https://code.highcharts.com/highcharts.js');
 
         if(is_singular('sa_branch')) {
             wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
