@@ -13,16 +13,16 @@
                             css_class: 'link-border link-border--red'
                         } %}
                     {% endif %}
-                    {% if section.ci_right_column_type == 'image' %}
+                    {% if section.ci_right_column_type != 'shortcode' %}
                         <div class="section-content-image--mobile-image d-block d-lg-none">
                             <img src="{{ section.ci_image }}" loading="lazy">
                         </div>
                     {% endif %}
                 </div>
             </div>
-            <div class="col-lg-4 {% if section.ci_right_column_type == 'image' %}d-none d-lg-block{% endif %}" data-aos="fade-up">
+            <div class="col-lg-4 {% if section.ci_right_column_type != 'shortcode' %}d-none d-lg-block{% endif %}" data-aos="fade-up">
 
-                {% if section.ci_right_column_type == 'image' %}
+                {% if section.ci_right_column_type != 'shortcode' %}
 
                     <div class="section-content-image--image-wrap">
                         <img src="{{ section.ci_image }}" loading="lazy">
