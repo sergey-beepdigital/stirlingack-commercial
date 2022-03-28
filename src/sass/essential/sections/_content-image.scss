@@ -40,6 +40,16 @@
         margin-top: 70px;
     }
 
+    &--shortcode-wrap{
+        background-color: #FFF;
+        position: relative;
+        z-index: 10;
+        margin-top: 70px;
+        padding: 25px 30px 30px;
+        margin-left: -170px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+
     &--mobile-image{
         img{
             width: 100%;

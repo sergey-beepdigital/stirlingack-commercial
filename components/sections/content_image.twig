@@ -13,15 +13,31 @@
                             css_class: 'link-border link-border--red'
                         } %}
                     {% endif %}
-                    <div class="section-content-image--mobile-image d-block d-lg-none">
-                        <img src="{{ section.ci_image }}" loading="lazy">
-                    </div>
+                    {% if section.ci_right_column_type == 'image' %}
+                        <div class="section-content-image--mobile-image d-block d-lg-none">
+                            <img src="{{ section.ci_image }}" loading="lazy">
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-lg-4 d-none d-lg-block" data-aos="fade-up">
-                <div class="section-content-image--image-wrap">
-                    <img src="{{ section.ci_image }}" loading="lazy">
-                </div>
+            <div class="col-lg-4 {% if section.ci_right_column_type == 'image' %}d-none d-lg-block{% endif %}" data-aos="fade-up">
+
+                {% if section.ci_right_column_type == 'image' %}
+
+                    <div class="section-content-image--image-wrap">
+                        <img src="{{ section.ci_image }}" loading="lazy">
+                    </div>
+
+                {% else %}
+
+                    <div class="section-content-image--shortcode-wrap">
+
+                        {{ section.ci_shortcode | shortcodes }}
+
+                    </div>
+
+                {% endif %}
+
             </div>
         </div>
     </div>
