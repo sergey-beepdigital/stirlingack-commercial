@@ -35,14 +35,14 @@ pipelines:
             #- 'npm config set "//npm.fontawesome.com/:_authToken" D6D771B4-20F4-4BF3-91DA-9DD21FC3300E'
             - "npm install"
             - "npm run build -- --production --pipeline"
-      - step:
-          name: "Deploy to UAT"
-          image: andthensome/docker-node-rsync
-          trigger: automatic
-          deployment: staging
-          script:
-            - echo "Deploying to UAT... 🙌"
-            - "rsync --ignore-times -rvz -e 'ssh' pipeline/ $THEME_DIR"
+#      - step:
+#          name: "Deploy to UAT"
+#          image: andthensome/docker-node-rsync
+#          trigger: automatic
+#          deployment: staging
+#          script:
+#            - echo "Deploying to UAT... 🙌"
+#            - "rsync --ignore-times -rvz -e 'ssh' pipeline/ $THEME_DIR"
       - step:
           name: "Deploy to Production"
           image: andthensome/docker-node-rsync
