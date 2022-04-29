@@ -1,12 +1,12 @@
-<p><strong>Name:</strong> {{ body.form_data.first_name }} {{ body.form_data.surname }}</p>
+<p>Name: {{ body.form_data.first_name }} {{ body.form_data.surname }}</p>
 {% if body.property.id %}
-    <p><strong>More Details:</strong> <a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></p>
+    <p>More Details: <a href="{{ fn('get_the_permalink',body.property.id) }}">{{ body.property.post_title }}</a></p>
 {% endif %}
-<p><strong>E-mail:</strong> {{ body.form_data.email_address }}</p>
-<p><strong>Mobile:</strong> {{ body.form_data.phone_number }}</p>
-<p><strong>Source:</strong> {{ body.site_title }}</p>
-<p><strong>Enquiry Type:</strong> {{ body.form_data.department | capitalize }}</p>
-<div style="margin-bottom: 10px;"><strong>Message:</strong> {{ body.form_data.enquiry_text }}</div>
+<p>E-mail: {{ body.form_data.email_address }}</p>
+<p>Mobile: {{ body.form_data.phone_number }}</p>
+<p>Source: {{ body.site_title }}</p>
+<p>Enquiry Type: {{ body.form_data.department | capitalize }}</p>
+<div style="margin-bottom: 10px;">Message: {{ body.form_data.enquiry_text }}</div>
 {% if body.property.id %}
-    <p><strong>Property Ref:</strong> {{ fn('get_field','_reference_number',body.property.id) }}</p>
+    <p>Property Ref: {{ fn('get_field','_reference_number',body.property.id) }}</p>
 {% endif %}
