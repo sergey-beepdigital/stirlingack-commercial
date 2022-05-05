@@ -154,8 +154,8 @@ class WP_Mailer {
 
         $context['body'] = $this->data;
 
-        $headers = apply_filters('mailer_mail_headers', $this->headers);
-        $subject = apply_filters('mailer_mail_subject', $this->subject);
+        $headers = apply_filters('mailer_mail_headers', $this->headers, $this->type);
+        $subject = apply_filters('mailer_mail_subject', $this->subject, $this->type);
         $body = Timber::compile('templates/emails/' . str_replace(array('_',' '), '-', $this->type) . '.twig', $context);
 
         // Custom Style

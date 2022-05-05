@@ -930,6 +930,22 @@ function branch_contact_submit() {
 add_action('wp_ajax_branch_contact_submit','branch_contact_submit');
 add_action('wp_ajax_nopriv_branch_contact_submit','branch_contact_submit');
 
+
+/**
+ * Change headers to text/plain for branch contact email
+ * @param $headers
+ * @param $type
+ * @return mixed
+ */
+function sa_mailer_mail_headers($headers, $type) {
+    if($type == 'branch-contact') {
+        $headers[0] = 'Content-Type: text/plain; charset=\"utf-8\"\r\n';
+    }
+
+    return $headers;
+}
+add_filter('mailer_mail_headers','sa_mailer_mail_headers',10, 2);
+
 /**
  * CF7: Change default dropdown value to custom one
  * @param $html
