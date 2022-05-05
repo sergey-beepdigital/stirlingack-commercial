@@ -867,7 +867,6 @@ function branch_contact_submit() {
             $mailer = new WP_Mailer();
 
             $sent = $mailer
-                ->set_debug()
                 ->set_type('branch-contact')
                 ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
                 ->add_recipient_email($email_destination)
@@ -878,8 +877,7 @@ function branch_contact_submit() {
                     'branch' => new TimberPost($id),
                     'site_title' => get_bloginfo('name')
                 ])
-                ->send()
-            ;
+                ->send();
 
             $mail_body_data = [
                 'form_data' => $_REQUEST,
