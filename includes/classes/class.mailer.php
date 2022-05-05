@@ -205,7 +205,7 @@ class WP_Mailer {
 
         do_action( 'mailer_header', $type );
 
-        echo wpautop( wptexturize( $message ) ); // WPCS: XSS ok.
+        echo wpautop(wptexturize($message), false); // WPCS: XSS ok.
 
         do_action( 'mailer_footer', $type );
 
