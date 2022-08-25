@@ -7,7 +7,8 @@ var SA_PropertyDetail = SA_PropertyDetail || {};
         };
 
         var action = {
-            openPropertyTab: '[data-open-property-tab]'
+            openPropertyTab: '[data-open-property-tab]',
+            openVirtualTour: 'a.action-virtual-tour'
         };
 
         return {
@@ -18,6 +19,7 @@ var SA_PropertyDetail = SA_PropertyDetail || {};
             events: function () {
                 $(document)
                     .on('click', action.openPropertyTab, SA_PropertyDetail.openPropertyTab)
+                    .on('click', action.openVirtualTour, SA_PropertyDetail.openVirtualTour)
 
                 ;
             },
@@ -33,6 +35,18 @@ var SA_PropertyDetail = SA_PropertyDetail || {};
                 $('html, body').animate({
                     scrollTop: $tabLink.offset().top - $header.innerHeight()
                 }, 2000);
+
+                return false;
+            },
+
+            openVirtualTour: function () {
+                var $this = $(this);
+                var href = $this.attr('href');
+
+                parent.jQuery.fancybox.open({
+                    src: href,
+                    type: 'iframe'
+                });
 
                 return false;
             }
