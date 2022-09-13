@@ -24,25 +24,41 @@ function social_links_shortcode($atts) {
 
         foreach ($seo_data as $seo_network => $url) {
             $network_name = $seo_network;
-            if (!empty($url) && gettype($url) == 'string') {
-                if (strpos($url, 'instagram') !== false) {
-                    $network_name = 'instagram';
-                }
-                if (strpos($url, 'linkedin') !== false) {
-                    $network_name = 'linkedin';
-                }
-            }
-            $network_settings = !empty($options[$network_name])?$options[$network_name]:'';
+            if (gettype('url') == 'array') {
+                foreach ($url as $other_urls) {
+                    if (strpos($url, 'instagram') !== false) {
+                        $network_name = 'instagram';
+                    }
+                    if (strpos($url, 'linkedin') !== false) {
+                        $network_name = 'linkedin';
+                    }
+                    $network_settings = !empty($options[$network_name])?$options[$network_name]:'';
 
-            if(!empty($url) && !empty($network_settings)) {
-                if (!empty($network_settings['prepend']))
-                    $url = $network_settings['prepend'] . $url;
-                if ($url && !empty($network_settings['icon']) && !$atts['raw']) {
-                    if ($atts['list']) $output[] = '<li>';
-                    $output[] = '<a target="_blank" href="' . esc_url_raw($url) . '">' . $network_settings['icon'] . '</a>';
-                    if ($atts['list']) $output[] = '</li>';
-                } else {
-                    $output[] = esc_url_raw($url);
+                    if(!empty($url) && !empty($network_settings)) {
+                        if (!empty($network_settings['prepend']))
+                            $url = $network_settings['prepend'] . $url;
+                        if ($url && !empty($network_settings['icon']) && !$atts['raw']) {
+                            if ($atts['list']) $output[] = '<li>';
+                            $output[] = '<a target="_blank" href="' . esc_url_raw($url) . '">' . $network_settings['icon'] . '</a>';
+                            if ($atts['list']) $output[] = '</li>';
+                        } else {
+                            $output[] = esc_url_raw($url);
+                        }
+                    }
+                }
+            } else {
+                $network_settings = !empty($options[$network_name])?$options[$network_name]:'';
+
+                if(!empty($url) && !empty($network_settings)) {
+                    if (!empty($network_settings['prepend']))
+                        $url = $network_settings['prepend'] . $url;
+                    if ($url && !empty($network_settings['icon']) && !$atts['raw']) {
+                        if ($atts['list']) $output[] = '<li>';
+                        $output[] = '<a target="_blank" href="' . esc_url_raw($url) . '">' . $network_settings['icon'] . '</a>';
+                        if ($atts['list']) $output[] = '</li>';
+                    } else {
+                        $output[] = esc_url_raw($url);
+                    }
                 }
             }
         }
