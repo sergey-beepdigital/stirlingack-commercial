@@ -145,6 +145,7 @@ class StarterSite extends TimberSite {
         // Add Advanced Custom Fields options page
         if( function_exists('acf_add_options_page') ) {
             acf_add_options_sub_page('Theme');
+            acf_add_options_sub_page('Social');
             acf_add_options_sub_page('Sections');
             acf_add_options_sub_page('Analytics/Tracking');
 
@@ -565,17 +566,17 @@ add_action('wp_head', 'noindex_author');
  */
 function sa_social_link_icons() {
     return [
-        'facebook_site'  => array(
+        'facebook'  => array(
             'icon' => '<i class="fa-brands fa-facebook-square"></i>'
         ),
-        'twitter_site'   => array(
+        'twitter'   => array(
             'prepend' => 'https://twitter.com/',
             'icon'    => '<i class="fa-brands fa-twitter-square"></i>'
         ),
-        'instagram_url' => array(
+        'instagram' => array(
             'icon' => '<i class="fa-brands fa-instagram-square"></i>'
         ),
-        'linkedin_url'  => array(
+        'linkedin'  => array(
             'icon' => '<i class="fa-brands fa-linkedin"></i>'
         )
     ];
