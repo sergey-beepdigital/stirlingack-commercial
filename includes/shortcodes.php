@@ -24,11 +24,13 @@ function social_links_shortcode($atts) {
 
         foreach ($seo_data as $seo_network => $url) {
             $network_name = $seo_network;
-            if (strpos($url, 'instagram') !== false) {
-                $network_name = 'instagram';
-            }
-            if (strpos($url, 'linkedin') !== false) {
-                $network_name = 'linkedin';
+            if (!empty($url) && gettype($url) == 'string') {
+                if (strpos($url, 'instagram') !== false) {
+                    $network_name = 'instagram';
+                }
+                if (strpos($url, 'linkedin') !== false) {
+                    $network_name = 'linkedin';
+                }
             }
             $network_settings = !empty($options[$network_name])?$options[$seo_network]:'';
 
