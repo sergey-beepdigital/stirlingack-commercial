@@ -32,7 +32,7 @@ function social_links_shortcode($atts) {
                     $network_name = 'linkedin';
                 }
             }
-            $network_settings = !empty($options[$network_name])?$options[$seo_network]:'';
+            $network_settings = !empty($options[$network_name])?$options[$network_name]:'';
 
             if(!empty($url) && !empty($network_settings)) {
                 if (!empty($network_settings['prepend']))
