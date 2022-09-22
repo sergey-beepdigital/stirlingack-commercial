@@ -8,7 +8,12 @@ function social_links_shortcode($atts) {
         'delim'     => ' ' // entity between items
     ), $atts);
 
-    $seo_data = get_option('wpseo_social');
+    // $seo_data = get_option('wpseo_social');
+    $profiles = get_field('social_profiles', 'option');
+    $seo_data = array();
+    foreach ($profiles as $key => $profile) {
+        $seo_data[$profile['name']] = $profile['url'];
+    }
     $options = apply_filters('crowd_social_link_options', array());
     $output = array();
     $wrapp_tag = 'div';
