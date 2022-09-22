@@ -121,15 +121,29 @@ function text_two_columns_shortcode($atts, $content) {
 }
 add_shortcode('text_two_columns','text_two_columns_shortcode');
 
-function new_homes_list_shortcode() {
+function new_homes_list_shortcode($atts) {
     $context = Timber::context();
 
+    $atts = shortcode_atts([
+        'price_equal' => ''
+    ], $atts);
+
+    $meta_query = [];
+
+    if(!empty($atts['price_equal'])) {
+        $meta_query[] = [
+            'key'   => 'nh_price',
+            'value' => trim($atts['price_equal'])
+        ];
+    }
+
     $context['new_homes_list'] = Timber::query_posts([
-        'post_type' => 'sa_new_home',
+        'post_type'   => 'sa_new_home',
         'post_status' => 'publish',
-        'nopaging'=> true,
-        'order' => 'ASC',
-        'orderby' => 'date'
+        'nopaging'    => true,
+        'order'       => 'ASC',
+        'orderby'     => 'date',
+        'meta_query'  => $meta_query
     ]);
 
     return Timber::compile('components/shortcodes/new-homes-list.twig', $context);
