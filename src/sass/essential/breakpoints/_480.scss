@@ -1,4 +1,26 @@
 @media screen and (max-width: 480px) {
+    #header{
+        .header-inner{
+            .header-content{
+                &--top{
+                    .header-top-nav{
+                        ul{
+                            li{
+                                a{
+                                    span{
+                                        &:before{
+                                            content: normal;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .property-search-department-tabs{
         ul{
             li{
