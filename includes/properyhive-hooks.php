@@ -578,16 +578,17 @@ function sa_property_detail_calculators() {
 
     global $property;
 
-    $content = Timber::context();
+    $context = Timber::context();
+    $context['property_department'] = $property->_department;
 
     /*$content['property_id'] = get_the_ID();
     $content['property_search_link'] = get_the_permalink(ph_get_page_id('search_results'));*/
 
-    if($property->_department == 'residential-sales') {
-        Timber::render('propertyhive/shortcode/calculators.twig', $content);
-    } else {
+    //if($property->_department == 'residential-sales') {
+        Timber::render('propertyhive/shortcode/calculators.twig', $context);
+    /*} else {
         Timber::render('components/sections/separator.twig');
-    }
+    }*/
 }
 add_action('propertyhive_after_main_content','sa_property_detail_calculators',50);
 
