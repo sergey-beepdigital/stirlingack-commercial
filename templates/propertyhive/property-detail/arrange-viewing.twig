@@ -2,19 +2,19 @@
     {#<div class="arrange-viewing-box-wrap">#}
         <div class="property-arrange-viewing text-center mt-4 mt-md-0" id="property-arrange-viewing">
             <div class="property-arrange-viewing--office-contacts">
-                <h3 class="text-uppercase">Arrange a viewing</h3>
+                {#<h3 class="text-uppercase">Arrange a viewing</h3>#}
                 <div class="branch-info">
                     <div class="branch-info--name">{{ branch_data.title }} Branch</div>
                     <div>
                         <a href="tel:{{ branch_data.phone | replace({' ':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ branch_data.phone }}</a>
                     </div>
                     <a href="javascript:;" data-action="branchContact" data-department="{{ property._department == 'residential-sales' ? 'sales' : 'lettings' }}" data-id="{{ property.id }}" class="btn btn-lg btn-primary text-uppercase">Arrange a Viewing</a>
-                    {% if branch_data.address %}
+                    {#{% if branch_data.address %}
                         <div class="branch-info--address">
                             {{ branch_data.address }}<br>
                             <a href="javascript:;" onclick="SA_Common.viewAddressMapImage('{{ branch_data.address | replace({"'":''}) }}','branch-google-map-image');">View on map</a>
                         </div>
-                    {% endif %}
+                    {% endif %}#}
                     {#{{ fn('propertyhive_make_enquiry_button') }}#}
                 </div>
             </div>
