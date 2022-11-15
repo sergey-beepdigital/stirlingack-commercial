@@ -226,6 +226,8 @@ class StarterSite extends TimberSite {
         // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
+        wp_deregister_style('ph-rental-affordability-calculator');
+
         // Remove Wp's jQuery
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
         wp_deregister_script( 'flexslider');

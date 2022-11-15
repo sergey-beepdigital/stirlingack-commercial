@@ -38,7 +38,7 @@
                 <button class="btn btn-lg btn-primary"><?php echo __( 'Calculate', 'propertyhive' ); ?></button>
             </div>
         </div>
-        <div class="col-xl-4 pl-0">
+        <div class="col-xl-4 pl-xl-0">
             <div class="stamp-duty-calculator-results text-center" id="results" style="display:none">
                 <div>
                     <!--<h3><?php /*echo __( 'Stamp Duty', 'propertyhive' ); */?></h3>-->
