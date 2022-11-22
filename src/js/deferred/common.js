@@ -380,6 +380,10 @@ var SA_Common = SA_Common || {};
                                 });
                             }
 
+                            if(ewt !== undefined) {
+                                ewt.track({name: 'page', type: 'Property' + gaEventKey});
+                            }
+
                             location.href = response.redirect_url;
 
                             /*$form
