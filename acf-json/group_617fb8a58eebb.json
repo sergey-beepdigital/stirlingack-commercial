@@ -96,8 +96,26 @@
         },
         {
             "key": "field_619c0125f66e6",
-            "label": "Email Address",
+            "label": "Property Email Address",
             "name": "branch_sale_email_address",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6391e41e1ea24",
+            "label": "Enquire Form Email Address",
+            "name": "enquire_form_sale_email_address",
             "type": "email",
             "instructions": "",
             "required": 0,
@@ -168,8 +186,26 @@
         },
         {
             "key": "field_619c0140f66e7",
-            "label": "Email Address",
+            "label": "Property  Email Address",
             "name": "branch_let_email_address",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6391e4431ea25",
+            "label": "Enquire Form Email Address",
+            "name": "enquire_form_let_email_address",
             "type": "email",
             "instructions": "",
             "required": 0,
@@ -202,5 +238,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1639415059
+    "modified": 1670505562
 }

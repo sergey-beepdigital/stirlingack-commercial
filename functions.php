@@ -842,8 +842,13 @@ function branch_contact_submit() {
     }
 
     $email_subject = get_the_title($id) . ' viewing request';
+    $enquire_form_email = get_field("enquire_form_{$department_key}_email_address", $id);
     $email_destination = get_field("branch_{$department_key}_email_address", $id);
     $branch_phone = get_field("branch_{$department_key}_phone", $id);
+
+    if(!empty($enquire_form_email) && $post_type != 'property') {
+        $email_destination = $enquire_form_email;
+    }
 
     if(!empty($email_destination)) {
         if(empty($_REQUEST['first_name'])) {
