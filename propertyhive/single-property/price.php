@@ -31,6 +31,11 @@ global $post, $property;
     $flag_html = ob_get_contents();
     ob_end_clean();
 
+    $tenure_type = get_post_meta($post->ID, '_tenure_type', true);
+    if(!empty($tenure_type) && in_array($tenure_type,['Short Let'])) {
+        $flag_html = '<span class="flag" style="padding: 7px 20px;color: #FFF;background: #151e46;">Short Let</span>';
+    }
+
     if(!empty($flag_html)) {
         echo '<div class="property-flag-wrap">'.$flag_html.'</div>';
     }

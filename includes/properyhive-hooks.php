@@ -954,3 +954,14 @@ function add_projector_field($property_fields) {
     return $property_fields;
 }
 add_filter('propertyhive_jet_property_fields', 'add_projector_field');
+
+function sa_set_tenure($post_id, $property) {
+    if ( isset($property->Tenure) && (string)$property->Tenure != '' && get_post_meta( $post_id, '_department', TRUE ) == 'residential-lettings' ) {
+        // previous example where a custom field is set
+
+        update_post_meta( $post_id, '_tenure_type', (string)$property->Tenure );
+
+        //wp_set_post_terms( $post_id, (string)$property->Tenure, 'tenure' );
+    }
+}
+add_action( "propertyhive_property_imported_jet", "sa_set_tenure", 10, 2 );
