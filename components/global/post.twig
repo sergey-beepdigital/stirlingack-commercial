@@ -1,4 +1,4 @@
-<div class="blog-post">
+<div class="blog-post {{ horizontal ? 'post-horizontal-style' }}">
     <div class="blog-post--image">
         <a href="{{ post.link }}">
             {% if post.thumbnail %}
@@ -9,10 +9,12 @@
             <div class="blog-post--image__cat text-danger">Market Insights</div>
         </a>
     </div>
+    {{ horizontal ? '<div class="blog-post-content">' }}
     <h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
     {% if post.post_excerpt %}
         {{ post.post_excerpt | wpautop }}
     {% else %}
         {{ post.post_content | excerpt(20) | wpautop }}
     {% endif %}
+    {{ horizontal ? '</div>' }}
 </div>

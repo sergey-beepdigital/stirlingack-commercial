@@ -26,5 +26,8 @@ if(!empty($_GET['branch_id'])) {
 
 $context['posts_total_text'] = join(' ', $posts_total_text_parts);
 $context['posts_query'] = new Timber\PostQuery($posts_query_args);
+$context['categories_list'] = Timber::get_terms('category',['hide_empty' => 1]);
 
-Timber::render(array('archive.twig'), $context);
+$template_style = 'archive-' . get_insight_list_style() . '.twig';
+
+Timber::render($template_style, $context);

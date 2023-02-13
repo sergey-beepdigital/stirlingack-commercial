@@ -3,6 +3,47 @@
     "title": "Sections Settings",
     "fields": [
         {
+            "key": "field_63ea58d875369",
+            "label": "News\/Insights",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_63ea58ee7536a",
+            "label": "List Style",
+            "name": "insight_list_style",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid": "Grid",
+                "list": "List"
+            },
+            "default_value": "grid",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_619b8c40496b2",
             "label": "404",
             "name": "",
@@ -504,5 +545,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638958560
+    "modified": 1676302621
 }

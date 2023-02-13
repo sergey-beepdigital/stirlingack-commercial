@@ -16,7 +16,9 @@
 
 global $wp_query;
 
-$templates = array( 'archive.twig', 'index.twig' );
+$template_style = 'archive-' . get_insight_list_style() . '.twig';
+
+$templates = array( $template_style, 'index.twig' );
 
 $context = Timber::get_context();
 
@@ -50,5 +52,8 @@ $posts_total_text_parts[] = '<span class="branch-name">on '. $context['title'] .
 $context['head_thumbnail'] = get_the_post_thumbnail_url($blog_page_id);
 $context['posts_total_text'] = join(' ', $posts_total_text_parts);
 $context['posts_query'] = $posts_query;
+
+$context['categories_list'] = Timber::get_terms('category',['hide_empty' => 1]);
+$context['current_cat_link'] = get_term_link(get_queried_object());
 
 Timber::render( $templates, $context );

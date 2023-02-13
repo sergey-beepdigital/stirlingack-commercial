@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <section class="page-section page-section--padding50 section-archive">
+    <section class="page-section page-section--padding50 pb-0 section-archive">
         <div class="container">
 
             <div class="row">
@@ -41,7 +41,7 @@
                 <div class="col-xl-8 col-lg-9 order-lg-1">
 
                     {% if posts_query.get_posts() %}
-                        <div class="section-archive--list">
+                        <div class="section-archive--list ignore-overflow">
                             <div class="row">
 
                                 {% for post in posts_query.get_posts() %}
@@ -49,7 +49,7 @@
                                     <div class="col-md-6">
 
                                         {% include 'global/post.twig' with {
-                                            post : post
+                                            post : post,
                                         } %}
 
                                     </div>
@@ -87,10 +87,6 @@
                     {% else %}
                         <h3>No Insights found.</h3>
                     {% endif %}
-
-                    {#<section class="page-section page-section--padding50">
-                        asd
-                    </section>#}
 
                     {#{% include 'sections/content_image.twig' with {
                         section: {

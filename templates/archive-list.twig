@@ -1,0 +1,149 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {#{% include 'components/static-sections/page-top.twig' with {
+        custom: {
+            title: title,
+            thumbnail: head_thumbnail
+        }
+    } %}#}
+
+    {% embed 'components/static-sections/page-top.twig' with {
+        custom: {
+            title: title,
+            thumbnail: head_thumbnail
+        },
+        section_css_class: 'has-branch-area'
+    } %}
+
+        {% block left_block_below %}
+            {{ '[branch_area_box]' | shortcodes }}
+        {% endblock %}
+
+    {% endembed %}
+
+    <pre>
+
+        {#{{  }}#}
+
+    </pre>
+
+    <div class="section-insight-total">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0 text-uppercase">{{ posts_total_text }}</h3>
+                <div class="">
+                    <select class="form-control" name="category_id" id="insight-categories">
+                        <option value="">Select category</option>
+
+                        {% for cat in categories_list %}
+
+                            <option {{ current_cat_link == cat.link ? 'selected' }} value="{{ cat.link }}">{{ cat.name }}</option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <script>
+                        const selectCats = document.getElementById('insight-categories');
+
+                        selectCats.addEventListener('change',(el) => {
+                            if(el.target.value !== '') {
+                                location.href = el.target.value
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="page-section page-section--padding50 pb-0 section-archive">
+        <div class="container">
+
+            {#<div class="row">
+                <div class="col-lg-3 offset-xl-1 order-lg-2 mb-4 mb-lg-0">
+
+                    {% include 'sidebar-insights.twig' %}
+
+                </div>
+                <div class="col-xl-8 col-lg-9 order-lg-1">#}
+
+                    {% if posts_query.get_posts() %}
+                        <div class="section-archive--list ignore-overflow">
+                            {#<div class="row">#}
+
+                                {% for post in posts_query.get_posts() %}
+
+                                    {#<div class="col-md-6">#}
+
+                                        {% include 'global/post.twig' with {
+                                            post : post,
+                                            horizontal : 1
+                                        } %}
+
+                                    {#</div>#}
+
+                                {% endfor %}
+
+                            {#</div>#}
+                        </div>
+
+                        <div class="sa-pagination">
+                            <ul class="pages">
+                                {% if posts_query.pagination.prev %}
+                                    <li>
+                                        <a href="{{posts_query.pagination.prev.link}}" class="prev {{posts_query.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
+                                    </li>
+                                {% endif %}
+                                {% for page in posts_query.pagination.pages %}
+                                    <li>
+                                        {% if page.link %}
+                                            <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+                                        {% else %}
+                                            <span class="{{page.class}}">{{page.title}}</span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+
+                                {% if posts_query.pagination.next %}
+                                    <li>
+                                        <a href="{{posts_query.pagination.next.link}}" class="next {{posts_query.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                    {% else %}
+                        <h3>No Insights found.</h3>
+                    {% endif %}
+
+                    {#<section class="page-section page-section--padding50">
+                        asd
+                    </section>#}
+
+                    {#{% include 'sections/content_image.twig' with {
+                        section: {
+                            ci_title: 'Promo Area Valuation',
+                            ci_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.' | wpautop,
+                            ci_link: {
+                                title: 'Get a free valuation',
+                                url: '#'
+                            },
+                            ci_image: theme.link ~ '/dist/images/temp/blog-list-promo-img.jpg'
+                        }
+                    } %}#}
+
+                    {#{% include 'static-sections/promo-area.twig' %}#}
+                    {% include 'static-sections/book-valuation.twig' with {
+                        short: 0
+                    } %}
+
+                {#</div>
+            </div>#}
+
+        </div>
+    </section>
+
+{% endblock %}

@@ -831,7 +831,7 @@ function branch_contact_submit() {
     $property = null;
     $id = $_REQUEST['id'];
     $department_key = ($_REQUEST['department'] == 'sales') ? 'sale' : 'let';
-    
+
     $post_type = get_post_type($id);
 
     if($post_type == 'property') {
@@ -1083,4 +1083,10 @@ function get_latest_new_homes($limit = 3) {
         'order' => 'ASC',
         'orderby' => 'date'
     ]);
+}
+
+function get_insight_list_style() {
+    $style = get_field('insight_list_style','option');
+
+    return !empty($style) ? $style : 'grid';
 }
