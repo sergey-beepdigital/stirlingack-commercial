@@ -6,6 +6,55 @@
 
     {% if listStyle == 'list' %}
 
+        {% set news_page_id = fn('get_page_id_by_template_name','page-insights') %}
+        {% set news_page_link = fn('get_page_link_by_template_name','page-insights') %}
+
+        <div class="section-insight-total mb-5">
+            <div class="container">
+                <div class="d-md-flex justify-content-between align-items-center">
+                    <h3 class="mb-0 text-uppercase text-center text-md-left">{{ fn('get_the_title',news_page_id) }}</h3>
+                    <div class="d-flex mt-4 mt-md-0 section-insight-total--group-select">
+                        <div class="dropdown-arrow-wrap">
+                            <select class="form-control insights-url-change" name="category_id" id="insight-categories">
+                                <option value="{{ news_page_link }}">Select branch</option>
+
+                                {% for office in offices %}
+
+                                    <option value="{{ news_page_link }}?branch_id={{ office.id }}">{{ office.title }}</option>
+
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="dropdown-arrow-wrap ml-3">
+                            <select class="form-control insights-url-change" name="category_id" id="insight-categories">
+                                <option value="{{ news_page_link }}">Select category</option>
+
+                                {% for cat in categories_list %}
+
+                                    <option value="{{ cat.link }}">{{ cat.name }}</option>
+
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const selectsAll = document.querySelectorAll('.insights-url-change');
+
+            [].forEach.call(selectsAll, (select) => {
+                select.addEventListener('change', (event) => {
+                    if (event.target.value !== '') {
+                        location.href = event.target.value
+                    }
+                }, false)
+            });
+        </script>
+
         {% include 'components/static-sections/page-top-fullwidth.twig' with {
             post: post,
         } %}

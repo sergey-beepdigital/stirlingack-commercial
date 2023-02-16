@@ -25,6 +25,18 @@
             color: #6F7690;
         }
     }
+
+    &--group-select{
+        .dropdown-arrow-wrap{
+            select{
+                min-width: 0;
+            }
+
+            @media screen and (max-width: 767px) {
+                width: 50%;
+            }
+        }
+    }
 }
 
 .archive,

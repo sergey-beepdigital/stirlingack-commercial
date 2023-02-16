@@ -33,6 +33,13 @@ if ( post_password_required( $post->ID ) ) {
     ]);
     $context['related_posts_query'] = $related_posts_query;
     $context['categories_list'] = Timber::get_terms('category',['hide_empty' => 1]);
+    $context['offices'] = Timber::query_posts([
+        'post_type' => 'sa_branch',
+        'post_status' => 'publish',
+        'nopaging'=> true,
+        'orderby'=> 'title',
+        'order' => 'ASC'
+    ]);
 
 	Timber::render( array( 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ), $context );
 }
