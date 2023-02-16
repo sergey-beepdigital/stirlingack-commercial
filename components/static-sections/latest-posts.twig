@@ -1,11 +1,16 @@
+{% set listStyle = fn('get_insight_list_style') %}
 {% set grid_css_class = 'col-lg-4 col-sm-6' %}
 {% if columns == 2 %}
     {% set grid_css_class = 'col-md-6 mb-sm-5 mb-md-0' %}
 {% endif %}
 
+{% if listStyle == 'list' %}
+    {% set grid_css_class = 'col-12' %}
+{% endif %}
+
 {% if posts.found_posts %}
 
-    <section class="page-section page-section--padding50 section-latest-posts" data-aos="fade-left">
+    <section class="page-section page-section--padding50 section-latest-posts style-{{ listStyle }}" data-aos="fade-left">
         {% if ignore_container != 1 %}<div class="container">{% endif %}
             <div class="page-section--heading text-center text-md-left">
                 <div class="row align-items-center">
@@ -27,9 +32,12 @@
 
                     {% for post in posts %}
 
-                        <div class="{{ grid_css_class }} {{ loop.index == 3 ? 'd-none d-lg-block' : '' }} {{ loop.index == 2 ? 'd-none d-sm-block' : '' }}">
+                        <div class="{{ grid_css_class }} {% if listStyle == 'grid' %}{{ loop.index == 3 ? 'd-none d-lg-block' : '' }} {{ loop.index == 2 ? 'd-none d-sm-block' : '' }}{% endif %}">
 
-                            {% include 'global/post.twig' with { post : post } %}
+                            {% include 'global/post.twig' with {
+                                post : post,
+                                horizontal : listStyle == 'list' ? 1 : 0
+                            } %}
 
                         </div>
 
@@ -37,7 +45,7 @@
 
                 </div>
             </div>
-        {% if ignore_container != 1 %}</div>{% endif %}
+            {% if ignore_container != 1 %}</div>{% endif %}
     </section>
 
 {% endif %}

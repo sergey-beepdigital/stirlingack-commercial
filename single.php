@@ -32,6 +32,7 @@ if ( post_password_required( $post->ID ) ) {
         'posts_per_page' => 2
     ]);
     $context['related_posts_query'] = $related_posts_query;
+    $context['categories_list'] = Timber::get_terms('category',['hide_empty' => 1]);
 
 	Timber::render( array( 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ), $context );
 }

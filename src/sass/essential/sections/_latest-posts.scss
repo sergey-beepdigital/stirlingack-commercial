@@ -1,5 +1,13 @@
 .section-latest-posts{
-    &--list{
-
+    &.style-list {
+        .section-latest-posts--list {
+            .row{
+                & > div{
+                    &:not(:first-child) {
+                        margin-top: 40px;
+                    }
+                }
+            }
+        }
     }
 }

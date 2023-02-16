@@ -1,15 +1,33 @@
 {% extends "base.twig" %}
 
+{% set listStyle = fn('get_insight_list_style') %}
+
 {% block content %}
 
-    {% include 'components/static-sections/page-top-fullwidth.twig' with {
-        post: post,
-    } %}
+    {% if listStyle == 'list' %}
+
+        {% include 'components/static-sections/page-top-fullwidth.twig' with {
+            post: post,
+        } %}
+    {% else %}
+        {% include 'components/static-sections/page-top.twig' with {
+            post: post,
+            thumbnail_size: {
+                w: 650,
+                h: 200
+            }
+        } %}
+    {% endif %}
 
     <section class="page-section page-section--padding50">
         <div class="container">
+
+            {% if listStyle == 'grid' %}
+
             <div class="row">
                 <div class="col-xl-8 col-lg-9">
+
+                    {% endif %}
 
                     <div class="content-wrapper">
                         <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
@@ -43,8 +61,10 @@
 
                     {#{% include 'static-sections/promo-area.twig' %}#}
                     {% include 'static-sections/book-valuation.twig' with {
-                        short: 1
+                        short: listStyle == 'grid' ? 1 : 0
                     } %}
+
+                    {% if listStyle == 'grid' %}
 
                 </div>
                 <div class="col-lg-3 offset-xl-1 order-lg-2">
@@ -52,6 +72,8 @@
                     {% include 'sidebar-insights.twig' %}
 
                 </div>
+
+                {% endif %}
             </div>
         </div>
     </section>

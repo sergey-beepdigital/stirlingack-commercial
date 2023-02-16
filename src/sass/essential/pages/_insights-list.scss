@@ -1,34 +1,34 @@
-.archive,
-.page-template-page-insights{
-    .section-insight-total{
-        background: $support-color5;
-        padding: 35px 0;
+.section-insight-total{
+    background: $support-color5;
+    padding: 35px 0;
 
-        .branch-name{
-            color: $support-color2;
-        }
-
-        .dropdown-arrow-wrap{
-            background: #FFF;
-
-            &:before{
-                right: 12px;
-            }
-
-            select{
-                font-weight: normal;
-                font-size: 14px;
-                height: 50px;
-                padding-right: 30px;
-                min-width: 270px;
-                background: transparent;
-                position: relative;
-                z-index: 10;
-                color: #6F7690;
-            }
-        }
+    .branch-name{
+        color: $support-color2;
     }
 
+    .dropdown-arrow-wrap{
+        background: #FFF;
+
+        &:before{
+            right: 12px;
+        }
+
+        select{
+            font-weight: normal;
+            font-size: 14px;
+            height: 50px;
+            padding-right: 30px;
+            min-width: 270px;
+            background: transparent;
+            position: relative;
+            z-index: 10;
+            color: #6F7690;
+        }
+    }
+}
+
+.archive,
+.page-template-page-insights{
     .section-archive{
         &--list{
             overflow: hidden;
