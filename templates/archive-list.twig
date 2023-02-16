@@ -25,11 +25,11 @@
 
     <div class="section-insight-total">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-sm-flex justify-content-between align-items-center">
                 <h3 class="mb-0 text-uppercase">{{ posts_total_text }}</h3>
-                <div class="">
+                <div class="dropdown-arrow-wrap mt-4 mt-sm-0">
                     <select class="form-control" name="category_id" id="insight-categories">
-                        <option value="">Select category</option>
+                        <option value="{{ fn('get_page_link_by_template_name','page-insights') }}">Select category</option>
 
                         {% for cat in categories_list %}
 
@@ -52,6 +52,11 @@
             </div>
         </div>
     </div>
+
+    {% set promo_position = options.section_insights_promo.position %}
+    {% if posts_query.found_posts < options.section_insights_promo.position %}
+        {% set promo_position = posts_query.found_posts %}
+    {% endif %}
 
     <section class="page-section page-section--padding50 pb-0 section-archive">
         <div class="container">
@@ -78,6 +83,14 @@
                                         } %}
 
                                     {#</div>#}
+
+                                    {% if options.section_insights_promo_active and loop.index == promo_position %}
+                                        <div class="promo-column">
+                                            <div class="new-home-promo-box text-center">
+                                                {{ options.section_insights_promo.content }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
                                 {% endfor %}
 

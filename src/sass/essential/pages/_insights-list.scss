@@ -7,6 +7,26 @@
         .branch-name{
             color: $support-color2;
         }
+
+        .dropdown-arrow-wrap{
+            background: #FFF;
+
+            &:before{
+                right: 12px;
+            }
+
+            select{
+                font-weight: normal;
+                font-size: 14px;
+                height: 50px;
+                padding-right: 30px;
+                min-width: 270px;
+                background: transparent;
+                position: relative;
+                z-index: 10;
+                color: #6F7690;
+            }
+        }
     }
 
     .section-archive{
@@ -14,8 +34,29 @@
             overflow: hidden;
             margin-bottom: -50px;
 
+            .promo-column{
+                background-color: $brand-main-blue;
+                padding: 25px;
+                color: #FFF;
+
+                a{
+                    @include link-border(#FFFFFF,$brand-main-red);
+                    display: inline-block;
+                    margin-top: 20px;
+
+                    &:hover{
+                        color: $brand-main-red;
+                    }
+                }
+            }
+
+            .promo-column,
             .blog-post{
                 margin-bottom: 50px;
+
+                @media screen and (max-width: 575px) {
+                    margin-bottom: 30px;
+                }
             }
 
             &.ignore-overflow{
