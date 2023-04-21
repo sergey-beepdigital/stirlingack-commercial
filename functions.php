@@ -1090,3 +1090,30 @@ function get_insight_list_style() {
 
     return !empty($style) ? $style : 'grid';
 }
+
+add_filter( 'sgo_javascript_combine_excluded_inline_content', 'js_combine_exclude_inline_script' );
+function js_combine_exclude_inline_script( $exclude_list ) {
+    $exclude_list[] = 'var myLatlng';
+    $exclude_list[] = 'console.log';
+    $exclude_list[] = 'var data';
+
+    return $exclude_list;
+}
+
+//added by SG support
+add_filter( 'sgo_javascript_combine_exclude', 'js_combine_exclude' );
+function js_combine_exclude( $exclude_list ) {
+    $exclude_list[] = 'ph_ryc_calculate';
+    $exclude_list[] = 'data-add-to-shortlist';
+    $exclude_list[] = 'ph_doing_shortlist_request';
+    $exclude_list[] = 'ph_mc_add_commas';
+    $exclude_list[] = 'rental-yield-calculator';
+    $exclude_list[] = 'ph_rac_calculate';
+    $exclude_list[] = 'google_business_reviews_rating';
+    $exclude_list[] = 'initialize_property_map';
+    $exclude_list[]	= 'ph_doing_save_search_request';
+    $exclude_list[] = 'google.maps.LatLng';
+    $exclude_list[] = 'console.log';
+    $exclude_list[] = 'ph_sdc_calculate';
+    return $exclude_list;
+}
