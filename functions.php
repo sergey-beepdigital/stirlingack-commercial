@@ -922,7 +922,7 @@ function branch_contact_submit() {
                 $result['redirect_url'] = get_the_permalink($pages['thank_you_page_id']);
             } else {
                 $result['status'] = false;
-                $result['message'] = 'Email is not send. Server problem. Try Later.';
+                $result['message'] = 'Email not sent. There seems to be a problem with the server. Please try again later.';
             }
         } else {
             $result['status'] = false;
