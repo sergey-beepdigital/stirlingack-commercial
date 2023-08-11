@@ -1,29 +1,39 @@
 <section class="page-section page-section--padding80 section-industry-benefits">
     <div class="container">
-        <div class="page-section--heading text-center">
-            <h2 class="font-weight-bold text-brand-red">{{ section.ib_title }}</h2>
-        </div>
 
-        <div class="section-industry-benefits__list">
+        {% if section.ib_title %}
 
-            {% for item in section.ib_benefits_list %}
+            <div class="page-section--heading text-center">
+                <h2 class="font-weight-bold text-brand-red">{{ section.ib_title }}</h2>
+            </div>
 
-                <div>
+        {% endif %}
 
-                    <div class="industry-benefit-item">
-                        <div class="industry-benefit-item__image pb-2">
-                            <img src="{{ item.image }}" alt="{{ item.title }}" height="100">
+        {% if section.ib_benefits_list %}
+
+            <div class="section-industry-benefits__list">
+
+                {% for item in section.ib_benefits_list %}
+
+                    <div>
+
+                        <div class="industry-benefit-item">
+                            <div class="industry-benefit-item__image pb-2">
+                                <img src="{{ item.image }}" alt="{{ item.title }}" height="100">
+                            </div>
+                            <h3 class="mb-0 font-weight-bold text-brand-red">{{ item.title }}</h3>
+                            <div class="reset-last-child industry-benefit-item__content">
+                                {{ item.description }}
+                            </div>
                         </div>
-                        <h3 class="mb-0 font-weight-bold text-brand-red">{{ item.title }}</h3>
-                        <div class="reset-last-child industry-benefit-item__content">
-                            {{ item.description }}
-                        </div>
+
                     </div>
 
-                </div>
+                {% endfor %}
 
-            {% endfor %}
+            </div>
 
-        </div>
+        {% endif %}
+
     </div>
 </section>
