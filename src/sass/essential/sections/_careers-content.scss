@@ -1,0 +1,51 @@
+.section-careers-content{
+    &__content{
+        overflow: hidden;
+
+        img{
+            &.alignleft,
+            &.alignright{
+                margin-bottom: 30px;
+            }
+
+            &.alignleft{
+                float: left;
+                margin-right: 50px;
+            }
+
+            &.alignright{
+                float: right;
+                margin-left: 50px;
+            }
+
+            @include media-breakpoint-down(lg) {
+                &.alignleft,
+                &.alignright{
+                    width: 50%;
+                }
+            }
+
+            @include media-breakpoint-down(md) {
+                &.alignleft,
+                &.alignright{
+                    float: none;
+                    display: block;
+                    width: 100%;
+                    margin: 0 0 30px;
+                }
+            }
+        }
+    }
+
+    &__gallery{
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px;
+
+        @include media-breakpoint-down(md) {
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+    }
+}

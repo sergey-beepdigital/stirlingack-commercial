@@ -1809,6 +1809,98 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_64d617002ba9f": {
+                    "key": "layout_64d617002ba9f",
+                    "name": "careers_content",
+                    "label": "Careers: Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64d61986347e2",
+                            "label": "Background Color",
+                            "name": "careers_c_background_color",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_64d6170d2baa0",
+                            "label": "Title",
+                            "name": "career_c_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_64d6171d2baa1",
+                            "label": "Description",
+                            "name": "careers_c_description",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_64d617362baa2",
+                            "label": "Images Grid",
+                            "name": "careers_c_images_grid",
+                            "type": "gallery",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "insert": "append",
+                            "library": "all",
+                            "min": "",
+                            "max": "",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -1847,5 +1939,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1691750589
+    "modified": 1691752859
 }

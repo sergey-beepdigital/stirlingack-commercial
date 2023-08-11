@@ -1,0 +1,29 @@
+<section class="page-section page-section--padding80 section-careers-content" {% if section.careers_c_background_color %}style="background-color: {{ section.careers_c_background_color }}"{% endif %}>
+    <div class="container">
+
+        {% if section.career_c_title %}
+
+            <div class="page-section--heading text-center">
+                <h2 class="font-weight-bold text-brand-red">{{ section.career_c_title }}</h2>
+            </div>
+
+        {% endif %}
+
+        <div class="reset-last-child section-careers-content__content">
+            {{ section.careers_c_description }}
+        </div>
+
+        {% if section.careers_c_images_grid %}
+
+            <div class="section-careers-content__gallery">
+                {% for image_item in section.careers_c_images_grid %}
+                    <div>
+                        <img src="{{ image_item.url }}" class="{{ image_item.alt }}">
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% endif %}
+
+    </div>
+</section>
