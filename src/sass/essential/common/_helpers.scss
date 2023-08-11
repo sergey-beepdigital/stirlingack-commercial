@@ -6,6 +6,12 @@
     padding-right: 15px;
 }
 
+.reset-last-child{
+    & > *:last-child{
+        margin-bottom: 0;
+    }
+}
+
 .link-border{
     @include link-border($brand-main-blue, $brand-main-red);
     /*position: relative;
@@ -144,4 +150,8 @@
     .acf-map{
         height: 400px;
     }
+}
+
+.text-brand-red{
+    color: var(--text-brand-red);
 }

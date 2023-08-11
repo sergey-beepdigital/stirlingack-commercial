@@ -1,0 +1,32 @@
+.page-template-page-careers{
+    padding-top: 0!important;
+
+    .careers-hero{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 100px 0;
+        font-size: 22px;
+        font-weight: bold;
+
+        img{
+            margin-bottom: 100px;
+        }
+
+        h1{
+            font-size: 38px;
+            font-weight: inherit;
+            margin-bottom: 15px;
+        }
+    }
+
+    .page-section{
+        &--heading h2{
+            font-size: 44px;
+
+            @include media-breakpoint-down(md) {
+                font-size: 35px;
+            }
+        }
+    }
+}

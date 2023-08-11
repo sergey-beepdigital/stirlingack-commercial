@@ -1,0 +1,23 @@
+{% extends 'base.twig' %}
+
+{% block header %}
+    <div class="careers-hero" style="background-image: url('{{ post.thumbnail }}')">
+        <div class="container">
+            <div class="d-flex justify-content-center flex-column text-center text-white">
+                <div><img src="{{ theme.link }}/dist/images/logo.svg"></div>
+
+                <h1 class="text-uppercase">{{ post.title }}</h1>
+                <div class="reset-last-child">
+                    {{ post.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    {% include 'sections.twig' with { 'sections' : post.get_field('page_sections') } %}
+
+{% endblock %}

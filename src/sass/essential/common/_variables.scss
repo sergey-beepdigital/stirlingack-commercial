@@ -27,3 +27,7 @@ $container-max-widths: (
 );
 
 $custom-control-indicator-checked-color: $brand-main-blue;
+
+:root{
+    --text-brand-red: #{$brand-main-red};
+}
