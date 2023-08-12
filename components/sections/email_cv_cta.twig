@@ -1,0 +1,17 @@
+<div class="page-section page-section--padding50 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-9 col-sm-8 text-center text-sm-left">
+                <h2 class="font-weight-bold">{{ section.ecv_title }}</h2>
+                {% if section.ecv_short_description %}
+                    <div class="reset-last-child">
+                        {{ section.ecv_short_description }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-xl-2 offset-xl-2 col-md-3 offset-lg-1 col-sm-4 mt-4 mt-sm-0">
+                <a {% if section.ecv_link.target %}target="{{ section.ecv_link.target }}"{% endif %} href="{{ section.ecv_link.url }}" class="btn btn-lg btn-white d-block">{{ section.ecv_link.title }}</a>
+            </div>
+        </div>
+    </div>
+</div>

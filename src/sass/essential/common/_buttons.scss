@@ -6,6 +6,18 @@
         }
     }
 
+    &-white{
+        background-color: #FFF;
+        border-color: #FFF;
+        color: $brand-main-blue;
+
+        &:hover{
+            background-color: var(--text-brand-red);
+            border-color: var(--text-brand-red);
+            color: #FFF;
+        }
+    }
+
     &.btn-min-230{
         min-width: 230px;
     }
