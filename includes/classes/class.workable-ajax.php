@@ -36,7 +36,19 @@
         $context   = Timber::get_context();
 
         if ( ! empty( $shortcode ) ) {
-            $context['job']              = $this->api->get( 'jobs/' . $shortcode );
+
+            $key = 'workable_job_detail_' . $shortcode;
+
+            $query = get_transient( $key );
+
+            if ( $query === false ) {
+
+                $query = $this->api->get( 'jobs/' . $shortcode );
+
+                set_transient( $key, $query, DAY_IN_SECONDS );
+            }
+
+            $context['job']              = $query;
             $context['careers_page_url'] = get_the_permalink( get_page_id_by_template_name( 'page-careers' ) );
 
             $result['html']   = Timber::compile( 'components/sections/careers-job-detail.twig', $context );
