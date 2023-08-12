@@ -155,3 +155,47 @@
 .text-brand-red{
     color: var(--text-brand-red);
 }
+
+.checkbox-switcher{
+    position: relative;
+
+    & > span{
+        width: 34px;
+        height: 18px;
+        background-color: #D9DBE1;
+        border-radius: 19px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        transition: 0.15s ease background-color;
+
+        &:before{
+            content: "";
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 4px;
+            background-color: #FFF;
+            border-radius: 50%;
+            transition: 0.15s ease left;
+        }
+    }
+
+    input{
+        position: absolute;
+        left: 0;
+        top:0;
+        opacity: 0;
+        visibility: hidden;
+
+        &:checked + span{
+            background-color: $brand-main-blue;
+
+            &:before{
+                left: calc(100% - 12px - 4px);
+            }
+        }
+    }
+}
