@@ -172,3 +172,8 @@ add_shortcode('workable_careers_list','workable_careers_list_shortcode');
     return Timber::compile('components/shortcodes/dataloft.twig');
 }
 add_shortcode('dataloft_chart','dataloft_chart_shortcode');*/
+
+function workable_categories_shortcode() {
+    return '<div data-workable="categories"></div>';
+}
+add_shortcode('workable_categories','workable_categories_shortcode');

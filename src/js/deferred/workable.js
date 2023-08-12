@@ -14,11 +14,13 @@ var WorkableAPI = WorkableAPI || {};
         var element = {
             list: '[data-workable="list"]',
             form: '[data-workable="filterForm"]',
-            detail: '[data-workable="jobDetail"]'
+            detail: '[data-workable="jobDetail"]',
+            categories: '[data-workable="categories"]'
         };
 
         var action = {
-            loadMore: '[data-workable="loadMore"]'
+            loadMore: '[data-workable="loadMore"]',
+            setFilter: '[data-set-filter]'
         };
 
         return {
@@ -32,6 +34,7 @@ var WorkableAPI = WorkableAPI || {};
                 $(document)
                     .on('click', action.loadMore, WorkableAPI.loadMore)
                     .on('submit', element.form, WorkableAPI.filterList)
+                    .on('click', action.setFilter, WorkableAPI.setFilter)
                 ;
             },
 
@@ -51,6 +54,7 @@ var WorkableAPI = WorkableAPI || {};
 
                             WorkableAPI.collectFilterValues();
                             WorkableAPI.render();
+                            WorkableAPI.renderCategories();
 
                             ajaxLoader(false);
                         }
@@ -147,6 +151,52 @@ var WorkableAPI = WorkableAPI || {};
 
                 $(element.list).html('');
                 WorkableAPI.renderList(filteredList);
+            },
+
+            renderCategories: function() {
+                var $block = $(element.categories);
+
+                if($block.length) {
+                    var html = '<ul class="workable-categories-list">';
+
+                    departmentOptions.forEach(department => {
+                        var count = jobsList.filter(item => item.department_hierarchy[0].name == department).length;
+
+                        var imageName = slugify(department);
+
+                        html += '<li>';
+                        html += '<a href="javascript:;" data-set-filter data-type="department" data-value="' + department + '">';
+                        html += '<img src="' + sg_config.images_path + imageName + '.png?cache='+Math.random(1000)+'">';
+                        html += '<span class="workable-category-content">';
+                        html += '<span class="workable-category-name">' + department + '</span>';
+                        html += '<span class="workable-category-count">' + count + ' open job' + ((count > 1) ? 's' : '') + '</span>';
+                        html += '</span>';
+                        html += '</a>';
+                        html += '</li>';
+
+                    })
+
+                    html += '</ul>';
+
+                    $block.html(html);
+                }
+            },
+
+            setFilter: function() {
+                var $this = $(this);
+                var type = $this.data('type');
+                var value = $this.data('value');
+
+                if(type == 'department') {
+                    $('[name="department"]').val(value);
+                    $(element.form).submit();
+
+                    $('html, body').animate({
+                        scrollTop: $(element.form).offset().top
+                    }, 'slow');
+                }
+
+                return false;
             },
 
             loadDetailPage: function() {

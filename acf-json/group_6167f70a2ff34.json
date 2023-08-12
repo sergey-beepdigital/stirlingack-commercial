@@ -1810,6 +1810,78 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_64d67d2028091": {
+                    "key": "layout_64d67d2028091",
+                    "name": "workable_jobs_list",
+                    "label": "Jobs List",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_64d78a4d4aa87": {
+                    "key": "layout_64d78a4d4aa87",
+                    "name": "email_cv_cta",
+                    "label": "Email CV CTA",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64d78a634aa88",
+                            "label": "Title",
+                            "name": "ecv_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_64d78a724aa89",
+                            "label": "Short Description",
+                            "name": "ecv_short_description",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 4,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "field_64d78a814aa8a",
+                            "label": "Link",
+                            "name": "ecv_link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_64d617002ba9f": {
                     "key": "layout_64d617002ba9f",
                     "name": "careers_content",
@@ -1901,78 +1973,6 @@
                     ],
                     "min": "",
                     "max": ""
-                },
-                "layout_64d67d2028091": {
-                    "key": "layout_64d67d2028091",
-                    "name": "workable_jobs_list",
-                    "label": "Jobs List",
-                    "display": "block",
-                    "sub_fields": [],
-                    "min": "",
-                    "max": ""
-                },
-                "layout_64d78a4d4aa87": {
-                    "key": "layout_64d78a4d4aa87",
-                    "name": "email_cv_cta",
-                    "label": "Email CV CTA",
-                    "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_64d78a634aa88",
-                            "label": "Title",
-                            "name": "ecv_title",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_64d78a724aa89",
-                            "label": "Short Description",
-                            "name": "ecv_short_description",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": 4,
-                            "new_lines": "wpautop"
-                        },
-                        {
-                            "key": "field_64d78a814aa8a",
-                            "label": "Link",
-                            "name": "ecv_link",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array"
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -2011,5 +2011,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1691847524
+    "modified": 1691848284
 }
