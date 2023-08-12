@@ -1,0 +1,21 @@
+{% set department = job.department_hierarchy | first %}
+
+<div class="workable-job-item">
+    <a href="{{ careers_page_url }}?shortcode={{ job.shortcode }}">View Position</a>
+    <div class="workable-job-item__title">
+        <h5 class="text-brand-red font-weight-bold">{{ job.title }}</h5>
+        <div>Posted {{ fn('time_elapsed_string',job.created_at) }}</div>
+    </div>
+    <div class="workable-job-item__location">
+        {{ job.location.location_str }}
+    </div>
+    <div class="workable-job-item__department">
+        {{ department.name }}
+    </div>
+    <div class="workable-job-item__job-type text-center">
+        {{ job.employment_type }}
+        {% if job.location.workplace_type == 'remote' %}
+            <div><span class="badge badge-primary">Remote</span></div>
+        {% endif %}
+    </div>
+</div>

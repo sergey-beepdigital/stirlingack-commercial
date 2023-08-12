@@ -1,0 +1,89 @@
+.jobs-list-filter-wrap{
+    --side-offset: 40px;
+
+    margin-top: -200px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+
+    h3{
+        background-color: #EDEDF0;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        font-size: 38px;
+        padding-left: var(--side-offset);
+        padding-right: var(--side-offset);
+        position: relative;
+
+        &:after{
+            content: "";
+            left: 0;
+            top: 100%;
+            right: 0;
+            height: 50px;
+            position: absolute;
+            background-color: #EDEDF0;
+        }
+    }
+
+    .jobs-list-filter-form{
+        background-color: #FFF;
+        padding: 30px 40px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        margin-left: var(--side-offset);
+        margin-right: var(--side-offset);
+        position: relative;
+        z-index: 5;
+        display: flex;
+        gap: 30px;
+
+        & > div{
+            flex: 1 1 auto;
+            max-width: 190px;
+        }
+
+        &__item-remote{
+            min-width: 100px;
+        }
+
+        &__submit{
+            align-self: center;
+        }
+    }
+}
+
+.workable-job-listing{
+    .workable-job-item{
+        padding: 22px 0;
+        display: flex;
+        position: relative;
+        gap: 20px;
+
+        &__title{
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        &:not(:first-child) {
+            border-top: 1px solid #c4cfde;
+        }
+
+        & > div:not(.workable-job-item__title) {
+            flex: 1 1 20%;
+            max-width: 20%;
+        }
+
+        & > a{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-indent: -99999px;
+        }
+
+        &:hover{
+            background-color: #f9f9f9;
+        }
+    }
+}

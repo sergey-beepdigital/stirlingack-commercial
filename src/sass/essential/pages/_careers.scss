@@ -1,11 +1,15 @@
 .page-template-page-careers{
     padding-top: 0!important;
 
+    #content{
+        overflow: initial;
+    }
+
     .careers-hero{
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding: 100px 0;
+        padding: 100px 0 250px;
         font-size: 22px;
         font-weight: bold;
 

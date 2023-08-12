@@ -7,6 +7,9 @@ require_once 'includes/classes/class.property-branch.php';
 include "includes/shortcodes.php";
 include "includes/properyhive-hooks.php";
 
+include_once 'includes/classes/class.workable-api.php';
+include_once 'includes/classes/class.workable-ajax.php';
+
 add_filter('https_ssl_verify', '__return_false');
 
 /**
@@ -1116,4 +1119,33 @@ function js_combine_exclude( $exclude_list ) {
     $exclude_list[] = 'console.log';
     $exclude_list[] = 'ph_sdc_calculate';
     return $exclude_list;
+}
+
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
 }

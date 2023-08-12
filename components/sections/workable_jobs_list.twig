@@ -1,0 +1,46 @@
+<div class="page-section page-section--padding80">
+    <div class="container">
+        <div class="jobs-list-filter-wrap">
+            <h3 class="mb-0">Job Search</h3>
+            <form data-workable="filterForm" class="jobs-list-filter-form">
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" class="form-control" placeholder="Estate Agent" name="job_title">
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <select class="form-control" name="location">
+                        <option value=""> - </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select class="form-control" name="department">
+                        <option value=""> - </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Work Type</label>
+                    <select class="form-control" name="work_type">
+                        <option value=""> - </option>
+                    </select>
+                </div>
+                <div class="jobs-list-filter-form__item-remote">
+                    <div class="form-group">
+                        <label>Remote Only</label>
+                        <div>
+                            <input type="checkbox" name="remote_only" value="1">
+                        </div>
+                    </div>
+                </div>
+                <div class="jobs-list-filter-form__submit">
+                    <input type="submit" value="Search" class="btn btn-lg btn-primary text-uppercase">
+                </div>
+            </form>
+        </div>
+        <div data-workable="list" class="workable-job-listing"></div>
+        <div class="text-center page-section--actions" style="display: none;">
+            <button type="button" data-workable="loadMore" class="btn btn-outline-danger">Load More</button>
+        </div>
+    </div>
+</div>

@@ -1901,6 +1901,15 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_64d67d2028091": {
+                    "key": "layout_64d67d2028091",
+                    "name": "workable_jobs_list",
+                    "label": "Jobs List",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -1939,5 +1948,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1691752859
+    "modified": 1691778366
 }
