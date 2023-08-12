@@ -594,7 +594,13 @@ add_filter('crowd_social_link_options','sa_social_link_icons');
  * @return mixed
  */
 function sa_body_class($classes) {
+    global $wp_query;
+
     $classes[] = 'sticky-header';
+
+    if(!empty($wp_query->query['shortcode'])) {
+        $classes[] = 'page-job-detail';
+    }
 
     return $classes;
 }
@@ -1149,3 +1155,26 @@ function time_elapsed_string($datetime, $full = false) {
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+
+function add_workable_job_detail_rules() {
+    $careers_page_id  = get_page_id_by_template_name( 'page-careers' );
+    $career_page_slug = get_post_field( 'post_name', $careers_page_id );
+
+    add_rewrite_tag( "%shortcode%", '(\d+)' );
+    add_rewrite_rule( '^' . $career_page_slug . '/j/([^/]*)/?', 'index.php?shortcode=$matches[1]', 'top' );
+
+    //flush_rewrite_rules();
+}
+add_action( 'init', 'add_workable_job_detail_rules' );
+
+
+function job_details_template_include( $template ) {
+    global $wp_query;
+
+    if ( ! empty( $wp_query->query['shortcode'] ) ) {
+        $template = TEMPLATEPATH . '/' . "page-job-detail.php";
+    }
+
+    return $template;
+}
+add_filter( 'template_include', 'job_details_template_include', 1, 1 );

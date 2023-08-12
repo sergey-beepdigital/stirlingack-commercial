@@ -1,0 +1,14 @@
+{% extends 'base.twig' %}
+
+{% block header %}
+    {% include 'components/sections/careers-hero.twig' with {
+        'css_class' : 'careers-hero--short'
+    } %}
+{% endblock %}
+
+
+{% block content %}
+
+    <section class="page-section page-section--padding80" data-workable="jobDetail" data-shortcode="{{ shortcode }}"></section>
+
+{% endblock %}

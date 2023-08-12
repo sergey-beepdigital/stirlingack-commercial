@@ -1,0 +1,28 @@
+<div class="container careers-job-detail-wrap">
+    <div class="row flex-row-reverse">
+        <div class="col-lg-4 offset-xl-1 mb-4 mt-lg-0">
+            <h2 class="careers-job-detail-wrap__mobile-title text-center bg-primary text-white d-lg-none mb-0">{{ job.title }}</h2>
+            <div class="careers-job-detail-wrap__features reset-last-child">
+                <h4>Job Details</h4>
+
+                <ul>
+                    <li>{{ job.location.city ~ ', ' ~ job.location.region ~ ', ' ~ job.location.country }}</li>
+                    <li>{{ job.department_hierarchy[0].name }}</li>
+                    <li>{{ job.employment_type }}{% if job.location.workplace_type == 'remote' %} <span class="badge badge-primary">{{ job.location.workplace_type }}</span>{% endif %}</li>
+                    <li>{{ job.salary.salary_from ~ '-' ~ job.salary.salary_to ~ job.salary.salary_currency }}</li>
+                    <li>{{ job.code }}</li>
+                </ul>
+
+                <div class="text-center">
+                    <a target="_blank" href="{{ job.application_url }}" class="btn btn-danger btn-lg d-block">APPLY</a>
+                    <a href="{{ careers_page_url }}" class="text-uppercase font-weight-normal mt-3 d-inline-block"><i class="fa-regular fa-angle-left"></i> Back to search results</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-7 col-lg-8">
+            <h1 class="careers-job-detail-wrap__title d-none d-lg-block">{{ job.title }}</h1>
+            <h2 class="d-lg-none mb-3">Job Details</h2>
+            <div class="reset-last-child careers-job-detail-wrap__content content-clear">{{ job.full_description }}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+.careers-job-detail-wrap{
+    &__title{
+        margin-bottom: 20px;
+        font-size: 38px;
+    }
+
+    &__mobile-title{
+        padding: 20px 15px;
+        margin-top: -100px;
+        position: relative;
+
+        &:after{
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: $brand-main-blue;
+        }
+    }
+
+    &__content{
+        img{
+            margin-bottom: 20px;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0!important;
+
+            li{
+                position: relative;
+                padding-left: 25px;
+
+                &:before{
+                    content: "\e404";
+                    font-family: "Font Awesome 6 Pro";
+                    font-weight: bold;
+                    color: var(--text-brand-red);
+                    position: absolute;
+                    top: 5px;
+                    left: 0;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+
+    &__features{
+        background-color: #EDEDF0;
+        padding: 30px;
+
+        ul{
+            list-style: none;
+            padding: 0;
+
+            li{
+                &:not(:first-child) {
+                    margin-top: 15px;
+                }
+            }
+        }
+
+        & > *{
+            margin-bottom: 30px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            position: sticky;
+            top: 15px;
+        }
+
+        @include media-breakpoint-down(md) {
+            margin-left: 15px;
+            margin-right: 15px;
+            position: relative;
+            background: #FFF;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        }
+
+        @include media-breakpoint-down(xs) {
+            padding: 15px;
+
+            h4{
+                font-size: 16px;
+            }
+
+            & > *{
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

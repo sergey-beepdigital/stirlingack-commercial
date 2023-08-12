@@ -1910,6 +1910,69 @@
                     "sub_fields": [],
                     "min": "",
                     "max": ""
+                },
+                "layout_64d78a4d4aa87": {
+                    "key": "layout_64d78a4d4aa87",
+                    "name": "email_cv_cta",
+                    "label": "Email CV CTA",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_64d78a634aa88",
+                            "label": "Title",
+                            "name": "ecv_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_64d78a724aa89",
+                            "label": "Short Description",
+                            "name": "ecv_short_description",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_64d78a814aa8a",
+                            "label": "Link",
+                            "name": "ecv_link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -1948,5 +2011,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1691778366
+    "modified": 1691847329
 }

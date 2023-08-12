@@ -13,7 +13,8 @@ var WorkableAPI = WorkableAPI || {};
         var sinceId = 0;
         var element = {
             list: '[data-workable="list"]',
-            form: '[data-workable="filterForm"]'
+            form: '[data-workable="filterForm"]',
+            detail: '[data-workable="jobDetail"]'
         };
 
         var action = {
@@ -24,6 +25,7 @@ var WorkableAPI = WorkableAPI || {};
             init: function () {
                 WorkableAPI.events();
                 WorkableAPI.loadJobs();
+                WorkableAPI.loadDetailPage();
             },
 
             events: function () {
@@ -34,22 +36,26 @@ var WorkableAPI = WorkableAPI || {};
             },
 
             loadJobs: function () {
-                $.ajax({
-                    method: "POST",
-                    url: crowdAjax,
-                    beforeLoad: ajaxLoader(true),
-                    data: {
-                        action: 'jobs_list'
-                    },
-                    success: function (data) {
-                        jobsList = data;
+                var $list = $(element.list);
 
-                        WorkableAPI.collectFilterValues();
-                        WorkableAPI.render();
+                if ($list.length) {
+                    $.ajax({
+                        method: "POST",
+                        url: crowdAjax,
+                        beforeLoad: ajaxLoader(true),
+                        data: {
+                            action: 'jobs_list'
+                        },
+                        success: function (data) {
+                            jobsList = data;
 
-                        ajaxLoader(false);
-                    }
-                });
+                            WorkableAPI.collectFilterValues();
+                            WorkableAPI.render();
+
+                            ajaxLoader(false);
+                        }
+                    });
+                }
             },
 
             render: function () {
@@ -93,7 +99,7 @@ var WorkableAPI = WorkableAPI || {};
 
                 list.forEach(function (item) {
                     html += '<div class="workable-job-item">';
-                    html += '<a href="' + location.href + '?shortcode=' + item.shortcode + '">View Position</a>';
+                    html += '<a href="' + location.href + 'j/' + item.shortcode + '">View Position</a>';
                     html += '<div class="workable-job-item__title">';
                     html += '<h5 class="text-brand-red font-weight-bold">' + item.title + '</h5>';
                     html += '<div>Posted ' + $.timeago(item.created_at) + '</div>';
@@ -141,6 +147,29 @@ var WorkableAPI = WorkableAPI || {};
 
                 $(element.list).html('');
                 WorkableAPI.renderList(filteredList);
+            },
+
+            loadDetailPage: function() {
+                var $blockDetails = $(element.detail);
+
+                if($blockDetails.length) {
+                    $.ajax({
+                        method: "POST",
+                        url: crowdAjax,
+                        beforeLoad: ajaxLoader(true),
+                        data: {
+                            action: 'job_detail',
+                            shortcode: $blockDetails.data('shortcode')
+                        },
+                        success: function (data) {
+                            console.log(data);
+
+                            $(element.detail).html(data.html);
+
+                            ajaxLoader(false);
+                        }
+                    });
+                }
             },
 
             _loadJobs: function () {
