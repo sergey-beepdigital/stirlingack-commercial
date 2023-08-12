@@ -100,7 +100,7 @@ var WorkableAPI = WorkableAPI || {};
                     html += '</div>';
                     html += '<div class="workable-job-item__location">' + item.location.location_str + '</div>';
                     html += '<div class="workable-job-item__department">' + item.department_hierarchy[0].name + '</div>';
-                    html += '<div class="workable-job-item__job-type text-center">';
+                    html += '<div class="workable-job-item__job-type text-md-center">';
                     html += item.employment_type;
                     if (item.location.workplace_type == 'remote') {
                         html += '<div><span class="badge badge-primary">Remote</span></div>';

@@ -26,10 +26,33 @@
         }
     }
 
+    @include media-breakpoint-down(lg) {
+        --side-offset: 25px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        margin-top: -150px;
+    }
+
+    @include media-breakpoint-down(xs) {
+        --side-offset: 15px;
+        margin-top: -80px;
+        margin-bottom: 30px;
+
+        h3{
+            padding: var(--side-offset);
+            font-size: 30px;
+            text-align: center;
+        }
+    }
+
     .jobs-list-filter-form{
         background-color: #FFF;
-        padding: 30px 40px;
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: var(--side-offset);
+        padding-right: var(--side-offset);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
         margin-left: var(--side-offset);
         margin-right: var(--side-offset);
         position: relative;
@@ -37,9 +60,28 @@
         display: flex;
         gap: 30px;
 
+        @include media-breakpoint-down(lg) {
+            gap: 15px;
+        }
+
+        @include media-breakpoint-down(md) {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @include media-breakpoint-down(xs) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-group{
+            margin-bottom: 0;
+        }
+
         & > div{
             flex: 1 1 auto;
-            max-width: 190px;
+            @include media-breakpoint-up(lg) {
+                max-width: 190px;
+            }
         }
 
         &__item-remote{
@@ -48,6 +90,12 @@
 
         &__submit{
             align-self: center;
+
+            @include media-breakpoint-down(md) {
+                .btn{
+                    width: 100%;
+                }
+            }
         }
     }
 }
@@ -68,9 +116,11 @@
             border-top: 1px solid #c4cfde;
         }
 
-        & > div:not(.workable-job-item__title) {
-            flex: 1 1 20%;
-            max-width: 20%;
+        @include media-breakpoint-up(md) {
+            & > div:not(.workable-job-item__title) {
+                flex: 1 1 20%;
+                max-width: 20%;
+            }
         }
 
         & > a{
@@ -84,6 +134,17 @@
 
         &:hover{
             background-color: #f9f9f9;
+        }
+
+        @include media-breakpoint-down(sm) {
+            flex-direction: column;
+            padding-left: 15px;
+            padding-right: 15px;
+            gap: 10px;
+
+            &__title{
+                padding-left: 0;
+            }
         }
     }
 }
