@@ -23,6 +23,16 @@
             <h1 class="careers-job-detail-wrap__title d-none d-lg-block">{{ job.title }}</h1>
             <h2 class="d-lg-none mb-3">Job Details</h2>
             <div class="reset-last-child careers-job-detail-wrap__content content-clear">{{ job.full_description }}</div>
+            <div class="careers-job-detail-wrap__share">
+
+                {% include 'components/parts/share.twig' with {
+                    post: {
+                        title: job.title,
+                        link: careers_page_url ~ 'j/' ~ job.shortcode
+                    }
+                } %}
+
+            </div>
         </div>
     </div>
 </div>

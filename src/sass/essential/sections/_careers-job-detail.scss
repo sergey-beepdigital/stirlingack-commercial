@@ -47,6 +47,23 @@
         }
     }
 
+    &__share{
+        padding-top: 20px;
+        margin-top: 40px;
+        border-top: 1px solid #D9DBE1;
+
+        @include media-breakpoint-down(xs) {
+            .share-page{
+                flex-direction: column;
+                gap: 20px;
+
+                &--title{
+                    padding: 0;
+                }
+            }
+        }
+    }
+
     &__features{
         background-color: #EDEDF0;
         padding: 30px;
