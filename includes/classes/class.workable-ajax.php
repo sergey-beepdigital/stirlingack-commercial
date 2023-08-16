@@ -7,7 +7,9 @@
             'access_token' => '1f821cb4260fa1629fc538bcde18203e951f712181cdcd41262f09ad55e12f2a'
         ] );
 
+        add_action( 'wp_ajax_jobs_list', [ $this, 'jobs_list' ] );
         add_action( 'wp_ajax_nopriv_jobs_list', [ $this, 'jobs_list' ] );
+        add_action( 'wp_ajax_job_detail', [ $this, 'job_detail' ] );
         add_action( 'wp_ajax_nopriv_job_detail', [ $this, 'job_detail' ] );
     }
 
