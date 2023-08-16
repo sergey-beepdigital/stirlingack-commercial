@@ -76,6 +76,8 @@ var WorkableAPI = WorkableAPI || {};
                     locationOptions.push(item.location.region);
                 });
 
+                locationOptions = locationOptions.filter(item => item !== 'United Kingdom' && item !== 'England and Wales');
+
                 workTypeOptions = new Set(workTypeOptions);
                 departmentOptions = new Set(departmentOptions);
                 locationOptions = new Set(locationOptions);
@@ -215,7 +217,7 @@ var WorkableAPI = WorkableAPI || {};
                             shortcode: $blockDetails.data('shortcode')
                         },
                         success: function (data) {
-                            console.log(data);
+                            //console.log(data);
 
                             $(element.detail).html(data.html);
 
