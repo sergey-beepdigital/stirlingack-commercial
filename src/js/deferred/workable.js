@@ -96,28 +96,31 @@ var WorkableAPI = WorkableAPI || {};
             },
 
             renderList: function (list) {
-                console.log(list);
                 var html = '';
 
-                list.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                if(list.length) {
+                    list.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
 
-                list.forEach(function (item) {
-                    html += '<div class="workable-job-item">';
-                    html += '<a href="' + location.href + 'j/' + item.shortcode + '">View Position</a>';
-                    html += '<div class="workable-job-item__title">';
-                    html += '<h5 class="text-brand-red font-weight-bold">' + item.title + '</h5>';
-                    html += '<div>Posted ' + $.timeago(item.created_at) + '</div>';
-                    html += '</div>';
-                    html += '<div class="workable-job-item__location">' + item.location.location_str + '</div>';
-                    html += '<div class="workable-job-item__department">' + item.department_hierarchy[0].name + '</div>';
-                    html += '<div class="workable-job-item__job-type text-md-center">';
-                    html += item.employment_type;
-                    if (item.location.workplace_type == 'remote') {
-                        html += '<div><span class="badge badge-primary">Remote</span></div>';
-                    }
-                    html += '</div>';
-                    html += '</div>';
-                })
+                    list.forEach(function (item) {
+                        html += '<div class="workable-job-item">';
+                        html += '<a href="' + location.href + 'j/' + item.shortcode + '">View Position</a>';
+                        html += '<div class="workable-job-item__title">';
+                        html += '<h5 class="text-brand-red font-weight-bold">' + item.title + '</h5>';
+                        html += '<div>Posted ' + $.timeago(item.created_at) + '</div>';
+                        html += '</div>';
+                        html += '<div class="workable-job-item__location">' + item.location.location_str + '</div>';
+                        html += '<div class="workable-job-item__department">' + item.department_hierarchy[0].name + '</div>';
+                        html += '<div class="workable-job-item__job-type text-md-center">';
+                        html += item.employment_type;
+                        if (item.location.workplace_type == 'remote') {
+                            html += '<div><span class="badge badge-primary">Remote</span></div>';
+                        }
+                        html += '</div>';
+                        html += '</div>';
+                    });
+                }else {
+                    alert('No Results')
+                }
 
                 $(element.list).html(html);
             },
