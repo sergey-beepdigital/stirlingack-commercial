@@ -7,6 +7,12 @@ var WorkableAPI = WorkableAPI || {};
         var workTypeOptions = [];
         var departmentOptions = [];
         var locationOptions = [];
+        var categories = [
+            'Central Support',
+            'Estate Agency & New Homes',
+            'Lettings & Support',
+            'Commercial & Surveying'
+        ];
 
         var jobsList = [];
 
@@ -164,7 +170,7 @@ var WorkableAPI = WorkableAPI || {};
                 if($block.length) {
                     var html = '<ul class="workable-categories-list">';
 
-                    departmentOptions.forEach(department => {
+                    categories.forEach(department => {
                         var count = jobsList.filter(item => item.department_hierarchy[0].name == department).length;
 
                         var imageName = slugify(department);
@@ -174,7 +180,11 @@ var WorkableAPI = WorkableAPI || {};
                         html += '<img src="' + sg_config.images_path + imageName + '.png?cache='+Math.random(1000)+'">';
                         html += '<span class="workable-category-content">';
                         html += '<span class="workable-category-name">' + department + '</span>';
-                        html += '<span class="workable-category-count">' + count + ' open job' + ((count > 1) ? 's' : '') + '</span>';
+                        if(count) {
+                            html += '<span class="workable-category-count">' + count + ' open job' + ((count > 1) ? 's' : '') + '</span>';
+                        } else {
+                            html += '<span class="workable-category-count">No open jobs</span>';
+                        }
                         html += '</span>';
                         html += '</a>';
                         html += '</li>';
