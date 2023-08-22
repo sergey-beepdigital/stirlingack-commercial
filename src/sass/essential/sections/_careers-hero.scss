@@ -4,7 +4,7 @@
     background-size: cover;
     font-size: 22px;
     font-weight: bold;
-    padding: 150px 0 300px;
+    padding: 100px 0 250px;
     position: relative;
 
     &:before{
@@ -33,10 +33,6 @@
         flex-direction: column;
         text-align: center;
         position: relative;
-    }
-
-    @include media-breakpoint-down(lg) {
-        padding: 100px 0 250px;
     }
 
     @include media-breakpoint-down(sm) {
