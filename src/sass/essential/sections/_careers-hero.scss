@@ -5,6 +5,18 @@
     font-size: 22px;
     font-weight: bold;
     padding: 150px 0 300px;
+    position: relative;
+
+    &:before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        opacity: 0.5;
+    }
 
     img{
         margin-bottom: 100px;
@@ -20,6 +32,7 @@
         align-items: center;
         flex-direction: column;
         text-align: center;
+        position: relative;
     }
 
     @include media-breakpoint-down(lg) {
