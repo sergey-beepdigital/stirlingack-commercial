@@ -4,7 +4,7 @@
     background-size: cover;
     font-size: 22px;
     font-weight: bold;
-    padding: 100px 0 250px;
+    padding: 80px 0 200px;
     position: relative;
 
     &:before{
@@ -19,7 +19,7 @@
     }
 
     img{
-        margin-bottom: 100px;
+        margin-bottom: 50px;
     }
 
     h1{
@@ -37,10 +37,6 @@
 
     @include media-breakpoint-down(sm) {
         padding: 50px 0 150px;
-
-        img{
-            margin-bottom: 50px;
-        }
     }
 
     @include media-breakpoint-down(xs) {
