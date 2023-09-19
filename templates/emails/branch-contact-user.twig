@@ -46,7 +46,7 @@
                                     </tr>
                                     <tr>
                                         <td style="color: gray;">
-                                            {{ body.property_desc | slice(0, 200) ~ '...'  }}
+                                            {{ body.property_desc | striptags | slice(0, 200) ~ '...'  }}
                                         </td>
                                     </tr>
                                     <tr>
