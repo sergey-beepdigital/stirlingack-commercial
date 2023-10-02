@@ -61,6 +61,17 @@
                         border-left: 0;
                         padding-left: 0;
                     }
+
+                    select,
+                    input{
+                        width: 100%;
+                    }
+
+                    &.control-address_keyword{
+                        input{
+                            min-width: 150px;
+                        }
+                    }
                 }
             }
         }
