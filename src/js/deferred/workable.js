@@ -227,8 +227,6 @@ var WorkableAPI = WorkableAPI || {};
                             shortcode: $blockDetails.data('shortcode')
                         },
                         success: function (data) {
-                            //console.log(data);
-
                             $(element.detail).html(data.html);
 
                             ajaxLoader(false);
@@ -270,8 +268,6 @@ var WorkableAPI = WorkableAPI || {};
             loadMore: function () {
                 var $this = $(this);
                 var data = $this.data();
-
-                console.log(data);
 
                 if (data.sinceId !== undefined) {
                     sinceId = data.sinceId;
