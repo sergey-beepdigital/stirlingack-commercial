@@ -9,9 +9,10 @@ var WorkableAPI = WorkableAPI || {};
         var locationOptions = [];
         var categories = [
             'Central Support',
-            'Estate Agency & New Homes',
+            'Estate Agency',
             'Lettings & Support',
-            'Commercial & Surveying'
+            'Land, New Homes and Commercial',
+            'Surveying'
         ];
 
         var jobsList = [];
@@ -177,7 +178,7 @@ var WorkableAPI = WorkableAPI || {};
 
                         html += '<li>';
                         html += '<a href="javascript:;" data-set-filter data-type="department" data-value="' + department + '">';
-                        html += '<img src="' + sg_config.images_path + imageName + '.png?cache='+Math.random(1000)+'">';
+                        html += '<img src="' + sg_config.images_path + 'workable/' + imageName + '.png?cache='+Math.random(1000)+'">';
                         html += '<span class="workable-category-content">';
                         html += '<span class="workable-category-name">' + department + '</span>';
                         if(count) {
