@@ -72,11 +72,16 @@
                 padding: 0;
             }
 
+            .mobile-comments-accordion,
             .feefowidget-merchant-header__summary .feefowidget-header-information-title,
             .feefowidget-merchant-header__summary .feefowidget-header-image,
             .feefowidget-footer,
             .feefowidget-global-container-body{
                 display: none;
+            }
+
+            .on-page-footer{
+                padding-top: 0;
             }
         }
     }
