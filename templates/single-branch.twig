@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    {% embed 'components/static-sections/page-top.twig' with {
+    {#{% embed 'components/static-sections/page-top.twig' with {
         post: post,
         short_description: post.hero_short_description,
         custom: {
@@ -60,7 +60,26 @@
             </div>
         {% endblock %}
 
-    {% endembed %}
+    {% endembed %}#}
+
+    {% set areasCovered = '' %}
+    {% if post.branch_areas_covered %}
+        {% set areasCovered = 'Areas Covered: ' ~ post.branch_areas_covered %}
+    {% endif %}
+
+    {% include 'components/static-sections/page-top-fullwidth.twig' with {
+        post: post,
+        custom: {
+            title: 'Stirling Ackroyd<br>' ~ post.title,
+            content: areasCovered
+        },
+    } %}
+
+    <section class="page-section page-section--padding50">
+        <div class="container">
+            <div id="feefo-service-review-carousel-widgetId" class="feefo-review-carousel-widget-service"></div>
+        </div>
+    </section>
 
     <section class="page-section page-section--padding50">
         <div class="container">
