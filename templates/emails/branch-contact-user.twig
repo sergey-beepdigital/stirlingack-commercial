@@ -13,7 +13,7 @@
                     <td>
                         Hello {{ body.form_data.first_name }} {{ body.form_data.surname }},
 
-                        Thank you for your Stirling Ackroyd enquiry. We will be in touch with you shortly. In the meantime, details of the property you enquired about are shown below.
+                        Thank you for your Stirling Ackroyd enquiry. We will be in touch with you shortly.{% if body.property.id %} In the meantime, details of the property you enquired about are shown below.{% endif %}
                     </td>
                 </tr>
                 {% if body.property.id %}
