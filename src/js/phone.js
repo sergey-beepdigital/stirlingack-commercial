@@ -37,7 +37,7 @@ function applyDetails(queryStringName, cookieName, data) {
   var lettings = data.lettings[0];
 
   if(!getCookie(cookieName)) {
-    console.log('setting cookie');
+    //console.log('setting cookie');
     var qs = getQuerystring(queryStringName);
     if(qs) {
       setCookie(cookieName, (qs-1), 30);
@@ -45,14 +45,14 @@ function applyDetails(queryStringName, cookieName, data) {
       lettings = data.lettings[qs-1] || lettings;
     }
   } else {
-    console.log('getting cookie');
+    //console.log('getting cookie');
     var cookie = getCookie(cookieName);
     sales = data.sales[cookie] || sales;
     lettings = data.lettings[cookie] || lettings;
   }
 
-  console.log('sales', sales);
-  console.log('lettings', lettings);
+  //console.log('sales', sales);
+  //console.log('lettings', lettings);
 
   var salesOutput = document.querySelectorAll('.sales');
 		salesOutput.forEach(function(o) {
