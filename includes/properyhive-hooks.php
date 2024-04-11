@@ -965,3 +965,31 @@ function sa_set_tenure($post_id, $property) {
     }
 }
 add_action( "propertyhive_property_imported_jet", "sa_set_tenure", 10, 2 );
+
+function sa_property_schema() {
+    global $property;
+
+    $availability_schema_value = 'https://schema.org/OutOfStock';
+
+    if(in_array($property->availability,['For Sale','To Let'])) {
+        $availability_schema_value = 'https://schema.org/InStock';
+    } ?>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "description": "<?php echo strip_tags($property->get_formatted_description()); ?>",
+            "name": "<?php echo $property->post_title; ?>",
+            "image": "<?php echo $property->_photo_urls[0]['url']; ?>",
+            "offers": {
+                "@type": "Offer",
+                "availability": "<?php echo $availability_schema_value; ?>",
+                "price": "<?php echo number_format($property->_price_actual); ?>",
+                "priceCurrency": "<?php echo $property->currency; ?>"
+            }
+        }
+    </script>
+
+<?php }
+add_action("propertyhive_after_main_content", "sa_property_schema");
