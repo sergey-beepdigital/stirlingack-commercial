@@ -985,7 +985,7 @@ function sa_property_schema() {
             "offers": {
                 "@type": "Offer",
                 "availability": "<?php echo $availability_schema_value; ?>",
-                "price": "<?php echo number_format($property->_price_actual); ?>",
+                "price": "<?php echo str_replace( [ '.', ',' ], '', number_format( $property->_price_actual ) ); ?>",
                 "priceCurrency": "<?php echo $property->currency; ?>"
             }
         }
