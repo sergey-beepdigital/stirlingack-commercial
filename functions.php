@@ -1179,3 +1179,5 @@ function job_details_template_include( $template ) {
     return $template;
 }
 add_filter( 'template_include', 'job_details_template_include', 1, 1 );
+
+remove_filter('template_redirect', 'redirect_canonical');
