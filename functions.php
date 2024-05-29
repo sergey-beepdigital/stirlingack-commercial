@@ -542,12 +542,16 @@ add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
 function ec_dashboard_custom_logo() {
     echo '
     <style type="text/css">
-        #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
-        background-image: url(' . get_bloginfo('stylesheet_directory') . '/dist/images/admin_logo.svg)
-        !important; background-position: 0 0; color:rgba(0, 0, 0, 0);background-size:cover;
-    }
-
-    #wpadminbar #wp-admin-bar-wp-logo.hover > .ab-item .ab-icon { background-position: 0 0; }
+        #wpadminbar #wp-admin-bar-wp-logo > .ab-item{
+			background-color:#3aa1fa;
+			background-image: url(' . get_theme_file_uri('/dist/images/admin_logo.svg') . ') !important;
+			background-size: 30px;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
+			color:rgba(0, 0, 0, 0);
+		}
 
     </style>
     ';
