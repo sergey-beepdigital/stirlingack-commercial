@@ -2,6 +2,8 @@
 
 {% block content %}
 
+    {% set proeprties = properties_query.get_posts() %}
+
     <div class="content-wrapper">
         <div class="section-properties">
 
@@ -36,7 +38,7 @@
                                 <div class="control control-maximum_rent lettings-only" style="display: none;"><label for="maximum_rent">Max Rent</label><select name="maximum_rent" id="maximum_rent" class="" data-blank-option=""><option value="" selected="selected">No max</option><option value="500">£500 (£116pcw)</option><option value="750">£750 (£174pcw)</option><option value="1000">£1,000pcm (£231pcw)</option><option value="1250">£1,250pcm (£289pcw)</option><option value="2000">£2,000pcm (£462pcw)</option><option value="3000">£3,000pcm (£693pcw)</option><option value="4000">£4,000pcm (£924pcw)</option><option value="5000">£5,000pcm (£1,154pcw)</option><option value="6000">£6,000pcm (£1,385pcw)</option><option value="7000">£7,000pcm (£1,616pcw)</option><option value="8000">£8,000pcm (£1,847pcw)</option></select></div>
 
 
-                                <div class="control control-minimum_bedrooms residential-only" style="display: block;"><label for="minimum_bedrooms">Min Beds</label><select name="minimum_bedrooms" id="minimum_bedrooms" class="" data-blank-option=""><option value="" selected="selected">Select</option><option value="0">Studio</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+                                <div class="control control-minimum_bedrooms residential-only" style="display: block;"><label for="minimum_bedrooms">Min Desks</label><select name="minimum_bedrooms" id="minimum_bedrooms" class="" data-blank-option=""><option value="" selected="selected">Select</option><option value="0">Studio</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
 
 
                                 <input type="hidden" name="department" value="residential-sales">
@@ -90,611 +92,145 @@
                 </div>
             </div>
 
-            <div class="property-search-info-wrap"><div class="container"><div class="property-search-info-wrap--inner"><h1 class="propertyhive-result-count">
-                            Showing 1–14 of 894 properties</h1>
+            <div class="property-search-info-wrap">
+                <div class="container">
+                    <div class="property-search-info-wrap--inner">
+                        <h1 class="propertyhive-result-count">Showing {{ properties_page_show1 }}{% if properties_page_show2 and properties_page_show1 != properties_page_show2  %}-{{ properties_page_show2 }}{% endif %} of {{ properties_total }} properties</h1>
+
                         <div class="propertyhive-views">
-                            <ul><li class="grid-view active"><a href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales"><i class="fa-regular fa-border-all" aria-hidden="true"></i> Tile View</a></li><li class="list-view"><a href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales&amp;view=list"><i class="fa-regular fa-bars-staggered" aria-hidden="true"></i> List View</a></li><li class="map-view"><a href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales&amp;view=map"><i class="fa-regular fa-map" aria-hidden="true"></i> Map View</a></li></ul>
-                        </div><form class="propertyhive-ordering" method="get">
+                            <ul>
+                                <li class="grid-view active"><a
+                                        href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales"><i
+                                            class="fa-regular fa-border-all" aria-hidden="true"></i> Tile View</a></li>
+                                <li class="list-view"><a
+                                        href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales&amp;view=list"><i
+                                            class="fa-regular fa-bars-staggered" aria-hidden="true"></i> List View</a>
+                                </li>
+                                <li class="map-view"><a
+                                        href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales&amp;view=map"><i
+                                            class="fa-regular fa-map" aria-hidden="true"></i> Map View</a></li>
+                            </ul>
+                        </div>
+                        <form class="propertyhive-ordering" method="get">
                             <div class="propertyhive-ordering--inner">
                                 <select name="orderby" class="orderby">
-                                    <option value="price-desc">Sort by price: high to low</option><option value="date">Sort by date added</option><option value="price-asc">Sort by price: low to high</option>            </select>
+                                    <option value="price-desc">Sort by price: high to low</option>
+                                    <option value="date">Sort by date added</option>
+                                    <option value="price-asc">Sort by price: low to high</option>
+                                </select>
                             </div>
-                            <input type="hidden" name="property_type" value=""><input type="hidden" name="address_keyword" value=""><input type="hidden" name="radius" value="2"><input type="hidden" name="minimum_price" value=""><input type="hidden" name="maximum_price" value=""><input type="hidden" name="minimum_rent" value=""><input type="hidden" name="maximum_rent" value=""><input type="hidden" name="minimum_bedrooms" value=""><input type="hidden" name="department" value="residential-sales"></form>
-                    </div></div></div>
-
-            <div class="properties-list-wrapper">
-                <div class="container">
-
-
-
-                    <ul class="properties clear view-grid">
-
-
-                        <li class="first post-54278 type-property status-publish availability-for-sale property_type-house property_type-terraced-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-WES" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/oxendon-street-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/GER/23/GER236183_30.jpg" alt="Oxendon Street, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 43</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 2</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="54278" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">5 Bed, House, Terraced House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/oxendon-street-london/">Oxendon Street, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £4,600,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 3917 8218</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54278"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="post-52935 type-property status-publish availability-for-sale property_type-detached-house property_type-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-CHI" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/dartmouth-place-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/CHI/14/CHI140185_54.jpg" alt="Dartmouth Place, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 45</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 9</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 4</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 4</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="52935" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">9 Bed, Detached House, House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/dartmouth-place-london/">Dartmouth Place, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £4,400,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 3911 1638</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="52935"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="post-53374 type-property status-publish availability-for-sale property_type-house property_type-semi-detached-house price_qualifier-guide-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-CHI" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/grove-park-gardens-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/GER/22/GER225049_05.jpg" alt="Grove Park Gardens, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 27</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 4</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="53374" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">5 Bed, House, Semi-Detached House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/grove-park-gardens-london/">Grove Park Gardens, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £4,000,000
-                                        <span class="price-qualifier">Guide Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 3911 1638</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="53374"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="last post-44776 type-property status-publish availability-for-sale property_type-detached-house property_type-house price_qualifier-offers-over tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-WES" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/weymouth-avenue-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/GER/23/GER237096_15.jpg" alt="Weymouth Avenue, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 66</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 8</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 6</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 3</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="44776" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">8 Bed, Detached House, House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/weymouth-avenue-london/">Weymouth Avenue, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £3,499,950
-                                        <span class="price-qualifier">Offers Over</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 3917 8218</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="44776"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="first post-22322 type-property status-publish availability-for-sale property_type-garage price_qualifier-poa tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-NEW" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/commercial-road-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/NEW/22/NEW220188_23.jpg" alt="Commercial Road, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 14</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> Studio</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 0</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 0</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="22322" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">Studio, Garage</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/commercial-road-london/">Commercial Road, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        POA
-                                        <span class="price-qualifier">POA</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 8016 8597</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="22322"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="post-16768 type-property status-publish availability-for-sale property_type-flat-apartment price_qualifier-asking-price ph-cols-4 property department-residential-sales office-rps_twn-NEW" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/great-portland-street-london-4/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/NEW/22/NEW220116_02.jpg" alt="Great Portland Street, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 17</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 2</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 2</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 1</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="16768" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">2 Bed, Flat / Apartment</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/great-portland-street-london-4/">Great Portland Street, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £2,693,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 8016 8597</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="16768"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="featured post-44682 type-property status-publish availability-for-sale property_type-flat-apartment price_qualifier-asking-price tenure-leasehold ph-cols-4 property department-residential-sales office-rps_twn-NES" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/st-george-wharf-london-18/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/NES/22/NES220098_46.jpg" alt="St. George Wharf, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 11</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 3</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 2</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 1</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="44682" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">3 Bed, Flat / Apartment</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/st-george-wharf-london-18/">St. George Wharf, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £2,500,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 8036 5883</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="44682"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="promo post-51351 type-property status-publish availability-for-sale property_type-house property_type-semi-detached-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-ENG" style="height: 517.797px;"><div class="item-promo-content">
-                                <img src="https://www.stirlingackroyd.com/wp-content/uploads/2021/11/promo-logo.png">
-                                <h2>Market your property with Stirling Ackroyd</h2>
-                                <p>Book your free market appraisal for your property today.</p>
-                                <a href="https://www.stirlingackroyd.com/get-a-valuation/">Book now</a>
-                            </div></li><li class="last post-51351 type-property status-publish availability-for-sale property_type-house property_type-semi-detached-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-ENG" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/winkfield/toonagh-winkfield-street/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/WND/22/WND220077_52.jpg" alt="Toonagh, Winkfield Street" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 33</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 4</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 3</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 3</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="51351" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">4 Bed, House, Semi-Detached House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/winkfield/toonagh-winkfield-street/">Toonagh, Winkfield Street</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £2,000,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 01784 779 518</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="51351"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="first post-37543 type-property status-publish availability-for-sale property_type-flat-apartment price_qualifier-asking-price tenure-leasehold ph-cols-4 property department-residential-sales office-rps_twn-NES" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/eccleston-street-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/NES/23/NES230034_20.jpg" alt="Eccleston Street, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 14</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 3</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 3</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 1</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="37543" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">3 Bed, Flat / Apartment</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/eccleston-street-london/">Eccleston Street, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £2,000,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 8036 5883</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="37543"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="post-45086 type-property status-publish availability-for-sale property_type-detached-house property_type-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-ENG" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/surrey/bakeham-lane-englefield-green-2/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/GER/22/GER227350_34.jpg" alt="Bakeham Lane, Englefield Green" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 40</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 7</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 4</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="45086" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">7 Bed, Detached House, House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/surrey/bakeham-lane-englefield-green-2/">Bakeham Lane, Englefield Green</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £2,000,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 01784 779 518</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="45086"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="post-54450 type-property status-publish availability-for-sale property_type-flat-apartment price_qualifier-asking-price tenure-leasehold ph-cols-4 property department-residential-sales office-rps_twn-NES" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/philbeach-gardens-london/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/CEN/24/CEN240673_07.jpg" alt="Philbeach Gardens, London" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 21</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 2</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 1</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="54450" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">5 Bed, Flat / Apartment</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/philbeach-gardens-london/">Philbeach Gardens, London</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £1,900,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 8036 5883</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54450"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="last post-16416 type-property status-publish availability-for-sale property_type-flat-apartment price_qualifier-asking-price tenure-leasehold ph-cols-4 property department-residential-sales office-rps_twn-NEW" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/london/principal-place-worship-street-7/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/NEW/21/NEW210142_05.jpg" alt="Principal Place, Worship Street" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 16</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 2</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 2</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 1</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="16416" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">2 Bed, Flat / Apartment</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/london/principal-place-worship-street-7/">Principal Place, Worship Street</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £1,800,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 020 8016 8597</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="16416"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="first featured post-53618 type-property status-publish availability-for-sale property_type-detached-house property_type-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-EGH" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/surrey/village-road-thorpe/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/GER/20/GER203473_29.jpg" alt="Village Road, Thorpe" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 55</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 3</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 5</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="53618" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">5 Bed, Detached House, House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/surrey/village-road-thorpe/">Village Road, Thorpe</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £1,750,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 01784 779 508</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="53618"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                        <li class="post-54399 type-property status-publish availability-for-sale property_type-detached-house property_type-house price_qualifier-asking-price tenure-freehold ph-cols-4 property department-residential-sales office-rps_twn-ENG" style="height: 467.797px;">
-
-                            <div class="property-item-inner">
-                                <div class="thumbnail">
-                                    <a href="https://www.stirlingackroyd.com/property-for-sale/windsor/pelling-hill-old-windsor/">
-                                        <img src="https://assets.reapit.net/twn/live/pictures/WND/21/WND210239_01.jpg" alt="Pelling Hill, Old Windsor" class="" style="height: 246.667px;"><div class="flag flag-for-sale" style="position:absolute; text-transform:uppercase; font-size:13px; box-sizing:border-box; padding:7px 20px; top:0; left:0;; color:#FFF; background:#151e46;">For Sale</div><div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> 29</div>        </a>
-                                </div>
-
-                                <div class="details">
-
-                                    <!--<h3><a href=""></a></h3>-->
-
-                                    <div class="d-flex justify-content-between"><ul class="property-residential-details">
-                                            <li><i class="fa-light fa-bed-front" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-bath" aria-hidden="true"></i> 5</li>
-                                            <li><i class="fa-light fa-couch" aria-hidden="true"></i> 3</li>
-                                        </ul>
-                                        <a href="" data-add-to-shortlist="54399" class="button sa-shortlist-button" rel="nofollow"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save</span></a></div><div class="property-item-subtitle">5 Bed, Detached House, House</div><h6><a href="https://www.stirlingackroyd.com/property-for-sale/windsor/pelling-hill-old-windsor/">Pelling Hill, Old Windsor</a></h6><div class="summary">
-
-
-                                    </div><div class="price">
-
-                                        £1,750,000
-                                        <span class="price-qualifier">Asking Price</span>
-                                    </div>    <div class="property-branch-details">
-                                        <div>
-                                            <a href="#"><i class="fa-light fa-phone" aria-hidden="true"></i> 01784 779 518</a>
-                                            <span class="property-branch-details--rate">Standard rate</span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54399"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-
-                    </ul>
-
+                            <input type="hidden" name="property_type" value="">
+                            <input type="hidden"
+                                   name="address_keyword"
+                                   value="">
+                            <input type="hidden"
+                                   name="radius"
+                                   value="2">
+                            <input
+                                type="hidden" name="minimum_price" value="">
+                            <input type="hidden" name="maximum_price"
+                                   value="">
+                            <input type="hidden"
+                                   name="minimum_rent"
+                                   value="">
+                            <input
+                                type="hidden" name="maximum_rent" value=""><input type="hidden" name="minimum_bedrooms"
+                                                                                  value="">
+                            <input type="hidden"
+                                   name="department"
+                                   value="residential-sales">
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <div class="propertyhive-pagination">
-                <div class="container">
-                    <ul class="page-numbers">
-                        <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="https://www.stirlingackroyd.com/property-search/page/2/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales">2</a></li>
-                        <li><a class="page-numbers" href="https://www.stirlingackroyd.com/property-search/page/3/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales">3</a></li>
-                        <li><a class="page-numbers" href="https://www.stirlingackroyd.com/property-search/page/4/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales">4</a></li>
-                        <li><span class="page-numbers dots">…</span></li>
-                        <li><a class="page-numbers" href="https://www.stirlingackroyd.com/property-search/page/62/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales">62</a></li>
-                        <li><a class="page-numbers" href="https://www.stirlingackroyd.com/property-search/page/63/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales">63</a></li>
-                        <li><a class="page-numbers" href="https://www.stirlingackroyd.com/property-search/page/64/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales">64</a></li>
-                        <li><a rel="next" class="next page-numbers" href="https://www.stirlingackroyd.com/property-search/page/2/?property_type&amp;address_keyword&amp;radius=2&amp;minimum_price&amp;maximum_price&amp;minimum_rent&amp;maximum_rent&amp;minimum_bedrooms&amp;department=residential-sales"><i class="fa-regular fa-angle-right" aria-hidden="true"></i></a></li>
-                    </ul>
+            {% if proeprties %}
+
+                <div class="properties-list-wrapper">
+                    <div class="container">
+
+                        <ul class="properties clear view-grid">
+
+                            {% for property in proeprties %}
+                                {% set address = property.address_line1 ~ ', ' ~ property.address_city %}
+
+                                <li class="{{ loop.first ? 'first' }} {{ loop.last ? 'last' }} post-{{ property.id }} type-property status-{{ property.status}}">
+
+                                    <div class="property-item-inner">
+                                        <div class="thumbnail">
+                                            <a href="{{ property.link }}">
+                                                {% if property.gallery %}
+                                                    <img src="{{ property.gallery[0].url }}" alt="{{ address }}">
+                                                {% else %}
+                                                    <img src="https://place-hold.it/500x500/.jpg?text=No%20Image" alt="{{ address }}">
+                                                {% endif %}
+                                                <div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> {{ property.gallery | length }}</div>
+                                            </a>
+                                        </div>
+
+                                        <div class="details">
+                                            <div class="d-flex justify-content-between">
+                                                <ul class="property-residential-details">
+                                                    <li><i class="fa-regular fa-lamp-desk"></i> {{ property.availability_size_desks_from ~ ' - ' ~ property.availability_size_desks_to }}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="property-item-subtitle">{{ property.title }}</div>
+                                            <h6><a href="{{ property.link }}">{{ address }}</a></h6>
+                                            <div class="price">
+                                                £{{ property.price_desk_per_month }}
+                                                <span class="price-qualifier">Asking Price</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+
+
+                        </ul>
+
+                    </div>
                 </div>
-            </div>
+
+                {% if properties_query.pagination.pages %}
+
+                    <div class="propertyhive-pagination">
+                        <div class="container">
+                            <ul class="page-numbers">
+                                {% if properties_query.pagination.prev %}
+                                    <li>
+                                        <a href="{{properties_query.pagination.prev.link}}" class="prev {{properties_query.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
+                                    </li>
+                                {% endif %}
+                                {% for page in properties_query.pagination.pages %}
+                                    <li>
+                                        {% if page.link %}
+                                            <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+                                        {% else %}
+                                            <span class="{{page.class}}">{{page.title}}</span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+
+                                {% if properties_query.pagination.next %}
+                                    <li>
+                                        <a href="{{properties_query.pagination.next.link}}" class="next {{properties_query.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                {% endif %}
+
+            {% else %}
+
+                <div class="container mt-5 mb-5">
+                    <div class="alert alert-warning">No results</div>
+                </div>
+
+            {% endif %}
 
         </div>
     </div>
