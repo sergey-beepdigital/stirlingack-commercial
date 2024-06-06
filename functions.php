@@ -174,9 +174,9 @@ class StarterSite extends TimberSite {
 
     function register_post_types() {
         // require_once custom post types here
-        require_once('includes/post-types/form.php');
+        //require_once('includes/post-types/form.php');
         require_once('includes/post-types/branch.php');
-        require_once('includes/post-types/new-home.php');
+        //require_once('includes/post-types/new-home.php');
     }
 
     function register_taxonomies() {
@@ -190,9 +190,9 @@ class StarterSite extends TimberSite {
         // require_once custom acf blocks here
 
         // require_once('includes/blocks/example.php');
-        require_once('includes/blocks/cta-box.php');
-        require_once('includes/blocks/latest-post.php');
-        require_once('includes/blocks/promo.php');
+        //require_once('includes/blocks/cta-box.php');
+        //require_once('includes/blocks/latest-post.php');
+        //require_once('includes/blocks/promo.php');
     }
 
     function add_to_context( $context ) {
@@ -223,32 +223,32 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
-        $google_map_api_key = get_option('propertyhive_google_maps_api_key');
+        //$google_map_api_key = get_option('propertyhive_google_maps_api_key');
 
         // Get rid of default media element
         // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
-        wp_deregister_style('ph-rental-affordability-calculator');
+        //wp_deregister_style('ph-rental-affordability-calculator');
 
         // Remove Wp's jQuery
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
         wp_deregister_script( 'flexslider');
         wp_deregister_script( 'flexslider-init');
 
-        wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
+        //wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
 
-        wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
-        wp_enqueue_script('highcharts','https://code.highcharts.com/highcharts.js');
+        //wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
+        //wp_enqueue_script('highcharts','https://code.highcharts.com/highcharts.js');
 
-        if(is_singular('sa_branch')) {
+        /*if(is_singular('sa_branch')) {
             wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
-        }
+        }*/
 
-        if(is_singular('sa_new_home')) {
+        /*if(is_singular('sa_new_home')) {
             wp_enqueue_script('google-maps');
             wp_enqueue_style( 'flexslider_css', plugins_url('propertyhive/assets/css/flexslider.css') );
-        }
+        }*/
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
@@ -263,7 +263,7 @@ class StarterSite extends TimberSite {
 
         wp_localize_script('deferred.js', 'sg_config', [
             'google_maps' => [
-                'api_key'     => $google_map_api_key,
+                //'api_key'     => $google_map_api_key,
                 //'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
                 'marker_url'  => 'https://tinyurl.com/markerurl',
             ],
@@ -696,8 +696,6 @@ function sa_breadcrumbs() {
     if($post->ID == $context['options']['page']['thank_you_page_id']) return;
 
     if(is_front_page()) return;
-
-    if(is_property()) return;
 
     if ( function_exists('yoast_breadcrumb') ) {
         yoast_breadcrumb( '<div id="breadcrumbs"><div class="container">','</div></div>' );

@@ -2,8 +2,8 @@
 
 $args = array(
     'labels'             => array(
-        'name'          => __('Branches'),
-        'singular_name' => __('Branch')
+        'name'          => __('Properties'),
+        'singular_name' => __('Property')
     ),
 	'supports'              => array( 'title', 'editor', 'thumbnail' ),
 	'hierarchical'          => false,
@@ -19,10 +19,10 @@ $args = array(
 	'exclude_from_search'   => true,
 	'publicly_queryable'    => true,
 	'rewrite'               => array(
-	    'slug'=>'our-branches',
+	    'slug'=>'property',
         'with_front' => true
     ),
 	'capability_type'       => 'post',
 	'show_in_rest'          => false,
 );
-register_post_type( 'sa_branch', $args );
+register_post_type( 'sa_property', $args );
