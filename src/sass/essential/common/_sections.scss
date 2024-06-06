@@ -1,4 +1,12 @@
 .page-section{
+    &--padding-top50{
+        padding-top:50px;
+    }
+
+    &--padding-bottom50{
+        padding-bottom:50px;
+    }
+
     &--padding50{
         padding-top: 50px;
         padding-bottom: 50px;

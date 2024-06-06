@@ -1,0 +1,395 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {% set address = post.address_line1 ~ ', ' ~ post.address_city %}
+
+    <div class="content-wrapper">
+        <section class="section-properties">
+            <section class="page-section page-section--padding50"><div class="container">
+
+                    <div id="property-{{ post.id }}" class="post-{{ post.id }} type-property status-{{ post.status }} property">
+                        <div class="property-detail-back-action-wrap">
+                            <a href="javascript:;" onclick="history.back();"><i class="fa-regular fa-angle-left" aria-hidden="true"></i> BACK TO SEARCH RESULTS</a>
+                        </div>
+                        <div class="images">
+                            <div id="slider" class="flexslider">
+                                <ul class="slides">
+                                    {% for image in post.gallery %}
+                                        <li>
+                                            <a href="{{ image.url }}" class="propertyhive-main-image" title="" data-fancybox="gallery">
+                                                <img class="lazy" draggable="false" src="{{ image.url }}">
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> {{ post.gallery | length }}</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-7">
+
+                                <div class="summary entry-summary">
+
+                                    <div class="property-detail-heading"><h1 class="property_title entry-title">{{ address }}</h1>
+                                        <div class="price">
+                                            {% if post.price_from and post.price_to %}
+                                                £{{ post.price_from ~ '-' ~ post.price_to }}
+                                            {% else %}
+                                                £{{ post.price_from  }}
+                                            {% endif %}
+                                            <span class="price-qualifier">Asking Price</span>
+                                        </div>
+                                    </div><ul class="property-residential-details">
+                                        <li><i class="fa-regular fa-lamp-desk"></i> {{ post.availability_size_desks_from ~ ' - ' ~ post.availability_size_desks_to }}</li>
+                                    </ul>
+
+                                </div><!-- .summary -->
+                            </div>
+                            <div class="col-lg-4 col-md-5">
+
+                                <div class="property-arrange-viewing text-center mt-4 mt-md-0" id="property-arrange-viewing">
+                                    <div class="property-arrange-viewing--office-contacts">
+                                        <div class="branch-info">
+                                            <div class="branch-info--name">West End Branch</div>
+                                            <div>
+                                                <a href="tel:02039178218" class="branch-info--phone-number h3 mb-0 text-uppercase">020 3917 8218</a>
+                                            </div>
+                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54278" class="btn btn-lg btn-primary text-uppercase">Arrange a Viewing</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mobile-sticky-contact-box d-block d-md-none">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="tel:02039178218" class="btn btn-block btn-primary">Call Agent</a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54278" class="btn btn-block btn-primary">Email Agent</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-8">
+
+
+                            </div>
+                        </div>
+
+                    </div><!-- #property-{{ post.id}} -->
+                </div>
+            </section>
+
+            <section class="page-section page-section--padding-bottom50 section-property-detail-content-tabs">
+                <div class="container">
+                    <ul class="property-detail-tabs nav">
+                        <li>
+                            <a class="active" data-toggle="tab" href="#property-info-description">Description</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#property-info-location">Location</a>
+                        </li>
+
+                        {% if post.transport %}
+
+                            <li>
+                                <a data-toggle="tab" href="#property-info-transport">Transport</a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <div id="property-info-description" class="tab-pane fade show active">
+                            <h3 class="tab-pane-hidden-title">Description</h3>
+                            <div class="property-detail-description-wrapper">
+                                <div class="row">
+                                    {% if post.amenities %}
+                                        <div class="col-xl-4 offset-xl-1 order-lg-2 col-lg-4">
+                                            <div class="features">
+                                                <h4 class="mb-3">Amenities</h4>
+                                                <ul>
+                                                    {% for amenity in post.amenities %}
+                                                        <li>{{ amenity }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="{{ post.amenities ? 'col-xl-7 order-lg-1 col-lg-8 mt-3 mt-sm-5 mt-lg-0' : 'col-12' }}">
+                                        <div class="description">
+                                            <div class="description-contents">
+                                                {{ post.content }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="property-info-location" class="tab-pane fade">
+                            <h3 class="tab-pane-hidden-title">Location</h3>
+                            <div id="property_map_canvas" style="background:#EEE; height:400px"></div>
+                            <script>
+
+                                var property_map;
+                                var property_marker;
+
+                                function initialize_property_map() {
+                                    var myLatlng = new google.maps.LatLng({{ post.address_lat }},{{ post.address_long }});
+                                    var map_options = {
+                                        zoom: 14,
+                                        center: myLatlng,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                        scrollwheel: true
+                                    }
+
+                                    map_options.styles = [
+                                        {
+                                            "featureType": "water",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#e9e9e9"
+                                                },
+                                                {
+                                                    "lightness": 17
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "landscape",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#f5f5f5"
+                                                },
+                                                {
+                                                    "lightness": 20
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "road.highway",
+                                            "elementType": "geometry.fill",
+                                            "stylers": [
+                                                {
+                                                    "color": "#ffffff"
+                                                },
+                                                {
+                                                    "lightness": 17
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "road.highway",
+                                            "elementType": "geometry.stroke",
+                                            "stylers": [
+                                                {
+                                                    "color": "#ffffff"
+                                                },
+                                                {
+                                                    "lightness": 29
+                                                },
+                                                {
+                                                    "weight": 0.2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "road.arterial",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#ffffff"
+                                                },
+                                                {
+                                                    "lightness": 18
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "road.local",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#ffffff"
+                                                },
+                                                {
+                                                    "lightness": 16
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "poi",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#f5f5f5"
+                                                },
+                                                {
+                                                    "lightness": 21
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "poi.park",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#dedede"
+                                                },
+                                                {
+                                                    "lightness": 21
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "elementType": "labels.text.stroke",
+                                            "stylers": [
+                                                {
+                                                    "visibility": "on"
+                                                },
+                                                {
+                                                    "color": "#ffffff"
+                                                },
+                                                {
+                                                    "lightness": 16
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "elementType": "labels.text.fill",
+                                            "stylers": [
+                                                {
+                                                    "saturation": 36
+                                                },
+                                                {
+                                                    "color": "#333333"
+                                                },
+                                                {
+                                                    "lightness": 40
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "elementType": "labels.icon",
+                                            "stylers": [
+                                                {
+                                                    "visibility": "off"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "transit",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "color": "#f2f2f2"
+                                                },
+                                                {
+                                                    "lightness": 19
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "administrative",
+                                            "elementType": "geometry.fill",
+                                            "stylers": [
+                                                {
+                                                    "color": "#fefefe"
+                                                },
+                                                {
+                                                    "lightness": 20
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "administrative",
+                                            "elementType": "geometry.stroke",
+                                            "stylers": [
+                                                {
+                                                    "color": "#fefefe"
+                                                },
+                                                {
+                                                    "lightness": 17
+                                                },
+                                                {
+                                                    "weight": 1.2
+                                                }
+                                            ]
+                                        }
+                                    ];
+
+                                    property_map = new google.maps.Map(document.getElementById("property_map_canvas"), map_options);
+
+                                    property_marker = new google.maps.Marker({
+                                        map: property_map,
+                                        position: myLatlng,
+                                        icon: {
+                                            url: sg_config.google_maps.marker_url
+                                        }
+                                    });
+
+                                }
+
+                                if(window.addEventListener) {
+                                    window.addEventListener('load', initialize_property_map);
+                                }else{
+                                    window.attachEvent('onload', initialize_property_map);
+                                }
+
+                            </script>
+                        </div>
+
+                        {% if post.transport %}
+
+                            <div id="property-info-transport" class="tab-pane fade">
+                                <h3 class="tab-pane-hidden-title">Transport</h3>
+
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="row">
+
+                                            {% for transport_item in post.transport %}
+
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="property-transport-item d-flex">
+                                                        <div>
+                                                            {% if transport_item.type == 'SUBWAY_STATION' %}
+                                                                <i class="fa-light fa-train-subway-tunnel"></i>
+                                                            {% else %}
+                                                                <i class="fa-sharp fa-regular fa-train"></i>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div>
+                                                            <div><strong>{{ transport_item.name }}</strong></div>
+                                                            <div>{{ transport_item.duration.text }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+
+{% endblock %}

@@ -1,3 +1,13 @@
+.property-transport-item{
+    display: flex;
+    gap: 16px;
+
+    i{
+        font-size: 24px;
+        margin-top: 4px;
+    }
+}
+
 .property-arrange-viewing{
     background-color: $brand-main-blue;
     padding: 20px;

@@ -223,7 +223,7 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
-        //$google_map_api_key = get_option('propertyhive_google_maps_api_key');
+        $google_map_api_key = get_field('google_api_key','option');
 
         // Get rid of default media element
         // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
@@ -236,7 +236,7 @@ class StarterSite extends TimberSite {
         wp_deregister_script( 'flexslider');
         wp_deregister_script( 'flexslider-init');
 
-        //wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
+        wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
 
         //wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
         //wp_enqueue_script('highcharts','https://code.highcharts.com/highcharts.js');
@@ -245,10 +245,12 @@ class StarterSite extends TimberSite {
             wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
         }*/
 
-        /*if(is_singular('sa_new_home')) {
+        if(is_singular('sa_property')) {
             wp_enqueue_script('google-maps');
-            wp_enqueue_style( 'flexslider_css', plugins_url('propertyhive/assets/css/flexslider.css') );
-        }*/
+            /*wp_enqueue_style( 'flexslider_css', plugins_url('propertyhive/assets/css/flexslider.css') );*/
+        }
+
+        wp_enqueue_style('flexslider','https://www.stirlingackroyd.com/wp-content/plugins/propertyhive/assets/css/flexslider.css?ver=2.7.2');
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
@@ -263,9 +265,9 @@ class StarterSite extends TimberSite {
 
         wp_localize_script('deferred.js', 'sg_config', [
             'google_maps' => [
-                //'api_key'     => $google_map_api_key,
-                //'marker_url' => get_template_directory_uri() . '/dist/images/map-marker-square.png'
-                'marker_url'  => 'https://tinyurl.com/markerurl',
+                'api_key'     => $google_map_api_key,
+                'marker_url' => get_template_directory_uri() . '/dist/images/map-marker.svg'
+                //'marker_url'  => 'https://tinyurl.com/markerurl',
             ],
             'images_path' => get_template_directory_uri() . '/dist/images/'
         ]);
@@ -607,6 +609,10 @@ function sa_body_class($classes) {
         $classes[] = 'page-job-detail';
     }
 
+    if(is_singular('sa_property')) {
+        $classes[] = 'single-property';
+    }
+
     return $classes;
 }
 add_filter('body_class','sa_body_class');
@@ -697,6 +703,8 @@ function sa_breadcrumbs() {
 
     if(is_front_page()) return;
 
+    if(is_singular('sa_property')) return;
+
     if ( function_exists('yoast_breadcrumb') ) {
         yoast_breadcrumb( '<div id="breadcrumbs"><div class="container">','</div></div>' );
     }
@@ -779,7 +787,7 @@ add_filter( 'wpseo_breadcrumb_links', 'breadcrumbs_add_post_parent_page' );
 
 
 function sa_acf_set_google_map( $api ){
-    $api_key = get_option('propertyhive_google_maps_api_key');
+    $api_key = get_field('google_api_key','option');
 
     if(!empty($api_key)) {
         $api['key'] = $api_key;
