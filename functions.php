@@ -2,13 +2,13 @@
 
 require_once 'includes/help-functions.php';
 require_once 'includes/classes/class.mailer.php';
-require_once 'includes/classes/class.property-branch.php';
+//require_once 'includes/classes/class.property-branch.php';
 
 include "includes/shortcodes.php";
-include "includes/properyhive-hooks.php";
+//include "includes/properyhive-hooks.php";
 
-include_once 'includes/classes/class.workable-api.php';
-include_once 'includes/classes/class.workable-ajax.php';
+//include_once 'includes/classes/class.workable-api.php';
+//include_once 'includes/classes/class.workable-ajax.php';
 
 add_filter('https_ssl_verify', '__return_false');
 
