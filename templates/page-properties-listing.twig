@@ -12,30 +12,51 @@
                     <a class="property-search-expandable--collapse-control btn btn-lg btn-primary" href="#property-search-collapse-box" data-action="mobileTogglePropertiesFilter"><i class="fal fa-sliders-h" aria-hidden="true"></i> REFINE</a>
 
                     <div class="property-search-expandable--collapse" id="property-search-collapse-box">
-                        <form name="ph_property_search" class="property-search-form mb-0 property-search-form-default clear" action="https://www.stirlingackroyd.com/property-search/" method="get" role="form">
-
+                        <form name="ph_property_search" class="property-search-form mb-0 property-search-form-default clear" action="/" method="get" role="form">
                             <div class="form-controls-wrap">
 
+                                <div class="control control-address_keyword">
+                                    <label for="address_keyword">Area or Postcode</label>
+                                    <input type="text" name="address_keyword" id="address_keyword" value="{{ request.get.address_keyword }}" placeholder="e.g. EC2" class="pac-target-input" style="" autocomplete="off">
+                                </div>
 
+                                {#<div class="control control-radius">
+                                    <label for="radius">Radius</label>
+                                    <select name="radius" id="radius" class="" data-blank-option="">
+                                        <option value="">This Area Only</option>
+                                        <option value="1">Within 1 Mile</option>
+                                        <option value="2" selected="selected">Within 2 Miles</option>
+                                        <option value="3">Within 3 Miles</option>
+                                        <option value="5">Within 5 Miles</option>
+                                        <option value="10">Within 10 Miles</option>
+                                    </select>
+                                </div>#}
 
-                                <div class="control control-address_keyword"><label for="address_keyword">Area or Postcode</label><input type="text" name="address_keyword" id="address_keyword" value="" placeholder="e.g. EC2" class="pac-target-input" style="" autocomplete="off"></div>
+                                <div class="control control-minimum_desks">
+                                    <label for="minimum_desks">Min Desks</label>
+                                    <select name="minimum_desks" id="minimum_desks" class="">
+                                        <option value="" selected="selected">No min</option>
+                                        {% for item in 1..100 %}
+                                            <option {{ request.get.minimum_desks == item ? 'selected' }} value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
 
+                                <div class="control control-maximum_desks">
+                                    <label for="maximum_desks">Max Desks</label>
+                                    <select name="maximum_desks" id="maximum_desks" class="">
+                                        <option value="" selected="selected">No max</option>
+                                        {% for item in 1..100 %}
+                                            <option {{ request.get.maximum_desks == item ? 'selected' }} value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
 
-                                <div class="control control-radius"><label for="radius">Radius</label><select name="radius" id="radius" class="" data-blank-option=""><option value="">This Area Only</option><option value="1">Within 1 Mile</option><option value="2" selected="selected">Within 2 Miles</option><option value="3">Within 3 Miles</option><option value="5">Within 5 Miles</option><option value="10">Within 10 Miles</option></select></div>
-
-
-                                <div class="control control-minimum_price sales-only" style="display: block;"><label for="minimum_price">Min Desks</label><select name="minimum_price" id="minimum_price" class="" data-blank-option=""><option value="" selected="selected">No min</option><option value="100000">£100,000</option><option value="200000">£200,000</option><option value="300000">£300,000</option><option value="500000">£500,000</option><option value="750000">£750,000</option><option value="1000000">£1,000,000</option><option value="1500000">£1,500,000</option><option value="2000000">£2,000,000</option><option value="2500000">£2,500,000</option><option value="3000000">£3,000,000</option></select></div>
-
-
-                                <div class="control control-maximum_price sales-only" style="display: block;"><label for="maximum_price">Max Desks</label><select name="maximum_price" id="maximum_price" class="" data-blank-option=""><option value="" selected="selected">No max</option><option value="100000">£100,000</option><option value="200000">£200,000</option><option value="300000">£300,000</option><option value="500000">£500,000</option><option value="750000">£750,000</option><option value="1000000">£1,000,000</option><option value="1500000">£1,500,000</option><option value="2000000">£2,000,000</option><option value="2500000">£2,500,000</option><option value="3000000">£3,000,000</option><option value="5000000">£5,000,000</option><option value="6000000">£6,000,000</option></select></div>
-
-
-                                <input type="hidden" name="department" value="residential-sales">
-
+                                <input type="hidden" name="list_view" value="{{ list_view }}">
+                                <input type="hidden" name="sortby" value="{{ list_sortby }}">
 
                                 <div>
-                                    <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase"><i class="fa-regular fa-magnifying-glass" aria-hidden="true"></i> Update Results
-                                    </button>
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase"><i class="fa-regular fa-magnifying-glass" aria-hidden="true"></i> Update Results</button>
                                 </div>
 
                             </div>
@@ -51,11 +72,11 @@
 
                         <div class="propertyhive-views">
                             <ul>
-                                <li class="grid-view active"><a
-                                        href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales"><i
+                                <li class="grid-view {{ list_view == 'grid' ? 'active' }}"><a
+                                        href="{{ site.link }}?list_view=grid"><i
                                             class="fa-regular fa-border-all" aria-hidden="true"></i> Tile View</a></li>
-                                <li class="list-view"><a
-                                        href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales&amp;view=list"><i
+                                <li class="list-view {{ list_view == 'list' ? 'active' }}"><a
+                                        href="{{ site.link }}?list_view=list"><i
                                             class="fa-regular fa-bars-staggered" aria-hidden="true"></i> List View</a>
                                 </li>
                                 <li class="map-view"><a
@@ -65,32 +86,16 @@
                         </div>
                         <form class="propertyhive-ordering" method="get">
                             <div class="propertyhive-ordering--inner">
-                                <select name="orderby" class="orderby">
-                                    <option value="price-desc">Sort by price: high to low</option>
-                                    <option value="date">Sort by date added</option>
-                                    <option value="price-asc">Sort by price: low to high</option>
+                                <input type="hidden" name="minimum_desks" value="{{ request.get.minimum_desks }}">
+                                <input type="hidden" name="maximum_desks" value="{{ request.get.maximum_desks }}">
+                                <input type="hidden" name="list_view" value="{{ list_view }}">
+
+                                <select name="sortby" class="orderby">
+                                    <option value="price-desc" {{ list_sortby == 'price-desc' ? 'selected' }}>Sort by price: high to low</option>
+                                    {#<option value="date" {{ request.get.sortby == 'date' ? 'selected' }}>Sort by date added</option>#}
+                                    <option value="price-asc" {{ list_sortby == 'price-asc' ? 'selected' }}>Sort by price: low to high</option>
                                 </select>
                             </div>
-                            <input type="hidden" name="property_type" value="">
-                            <input type="hidden"
-                                   name="address_keyword"
-                                   value="">
-                            <input type="hidden"
-                                   name="radius"
-                                   value="2">
-                            <input
-                                type="hidden" name="minimum_price" value="">
-                            <input type="hidden" name="maximum_price"
-                                   value="">
-                            <input type="hidden"
-                                   name="minimum_rent"
-                                   value="">
-                            <input
-                                type="hidden" name="maximum_rent" value=""><input type="hidden" name="minimum_bedrooms"
-                                                                                  value="">
-                            <input type="hidden"
-                                   name="department"
-                                   value="residential-sales">
                         </form>
                     </div>
                 </div>
@@ -101,12 +106,10 @@
                 <div class="properties-list-wrapper">
                     <div class="container">
 
-                        <ul class="properties clear view-grid">
+                        <ul class="properties clear view-{{ list_view }}">
 
                             {% for property in proeprties %}
-                                {% set postcodeSplit = property.address_postcode | split(' ') %}
-                                {% set postcode = postcodeSplit | length > 1 ? postcodeSplit[0] : property.address_postcode %}
-                                {% set address = property.address_city ~ ', ' ~ postcode %}
+                                {% set address = property.address_city ~ ', ' ~ property.address_postcode_short %}
 
                                 <li class="{{ loop.first ? 'first' }} {{ loop.last ? 'last' }} post-{{ property.id }} type-property status-{{ property.status}}">
 

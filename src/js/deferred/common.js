@@ -34,7 +34,9 @@ var SA_Common = SA_Common || {};
                 //SA_Common.initGalleryCarousel();
                 AOS.init();
 
-                $('[data-fancybox="gallery"]').fancybox();
+                $('select[name="sortby"]').on('change', function() {
+                    $(this).closest('form').submit();
+                });
             },
 
             events: function () {
