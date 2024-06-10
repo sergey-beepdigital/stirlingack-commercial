@@ -68,7 +68,12 @@
             <div class="property-search-info-wrap">
                 <div class="container">
                     <div class="property-search-info-wrap--inner">
-                        <h1 class="propertyhive-result-count">Showing {{ properties_page_show1 }}{% if properties_page_show2 and properties_page_show1 != properties_page_show2  %}-{{ properties_page_show2 }}{% endif %} of {{ properties_total }} properties</h1>
+                        <h1 class="propertyhive-result-count">
+                            Showing {{ properties_page_show1 }}{% if properties_page_show2 and properties_page_show1 != properties_page_show2  %}-{{ properties_page_show2 }}{% endif %} of {{ properties_total }} properties
+                            {% if request.get.address_keyword %}
+                                <span class="address-keyword-text">IN <span class="keyword-name">{{ request.get.address_keyword }}</span></span>
+                            {% endif %}
+                        </h1>
 
                         <div class="propertyhive-views">
                             <ul>
