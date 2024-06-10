@@ -79,114 +79,132 @@
                                         href="{{ site.link }}?{{ link_query | merge({list_view:'list'}) | url_encode }}"><i
                                             class="fa-regular fa-bars-staggered" aria-hidden="true"></i> List View</a>
                                 </li>
-                                <li class="map-view"><a
-                                        href="https://www.stirlingackroyd.com/property-search/?property_type=&amp;address_keyword=&amp;radius=2&amp;minimum_price=&amp;maximum_price=&amp;minimum_rent=&amp;maximum_rent=&amp;minimum_bedrooms=&amp;department=residential-sales&amp;view=map"><i
+                                <li class="map-view {{ list_view == 'map' ? 'active' }}"><a
+                                        href="{{ site.link }}?{{ link_query | merge({list_view:'map'}) | url_encode }}"><i
                                             class="fa-regular fa-map" aria-hidden="true"></i> Map View</a></li>
                             </ul>
                         </div>
-                        <form class="propertyhive-ordering" method="get">
-                            <div class="propertyhive-ordering--inner">
-                                <input type="hidden" name="address_keyword" value="{{ request.get.address_keyword }}">
-                                <input type="hidden" name="minimum_desks" value="{{ request.get.minimum_desks }}">
-                                <input type="hidden" name="maximum_desks" value="{{ request.get.maximum_desks }}">
-                                <input type="hidden" name="list_view" value="{{ list_view }}">
 
-                                <select name="sortby" class="orderby">
-                                    <option value="price-desc" {{ list_sortby == 'price-desc' ? 'selected' }}>Sort by price: high to low</option>
-                                    {#<option value="date" {{ request.get.sortby == 'date' ? 'selected' }}>Sort by date added</option>#}
-                                    <option value="price-asc" {{ list_sortby == 'price-asc' ? 'selected' }}>Sort by price: low to high</option>
-                                </select>
-                            </div>
-                        </form>
+                        {% if list_view != 'map' %}
+
+                            <form class="propertyhive-ordering" method="get">
+                                <div class="propertyhive-ordering--inner">
+                                    <input type="hidden" name="address_keyword" value="{{ request.get.address_keyword }}">
+                                    <input type="hidden" name="minimum_desks" value="{{ request.get.minimum_desks }}">
+                                    <input type="hidden" name="maximum_desks" value="{{ request.get.maximum_desks }}">
+                                    <input type="hidden" name="list_view" value="{{ list_view }}">
+
+                                    <select name="sortby" class="orderby">
+                                        <option value="price-desc" {{ list_sortby == 'price-desc' ? 'selected' }}>Sort by price: high to low</option>
+                                        {#<option value="date" {{ request.get.sortby == 'date' ? 'selected' }}>Sort by date added</option>#}
+                                        <option value="price-asc" {{ list_sortby == 'price-asc' ? 'selected' }}>Sort by price: low to high</option>
+                                    </select>
+                                </div>
+                            </form>
+
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
 
-            {% if proeprties %}
+            {% if list_view == 'map' %}
 
-                <div class="properties-list-wrapper">
-                    <div class="container">
+                <script>
+                    var propertiesCoords = {{ map_properties | json_encode }};
+                </script>
 
-                        <ul class="properties clear view-{{ list_view }}">
-
-                            {% for property in proeprties %}
-                                {% set address = property.address_city ~ ', ' ~ property.address_postcode_short %}
-
-                                <li class="{{ loop.first ? 'first' }} {{ loop.last ? 'last' }} post-{{ property.id }} type-property status-{{ property.status}}">
-
-                                    <div class="property-item-inner">
-                                        <div class="thumbnail">
-                                            <a href="{{ property.link }}">
-                                                {% if property.gallery %}
-                                                    <img src="{{ property.gallery[0].url }}" alt="{{ property.title }}">
-                                                {% else %}
-                                                    <img src="https://place-hold.it/500x500/.jpg?text=No%20Image" alt="{{ property.title }}">
-                                                {% endif %}
-                                                <div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> {{ property.gallery | length }}</div>
-                                            </a>
-                                        </div>
-
-                                        <div class="details">
-                                            <div class="d-flex justify-content-between">
-                                                <ul class="property-residential-details">
-                                                    <li><i class="fa-regular fa-lamp-desk"></i> {{ property.availability_size_desks_from ~ ' - ' ~ property.availability_size_desks_to }}</li>
-                                                </ul>
-                                            </div>
-                                            <div class="property-item-subtitle">{{ property.title }}</div>
-                                            <h6><a href="{{ property.link }}">{{ address }}</a></h6>
-                                            <div class="price">
-                                                £{{ property.price_desk_per_month }}
-                                                <span class="price-qualifier">Asking Price</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                            {% endfor %}
-
-
-                        </ul>
-
-                    </div>
-                </div>
-
-                {% if properties_query.pagination.pages %}
-
-                    <div class="propertyhive-pagination">
-                        <div class="container">
-                            <ul class="page-numbers">
-                                {% if properties_query.pagination.prev %}
-                                    <li>
-                                        <a href="{{properties_query.pagination.prev.link}}" class="prev {{properties_query.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
-                                    </li>
-                                {% endif %}
-                                {% for page in properties_query.pagination.pages %}
-                                    <li>
-                                        {% if page.link %}
-                                            <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
-                                        {% else %}
-                                            <span class="{{page.class}}">{{page.title}}</span>
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-
-                                {% if properties_query.pagination.next %}
-                                    <li>
-                                        <a href="{{properties_query.pagination.next.link}}" class="next {{properties_query.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </div>
-
-                {% endif %}
+                <div id="properties-map" style="height: 600px;"></div>
 
             {% else %}
 
-                <div class="container mt-5 mb-5">
-                    <div class="alert alert-warning">No results</div>
-                </div>
+                {% if proeprties %}
+
+                    <div class="properties-list-wrapper">
+                        <div class="container">
+
+                            <ul class="properties clear view-{{ list_view }}">
+
+                                {% for property in proeprties %}
+                                    {% set address = property.address_city ~ ', ' ~ property.address_postcode_short %}
+
+                                    <li class="{{ loop.first ? 'first' }} {{ loop.last ? 'last' }} post-{{ property.id }} type-property status-{{ property.status}}">
+
+                                        <div class="property-item-inner">
+                                            <div class="thumbnail">
+                                                <a href="{{ property.link }}">
+                                                    {% if property.gallery %}
+                                                        <img src="{{ property.gallery[0].url }}" alt="{{ property.title }}">
+                                                    {% else %}
+                                                        <img src="https://place-hold.it/500x500/.jpg?text=No%20Image" alt="{{ property.title }}">
+                                                    {% endif %}
+                                                    <div class="property-images-count"><i class="fa-light fa-camera" aria-hidden="true"></i> {{ property.gallery | length }}</div>
+                                                </a>
+                                            </div>
+
+                                            <div class="details">
+                                                <div class="d-flex justify-content-between">
+                                                    <ul class="property-residential-details">
+                                                        <li><i class="fa-regular fa-lamp-desk"></i> {{ property.availability_size_desks_from ~ ' - ' ~ property.availability_size_desks_to }}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="property-item-subtitle">{{ property.title }}</div>
+                                                <h6><a href="{{ property.link }}">{{ address }}</a></h6>
+                                                <div class="price">
+                                                    £{{ property.price_desk_per_month }}
+                                                    <span class="price-qualifier">Asking Price</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    {% if properties_query.pagination.pages %}
+
+                        <div class="propertyhive-pagination">
+                            <div class="container">
+                                <ul class="page-numbers">
+                                    {% if properties_query.pagination.prev %}
+                                        <li>
+                                            <a href="{{properties_query.pagination.prev.link}}" class="prev {{properties_query.pagination.prev.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-left"></i></a>
+                                        </li>
+                                    {% endif %}
+                                    {% for page in properties_query.pagination.pages %}
+                                        <li>
+                                            {% if page.link %}
+                                                <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+                                            {% else %}
+                                                <span class="{{page.class}}">{{page.title}}</span>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+
+                                    {% if properties_query.pagination.next %}
+                                        <li>
+                                            <a href="{{properties_query.pagination.next.link}}" class="next {{properties_query.pagination.next.link|length ? '' : 'invisible'}}"><i class="fa-regular fa-angle-right"></i></a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                {% else %}
+
+                    <div class="container mt-5 mb-5">
+                        <div class="alert alert-warning">No results</div>
+                    </div>
+
+                {% endif %}
 
             {% endif %}
 

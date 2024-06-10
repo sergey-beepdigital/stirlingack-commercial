@@ -51,7 +51,32 @@ if ( isset( $_GET['maximum_desks'] ) && ! empty( $_GET['maximum_desks'] ) ) {
     ];
 }
 
+if($context['list_view'] == 'map') {
+    $query_args['posts_per_page'] = -1;
+}
+
 $properties_query = new Timber\PostQuery( $query_args );
+
+if($context['list_view'] == 'map') {
+    $property_coords = [];
+    $properties_list = $properties_query->get_posts();
+
+    foreach ( $properties_list as $property ) {
+        if(!empty($property->address_map['lat'] && $property->address_map['lng'])) {
+            $gallery = $property->gallery;
+
+            $property_coords[] = [
+                'title' => $property->post_title,
+                'lat'   => $property->address_map['lat'],
+                'lng'   => $property->address_map['lng'],
+                'image' => $gallery[0]['url'],
+                'url'   => get_the_permalink( $property->ID )
+            ];
+        }
+    }
+
+    $context['map_properties'] = $property_coords;
+}
 
 $context['properties_query']      = $properties_query;
 $context['properties_page_show1'] = $properties_query->found_posts ? ( ( $page * $posts_per_page ) - $posts_per_page ) + 1 : 0;
