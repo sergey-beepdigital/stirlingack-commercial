@@ -9,6 +9,13 @@ $context['list_sortby'] = $_GET['sortby'] ? $_GET['sortby'] : 'price-desc';
 $page           = get_query_var( 'page' ) ? get_query_var( 'page' ) : 1;
 $posts_per_page = get_option( 'posts_per_page' );
 
+$link_query['address_keyword'] = ! empty( $_GET['address_keyword'] ) ? $_GET['address_keyword'] : '';
+$link_query['minimum_desks'] = ! empty( $_GET['minimum_desks'] ) ? $_GET['minimum_desks'] : '';
+$link_query['maximum_desks'] = ! empty( $_GET['maximum_desks'] ) ? $_GET['maximum_desks'] : '';
+$link_query['sortby'] = $context['list_sortby'];
+
+$context['link_query'] = $link_query;
+
 $query_args = [
     'post_status'    => 'publish',
     'post_type'      => 'sa_property',
@@ -43,10 +50,6 @@ if ( isset( $_GET['maximum_desks'] ) && ! empty( $_GET['maximum_desks'] ) ) {
         'type'    => 'NUMERIC'
     ];
 }
-
-/*echo '<pre>';
-print_r( $query_args );
-echo '</pre>';*/
 
 $properties_query = new Timber\PostQuery( $query_args );
 

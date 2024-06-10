@@ -73,10 +73,10 @@
                         <div class="propertyhive-views">
                             <ul>
                                 <li class="grid-view {{ list_view == 'grid' ? 'active' }}"><a
-                                        href="{{ site.link }}?list_view=grid"><i
+                                        href="{{ site.link }}?{{ link_query | merge({list_view:'grid'}) | url_encode }}"><i
                                             class="fa-regular fa-border-all" aria-hidden="true"></i> Tile View</a></li>
                                 <li class="list-view {{ list_view == 'list' ? 'active' }}"><a
-                                        href="{{ site.link }}?list_view=list"><i
+                                        href="{{ site.link }}?{{ link_query | merge({list_view:'list'}) | url_encode }}"><i
                                             class="fa-regular fa-bars-staggered" aria-hidden="true"></i> List View</a>
                                 </li>
                                 <li class="map-view"><a
@@ -86,6 +86,7 @@
                         </div>
                         <form class="propertyhive-ordering" method="get">
                             <div class="propertyhive-ordering--inner">
+                                <input type="hidden" name="address_keyword" value="{{ request.get.address_keyword }}">
                                 <input type="hidden" name="minimum_desks" value="{{ request.get.minimum_desks }}">
                                 <input type="hidden" name="maximum_desks" value="{{ request.get.maximum_desks }}">
                                 <input type="hidden" name="list_view" value="{{ list_view }}">
