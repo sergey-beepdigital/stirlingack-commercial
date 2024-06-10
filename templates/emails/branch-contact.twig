@@ -5,7 +5,7 @@ Name: {{ body.form_data.first_name }} {{ body.form_data.surname }}
 E-mail: {{ body.form_data.email_address }}
 Mobile: {{ body.form_data.phone_number }}
 Source: {{ body.site_title }}
-Enquiry Type: {{ body.form_data.department | capitalize }}
+Enquiry Type: Offices
 <div style="margin-bottom: 10px;">Message: {{ body.form_data.enquiry_text }}</div>
 {% if body.property.id %}
     Property Ref: {{ fn('get_field','_reference_number',body.property.id) }}

@@ -335,7 +335,6 @@ var SA_Common = SA_Common || {};
             branchContactPopup: function () {
                 var $that = $(this);
                 var id = $that.data('id');
-                var department = $that.data('department');
 
                 $.ajax({
                     method: "POST",
@@ -343,8 +342,7 @@ var SA_Common = SA_Common || {};
                     beforeLoad: ajaxLoader(true),
                     data: {
                         action: 'branch_contact_popup',
-                        id: id,
-                        department: department
+                        id: id
                     },
                     success: function (response) {
                         parent.jQuery.fancybox.open({
@@ -375,18 +373,15 @@ var SA_Common = SA_Common || {};
                             e.target.reset();
 
                             if (typeof gtag === 'function') {
-                                var gaEventKey = (response.department == 'sale') ? 'Sales' : 'Lettings';
-                                var gaEventPrefix = (response.type == 'property') ? 'Property' : 'Branch';
-
-                                gtag('event', gaEventPrefix + gaEventKey, {
-                                    'event_category': gaEventPrefix + 'Viewing',
+                                gtag('event', "Office Property", {
+                                    'event_category': 'Office Viewing',
                                     'event_label': 'Submit Form'
                                 });
                             }
 
-                            if(ewt !== undefined) {
-                                ewt.track({name: 'page', type: 'Property' + gaEventKey});
-                            }
+                            /*if(ewt !== undefined) {
+                                ewt.track({name: 'page', type: 'Property Office'});
+                            }*/
 
                             location.href = response.redirect_url;
 

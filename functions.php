@@ -817,20 +817,10 @@ add_filter('nav_menu_css_class', 'sa_highlight_post_type_parent_pages_nav', 1, 3
 function sa_branch_contact_popup() {
     $context = Timber::get_context();
 
-    $branch_id = $_REQUEST['id'];
+    $property_id = $_REQUEST['id'];
 
-    $post_type = get_post_type($branch_id);
-    if($post_type == 'property') {
-        $property = get_property(get_post($branch_id));
-
-        $branch = new SA_PropertyBranch($property);
-        $branch_id = $branch->get_branch_id();
-    }
-
-
-    $context['branch_title'] = get_the_title($branch_id);
+    $context['property_title'] = get_the_title($property_id);
     $context['id'] = $_REQUEST['id'];
-    $context['department'] = $_REQUEST['department'];
 
     die(Timber::compile('components/popups/branch-contact.twig',$context));
 }
@@ -840,27 +830,12 @@ add_action('wp_ajax_nopriv_branch_contact_popup','sa_branch_contact_popup');
 function branch_contact_submit() {
     $result = $errors = [];
 
-    $property = null;
     $id = $_REQUEST['id'];
-    $department_key = ($_REQUEST['department'] == 'sales') ? 'sale' : 'let';
-
-    $post_type = get_post_type($id);
-
-    if($post_type == 'property') {
-        $property = get_property(get_post($id));
-
-        $branch = new SA_PropertyBranch($property);
-        $id = $branch->get_branch_id();
-    }
+    $property = new TimberPost($id);
 
     $email_subject = get_the_title($id) . ' viewing request';
-    $enquire_form_email = get_field("enquire_form_{$department_key}_email_address", $id);
-    $email_destination = get_field("branch_{$department_key}_email_address", $id);
-    $branch_phone = get_field("branch_{$department_key}_phone", $id);
-
-    if(!empty($enquire_form_email) && $post_type != 'property') {
-        $email_destination = $enquire_form_email;
-    }
+    $email_destination = get_field("property_contact_email", "option");
+    $branch_phone = get_field("property_phone", "property_phone");
 
     if(!empty($email_destination)) {
         if(empty($_REQUEST['first_name'])) {
@@ -888,20 +863,18 @@ function branch_contact_submit() {
 
             $sent = $mailer
                 ->set_type('branch-contact')
-                ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
+                ->set_header_line("From: Stirling Ackroyd Offices <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
                 ->add_recipient_email($email_destination)
                 ->set_subject($email_subject)
                 ->set_email_data([
                     'form_data' => $_REQUEST,
                     'property' => $property,
-                    'branch' => new TimberPost($id),
                     'site_title' => get_bloginfo('name')
                 ])
                 ->send();
 
             $mail_body_data = [
                 'form_data' => $_REQUEST,
-                'branch' => new TimberPost($id),
                 'branch_phone' => $branch_phone,
                 'site_title' => get_bloginfo('name'),
                 'logo_url' => get_template_directory_uri() . '/dist/images/email-logo.jpg'
@@ -909,29 +882,25 @@ function branch_contact_submit() {
 
             if(!is_null($property)) {
                 $mail_body_data['property'] = $property;
-                $mail_body_data['property_image'] = $property->get_main_photo_src();
-                $mail_body_data['property_desc'] = $property->get_formatted_description();
-                $mail_body_data['property_price'] = $property->get_formatted_price();
-                $mail_body_data['property_beds'] = $property->bedrooms;
-                $mail_body_data['property_department'] = $property->_department;
+                $mail_body_data['property_image'] = $property->gallery[0]['url'];
+                $mail_body_data['property_desc'] = apply_filters('the_content',$property->post_content);
+                $mail_body_data['property_price'] = '&pound;' . $property->price_from;
             }
 
             $mailer
                 ->set_type('branch-contact-user')
-                ->set_header_line("From: Stirling Ackroyd <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
+                ->set_header_line("From: Stirling Ackroyd Offices <no-reply@" . $_SERVER['SERVER_NAME'] . ">")
                 ->add_recipient_email($_REQUEST['email_address'])
                 ->set_subject('Thank you for your Stirling Ackroyd enquiry.')
                 ->set_email_data($mail_body_data)
                 ->send();
 
             if ($sent) {
-                $pages = get_field('page','option');
+                $thank_you_page_id = get_field('thank_you_page_id','option');
 
                 $result['status'] = true;
                 $result['message'] = 'Email sent successfully.';
-                $result['department'] = $department_key;
-                $result['type'] = $post_type;
-                $result['redirect_url'] = get_the_permalink($pages['thank_you_page_id']);
+                $result['redirect_url'] = get_the_permalink($thank_you_page_id);
             } else {
                 $result['status'] = false;
                 $result['message'] = 'Email not sent. There seems to be a problem with the server. Please try again later.';

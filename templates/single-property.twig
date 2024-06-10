@@ -58,7 +58,7 @@
                                                     <a href="tel:{{ options.property_phone | replace({' ':'','-':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ options.property_phone }}</a>
                                                 </div>
                                             {% endif %}
-                                            <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54278" class="btn btn-lg btn-primary text-uppercase">Arrange a Viewing</a>
+                                            <a href="javascript:;" data-action="branchContact" data-id="{{ post.id }}" class="btn btn-lg btn-primary text-uppercase">Arrange a Viewing</a>
                                         </div>
                                     </div>
                                 </div>
