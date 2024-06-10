@@ -52,10 +52,12 @@
                                 <div class="property-arrange-viewing text-center mt-4 mt-md-0" id="property-arrange-viewing">
                                     <div class="property-arrange-viewing--office-contacts">
                                         <div class="branch-info">
-                                            <div class="branch-info--name">West End Branch</div>
-                                            <div>
-                                                <a href="tel:02039178218" class="branch-info--phone-number h3 mb-0 text-uppercase">020 3917 8218</a>
-                                            </div>
+                                            <div class="branch-info--name">Commercial</div>
+                                            {% if options.property_phone %}
+                                                <div>
+                                                    <a href="tel:{{ options.property_phone | replace({' ':'','-':''}) }}" class="branch-info--phone-number h3 mb-0 text-uppercase">{{ options.property_phone }}</a>
+                                                </div>
+                                            {% endif %}
                                             <a href="javascript:;" data-action="branchContact" data-department="sales" data-id="54278" class="btn btn-lg btn-primary text-uppercase">Arrange a Viewing</a>
                                         </div>
                                     </div>
