@@ -62,14 +62,14 @@ if($context['list_view'] == 'map') {
     $properties_list = $properties_query->get_posts();
 
     foreach ( $properties_list as $property ) {
-        if(!empty($property->address_map['lat'] && $property->address_map['lng'])) {
+        if(!empty($property->address_map) && !empty($property->address_map['lat'] && $property->address_map['lng'])) {
             $gallery = $property->gallery;
 
             $property_coords[] = [
                 'title' => $property->post_title,
                 'lat'   => $property->address_map['lat'],
                 'lng'   => $property->address_map['lng'],
-                'image' => $gallery[0]['url'],
+                'image' => $gallery ? $gallery[0]['url'] : '',
                 'url'   => get_the_permalink( $property->ID )
             ];
         }
