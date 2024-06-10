@@ -240,6 +240,9 @@ class StarterSite extends TimberSite {
         require_once 'enqueues.php';
         require('includes/cache_bust.php');
 
+        wp_enqueue_script( 'fancybox', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', ['jquery'] );
+        wp_enqueue_style( 'fancybox', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css' );
+
         //wp_enque
         wp_enqueue_script( 'essential.js', BUNDLE_JS_SRC, array(), $cache_ver, false); // These will appear at the top of the page
         wp_enqueue_script( 'deferred.js', DEFERRED_BUNDLE_JS_SRC, array(), $cache_ver, true); // These will appear in the footer

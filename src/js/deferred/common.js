@@ -33,6 +33,8 @@ var SA_Common = SA_Common || {};
                 SA_Common.initFeaturedPropertiesCarousel();
                 //SA_Common.initGalleryCarousel();
                 AOS.init();
+
+                $('[data-fancybox="gallery"]').fancybox();
             },
 
             events: function () {
