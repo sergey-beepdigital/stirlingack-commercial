@@ -223,34 +223,18 @@ class StarterSite extends TimberSite {
     }
 
     function assets( $twig ) {
-        $google_map_api_key = get_field('google_api_key','option');
+        $google_map_api_key = get_google_map_api_key();
 
         // Get rid of default media element
         // wp_deregister_script('wp-mediaelement'); // Uncomment to disable Media Element
         // wp_deregister_style('wp-mediaelement'); // Uncomment to disable Media Element
 
-        //wp_deregister_style('ph-rental-affordability-calculator');
-
         // Remove Wp's jQuery
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
-        wp_deregister_script( 'flexslider');
-        wp_deregister_script( 'flexslider-init');
 
-        wp_register_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
+        wp_enqueue_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
 
-        //wp_enqueue_script('phone-tracking', get_template_directory_uri() . '/dist/js/phone.js');
-        //wp_enqueue_script('highcharts','https://code.highcharts.com/highcharts.js');
-
-        /*if(is_singular('sa_branch')) {
-            wp_enqueue_script( 'api-feefo', 'https://api.feefo.com/api/javascript/stirling-ackroyd');
-        }*/
-
-        if(is_singular('sa_property')) {
-            wp_enqueue_script('google-maps');
-            /*wp_enqueue_style( 'flexslider_css', plugins_url('propertyhive/assets/css/flexslider.css') );*/
-        }
-
-        wp_enqueue_style('flexslider','https://www.stirlingackroyd.com/wp-content/plugins/propertyhive/assets/css/flexslider.css?ver=2.7.2');
+        wp_enqueue_style('remote-flexslider','https://www.stirlingackroyd.com/wp-content/plugins/propertyhive/assets/css/flexslider.css');
 
         // Define globals with for cache busting
         require_once 'enqueues.php';
@@ -785,9 +769,12 @@ function breadcrumbs_add_post_parent_page( $links ) {
 }
 add_filter( 'wpseo_breadcrumb_links', 'breadcrumbs_add_post_parent_page' );
 
+function get_google_map_api_key() {
+    return get_field('google_api_key','option');
+}
 
 function sa_acf_set_google_map( $api ){
-    $api_key = get_field('google_api_key','option');
+    $api_key = get_google_map_api_key();
 
     if(!empty($api_key)) {
         $api['key'] = $api_key;
