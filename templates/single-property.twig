@@ -31,15 +31,16 @@
 
                                 <div class="summary entry-summary">
 
-                                    <div class="property-detail-heading"><h1 class="property_title entry-title">{{ address }}</h1>
-                                        <div class="price">
+                                    <div class="property-detail-heading">
+                                        <h1 class="property_title entry-title">{{ address }}</h1>
+                                        {#<div class="price">
                                             {% if post.price_from and post.price_to %}
                                                 £{{ post.price_from ~ '-' ~ post.price_to }}
                                             {% else %}
                                                 £{{ post.price_from  }}
                                             {% endif %}
                                             <span class="price-qualifier">Asking Price</span>
-                                        </div>
+                                        </div>#}
                                     </div>
                                     <ul class="property-residential-details">
                                         <li><i class="fa-light fa-desktop"></i> {{ post.availability_size_desks_from ~ ' - ' ~ post.availability_size_desks_to }} desks</li>
