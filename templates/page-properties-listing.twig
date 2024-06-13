@@ -159,6 +159,18 @@
                                                     £{{ property.price_desk_per_month }}
                                                     <span class="price-qualifier">Asking Price</span>
                                                 </div>
+                                                <div class="property-branch-details">
+                                                    <div>
+                                                        {% if options.property_phone %}
+                                                            <a href="tel:{{ options.property_phone | replace({' ':'','-':''}) }}"><i class="fa-light fa-phone" aria-hidden="true"></i> {{ options.property_phone }}</a>
+                                                        {% endif %}
+
+                                                        <span class="property-branch-details--rate">Standard rate</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="https://www.stirlingackroyd.com/our-branches/commercial/" target="_blank"><i class="fa-light fa-envelope" aria-hidden="true"></i> Contact Branch</a>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
