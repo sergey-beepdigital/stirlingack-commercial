@@ -37,7 +37,7 @@ if ( isset( $_GET['minimum_desks'] ) && ! empty( $_GET['minimum_desks'] ) ) {
     $query_args['meta_query'][] = [
         'key'     => 'availability_size_desks_from',
         'value'   => $_GET['minimum_desks'],
-        'compare' => '>=',
+        'compare' => '<=',
         'type'    => 'NUMERIC'
     ];
 }
@@ -46,7 +46,7 @@ if ( isset( $_GET['maximum_desks'] ) && ! empty( $_GET['maximum_desks'] ) ) {
     $query_args['meta_query'][] = [
         'key'     => 'availability_size_desks_to',
         'value'   => $_GET['maximum_desks'],
-        'compare' => '<=',
+        'compare' => '>=',
         'type'    => 'NUMERIC'
     ];
 }
