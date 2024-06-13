@@ -63,6 +63,22 @@
             "append": ""
         },
         {
+            "key": "field_666b5d611cac5",
+            "label": "Valuation Page Link",
+            "name": "valuation_page_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_666723c780fff",
             "label": "Thank You Page",
             "name": "thank_you_page_id",
@@ -107,5 +123,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718035424
+    "modified": 1718312334
 }

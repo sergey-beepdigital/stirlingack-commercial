@@ -40,8 +40,8 @@
 
                         {% endif %}#}
                     </nav>
-                    {% if options.page.valuation_page_id %}
-                        <a href="{{ fn('get_the_permalink',options.page.valuation_page_id) }}" class="btn btn-lg btn-warning text-uppercase btn-valuation">Property Valuation</a>
+                    {% if options.valuation_page_link %}
+                        <a target="{{ options.valuation_page_link.target }}" href="{{ options.valuation_page_link.url }}" class="btn btn-lg btn-warning text-uppercase btn-valuation">{{ options.valuation_page_link.title }}</a>
                     {% endif %}
                 </div>
                 <nav class="header-content--menu">
