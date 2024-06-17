@@ -8,5 +8,5 @@ Source: {{ body.site_title }}
 Enquiry Type: Offices
 <div style="margin-bottom: 10px;">Message: {{ body.form_data.enquiry_text }}</div>
 {% if body.property.id %}
-    Property Ref: {{ fn('get_field','_reference_number',body.property.id) }}
+    Property Ref: {{ fn('get_field','_json_id',body.property.id) }}
 {% endif %}
