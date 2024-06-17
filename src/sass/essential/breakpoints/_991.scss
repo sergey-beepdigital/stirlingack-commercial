@@ -287,6 +287,16 @@
     }
 }
 
+.single-property{
+    .section-property-detail-content-tabs{
+        .property-detail-description-wrapper{
+            ul{
+                columns: 2;
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 992px) {
     .section-properties{
         .property-search-expandable{
