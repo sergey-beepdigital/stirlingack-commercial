@@ -116,7 +116,7 @@
                             <div class="property-detail-description-wrapper">
                                 <div class="row">
                                     {% if post.amenities %}
-                                        <div class="col-xl-4 offset-xl-1 order-lg-2 col-lg-4">
+                                        <div class="col-xl-4 offset-xl-1 order-2 col-lg-4">
                                             <div class="features">
                                                 <h4 class="mb-3">Amenities</h4>
                                                 <ul>
@@ -127,7 +127,7 @@
                                             </div>
                                         </div>
                                     {% endif %}
-                                    <div class="{{ post.amenities ? 'col-xl-7 order-lg-1 col-lg-8 mt-3 mt-sm-5 mt-lg-0' : 'col-12' }}">
+                                    <div class="{{ post.amenities ? 'col-xl-7 order-1 col-lg-8 mt-3 mt-sm-5 mt-lg-0' : 'col-12' }}">
                                         <div class="description">
                                             <div class="description-contents">
                                                 {{ post.content }}
