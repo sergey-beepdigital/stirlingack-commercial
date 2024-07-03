@@ -33,6 +33,7 @@ var SA_Common = SA_Common || {};
                 SA_Common.initFeaturedPropertiesCarousel();
                 //SA_Common.initGalleryCarousel();
                 AOS.init();
+                SA_Common.initKeywordAutocomplete();
 
                 $('select[name="sortby"]').on('change', function() {
                     $(this).closest('form').submit();
@@ -475,6 +476,27 @@ var SA_Common = SA_Common || {};
 
                             return false;
                         });
+                    }
+                }
+            },
+
+            initKeywordAutocomplete: function () {
+                var inputPostCode = document.getElementById('postcode-autocomplete');
+                var autoPostcode = new google.maps.places.Autocomplete(inputPostCode, {
+                    types: ['postal_code']
+                });
+
+                google.maps.event.addListener(autoPostcode, 'place_changed', function() {
+                    inputPostCode.value = getPostCode(autoPostcode.getPlace());
+                })
+
+                function getPostCode(place){
+                    for (var i = 0; i < place.address_components.length; i++) {
+                        for (var j = 0; j < place.address_components[i].types.length; j++) {
+                            if (place.address_components[i].types[j] == "postal_code") {
+                                return place.address_components[i].long_name;
+                            }
+                        }
                     }
                 }
             }

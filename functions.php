@@ -232,7 +232,7 @@ class StarterSite extends TimberSite {
         // Remove Wp's jQuery
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
 
-        wp_enqueue_script('google-maps',"https://maps.googleapis.com/maps/api/js?key=" . $google_map_api_key);
+        wp_enqueue_script('google-maps',"https://maps.googleapis.com/maps/api/js?libraries=places&key=" . $google_map_api_key);
 
         wp_enqueue_style('remote-flexslider','https://www.stirlingackroyd.com/wp-content/plugins/propertyhive/assets/css/flexslider.css');
 
