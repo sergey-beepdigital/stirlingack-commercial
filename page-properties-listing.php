@@ -3,8 +3,8 @@
 $context                = Timber::get_context();
 $post                   = new TimberPost();
 $context['post']        = $post;
-$context['list_view']   = $_GET['list_view'] ? $_GET['list_view'] : 'grid';
-$context['list_sortby'] = $_GET['sortby'] ? $_GET['sortby'] : 'price-desc';
+$context['list_view']   = $_GET['list_view'] ? : 'grid';
+$context['list_sortby'] = $_GET['sortby'] ? : 'price-desc';
 
 $page                       = get_query_var( 'page' ) ? get_query_var( 'page' ) : 1;
 $posts_per_page             = get_option( 'posts_per_page' );
