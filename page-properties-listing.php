@@ -55,7 +55,13 @@ if($context['list_view'] == 'map') {
     $query_args['posts_per_page'] = -1;
 }
 
-$properties_query = new Timber\PostQuery( $query_args );
+if(!empty($_GET['address_keyword']) && !empty($_GET['address_lat']) && !empty($_GET['address_lng'])) {
+    $query_args['lat'] = $_GET['address_lat'];
+    $query_args['lng'] = $_GET['address_lng'];
+    $query_args['distance'] = 1;
+}
+
+$properties_query = new WP_Query_Geo( $query_args );
 
 if($context['list_view'] == 'map') {
     $property_coords = [];

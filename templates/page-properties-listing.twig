@@ -17,7 +17,9 @@
 
                                 <div class="control control-address_keyword">
                                     <label for="address_keyword">Area or Postcode</label>
-                                    <input id="postcode-autocomplete" type="text" name="address_keyword" id="address_keyword" value="{{ request.get.address_keyword }}" placeholder="e.g. EC2" class="pac-target-input" style="" autocomplete="off">
+                                    <input type="text" name="address_keyword" id="address_keyword" value="{{ request.get.address_keyword }}" placeholder="e.g. EC2" class="pac-target-input" style="" autocomplete="off">
+                                    <input type="hidden" name="address_lat" id="address_lat" value="{{ request.get.address_lat }}" autocomplete="off">
+                                    <input type="hidden" name="address_lng" id="address_lng" value="{{ request.get.address_lng }}" autocomplete="off">
                                 </div>
 
                                 {#<div class="control control-radius">

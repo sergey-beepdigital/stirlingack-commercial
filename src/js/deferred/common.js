@@ -481,19 +481,35 @@ var SA_Common = SA_Common || {};
             },
 
             initKeywordAutocomplete: function () {
-                var inputPostCode = document.getElementById('postcode-autocomplete');
+                var inputPostCode = document.getElementById('address_keyword');
+                var inputPostCodeLat = document.getElementById('address_lat');
+                var inputPostCodeLng = document.getElementById('address_lng');
+
                 var autoPostcode = new google.maps.places.Autocomplete(inputPostCode, {
-                    types: ['postal_code']
+                    types: ['postal_code'],
+                    fields: ['ALL'],
+                    componentRestrictions: { country: "gb" }
                 });
 
                 google.maps.event.addListener(autoPostcode, 'place_changed', function() {
-                    inputPostCode.value = getPostCode(autoPostcode.getPlace());
+                    const place = autoPostcode.getPlace();
+
+                    console.log(place);
+                    console.log(place.geometry.location.lat());
+                    console.log(place.geometry.location.lng());
+
+                    inputPostCodeLat.value = place.geometry.location.lat();
+                    inputPostCodeLng.value = place.geometry.location.lng();
+
+                    inputPostCode.value = getPostCode(place);
                 })
 
                 function getPostCode(place){
                     for (var i = 0; i < place.address_components.length; i++) {
+                        console.log(place.address_components);
                         for (var j = 0; j < place.address_components[i].types.length; j++) {
                             if (place.address_components[i].types[j] == "postal_code") {
+                                //console.log(place.address_components);
                                 return place.address_components[i].long_name;
                             }
                         }

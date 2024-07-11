@@ -2,6 +2,7 @@
 
 require_once 'includes/help-functions.php';
 require_once 'includes/classes/class.mailer.php';
+require_once 'includes/classes/WP_Geo_Query.php';
 //require_once 'includes/classes/class.property-branch.php';
 
 include "includes/shortcodes.php";
@@ -232,7 +233,7 @@ class StarterSite extends TimberSite {
         // Remove Wp's jQuery
         // wp_deregister_script('jquery'); // Uncomment to disable jQuery
 
-        wp_enqueue_script('google-maps',"https://maps.googleapis.com/maps/api/js?libraries=places&key=" . $google_map_api_key);
+        wp_enqueue_script('google-maps',"https://maps.googleapis.com/maps/api/js?libraries=places&region=GB&language=EN&key=" . $google_map_api_key);
 
         wp_enqueue_style('remote-flexslider','https://www.stirlingackroyd.com/wp-content/plugins/propertyhive/assets/css/flexslider.css');
 
@@ -1152,3 +1153,5 @@ function job_details_template_include( $template ) {
 add_filter( 'template_include', 'job_details_template_include', 1, 1 );
 
 remove_filter('template_redirect', 'redirect_canonical');
+
+
