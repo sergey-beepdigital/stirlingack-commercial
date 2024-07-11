@@ -11,6 +11,8 @@ $posts_per_page             = get_option( 'posts_per_page' );
 $properties_search_distance = get_field( 'properties_search_distance', 'option' );
 
 $link_query['address_keyword'] = ! empty( $_GET['address_keyword'] ) ? $_GET['address_keyword'] : '';
+$link_query['address_lat'] = ! empty( $_GET['address_lat'] ) ? $_GET['address_lat'] : '';
+$link_query['address_lng'] = ! empty( $_GET['address_lng'] ) ? $_GET['address_lng'] : '';
 $link_query['minimum_desks'] = ! empty( $_GET['minimum_desks'] ) ? $_GET['minimum_desks'] : '';
 $link_query['maximum_desks'] = ! empty( $_GET['maximum_desks'] ) ? $_GET['maximum_desks'] : '';
 $link_query['sortby'] = $context['list_sortby'];
