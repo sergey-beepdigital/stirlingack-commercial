@@ -2,7 +2,7 @@
 
 require_once 'includes/help-functions.php';
 require_once 'includes/classes/class.mailer.php';
-require_once 'includes/classes/WP_Geo_Query.php';
+require_once 'includes/classes/wp-geo-query.php';
 //require_once 'includes/classes/class.property-branch.php';
 
 include "includes/shortcodes.php";

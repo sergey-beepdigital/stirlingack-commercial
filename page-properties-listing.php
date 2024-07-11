@@ -6,8 +6,9 @@ $context['post']        = $post;
 $context['list_view']   = $_GET['list_view'] ? $_GET['list_view'] : 'grid';
 $context['list_sortby'] = $_GET['sortby'] ? $_GET['sortby'] : 'price-desc';
 
-$page           = get_query_var( 'page' ) ? get_query_var( 'page' ) : 1;
-$posts_per_page = get_option( 'posts_per_page' );
+$page                       = get_query_var( 'page' ) ? get_query_var( 'page' ) : 1;
+$posts_per_page             = get_option( 'posts_per_page' );
+$properties_search_distance = get_field( 'properties_search_distance', 'option' );
 
 $link_query['address_keyword'] = ! empty( $_GET['address_keyword'] ) ? $_GET['address_keyword'] : '';
 $link_query['minimum_desks'] = ! empty( $_GET['minimum_desks'] ) ? $_GET['minimum_desks'] : '';
@@ -22,16 +23,16 @@ $query_args = [
     'posts_per_page' => get_option( 'posts_per_page' ),
     'paged'          => $page,
     'meta_key'       => 'price_desk_per_month',
-    'orderby'        => [ 'meta_value_num' => $context['list_sortby'] == 'price-asc' ? 'ASC' : 'DESC' ]
+    'orderby'        => [ 'meta_value_num' => $context['list_sortby'] == 'price-asc' ? 'ASC' : 'DESC' ],
 ];
 
-if ( isset( $_GET['address_keyword'] ) && ! empty( $_GET['address_keyword'] ) ) {
+/*if ( isset( $_GET['address_keyword'] ) && ! empty( $_GET['address_keyword'] ) ) {
     $query_args['meta_query'][] = [
         'key'     => 'address_postcode',
         'value'   => $_GET['address_keyword'],
         'compare' => 'LIKE'
     ];
-}
+}*/
 
 if ( isset( $_GET['minimum_desks'] ) && ! empty( $_GET['minimum_desks'] ) ) {
     $query_args['meta_query'][] = [
@@ -56,12 +57,17 @@ if($context['list_view'] == 'map') {
 }
 
 if(!empty($_GET['address_keyword']) && !empty($_GET['address_lat']) && !empty($_GET['address_lng'])) {
-    $query_args['lat'] = $_GET['address_lat'];
-    $query_args['lng'] = $_GET['address_lng'];
-    $query_args['distance'] = 1;
+    $query_args['geo_query'] = [
+        'lat_field' => 'address_lat',  // this is the name of the meta field storing latitude
+        'lng_field' => 'address_long', // this is the name of the meta field storing longitude
+        'latitude'  => $_GET['address_lat'],    // this is the latitude of the point we are getting distance from
+        'longitude' => $_GET['address_lng'],   // this is the longitude of the point we are getting distance from
+        'distance'  => $properties_search_distance,           // this is the maximum distance to search
+        'units'     => 'miles'       // this supports options: miles, mi, kilometers, km
+    ];
 }
 
-$properties_query = new WP_Query_Geo( $query_args );
+$properties_query = new Timber\PostQuery( $query_args );
 
 if($context['list_view'] == 'map') {
     $property_coords = [];

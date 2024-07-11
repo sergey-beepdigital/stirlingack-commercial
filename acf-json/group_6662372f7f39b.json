@@ -63,22 +63,6 @@
             "append": ""
         },
         {
-            "key": "field_666b5d611cac5",
-            "label": "Valuation Page Link",
-            "name": "valuation_page_link",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
             "key": "field_666723c780fff",
             "label": "Thank You Page",
             "name": "thank_you_page_id",
@@ -103,6 +87,28 @@
             "bidirectional": 0,
             "ui": 1,
             "bidirectional_target": []
+        },
+        {
+            "key": "field_668ff7c1e7d49",
+            "label": "Properties Search Distance",
+            "name": "properties_search_distance",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Values in Miles",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 5,
+            "min": "",
+            "max": "",
+            "placeholder": "miles",
+            "step": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -123,5 +129,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718312334
+    "modified": 1720711147
 }
