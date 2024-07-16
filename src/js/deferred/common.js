@@ -486,7 +486,8 @@ var SA_Common = SA_Common || {};
                 var inputPostCodeLng = document.getElementById('address_lng');
 
                 var autoPostcode = new google.maps.places.Autocomplete(inputPostCode, {
-                    types: ['postal_code','locality'],
+                    types: ['(regions)'],
+
                     fields: ['ALL'],
                     componentRestrictions: { country: "gb" }
                 });
@@ -508,9 +509,10 @@ var SA_Common = SA_Common || {};
                     for (var i = 0; i < place.address_components.length; i++) {
                         console.log(place.address_components);
                         for (var j = 0; j < place.address_components[i].types.length; j++) {
-                            if (place.address_components[i].types[j] == "postal_code" || place.address_components[i].types[j] == "locality") {
+                            /*console.log(place.address_components[i].types[j]);
+                            if (place.address_components[i].types[j] == "postal_code" || place.address_components[i].types[j] == "locality") {*/
                                 return place.address_components[i].long_name;
-                            }
+                            //}
                         }
                     }
                 }
